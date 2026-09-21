@@ -1,0 +1,3284 @@
+{
+  "schema_version": 2,
+  "duration_seconds": 36.911,
+  "settings_snapshot": {
+    "enabled": true,
+    "planning_quality": "professional",
+    "pace": "fast",
+    "style": "dynamic",
+    "intensity": "normal",
+    "max_micro_shots_per_beat": 3,
+    "min_micro_shot_duration": 0.55,
+    "max_micro_shot_duration": 3.2,
+    "target_interval_min": 0.8,
+    "target_interval_max": 1.8,
+    "allow_hold": true,
+    "allow_push": true,
+    "allow_pull": true,
+    "allow_pan": true,
+    "allow_tilt": true,
+    "allow_pan_push": true,
+    "allow_pan_pull": true,
+    "allow_drift": true,
+    "allow_settle": true,
+    "allow_reveal_move": true,
+    "allow_punch_cuts": true,
+    "allow_hard_reframes": true,
+    "allow_match_position_cuts": true,
+    "allow_decorative_transitions": true,
+    "allow_directional_transitions": true,
+    "allow_reveal_transitions": true,
+    "transition_preference": "minimal",
+    "max_decorative_transition_fraction": 0.25,
+    "image_transition_style": "cut_fade_dissolve",
+    "image_transition_seconds": 0.28,
+    "transition_duration_min": 0.1,
+    "transition_duration_max": 0.4,
+    "normal_max_zoom": 1.32,
+    "punch_max_zoom": 1.48,
+    "max_pan_distance": 0.32,
+    "max_pan_velocity": 0.42,
+    "max_zoom_velocity": 0.34,
+    "image_zoom_strength": 0.14,
+    "enforce_image_zoom_policy": false,
+    "face_protection": true,
+    "face_padding": 0.18,
+    "subtitle_avoidance": true,
+    "blank_region_avoidance": true,
+    "word_sync": true,
+    "word_sync_tolerance_ms": 50,
+    "observation_batch_size": 3,
+    "planning_batch_size": 1,
+    "critic_batch_size": 2,
+    "neighbor_context": 1,
+    "editorial_critic": true,
+    "correction_attempts": 4,
+    "debug_preview": false,
+    "supersample": 2
+  },
+  "global_direction": {
+    "schema_version": 2,
+    "pace": "fast",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0,
+        "end": 0.207,
+        "energy": 0.92,
+        "attention_velocity": 0.95
+      },
+      {
+        "name": "setup",
+        "start": 0.207,
+        "end": 0.339,
+        "energy": 0.72,
+        "attention_velocity": 0.78
+      },
+      {
+        "name": "body",
+        "start": 0.339,
+        "end": 0.597,
+        "energy": 0.84,
+        "attention_velocity": 0.9
+      },
+      {
+        "name": "climax",
+        "start": 0.597,
+        "end": 0.8,
+        "energy": 0.9,
+        "attention_velocity": 0.82
+      },
+      {
+        "name": "ending",
+        "start": 0.8,
+        "end": 0.92,
+        "energy": 0.78,
+        "attention_velocity": 0.62
+      },
+      {
+        "name": "cta",
+        "start": 0.92,
+        "end": 1,
+        "energy": 0.66,
+        "attention_velocity": 0.72
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0004",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0007",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0010",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0015",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0023",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0026",
+        "reason": "location"
+      },
+      {
+        "word_id": "w_0028",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0032",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0036",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0039",
+        "reason": "location"
+      },
+      {
+        "word_id": "w_0040",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0047",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0048",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0051",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0052",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0053",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0054",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0056",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0059",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0061",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0066",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0067",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0068",
+        "reason": "reveal"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with the fastest attention rhythm: let the spoken question drive two or three decisive reframes rather than continuous motion, then briefly settle on the pressure clue before the image sequence begins.",
+      "From beats 1-4, keep exterior-aircraft motion coherent and directional, using restrained pushes or pans toward the verified airplane rather than treating each image as an unrelated shot.",
+      "At the cabin break in beats 5-8, increase contrast through hard cuts between verified left- and right-positioned broken windows; use framing changes to make the rupture feel immediate without adding any unverified debris or objects.",
+      "Beats 9-12 should form one explanatory phrase: start slightly wider, then progressively commit attention toward the verified broken-window targets as the narration says airflow is strongest near the opening.",
+      "For beats 13-15, where pixels are unavailable for verification, avoid object-specific moves or invented focal details; use conservative holds, center-weighted reframes, or simple continuity cuts based only on the source canvas.",
+      "Let the 'farther away' idea breathe slightly before the breathing difficulty sequence, creating a short timing contrast instead of maintaining maximum cut density.",
+      "Beats 18-21 should slow perceptibly around the distressed passenger and centered faces; favor holds, subtle pushes, and fewer cuts so the physiological consequence lands emotionally.",
+      "Re-accelerate at beats 22-25 as oxygen masks become the verified dominant subject, using upward-directed reframing where supported by the inventory and avoiding unnecessary transition effects.",
+      "Treat beats 26-28 as the conceptual payoff: reduce motion complexity, hold visual continuity around the verified broken-window imagery, and let the phrase 'rapid decompression' receive the strongest verbal reveal.",
+      "The CTA should release tension: simplify motion, reduce energy, and avoid introducing a final decorative flourish that competes with the request to comment."
+    ],
+    "transition_philosophy": [
+      "Default to hard cuts for causal changes and attention shifts; use short fades or dissolves only when the narration changes from consequence to reflection rather than as a routine beat separator.",
+      "Exploit match-position cuts when successive verified targets occupy similar screen regions, especially repeated airplane exteriors, broken windows, centered passenger faces, and overhead mask groups.",
+      "Use directional continuity only when supported by the inventory's left, right, center, or up orientation; do not manufacture directional wipes that imply unseen scene geography.",
+      "Reserve reveal-style transitions for the pressure-loss naming payoff near 'rapid decompression'; avoid spending that visual language earlier.",
+      "Do not transition on every word. Let spoken emphasis determine edit points, and allow clean holds through low-information or empty spoken beats."
+    ],
+    "motion_contrast_plan": [
+      "0-7.625s: high attention velocity with decisive reframes and brief pushes, but retain at least one short hold so the hook does not become mechanically restless.",
+      "7.625-12.5s: moderate, coherent exterior motion with similar directional behavior across the airplane images to establish spatial continuity.",
+      "12.5-17.965s: strongest motion contrast of the episode, alternating hard cuts and controlled pushes toward verified broken-window targets as the narration explains the escaping air and strongest airflow zone.",
+      "17.965-22.02s: deliberately reduce motion density; use stillness or gentle settling to embody the contrast that air farther away may move much less.",
+      "22.02-25.56s: emotional compression around verified passenger faces, with subtle inward motion and longer shot durations than the preceding explanation.",
+      "25.56-29.52s: renewed vertical and upward attention toward verified oxygen-mask groups, then settle as pilots descending is spoken.",
+      "29.52-33.955s: simplify again for the terminology reveal, prioritizing stable composition and one controlled emphasis move over multiple micro-shots.",
+      "33.955-36.911s: low-complexity CTA with a clean hold or gentle settle so the viewer's attention can transfer from imagery to the spoken prompt."
+    ],
+    "ending_strategy": "Make 'rapid decompression' the final explanatory peak, then visibly reduce motion complexity for the CTA. Hold or gently settle on the existing verified cabin imagery rather than adding a new visual idea, allowing the episode to end with a clear invitation to comment instead of an effect-driven button.",
+    "prohibited_patterns": [
+      "No constant zooming across every image.",
+      "No automatic transition on every beat boundary.",
+      "No decorative transition chains, spin effects, repeated wipes, or effect-first motion.",
+      "No invented particles, debris, warning graphics, arrows, labels, masks, passengers, or aircraft elements beyond what the verified inventory supports.",
+      "No object-specific movement in beats 13-15 because their pixels were unavailable for verification.",
+      "No aggressive reframing that pushes primary targets off-screen or obscures verified faces, broken windows, aircraft, or oxygen masks.",
+      "No repetitive left-right ping-pong pans solely to create activity.",
+      "No punch cut on every emphasized word; reserve punch cuts for major causal or reveal moments.",
+      "No prolonged maximum-energy treatment through the breathing-difficulty section; that passage needs contrast and breathing room.",
+      "No final flourish that competes with the spoken CTA."
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": 1,
+      "start": 7.625,
+      "end": 8.825,
+      "attention_story": [
+        "Establish the high-altitude cloud context while keeping the airplane readable in the upper half.",
+        "On “Outside,” redirect attention upward toward the passenger airplane with a restrained tightening move."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b01_s01",
+          "role": "establish",
+          "start": 7.625,
+          "end": 8.825,
+          "edit_in": {
+            "type": "establishing_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b01_target_cloud_layer",
+              "coverage": 0.9,
+              "anchor_x": 0.5,
+              "anchor_y": 0.67
+            },
+            "end": {
+              "target_id": "b01_target_airplane",
+              "coverage": 0.76,
+              "anchor_x": 0.52,
+              "anchor_y": 0.3
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "snappy",
+            "start_delay": 0.895,
+            "end_hold": 0.0,
+            "reason": "Hold the exterior altitude context first, then use the spoken word “Outside” to shift attention upward and slightly inward onto the verified airplane without obscuring the surrounding sky."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0020",
+            "word": "Outside",
+            "authoritative_start": 8.52,
+            "authoritative_end": 8.84
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b01_target_cloud_layer",
+              "target_label": "cloud layer",
+              "center_x": 0.5,
+              "center_y": 0.503876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.67,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.74,
+                "w": 1.0,
+                "h": 0.35
+              }
+            },
+            "end": {
+              "target_id": "b01_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.5015789,
+              "center_y": 0.4727825,
+              "width": 0.9210526,
+              "height": 0.9139127,
+              "zoom": 1.0857143,
+              "anchor_x": 0.52,
+              "anchor_y": 0.3,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.29,
+                "w": 0.7,
+                "h": 0.17
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b01_target_airplane",
+        "coverage": 0.76,
+        "anchor_x": 0.52,
+        "anchor_y": 0.3,
+        "movement_direction": "up"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The narration continues the same exterior-pressure explanation, so a clean cut preserves fast pacing without adding a decorative transition."
+      }
+    },
+    {
+      "beat_id": 2,
+      "start": 8.825,
+      "end": 10.05,
+      "attention_story": [
+        "Maintain spatial continuity with the prior exterior-aircraft shot through a match-position cut.",
+        "Keep the passenger airplane steady through pressure is so the high-altitude cloud context remains readable.",
+        "Begin a restrained push on lower to emphasize the pressure contrast without inventing graphics or obscuring the aircraft."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b02_s01",
+          "role": "primary",
+          "start": 8.825,
+          "end": 10.05,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b02_target_airplane",
+              "coverage": 0.76,
+              "anchor_x": 0.52,
+              "anchor_y": 0.3
+            },
+            "end": {
+              "target_id": "b02_target_airplane",
+              "coverage": 0.84,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_out",
+            "start_delay": 0.755,
+            "end_hold": 0.01,
+            "reason": "Hold the exterior composition through pressure is, then push subtly toward the verified airplane beginning exactly on lower to give the pressure contrast clear visual emphasis while retaining the cloud-layer context."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0023",
+            "word": "lower",
+            "authoritative_start": 9.58,
+            "authoritative_end": 10.04
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b02_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.4921053,
+              "center_y": 0.4675602,
+              "width": 0.9129968,
+              "height": 0.9059193,
+              "zoom": 1.0952941,
+              "anchor_x": 0.52,
+              "anchor_y": 0.3,
+              "target_bbox": {
+                "x": 0.51,
+                "y": 0.29,
+                "w": 0.68,
+                "h": 0.16
+              }
+            },
+            "end": {
+              "target_id": "b02_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.4938095,
+              "center_y": 0.4586822,
+              "width": 0.8095238,
+              "height": 0.8032484,
+              "zoom": 1.2352941,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29,
+              "target_bbox": {
+                "x": 0.51,
+                "y": 0.29,
+                "w": 0.68,
+                "h": 0.16
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b02_target_airplane",
+        "coverage": 0.84,
+        "anchor_x": 0.52,
+        "anchor_y": 0.29,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat continues the same high-altitude exterior idea, so a clean cut preserves fast pacing without adding an unnecessary decorative transition."
+      }
+    },
+    {
+      "beat_id": 3,
+      "start": 10.05,
+      "end": 11.275,
+      "attention_story": [
+        "Match-position cut preserves the aircraft's screen position from the preceding exterior shot.",
+        "On the emphasized word 'altitude,' begin a gentle pull-out from the verified airplane, widening into the existing sky and cloud context to reinforce the sense of high altitude."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b03_s01",
+          "role": "context",
+          "start": 10.05,
+          "end": 11.275,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b03_target_airplane",
+              "coverage": 0.84,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29
+            },
+            "end": {
+              "target_id": "b03_target_airplane",
+              "coverage": 0.74,
+              "anchor_x": 0.5,
+              "anchor_y": 0.31
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "gentle",
+            "start_delay": 0.67,
+            "end_hold": 0.035,
+            "reason": "The widening begins exactly as 'altitude' is spoken, reducing airplane coverage to reveal more verified open sky and cloud layer while maintaining exterior continuity."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0026",
+            "word": "altitude.",
+            "authoritative_start": 10.72,
+            "authoritative_end": 11.24
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b03_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.4848485,
+              "center_y": 0.4378576,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.42,
+                "h": 0.11
+              }
+            },
+            "end": {
+              "target_id": "b03_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.5,
+              "center_y": 0.4228236,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.5,
+              "anchor_y": 0.31,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.28,
+                "w": 0.42,
+                "h": 0.11
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b03_target_airplane",
+        "coverage": 0.74,
+        "anchor_x": 0.5,
+        "anchor_y": 0.31,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat remains in the same high-altitude exterior sequence, so a clean cut preserves momentum without adding an unnecessary transition effect."
+      }
+    },
+    {
+      "beat_id": 4,
+      "start": 11.275,
+      "end": 12.5,
+      "attention_story": [
+        "Keep attention on the verified airplane as the final exterior high-altitude context.",
+        "Use a restrained rightward follow that preserves the aircraft's verified travel direction, then cut cleanly into the cabin rupture."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b04_s01",
+          "role": "release",
+          "start": 11.275,
+          "end": 12.5,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b04_target_airplane",
+              "coverage": 0.74,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29
+            },
+            "end": {
+              "target_id": "b04_target_airplane",
+              "coverage": 0.74,
+              "anchor_x": 0.56,
+              "anchor_y": 0.29
+            }
+          },
+          "motion": {
+            "type": "pan",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.12,
+            "reason": "Preserve the verified airplane's rightward directional continuity while giving the final exterior pressure context a controlled release before the abrupt cabin break."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b04_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.5048485,
+              "center_y": 0.4478576,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.29,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.29,
+                "w": 0.43,
+                "h": 0.13
+              }
+            },
+            "end": {
+              "target_id": "b04_target_airplane",
+              "target_label": "passenger airplane",
+              "center_x": 0.4745455,
+              "center_y": 0.4478576,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.29,
+              "target_bbox": {
+                "x": 0.52,
+                "y": 0.29,
+                "w": 0.43,
+                "h": 0.13
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b04_target_airplane",
+        "coverage": 0.74,
+        "anchor_x": 0.56,
+        "anchor_y": 0.29,
+        "movement_direction": "right"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "The narration shifts from exterior pressure context to the causal cabin break, so a hard cut creates the intended rupture without decorative transition language."
+      }
+    },
+    {
+      "beat_id": 5,
+      "start": 12.5,
+      "end": 13.255,
+      "attention_story": [
+        "Cut from the exterior airplane context directly into the cabin, prioritizing the verified broken window as the causal rupture.",
+        "On the emphasized word 'break,' begin a short rightward pan-push from the damaged opening toward the verified airflow strokes, preparing the continuation into 'cabin air' without adding another cut."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b05_s01",
+          "role": "primary",
+          "start": 12.5,
+          "end": 13.255,
+          "edit_in": {
+            "type": "establishing_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b05_target_broken_window",
+              "coverage": 0.76,
+              "anchor_x": 0.29,
+              "anchor_y": 0.43
+            },
+            "end": {
+              "target_id": "b05_target_airflow",
+              "coverage": 0.67,
+              "anchor_x": 0.52,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "snappy",
+            "start_delay": 0.16,
+            "end_hold": 0.0,
+            "reason": "The brief initial framing establishes the broken opening, then the move begins exactly on 'break' and carries attention toward the visible escaping airflow that motivates the next spoken phrase."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0028",
+            "word": "break",
+            "authoritative_start": 12.66,
+            "authoritative_end": 13.0
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b05_target_broken_window",
+              "target_label": "broken airplane window",
+              "center_x": 0.4237288,
+              "center_y": 0.4526192,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.29,
+              "anchor_y": 0.43,
+              "target_bbox": {
+                "x": 0.23,
+                "y": 0.4,
+                "w": 0.25,
+                "h": 0.38
+              }
+            },
+            "end": {
+              "target_id": "b05_target_airflow",
+              "target_label": "airflow strokes exiting window",
+              "center_x": 0.4648485,
+              "center_y": 0.4950341,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.52,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.48,
+                "y": 0.48,
+                "w": 0.48,
+                "h": 0.22
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b05_target_airflow",
+        "coverage": 0.67,
+        "anchor_x": 0.52,
+        "anchor_y": 0.48,
+        "movement_direction": "right"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat continues the same cabin-air sentence and imagery, so a clean cut preserves momentum without adding a decorative transition."
+      }
+    },
+    {
+      "beat_id": 6,
+      "start": 13.255,
+      "end": 14.01,
+      "attention_story": [
+        "Use the beat boundary itself for contrast: hard reframe from beat 5's left-side rupture/airflow composition directly to the verified right-side broken window, making the cabin break feel immediate without a passenger detour.",
+        "Hold the opening long enough to register, then begin only a restrained inward push on the spoken word 'air'; do not repeat the preceding rightward pan trajectory."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b06_s01",
+          "role": "primary",
+          "start": 13.255,
+          "end": 14.01,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b06_target_broken_window",
+              "coverage": 0.78,
+              "anchor_x": 0.79,
+              "anchor_y": 0.35
+            },
+            "end": {
+              "target_id": "b06_target_broken_window",
+              "coverage": 0.7,
+              "anchor_x": 0.79,
+              "anchor_y": 0.35
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "hold_then_move",
+            "start_delay": 0.425,
+            "end_hold": 0.05,
+            "reason": "The hard cut supplies the left-to-right rupture contrast at the beat boundary. The small inward push begins exactly on 'air' and keeps attention on the verified opening without another lateral camera sweep or unnecessary face reframe."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0031",
+            "word": "air",
+            "authoritative_start": 13.68,
+            "authoritative_end": 13.96
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b06_target_broken_window",
+              "target_label": "broken airplane window",
+              "center_x": 0.570303,
+              "center_y": 0.4627555,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.79,
+              "anchor_y": 0.35,
+              "target_bbox": {
+                "x": 0.79,
+                "y": 0.35,
+                "w": 0.22,
+                "h": 0.3
+              }
+            },
+            "end": {
+              "target_id": "b06_target_broken_window",
+              "target_label": "broken airplane window",
+              "center_x": 0.570303,
+              "center_y": 0.4627555,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.79,
+              "anchor_y": 0.35,
+              "target_bbox": {
+                "x": 0.79,
+                "y": 0.35,
+                "w": 0.22,
+                "h": 0.3
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b06_target_broken_window",
+        "coverage": 0.7,
+        "anchor_x": 0.79,
+        "anchor_y": 0.35,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The causal explanation continues into the next beat, so retain a clean cut and avoid decorative transition language."
+      }
+    },
+    {
+      "beat_id": 7,
+      "start": 14.01,
+      "end": 14.765,
+      "attention_story": [
+        "Carry the established rightward airflow logic into the cabin with a decisive cut onto the verified airflow path while retaining the left-side passengers and the complete opening in frame.",
+        "Use one restrained rightward pan-push so attention completes on the jagged broken window exactly as “rush” ends, then hold the visible exit point through “out.”"
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b07_s01",
+          "role": "primary",
+          "start": 14.01,
+          "end": 14.765,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b07_airflow_streams",
+              "coverage": 0.94,
+              "anchor_x": 0.46,
+              "anchor_y": 0.46
+            },
+            "end": {
+              "target_id": "b07_broken_window",
+              "coverage": 0.9,
+              "anchor_x": 0.475,
+              "anchor_y": 0.44
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.465,
+            "reason": "Track the verified rightward airflow toward the opening with only a restrained crop change, preserving the left passenger faces and complete jagged rim while completing the attention move on the emphasized word “rush.”"
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0032",
+            "word": "rush",
+            "authoritative_start": 13.96,
+            "authoritative_end": 14.3
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b07_airflow_streams",
+              "target_label": "dense airflow streaks crossing cabin toward window",
+              "center_x": 0.456383,
+              "center_y": 0.4611549,
+              "width": 0.912766,
+              "height": 0.9056903,
+              "zoom": 1.0955711,
+              "anchor_x": 0.46,
+              "anchor_y": 0.46,
+              "target_bbox": {
+                "x": 0.429,
+                "y": 0.49,
+                "w": 0.858,
+                "h": 0.67
+              }
+            },
+            "end": {
+              "target_id": "b07_broken_window",
+              "target_label": "jagged broken cabin window and blue-sky opening",
+              "center_x": 0.6212121,
+              "center_y": 0.4401022,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.475,
+              "anchor_y": 0.44,
+              "target_bbox": {
+                "x": 0.744,
+                "y": 0.395,
+                "w": 0.301,
+                "h": 0.397
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "subject_horizontal_edge_protected",
+            "zoom_limited"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b07_broken_window",
+        "coverage": 0.9,
+        "anchor_x": 0.475,
+        "anchor_y": 0.44,
+        "movement_direction": "right"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "A hard cut into the opposite-side cabin opening creates the prescribed left-right contrast without adding decorative transition language."
+      }
+    },
+    {
+      "beat_id": 8,
+      "start": 14.765,
+      "end": 15.52,
+      "attention_story": [
+        "Hard cut from the prior right-side opening to a broad composition that clearly establishes the verified left-side broken window while retaining the foreground woman, her hands, the loose sheets, and the visible airflow path.",
+        "Hold through the silent beat so the reversal in opening position and escape direction registers cleanly before the next explanatory claim begins."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b08_s01",
+          "role": "hold",
+          "start": 14.765,
+          "end": 15.52,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b08_broken_window",
+              "coverage": 0.9,
+              "anchor_x": 0.47,
+              "anchor_y": 0.45
+            },
+            "end": {
+              "target_id": "b08_broken_window",
+              "coverage": 0.9,
+              "anchor_x": 0.47,
+              "anchor_y": 0.45
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The silent 0.755-second beat is too short for a valid split; a broad stable hold makes the verified left-side opening and leftward airflow reversal legible while preserving the foreground woman's face, both hands, loose papers, and complete window rim."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b08_broken_window",
+              "target_label": "jagged broken cabin window on left",
+              "center_x": 0.3787879,
+              "center_y": 0.4085852,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.47,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.19,
+                "y": 0.371,
+                "w": 0.241,
+                "h": 0.354
+              }
+            },
+            "end": {
+              "target_id": "b08_broken_window",
+              "target_label": "jagged broken cabin window on left",
+              "center_x": 0.3787879,
+              "center_y": 0.4085852,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.47,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.19,
+                "y": 0.371,
+                "w": 0.241,
+                "h": 0.354
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b08_broken_window",
+        "coverage": 0.9,
+        "anchor_x": 0.47,
+        "anchor_y": 0.45,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "The next beat begins the distinct claim about airflow being strongest near the opening, so a clean hard cut can localize attention without transition spam."
+      }
+    },
+    {
+      "beat_id": 9,
+      "start": 15.52,
+      "end": 16.335,
+      "attention_story": [
+        "Cut on “Airflow” to the verified concentrated airflow field and keep the full causal evidence readable. Use only a restrained inward push so this beat establishes the moving air without prematurely resolving onto the opening before the narration says “near.”"
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b09_s01",
+          "role": "primary",
+          "start": 15.52,
+          "end": 16.335,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b09_concentrated_airflow",
+              "coverage": 0.95,
+              "anchor_x": 0.43,
+              "anchor_y": 0.438
+            },
+            "end": {
+              "target_id": "b09_concentrated_airflow",
+              "coverage": 0.86,
+              "anchor_x": 0.43,
+              "anchor_y": 0.438
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.155,
+            "reason": "The short beat cannot support a valid split. A restrained push strengthens the verified airflow field while retaining the broken window, flying fabric, and hanging masks, and deliberately saves the directional move toward the opening for the following word “near.”"
+          },
+          "sync": {
+            "mode": "cut_on_word_start",
+            "word_id": "w_0034",
+            "word": "Airflow",
+            "authoritative_start": 15.52,
+            "authoritative_end": 15.92
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b09_concentrated_airflow",
+              "target_label": "dense airflow converging near broken opening",
+              "center_x": 0.4830303,
+              "center_y": 0.4846056,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.43,
+              "anchor_y": 0.438,
+              "target_bbox": {
+                "x": 0.43,
+                "y": 0.438,
+                "w": 0.56,
+                "h": 0.354
+              }
+            },
+            "end": {
+              "target_id": "b09_concentrated_airflow",
+              "target_label": "dense airflow converging near broken opening",
+              "center_x": 0.4830303,
+              "center_y": 0.4846056,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.43,
+              "anchor_y": 0.438,
+              "target_bbox": {
+                "x": 0.43,
+                "y": 0.438,
+                "w": 0.56,
+                "h": 0.354
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b09_concentrated_airflow",
+        "coverage": 0.86,
+        "anchor_x": 0.43,
+        "anchor_y": 0.438,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The sentence continues directly into “strongest near,” so a hard continuity cut is cleaner than a decorative transition."
+      }
+    },
+    {
+      "beat_id": 10,
+      "start": 16.335,
+      "end": 17.15,
+      "attention_story": [
+        "Cut on emphasized “strongest” into the verified dense airflow while maintaining a broad enough composition to retain the left passenger faces and right-side hazard evidence.",
+        "At 16.700 on “near,” make the phrase's single directional commitment toward the large broken opening, using only a modest rightward push so the airflow-to-opening relationship becomes clear without sacrificing the faces."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b10_s01",
+          "role": "detail",
+          "start": 16.335,
+          "end": 17.15,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b10_airflow_streaks",
+              "coverage": 0.95,
+              "anchor_x": 0.53,
+              "anchor_y": 0.4
+            },
+            "end": {
+              "target_id": "b10_broken_window_right",
+              "coverage": 0.88,
+              "anchor_x": 0.55,
+              "anchor_y": 0.42
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "snappy",
+            "start_delay": 0.365,
+            "end_hold": 0.05,
+            "reason": "The entry cut lands on “strongest.” The frame then remains broad until 16.700, when “near” begins, and makes one restrained rightward/inward move that connects the verified concentrated airflow with the large broken opening while retaining the verified passenger faces and right window edge."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b10_airflow_streaks",
+              "target_label": "dense colored airflow streaks converging toward broken windows",
+              "center_x": 0.5572727,
+              "center_y": 0.4751703,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.53,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.58,
+                "y": 0.4,
+                "w": 0.71,
+                "h": 0.24
+              }
+            },
+            "end": {
+              "target_id": "b10_broken_window_right",
+              "target_label": "large jagged broken window opening at right",
+              "center_x": 0.6212121,
+              "center_y": 0.4601362,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.55,
+              "anchor_y": 0.42,
+              "target_bbox": {
+                "x": 0.81,
+                "y": 0.4,
+                "w": 0.25,
+                "h": 0.25
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b10_broken_window_right",
+        "coverage": 0.88,
+        "anchor_x": 0.55,
+        "anchor_y": 0.42,
+        "movement_direction": "right"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat completes the same explanatory sentence with “the opening,” so a clean cut preserves causal momentum without transition spam."
+      }
+    },
+    {
+      "beat_id": 11,
+      "start": 17.15,
+      "end": 17.965,
+      "attention_story": [
+        "Match the prior right-side rupture spatially, stay steady through 'the,' then tighten on the visible broken opening exactly as 'opening' begins."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b11_s01",
+          "role": "detail",
+          "start": 17.15,
+          "end": 17.965,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b11_broken_window_right",
+              "coverage": 0.42,
+              "anchor_x": 0.81,
+              "anchor_y": 0.4
+            },
+            "end": {
+              "target_id": "b11_broken_window_right",
+              "coverage": 0.52,
+              "anchor_x": 0.81,
+              "anchor_y": 0.4
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_out",
+            "start_delay": 0.25,
+            "end_hold": 0.065,
+            "reason": "Preserve the right-side rupture as the attention target, then increase framing coverage on the spoken word 'opening' to localize the strongest-airflow zone without unnecessary motion."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0039",
+            "word": "opening.",
+            "authoritative_start": 17.4,
+            "authoritative_end": 17.9
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b11_broken_window_right",
+              "target_label": "large dark jagged broken window opening at right",
+              "center_x": 0.5751515,
+              "center_y": 0.4751703,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.81,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.81,
+                "y": 0.4,
+                "w": 0.25,
+                "h": 0.27
+              }
+            },
+            "end": {
+              "target_id": "b11_broken_window_right",
+              "target_label": "large dark jagged broken window opening at right",
+              "center_x": 0.5751515,
+              "center_y": 0.4751703,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.81,
+              "anchor_y": 0.4,
+              "target_bbox": {
+                "x": 0.81,
+                "y": 0.4,
+                "w": 0.25,
+                "h": 0.27
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b11_broken_window_right",
+        "coverage": 0.52,
+        "anchor_x": 0.81,
+        "anchor_y": 0.4,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat continues the same explanatory phrase, so a hard cut maintains continuity and pace without adding a decorative transition."
+      }
+    },
+    {
+      "beat_id": 12,
+      "start": 17.965,
+      "end": 18.78,
+      "attention_story": [
+        "Preserve right-side continuity from the preceding broken-window close view with a position-matched cut.",
+        "Hold on the jagged opening so the densely converging airflow strokes remain the dominant visual evidence without adding motion during this brief narration gap.",
+        "End in stillness before the next beat cuts to the contrasting farther-away cabin view."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b12_s01",
+          "role": "hold",
+          "start": 17.965,
+          "end": 18.78,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b12_broken_window",
+              "coverage": 0.52,
+              "anchor_x": 0.8,
+              "anchor_y": 0.32
+            },
+            "end": {
+              "target_id": "b12_broken_window",
+              "coverage": 0.52,
+              "anchor_x": 0.8,
+              "anchor_y": 0.32
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The beat is too short for a valid split and contains no spoken words; a stable hold preserves the localized broken-window/airflow explanation and creates deliberate contrast before the upcoming wider 'farther away' view."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b12_broken_window",
+              "target_label": "large jagged broken window opening",
+              "center_x": 0.5727273,
+              "center_y": 0.4053066,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.8,
+              "anchor_y": 0.32,
+              "target_bbox": {
+                "x": 0.8,
+                "y": 0.27,
+                "w": 0.29,
+                "h": 0.29
+              }
+            },
+            "end": {
+              "target_id": "b12_broken_window",
+              "target_label": "large jagged broken window opening",
+              "center_x": 0.5727273,
+              "center_y": 0.4053066,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.8,
+              "anchor_y": 0.32,
+              "target_bbox": {
+                "x": 0.8,
+                "y": 0.27,
+                "w": 0.29,
+                "h": 0.29
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b12_broken_window",
+        "coverage": 0.52,
+        "anchor_x": 0.8,
+        "anchor_y": 0.32,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "contrast",
+        "reason": "The next beat shifts from the strongest airflow immediately beside the opening to the calmer region farther away, so a hard cut makes the spatial contrast clear."
+      }
+    },
+    {
+      "beat_id": 13,
+      "start": 18.78,
+      "end": 19.428,
+      "attention_story": [
+        "On “Farther,” leave the prior opening-focused framing with a decisive establishing cut to the verified source canvas.",
+        "Use only a gentle center-weighted settling move to express increased distance without assigning attention to any unverified object.",
+        "Finish nearly full-canvas and calm so the distance contrast can continue into the next beat."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b13_s01",
+          "role": "context",
+          "start": 18.78,
+          "end": 19.428,
+          "edit_in": {
+            "type": "establishing_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b13_source_canvas",
+              "coverage": 0.86,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b13_source_canvas",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.08,
+            "reason": "A restrained widening settle supports the spoken distance contrast while relying only on the verified full source canvas and avoiding invented focal detail."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0040",
+            "word": "Farther",
+            "authoritative_start": 18.78,
+            "authoritative_end": 19.1
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b13_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            },
+            "end": {
+              "target_id": "b13_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b13_source_canvas",
+        "coverage": 0.94,
+        "anchor_x": 0.5,
+        "anchor_y": 0.5,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The sentence and visual concept continue directly into the next beat, so a clean cut preserves continuity without adding decorative transition language."
+      }
+    },
+    {
+      "beat_id": 14,
+      "start": 19.428,
+      "end": 20.076,
+      "attention_story": [
+        "Maintain a calm, center-weighted view through the brief phrase because no object-specific target is verified and this section intentionally reduces motion density."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b14_s01",
+          "role": "hold",
+          "start": 19.428,
+          "end": 20.076,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b14_source_canvas",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b14_source_canvas",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The beat is too short for a valid split, the inventory verifies only the source canvas, and stillness supports the narration's contrast that air farther from the opening may move less."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b14_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            },
+            "end": {
+              "target_id": "b14_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b14_source_canvas",
+        "coverage": 0.94,
+        "anchor_x": 0.5,
+        "anchor_y": 0.5,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Continue cleanly into the next fragment of the same explanatory sentence without introducing an unverified focal shift or decorative transition."
+      }
+    },
+    {
+      "beat_id": 15,
+      "start": 20.076,
+      "end": 20.724,
+      "attention_story": [
+        "Maintain a stable, center-weighted view through this brief continuation of the 'farther away' contrast; the inventory verifies only the source canvas, so avoid object-specific reframing or invented emphasis."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b15_s01",
+          "role": "hold",
+          "start": 20.076,
+          "end": 20.724,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b15_source_canvas",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b15_source_canvas",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The beat is shorter than twice the minimum micro-shot duration and the verified inventory contains no inspectable scene detail, so a stable hold preserves continuity without inventing a focal subject."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b15_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            },
+            "end": {
+              "target_id": "b15_source_canvas",
+              "target_label": "source image canvas",
+              "center_x": 0.5,
+              "center_y": 0.5,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 1.0,
+                "h": 1.0
+              }
+            }
+          },
+          "target_corrected": false,
+          "target_corrections": []
+        }
+      ],
+      "ending_state": {
+        "target_id": "b15_source_canvas",
+        "coverage": 0.94,
+        "anchor_x": 0.5,
+        "anchor_y": 0.5,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Continue the same explanatory phrase cleanly into the next beat without adding an unsupported decorative transition."
+      }
+    },
+    {
+      "beat_id": 16,
+      "start": 20.724,
+      "end": 21.372,
+      "attention_story": [
+        "Keep the cabin broad and center-weighted so the distant rear opening, seated rows, and calm foreground remain readable together.",
+        "Use stillness through the final contrast word so the reduced airflow idea lands without adding unnecessary motion."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b16_s01",
+          "role": "hold",
+          "start": 20.724,
+          "end": 21.372,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b16_seated_passenger_rows",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b16_seated_passenger_rows",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The narration resolves on the contrast word 'less,' and the wide static composition best communicates weaker movement farther from the opening while preserving the scholar, passengers, aisle, and distant opening."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b16_seated_passenger_rows",
+              "target_label": "rows of seated passengers",
+              "center_x": 0.5,
+              "center_y": 0.503876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.51,
+                "y": 0.525,
+                "w": 0.94,
+                "h": 0.24
+              }
+            },
+            "end": {
+              "target_id": "b16_seated_passenger_rows",
+              "target_label": "rows of seated passengers",
+              "center_x": 0.5,
+              "center_y": 0.503876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.51,
+                "y": 0.525,
+                "w": 0.94,
+                "h": 0.24
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b16_seated_passenger_rows",
+        "coverage": 0.94,
+        "anchor_x": 0.5,
+        "anchor_y": 0.5,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The following beat continues the same explanatory cabin idea, so a clean cut preserves continuity without spending a decorative transition."
+      }
+    },
+    {
+      "beat_id": 17,
+      "start": 21.372,
+      "end": 22.02,
+      "attention_story": [
+        "Hold the wide cabin depth so the calm foreground seat rows and scholar register first while the compact distant streaks remain visibly confined near the rear, reinforcing that airflow is weaker farther away.",
+        "Use stillness as the contrast beat before the narration shifts to the human consequence of falling pressure."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b17_s01",
+          "role": "hold",
+          "start": 21.372,
+          "end": 22.02,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b17_central_aisle",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            },
+            "end": {
+              "target_id": "b17_central_aisle",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The beat has no spoken words and functions as a brief visual breathing space; a stable wide aisle composition preserves the distant airflow cue, empty seats, and scholar without adding purposeless motion."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b17_central_aisle",
+              "target_label": "empty central aisle",
+              "center_x": 0.505,
+              "center_y": 0.6241485,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.505,
+                "y": 0.655,
+                "w": 0.2,
+                "h": 0.5
+              }
+            },
+            "end": {
+              "target_id": "b17_central_aisle",
+              "target_label": "empty central aisle",
+              "center_x": 0.505,
+              "center_y": 0.6241485,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.5,
+              "anchor_y": 0.53,
+              "target_bbox": {
+                "x": 0.505,
+                "y": 0.655,
+                "w": 0.2,
+                "h": 0.5
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b17_central_aisle",
+        "coverage": 0.94,
+        "anchor_x": 0.5,
+        "anchor_y": 0.53,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "contrast",
+        "reason": "Cut directly on the upcoming emphasized word 'Pressure' so the calm distance contrast snaps cleanly into the human consequence without spending a decorative transition."
+      }
+    },
+    {
+      "beat_id": 18,
+      "start": 22.02,
+      "end": 22.905,
+      "attention_story": [
+        "Cut decisively from the prior wide calm-cabin view to the distressed seated passenger on the emphasized word Pressure.",
+        "Use the single permitted micro-shot for this short beat, gently tightening toward the passenger while keeping the distressed face and chest-clutching hands readable.",
+        "Let the restrained inward motion introduce the physiological consequence without over-animating the breathing-difficulty passage."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b18_s01",
+          "role": "reaction",
+          "start": 22.02,
+          "end": 22.905,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b18_distressed_passenger",
+              "coverage": 0.7,
+              "anchor_x": 0.55,
+              "anchor_y": 0.55
+            },
+            "end": {
+              "target_id": "b18_distressed_passenger",
+              "coverage": 0.82,
+              "anchor_x": 0.53,
+              "anchor_y": 0.51
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "gentle",
+            "start_delay": 0.0,
+            "end_hold": 0.08,
+            "reason": "A restrained push transfers attention from the passenger's full distressed posture toward the face and chest-clutching hands as the narration introduces falling pressure, supporting the planned emotional slowdown without obscuring either primary action."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0048",
+            "word": "Pressure",
+            "authoritative_start": 22.02,
+            "authoritative_end": 22.4
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b18_distressed_passenger",
+              "target_label": "seated passenger clutching chest",
+              "center_x": 0.5121212,
+              "center_y": 0.5124148,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.55,
+              "anchor_y": 0.55,
+              "target_bbox": {
+                "x": 0.55,
+                "y": 0.55,
+                "w": 0.37,
+                "h": 0.43
+              }
+            },
+            "end": {
+              "target_id": "b18_distressed_passenger",
+              "target_label": "seated passenger clutching chest",
+              "center_x": 0.5272727,
+              "center_y": 0.542483,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.53,
+              "anchor_y": 0.51,
+              "target_bbox": {
+                "x": 0.55,
+                "y": 0.55,
+                "w": 0.37,
+                "h": 0.43
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b18_distressed_passenger",
+        "coverage": 0.82,
+        "anchor_x": 0.53,
+        "anchor_y": 0.51,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Use a clean cut rather than another dissolve so the breathing-difficulty sequence remains restrained and does not accumulate decorative transition language across consecutive beat boundaries."
+      }
+    },
+    {
+      "beat_id": 19,
+      "start": 22.905,
+      "end": 23.79,
+      "attention_story": [
+        "Open on the seated passenger with the distressed face, both chest-hand actions, overhead mask context and left-side cabin windows simultaneously readable.",
+        "Use one restrained inward emphasis that finishes as “breathing” begins, but remain on an upper-body composition rather than isolating the face so the physiological posture and cabin context survive the move."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b19_s01",
+          "role": "reaction",
+          "start": 22.905,
+          "end": 23.79,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b19_person_seated_passenger",
+              "coverage": 0.64,
+              "anchor_x": 0.55,
+              "anchor_y": 0.5
+            },
+            "end": {
+              "target_id": "b19_person_seated_passenger",
+              "coverage": 0.72,
+              "anchor_x": 0.55,
+              "anchor_y": 0.49
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.37,
+            "reason": "The single restrained push compresses attention toward the passenger's distressed upper body and finishes on “breathing” while preserving the verified face, both chest-hand actions, overhead mask context and enough left cabin wall to retain the windows."
+          },
+          "sync": {
+            "mode": "impact_apex_on_word",
+            "word_id": "w_0051",
+            "word": "breathing",
+            "authoritative_start": 23.42,
+            "authoritative_end": 23.88
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b19_person_seated_passenger",
+              "target_label": "seated passenger",
+              "center_x": 0.5221212,
+              "center_y": 0.568,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.55,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.56,
+                "y": 0.568,
+                "w": 0.37,
+                "h": 0.455
+              }
+            },
+            "end": {
+              "target_id": "b19_person_seated_passenger",
+              "target_label": "seated passenger",
+              "center_x": 0.5221212,
+              "center_y": 0.575517,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.55,
+              "anchor_y": 0.49,
+              "target_bbox": {
+                "x": 0.56,
+                "y": 0.568,
+                "w": 0.37,
+                "h": 0.455
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b19_person_seated_passenger",
+        "coverage": 0.72,
+        "anchor_x": 0.55,
+        "anchor_y": 0.49,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The following image continues the same breathing-difficulty phrase, so a clean matchable cut preserves emotional continuity without adding a soft transition."
+      }
+    },
+    {
+      "beat_id": 20,
+      "start": 23.79,
+      "end": 24.675,
+      "attention_story": [
+        "Use the centered passenger as a clean match-position continuation from beat 19, preserving the face and both clenched hands.",
+        "Let the composition remain nearly still through “harder” so the word lands through performance and framing rather than repeating the previous inward camera trajectory."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b20_s01",
+          "role": "reaction",
+          "start": 23.79,
+          "end": 24.675,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b20_person_center_passenger",
+              "coverage": 0.66,
+              "anchor_x": 0.51,
+              "anchor_y": 0.45
+            },
+            "end": {
+              "target_id": "b20_person_center_passenger",
+              "coverage": 0.66,
+              "anchor_x": 0.51,
+              "anchor_y": 0.45
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "gentle",
+            "start_delay": 0.09,
+            "end_hold": 0.155,
+            "reason": "The match-position cut supplies the visual change, while the hold prevents a second consecutive push-in and gives the emphasized word “harder” room to land on the verified strained face and clenched hands."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b20_person_center_passenger",
+              "target_label": "center seated passenger",
+              "center_x": 0.4953572,
+              "center_y": 0.4432121,
+              "width": 0.8642756,
+              "height": 0.8575758,
+              "zoom": 1.1570384,
+              "anchor_x": 0.51,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.504,
+                "y": 0.579,
+                "w": 0.56,
+                "h": 0.566
+              }
+            },
+            "end": {
+              "target_id": "b20_person_center_passenger",
+              "target_label": "center seated passenger",
+              "center_x": 0.4953572,
+              "center_y": 0.4432121,
+              "width": 0.8642756,
+              "height": 0.8575758,
+              "zoom": 1.1570384,
+              "anchor_x": 0.51,
+              "anchor_y": 0.45,
+              "target_bbox": {
+                "x": 0.504,
+                "y": 0.579,
+                "w": 0.56,
+                "h": 0.566
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b20_person_center_passenger",
+        "coverage": 0.66,
+        "anchor_x": 0.51,
+        "anchor_y": 0.45,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "Maintain the breathing-difficulty sequence with a clean cut rather than introducing a decorative transition during the emotional passage."
+      }
+    },
+    {
+      "beat_id": 21,
+      "start": 24.675,
+      "end": 25.56,
+      "attention_story": [
+        "Match-position cut from the previous centered distressed passenger to the new centered passenger composition.",
+        "Hold the medium framing so the wide eyes, open mouth, and clenched hands remain readable without adding motion during the wordless tail.",
+        "Use the stillness as a brief emotional compression before the next beat introduces oxygen masks with a hard cut."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b21_s01",
+          "role": "reaction",
+          "start": 24.675,
+          "end": 25.56,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b21_person_center_passenger",
+              "coverage": 0.68,
+              "anchor_x": 0.5,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b21_person_center_passenger",
+              "coverage": 0.68,
+              "anchor_x": 0.5,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The beat contains no spoken words and continues the breathing-difficulty consequence, so a stable centered hold gives the passenger's facial distress and clenched hands time to register before the oxygen-mask response."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b21_person_center_passenger",
+              "target_label": "center seated passenger",
+              "center_x": 0.499,
+              "center_y": 0.4558235,
+              "width": 0.8388557,
+              "height": 0.8323529,
+              "zoom": 1.1921001,
+              "anchor_x": 0.5,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.499,
+                "y": 0.579,
+                "w": 0.57,
+                "h": 0.566
+              }
+            },
+            "end": {
+              "target_id": "b21_person_center_passenger",
+              "target_label": "center seated passenger",
+              "center_x": 0.499,
+              "center_y": 0.4558235,
+              "width": 0.8388557,
+              "height": 0.8323529,
+              "zoom": 1.1921001,
+              "anchor_x": 0.5,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.499,
+                "y": 0.579,
+                "w": 0.57,
+                "h": 0.566
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b21_person_center_passenger",
+        "coverage": 0.68,
+        "anchor_x": 0.5,
+        "anchor_y": 0.48,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "new_fact",
+        "reason": "The next beat begins the new safety-response fact about oxygen masks, so a clean hard cut preserves contrast and avoids an unsupported decorative transition."
+      }
+    },
+    {
+      "beat_id": 22,
+      "start": 25.56,
+      "end": 26.55,
+      "attention_story": [
+        "Cut decisively from the prior centered breathing consequence to a wider cabin composition on the spoken word Oxygen, with the verified hanging-mask group becoming the dominant upper-frame subject.",
+        "Use a restrained upward pan-push that strengthens attention on the masks without sacrificing the lower-right masked face or the passengers reaching toward the deployed equipment.",
+        "Settle briefly at the end so the mask deployment reads as a clear safety response before the sentence continues."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b22_s01",
+          "role": "primary",
+          "start": 25.56,
+          "end": 26.55,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b22_masks_group",
+              "coverage": 0.5,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b22_masks_group",
+              "coverage": 0.6,
+              "anchor_x": 0.62,
+              "anchor_y": 0.43
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.1,
+            "reason": "The narration names the oxygen masks, so attention redirects upward immediately, but the move remains wide enough to preserve the verified lower-right masked face and reaching passengers as supporting evidence of mask deployment."
+          },
+          "sync": {
+            "mode": "cut_on_word_start",
+            "word_id": "w_0053",
+            "word": "Oxygen",
+            "authoritative_start": 25.56,
+            "authoritative_end": 26.04
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b22_masks_group",
+              "target_label": "hanging oxygen masks across overhead cabin",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.58,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.69,
+                "y": 0.331,
+                "w": 0.605,
+                "h": 0.186
+              }
+            },
+            "end": {
+              "target_id": "b22_masks_group",
+              "target_label": "hanging oxygen masks across overhead cabin",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.62,
+              "anchor_y": 0.43,
+              "target_bbox": {
+                "x": 0.69,
+                "y": 0.331,
+                "w": 0.605,
+                "h": 0.186
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b22_masks_group",
+        "coverage": 0.6,
+        "anchor_x": 0.62,
+        "anchor_y": 0.43,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat continues the same sentence and safety-response sequence, so a hard cut maintains pace without spending a decorative transition."
+      }
+    },
+    {
+      "beat_id": 23,
+      "start": 26.55,
+      "end": 27.54,
+      "attention_story": [
+        "Preserve spatial continuity from the preceding overhead-mask framing, then let the spoken word “drop” initiate a restrained inward emphasis on the verified hanging mask group without abandoning the surrounding reaching actions."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b23_s01",
+          "role": "primary",
+          "start": 26.55,
+          "end": 27.54,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b23_masks_group",
+              "coverage": 0.84,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331
+            },
+            "end": {
+              "target_id": "b23_masks_group",
+              "coverage": 0.9,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331
+            }
+          },
+          "motion": {
+            "type": "push_in",
+            "easing": "ease_out",
+            "start_delay": 0.19,
+            "end_hold": 0.1,
+            "reason": "The matching overhead-mask composition maintains continuity from the previous beat, while a small inward push beginning exactly on “drop” emphasizes the deployment idea without creating an invalid split in this short beat."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0056",
+            "word": "drop",
+            "authoritative_start": 26.74,
+            "authoritative_end": 27.06
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b23_masks_group",
+              "target_label": "hanging oxygen masks across overhead cabin",
+              "center_x": 0.5762711,
+              "center_y": 0.4580378,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331,
+              "target_bbox": {
+                "x": 0.69,
+                "y": 0.331,
+                "w": 0.605,
+                "h": 0.187
+              }
+            },
+            "end": {
+              "target_id": "b23_masks_group",
+              "target_label": "hanging oxygen masks across overhead cabin",
+              "center_x": 0.6137121,
+              "center_y": 0.4580378,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331,
+              "target_bbox": {
+                "x": 0.69,
+                "y": 0.331,
+                "w": 0.605,
+                "h": 0.187
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "subject_horizontal_edge_protected",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b23_masks_group",
+        "coverage": 0.9,
+        "anchor_x": 0.69,
+        "anchor_y": 0.331,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The sentence continues directly into “pilots descend,” so a clean cut preserves momentum without spending a decorative transition."
+      }
+    },
+    {
+      "beat_id": 24,
+      "start": 27.54,
+      "end": 28.53,
+      "attention_story": [
+        "Preserve the match-position continuity on the verified hanging oxygen masks, then let “descend” reduce rather than redirect motion so the safety-response imagery remains dominant while the narration supplies the unseen pilot action."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b24_s01",
+          "role": "primary",
+          "start": 27.54,
+          "end": 28.53,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b24_masks_group",
+              "coverage": 0.9,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331
+            },
+            "end": {
+              "target_id": "b24_masks_group",
+              "coverage": 0.88,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331
+            }
+          },
+          "motion": {
+            "type": "settle",
+            "easing": "gentle",
+            "start_delay": 0.34,
+            "end_hold": 0.21,
+            "reason": "Maintain the verified oxygen-mask group as the dominant subject through “pilots,” then begin a very small settling move on “descend” rather than panning toward unrelated context. This supports the instructed reduction in motion without inventing pilots or abandoning the cabin safety response."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0059",
+            "word": "descend.",
+            "authoritative_start": 27.88,
+            "authoritative_end": 28.32
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b24_masks_group",
+              "target_label": "multiple hanging oxygen masks",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331,
+              "target_bbox": {
+                "x": 0.493,
+                "y": 0.326,
+                "w": 0.911,
+                "h": 0.303
+              }
+            },
+            "end": {
+              "target_id": "b24_masks_group",
+              "target_label": "multiple hanging oxygen masks",
+              "center_x": 0.5,
+              "center_y": 0.496124,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.69,
+              "anchor_y": 0.331,
+              "target_bbox": {
+                "x": 0.493,
+                "y": 0.326,
+                "w": 0.911,
+                "h": 0.303
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b24_masks_group",
+        "coverage": 0.88,
+        "anchor_x": 0.69,
+        "anchor_y": 0.331,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The following beat continues the same cabin safety-response sequence, so a hard cut preserves momentum without adding an unnecessary decorative transition."
+      }
+    },
+    {
+      "beat_id": 25,
+      "start": 28.53,
+      "end": 29.52,
+      "attention_story": [
+        "Preserve the descending-cloud composition from the preceding beat through a matched position cut.",
+        "Hold the wide cabin context without adding motion during the narration-free tail, allowing the hanging masks, reaching passengers, and masked seated figure to register before the terminology reveal."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b25_s01",
+          "role": "release",
+          "start": 28.53,
+          "end": 29.52,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b25_cloud_windows",
+              "coverage": 0.9,
+              "anchor_x": 0.48,
+              "anchor_y": 0.467
+            },
+            "end": {
+              "target_id": "b25_cloud_windows",
+              "coverage": 0.9,
+              "anchor_x": 0.48,
+              "anchor_y": 0.467
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The previous beat already carries the descent motion; this narration-free remainder benefits from stillness so the safety response can settle visually before the rapid-decompression explanation begins."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b25_cloud_windows",
+              "target_label": "cabin windows showing blue sky and cloud layer",
+              "center_x": 0.3787879,
+              "center_y": 0.5088062,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.48,
+              "anchor_y": 0.467,
+              "target_bbox": {
+                "x": 0.3,
+                "y": 0.484,
+                "w": 0.6,
+                "h": 0.34
+              }
+            },
+            "end": {
+              "target_id": "b25_cloud_windows",
+              "target_label": "cabin windows showing blue sky and cloud layer",
+              "center_x": 0.3787879,
+              "center_y": 0.5088062,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.48,
+              "anchor_y": 0.467,
+              "target_bbox": {
+                "x": 0.3,
+                "y": 0.484,
+                "w": 0.6,
+                "h": 0.34
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b25_cloud_windows",
+        "coverage": 0.9,
+        "anchor_x": 0.48,
+        "anchor_y": 0.467,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "A hard cut cleanly separates the settled oxygen-mask consequence from the next explanatory setup, preserves the minimal-transition strategy, and gives the terminology sequence a decisive reset without decorative softening."
+      }
+    },
+    {
+      "beat_id": 26,
+      "start": 29.52,
+      "end": 30.998,
+      "attention_story": [
+        "Begin on the cabin-wide consequence so passengers using oxygen masks, hanging units, aisle, and rear rupture read as one pressure-loss event.",
+        "On the word “sudden,” begin a controlled upper-right pan-push toward the verified airflow rays and broken window, making the rupture the causal focus without abandoning its surrounding cabin context.",
+        "Settle briefly near the airflow zone before the beat boundary so the following terminology beat can continue from a stable explanatory image."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b26_s01",
+          "role": "primary",
+          "start": 29.52,
+          "end": 30.998,
+          "edit_in": {
+            "type": "establishing_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b26_masked_passenger_group",
+              "coverage": 0.92,
+              "anchor_x": 0.52,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b26_airflow_rays",
+              "coverage": 0.76,
+              "anchor_x": 0.75,
+              "anchor_y": 0.38
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "ease_in_out",
+            "start_delay": 0.12,
+            "end_hold": 0.118,
+            "reason": "The wide cabin first summarizes the visible safety response, then the move begins exactly on “sudden” to redirect attention toward the verified rupture and localized airflow that explain the pressure loss."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0061",
+            "word": "sudden",
+            "authoritative_start": 29.64,
+            "authoritative_end": 30.04
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b26_masked_passenger_group",
+              "target_label": "rows of seated passengers using oxygen masks",
+              "center_x": 0.5,
+              "center_y": 0.503876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.52,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.511,
+                "y": 0.491,
+                "w": 0.958,
+                "h": 0.387
+              }
+            },
+            "end": {
+              "target_id": "b26_airflow_rays",
+              "target_label": "radiating airflow-like lines around rear broken window",
+              "center_x": 0.6212121,
+              "center_y": 0.4552044,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.75,
+              "anchor_y": 0.38,
+              "target_bbox": {
+                "x": 0.781,
+                "y": 0.365,
+                "w": 0.438,
+                "h": 0.251
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "zoom_limited",
+            "subject_horizontal_edge_protected"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b26_airflow_rays",
+        "coverage": 0.76,
+        "anchor_x": 0.75,
+        "anchor_y": 0.38,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The next beat continues the same sentence and visual tableau, so a zero-duration cut preserves the explanatory continuity without adding a decorative transition before the naming payoff."
+      }
+    },
+    {
+      "beat_id": 27,
+      "start": 30.998,
+      "end": 32.476,
+      "attention_story": [
+        "Reframe from the prior image into the verified airflow path and broken-window relationship, hold that causal composition through 'is called,' then begin one controlled pan-push on 'rapid' toward the jagged opening so the terminology reveal gains emphasis without adding extra cuts."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b27_s01",
+          "role": "primary",
+          "start": 30.998,
+          "end": 32.476,
+          "edit_in": {
+            "type": "reframe_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b27_airflow_streaks",
+              "coverage": 0.78,
+              "anchor_x": 0.68,
+              "anchor_y": 0.43
+            },
+            "end": {
+              "target_id": "b27_broken_window",
+              "coverage": 0.6,
+              "anchor_x": 0.84,
+              "anchor_y": 0.43
+            }
+          },
+          "motion": {
+            "type": "pan_push",
+            "easing": "hold_then_move",
+            "start_delay": 0.462,
+            "end_hold": 0.08,
+            "reason": "Keep the explanatory cabin tableau stable until the emphasized word 'rapid,' then move rightward and inward along the verified airflow toward the broken window to concentrate attention on the visible pressure-loss source."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0066",
+            "word": "rapid",
+            "authoritative_start": 31.46,
+            "authoritative_end": 31.96
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b27_airflow_streaks",
+              "target_label": "curved colored airflow-like streaks sweeping toward broken window",
+              "center_x": 0.5117121,
+              "center_y": 0.4856192,
+              "width": 0.8474577,
+              "height": 0.8408882,
+              "zoom": 1.18,
+              "anchor_x": 0.68,
+              "anchor_y": 0.43,
+              "target_bbox": {
+                "x": 0.647,
+                "y": 0.433,
+                "w": 0.487,
+                "h": 0.31
+              }
+            },
+            "end": {
+              "target_id": "b27_broken_window",
+              "target_label": "jagged broken right-side airplane window",
+              "center_x": 0.6114242,
+              "center_y": 0.4806192,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.84,
+              "anchor_y": 0.43,
+              "target_bbox": {
+                "x": 0.869,
+                "y": 0.428,
+                "w": 0.177,
+                "h": 0.181
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "subject_horizontal_edge_protected",
+            "minimum_push_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b27_broken_window",
+        "coverage": 0.6,
+        "anchor_x": 0.84,
+        "anchor_y": 0.43,
+        "movement_direction": "in"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "reveal",
+        "reason": "Use one clean match-position hard cut into the following verified right-side broken window. This preserves the terminology reveal while avoiding a competing dissolve on the same boundary."
+      }
+    },
+    {
+      "beat_id": 28,
+      "start": 32.476,
+      "end": 33.955,
+      "attention_story": [
+        "Match the prior broken-window emphasis into the new cabin tableau, then widen across the verified airflow so the final terminology resolves from the rupture itself to the broader decompression event.",
+        "Complete the widening move at the end of decompression and hold briefly, reducing motion complexity before the CTA."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b28_s01",
+          "role": "release",
+          "start": 32.476,
+          "end": 33.955,
+          "edit_in": {
+            "type": "match_position_cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b28_broken_window",
+              "coverage": 0.6,
+              "anchor_x": 0.89,
+              "anchor_y": 0.43
+            },
+            "end": {
+              "target_id": "b28_airflow_streaks",
+              "coverage": 0.72,
+              "anchor_x": 0.68,
+              "anchor_y": 0.5
+            }
+          },
+          "motion": {
+            "type": "pan_pull",
+            "easing": "ease_out",
+            "start_delay": 0.0,
+            "end_hold": 0.355,
+            "reason": "Begin on the verified rupture that caused the pressure loss, then widen along the visible airflow to summarize the cabin-wide event without adding a new focal idea; the terminal hold lets the terminology land cleanly."
+          },
+          "sync": {
+            "mode": "settle_on_word_end",
+            "word_id": "w_0067",
+            "word": "decompression.",
+            "authoritative_start": 31.96,
+            "authoritative_end": 33.6
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b28_broken_window",
+              "target_label": "jagged broken right-side airplane window",
+              "center_x": 0.6112121,
+              "center_y": 0.4826192,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.89,
+              "anchor_y": 0.43,
+              "target_bbox": {
+                "x": 0.89,
+                "y": 0.43,
+                "w": 0.2,
+                "h": 0.22
+              }
+            },
+            "end": {
+              "target_id": "b28_airflow_streaks",
+              "target_label": "curved airflow streaks crossing cabin",
+              "center_x": 0.5555556,
+              "center_y": 0.5,
+              "width": 0.8888889,
+              "height": 0.8819983,
+              "zoom": 1.125,
+              "anchor_x": 0.68,
+              "anchor_y": 0.5,
+              "target_bbox": {
+                "x": 0.68,
+                "y": 0.5,
+                "w": 0.64,
+                "h": 0.25
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "subject_horizontal_edge_protected"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b28_airflow_streaks",
+        "coverage": 0.72,
+        "anchor_x": 0.68,
+        "anchor_y": 0.5,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "cta",
+        "reason": "The explanatory peak has resolved, so a clean cut releases visual tension as the narration shifts into the comment prompt."
+      }
+    },
+    {
+      "beat_id": 29,
+      "start": 33.955,
+      "end": 35.433,
+      "attention_story": [
+        "Cut away from the prior pressure-loss detail into a wider empty-cabin context for the CTA.",
+        "On “Comment,” begin a restrained pull-out that keeps the seat rows, windows, and hanging oxygen masks readable without introducing a new focal idea.",
+        "Finish the pull-out as “airplane” completes, then briefly hold the settled cabin composition before the next CTA beat."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b29_s01",
+          "role": "release",
+          "start": 33.955,
+          "end": 35.433,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b29_empty_seats",
+              "coverage": 0.94,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54
+            },
+            "end": {
+              "target_id": "b29_empty_seats",
+              "coverage": 0.88,
+              "anchor_x": 0.5,
+              "anchor_y": 0.52
+            }
+          },
+          "motion": {
+            "type": "pull_out",
+            "easing": "gentle",
+            "start_delay": 0.205,
+            "end_hold": 0.153,
+            "reason": "The CTA should release tension rather than add another dramatic emphasis; a subtle widening beginning exactly on “Comment” preserves the airplane-cabin context while giving the spoken invitation room to land."
+          },
+          "sync": {
+            "mode": "movement_start_on_word",
+            "word_id": "w_0068",
+            "word": "Comment",
+            "authoritative_start": 34.16,
+            "authoritative_end": 34.44
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b29_empty_seats",
+              "target_label": "empty passenger seat rows",
+              "center_x": 0.49,
+              "center_y": 0.5144318,
+              "width": 0.9787234,
+              "height": 0.9711364,
+              "zoom": 1.0217391,
+              "anchor_x": 0.5,
+              "anchor_y": 0.54,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.68,
+                "w": 0.92,
+                "h": 0.43
+              }
+            },
+            "end": {
+              "target_id": "b29_empty_seats",
+              "target_label": "empty passenger seat rows",
+              "center_x": 0.5,
+              "center_y": 0.503876,
+              "width": 1.0,
+              "height": 0.9922481,
+              "zoom": 1.0,
+              "anchor_x": 0.5,
+              "anchor_y": 0.52,
+              "target_bbox": {
+                "x": 0.49,
+                "y": 0.68,
+                "w": 0.92,
+                "h": 0.43
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "viewport_clamped_to_artwork",
+            "minimum_pull_shape_enforced"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b29_empty_seats",
+        "coverage": 0.88,
+        "anchor_x": 0.5,
+        "anchor_y": 0.52,
+        "movement_direction": "out"
+      },
+      "transition_out": {
+        "type": "cut",
+        "duration": 0.0,
+        "reason_code": "continuity",
+        "reason": "The CTA continues into the next beat, so a clean cut preserves pace without adding a decorative transition that would compete with the spoken prompt."
+      }
+    },
+    {
+      "beat_id": 30,
+      "start": 35.433,
+      "end": 36.911,
+      "attention_story": [
+        "Resolve on the broad cabin tableau with the airflow path and damaged-window side readable, then remain completely still so visual attention can transfer to the spoken CTA."
+      ],
+      "micro_shots": [
+        {
+          "shot_id": "b30_s01",
+          "role": "hold",
+          "start": 35.433,
+          "end": 36.911,
+          "edit_in": {
+            "type": "cut"
+          },
+          "camera": {
+            "start": {
+              "target_id": "b30_airflow_streaks",
+              "coverage": 0.88,
+              "anchor_x": 0.56,
+              "anchor_y": 0.48
+            },
+            "end": {
+              "target_id": "b30_airflow_streaks",
+              "coverage": 0.88,
+              "anchor_x": 0.56,
+              "anchor_y": 0.48
+            }
+          },
+          "motion": {
+            "type": "hold",
+            "easing": "linear",
+            "start_delay": 0.0,
+            "end_hold": 0.0,
+            "reason": "The final CTA needs visual release rather than another emphasis move; the wide stable framing preserves the broken-window context, airflow, passengers, and oxygen-mask action without competing with the words."
+          },
+          "sync": {
+            "mode": "none"
+          },
+          "compiled_camera": {
+            "start": {
+              "target_id": "b30_airflow_streaks",
+              "target_label": "airflow streaks sweeping from broken window",
+              "center_x": 0.6212121,
+              "center_y": 0.5021485,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.7,
+                "y": 0.54,
+                "w": 0.57,
+                "h": 0.26
+              }
+            },
+            "end": {
+              "target_id": "b30_airflow_streaks",
+              "target_label": "airflow streaks sweeping from broken window",
+              "center_x": 0.6212121,
+              "center_y": 0.5021485,
+              "width": 0.7575758,
+              "height": 0.7517031,
+              "zoom": 1.32,
+              "anchor_x": 0.56,
+              "anchor_y": 0.48,
+              "target_bbox": {
+                "x": 0.7,
+                "y": 0.54,
+                "w": 0.57,
+                "h": 0.26
+              }
+            }
+          },
+          "target_corrected": true,
+          "target_corrections": [
+            "zoom_limited",
+            "viewport_clamped_to_artwork"
+          ]
+        }
+      ],
+      "ending_state": {
+        "target_id": "b30_airflow_streaks",
+        "coverage": 0.88,
+        "anchor_x": 0.56,
+        "anchor_y": 0.48,
+        "movement_direction": "none"
+      },
+      "transition_out": {
+        "type": "fade",
+        "duration": 0.28,
+        "reason_code": "ending",
+        "reason": "A short permitted fade provides a quiet episode close after the CTA without introducing a new directional or decorative effect."
+      }
+    }
+  ],
+  "input_fingerprint": "b1b9ce7426cc0716b16c63abafd307eb44e3a501e91eccdfdf6607d8bd3d948c",
+  "prompt_version": "motion-director-v2.0",
+  "created_at": "2026-09-21T08:33:49.330259+00:00",
+  "normalization_corrections": [
+    {
+      "shot_id": "b06_s01",
+      "code": "motion_push_normalized_to_pull_out"
+    },
+    {
+      "shot_id": "b09_s01",
+      "code": "motion_push_normalized_to_pull_out"
+    },
+    {
+      "shot_id": "b09_s01",
+      "code": "camera_start_coverage_clamped_to_safe_bounds"
+    },
+    {
+      "shot_id": "b10_s01",
+      "code": "camera_start_coverage_clamped_to_safe_bounds"
+    },
+    {
+      "shot_id": "b10_s01",
+      "code": "impossible_cut_sync_removed"
+    },
+    {
+      "beat_id": 17,
+      "code": "transition_verbal_emphasis_normalized_to_contrast"
+    },
+    {
+      "shot_id": "b20_s01",
+      "code": "nonvisual_hold_sync_removed"
+    },
+    {
+      "beat_id": 24,
+      "code": "ending_direction_neutral_normalized_to_none"
+    }
+  ],
+  "compiled": true,
+  "compiler_version": 2
+}

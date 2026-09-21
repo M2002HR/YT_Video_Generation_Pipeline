@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "91a79ce18b604c4e4c91d58017ff0393a55aee166834bb3848417c2529d70ae5",
+  "job_ids": [
+    "47c15abe-8698-4814-afb1-aedcc9424e9b"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 24,
+        "shot_id": "b24_s01",
+        "code": "bad_sync",
+        "message": "The movement is timed correctly to “descend,” but the downward-left pan literalizes the word by abandoning the verified primary oxygen-mask group for contextual cloud windows. Whole-episode direction explicitly calls for oxygen masks to remain dominant through beats 22-25 and for the image to settle as pilots descending is spoken."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 24,
+        "start": 27.54,
+        "end": 28.53,
+        "attention_story": [
+          "Preserve the match-position continuity on the verified hanging oxygen masks, then let “descend” reduce rather than redirect motion so the safety-response imagery remains dominant while the narration supplies the unseen pilot action."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b24_s01",
+            "role": "primary",
+            "start": 27.54,
+            "end": 28.53,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b24_masks_group",
+                "coverage": 0.9,
+                "anchor_x": 0.69,
+                "anchor_y": 0.331
+              },
+              "end": {
+                "target_id": "b24_masks_group",
+                "coverage": 0.88,
+                "anchor_x": 0.69,
+                "anchor_y": 0.331
+              }
+            },
+            "motion": {
+              "type": "settle",
+              "easing": "gentle",
+              "start_delay": 0.34,
+              "end_hold": 0.21,
+              "reason": "Maintain the verified oxygen-mask group as the dominant subject through “pilots,” then begin a very small settling move on “descend” rather than panning toward unrelated context. This supports the instructed reduction in motion without inventing pilots or abandoning the cabin safety response."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0059",
+              "word": "descend.",
+              "authoritative_start": 27.88,
+              "authoritative_end": 28.32
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b24_masks_group",
+          "coverage": 0.88,
+          "anchor_x": 0.69,
+          "anchor_y": 0.331,
+          "movement_direction": "neutral"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The following beat continues the same cabin safety-response sequence, so a hard cut preserves momentum without adding an unnecessary decorative transition."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1239 @@
+{
+  "schema_version": 2,
+  "video_id": "047",
+  "topic": "اگر پنجره هواپیما در ارتفاع بالا ناگهان بشکند، دقیقاً چه اتفاقی می‌افتد؟",
+  "created_at": "2026-09-20T19:09:34Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "preflight": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:05:28Z"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "requested_mode": "auto",
+      "resolved_character_id": "newton_scholar",
+      "resolution_source": "auto",
+      "confidence": "high",
+      "reason": "Its precise, physics-focused style best fits explaining rapid decompression and aircraft cabin pressure.",
+      "character_version": 1,
+      "character_sheet_sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:29Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "world_style_director_fix2_json1": {
+      "status": "FAILED_VALIDATION",
+      "updated_at": "2026-09-20T19:58:25Z",
+      "message": "Prompt is 20,460 characters, above the safe Ordak limit of 19,000. Pass a stage-specific summary instead of a full downstream artifact.",
+      "error_code": null
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:05:32Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:33Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:05:18Z",
+      "body_beats": 7,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:33Z",
+      "artifact": "world_style_anchor.png"
+    },
+    "world_keyframe_prompt": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:33Z",
+      "artifact": "world_keyframe_prompt.txt"
+    },
+    "world_keyframe": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:34Z",
+      "artifact": "world_keyframe.png"
+    },
+    "book_design_sheet": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:34Z",
+      "artifact": "book_design_sheet_v2.png"
+    },
+    "book_cover_design": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:34Z",
+      "artifact": "BOOK_COVER_DESIGN.txt"
+    },
+    "book_cover": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T03:05:34Z",
+      "artifact": "book_cover_frame.png"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:04:58Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:07:13Z",
+      "sha256": "2a4d9de1a7d4b89c90902fcab57101933f5b02bd8eeb143c3278433614119ec5",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:08:51Z",
+      "sha256": "26654831a5f5973a99df542afe3bd9252914879324b7257ba6d49237c7d3abb6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:11:18Z",
+      "sha256": "a6a1ba62ec2f552582c396cad5fdfe5b1d928cfea4d82593cc53d7f6545a2859",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:13:33Z",
+      "sha256": "168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:14:56Z",
+      "sha256": "3bb5f0346c573607d84157a3d5e606ca5abaf37551f47615981d84eb3d6436d4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:17:05Z",
+      "sha256": "a2c91f116ca30997567da4ab93a6ac7bab86aa2f40dd7cba1d50289724a1f166",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:18:59Z",
+      "sha256": "96dce1181321067eb8de6cbdc3f655e545d60b10bb2efef49b95e170793df770",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:05:00Z",
+      "boundaries": 29
+    },
+    "flow_prompt_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T04:05:01Z",
+      "artifact": "flow_prompt_opening_a.txt"
+    },
+    "flow_prompt_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T04:05:01Z",
+      "artifact": "flow_prompt_book_transition.txt"
+    },
+    "flow_clip_a": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T04:05:01Z",
+      "artifact": "question_spark_source.mp4 (4.01s)"
+    },
+    "flow_clip_b": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T04:05:01Z",
+      "artifact": "book_transition_source.mp4 (4.01s)"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:05:01Z",
+      "body_images": 30
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:20:56Z",
+      "sha256": "24e29c8ad196ef334ae7c3f6c0bb71e87cf78686914e106555e0c9d74197e30c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:23:02Z",
+      "sha256": "b878e3fe23f9abbd9e183ab4a29bb17b5a1cd516ab5b29e1ca8d006b2ef5b283",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:24:49Z",
+      "sha256": "441200cc783b32d94bfe20aadc8169d0de67f89e9fa6e631a7f0b7f6c69df06a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_011": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:26:48Z",
+      "sha256": "c2e06d66ab8cb90b0bb754db8adfc182e278afe538c52bdd5c90ba332d9b7493",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_012": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:29:06Z",
+      "sha256": "4d44c4b396ff19eafe2af2c52732f47e8a273cd9f62717ca96cafb6bf46e7ec4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_013": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:30:41Z",
+      "sha256": "62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_014": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:33:08Z",
+      "sha256": "ffe33a0fa3955f225dc1a7f92961f6752a2f29459486872b3fe6cc23374f1b95",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_015": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:34:47Z",
+      "sha256": "e67fdbae28c53f8e84373e75ea70e5b6b954eca760a039aa50d456669cf46f14",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_016": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:37:21Z",
+      "sha256": "4f29a8616dbfc0f2a91388de969b28e84235e673f61ec6b3ce080f80ad791832",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_017": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:39:20Z",
+      "sha256": "c6e47fac16b9b95b54052e2071b173a2ee52f0a4d3cee5e85280fd9a4855bca4",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_018": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:41:50Z",
+      "sha256": "fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_019": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:43:37Z",
+      "sha256": "8c4169413d8ed9b5acad859c077825947d9894d58d555fb9b0d6e0f545fd64e7",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_020": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:45:16Z",
+      "sha256": "590f3f33b5f86b03ae481b3d8899f78fa7144d36814bfc23b604ba3867592034",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_021": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:46:54Z",
+      "sha256": "0ed6a76d105418a19740377057e8ec31edc9758a088bea4f4ab31ccb466319ea",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_022": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:50:52Z",
+      "sha256": "4f56c24a19d279ad0f6ef2cd1d8c8541137489bd64e48cfd359a8eaebabef095",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_023": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:52:48Z",
+      "sha256": "5fb0d034b54ea00ed653bb79e5cc9be9d22cc5b9cfecea4d37009ed290ed51eb",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_024": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:54:48Z",
+      "sha256": "5c0e0b862b92ef80e636f4b37efda3a652fdb53424cc8d812cc3f59bfb5315be",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_025": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:56:38Z",
+      "sha256": "6d6f27a42fb36d78567f5cce9b38bb9ed25166db1692f6ef80c6daf3f2682c22",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_026": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:58:09Z",
+      "sha256": "def7cc6b451628836e8756c74e61dab444853a01c85676120b19f8a8fa1cdcdf",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_027": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T03:59:41Z",
+      "sha256": "5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_028": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:01:24Z",
+      "sha256": "8f9988998861575195ed4dfcb3fea8d4ec51b7cf49c55ed7f8b9faa158f4d888",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_029": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:03:11Z",
+      "sha256": "c390d21e607df1277a9522c07788dff80021282e0edb58890ccc43fe61a05d08",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_030": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T04:04:56Z",
+      "sha256": "7dbbc23c0fac1cc572803d7de8dd8cc3071cd7b1d2a119ea99bec22a643e5ccf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    }
+  },
+  "events": [
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.352,
+      "at": "2026-09-20T19:09:37Z"
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.948,
+      "at": "2026-09-20T19:51:57Z"
+    },
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 105.29,
+      "at": "2026-09-20T19:53:43Z",
+      "selected_id": "c1",
+      "concept_id": "ddc1810e0e41c1d8f3f1"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 49.784,
+      "at": "2026-09-20T19:54:34Z",
+      "words": 73
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 91.962,
+      "at": "2026-09-20T19:56:07Z",
+      "words": 73
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 101.203,
+      "at": "2026-09-20T19:57:50Z",
+      "activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 31.119,
+      "at": "2026-09-20T19:58:22Z",
+      "hint_provided": false
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.545,
+      "at": "2026-09-20T20:02:37Z"
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 24.947,
+      "at": "2026-09-20T20:03:03Z",
+      "style_id": "colorful_crayon_adaptation_world_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.118,
+      "at": "2026-09-20T20:03:06Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 37.182,
+      "at": "2026-09-20T20:03:44Z",
+      "beats": 7
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.848,
+      "at": "2026-09-20T20:09:25Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.146,
+      "at": "2026-09-20T20:09:28Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.543,
+      "at": "2026-09-20T20:17:55Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.142,
+      "at": "2026-09-20T20:17:59Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.719,
+      "at": "2026-09-20T20:18:11Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.152,
+      "at": "2026-09-20T20:18:15Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 53.48,
+      "at": "2026-09-20T20:19:09Z",
+      "reuse_of": "colorful_crayon_adaptation_world_001",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+      "usage_count": 2
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 22.397,
+      "at": "2026-09-20T20:19:33Z",
+      "prompt_sha256": "fe18bb95ae7bce090068e24868cb0e1eacca37f6feb711c29cbb40e8e2f6698c"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 64.693,
+      "at": "2026-09-20T20:20:39Z",
+      "sha256": "c3587e2a09b7be6a7794e6d03022082cf96c46d72a5a7984e52f059e004c66a2",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 24.065,
+      "at": "2026-09-20T20:21:04Z",
+      "prompt_sha256": "44434264f32d44558c05ff3c0ca7cfbdb4c815dd3de084fa3d59a5b8a4103a28"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 58.82,
+      "at": "2026-09-20T20:22:04Z",
+      "sha256": "85522beb35f8da1b66409165b8a82edcdf87bf17cf3274917f1a02b07470aef5",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 81.955,
+      "at": "2026-09-20T20:23:50Z",
+      "sha256": "1b791ea5e91db423355ec198a07be262d435eeb938d55b491538f4d85273ebff",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 87.78,
+      "at": "2026-09-20T20:25:37Z",
+      "sha256": "d93b2b7635ddae3a52b16e84525206e8a4bfe37b679d43ed0e28200097a697ea",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 72.704,
+      "at": "2026-09-20T20:27:13Z",
+      "sha256": "0d04b0a76cbc882fa68f239273b67a238c5eecb7a3074c157487c198ef2b3cd3",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 84.878,
+      "at": "2026-09-20T20:29:01Z",
+      "sha256": "d417d6fbd8433d5083308b14d6ed4ff522efa60d8bcb11a7ce09d37771002239",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 84.821,
+      "at": "2026-09-20T20:30:48Z",
+      "sha256": "0bacc61a2baff53128100352d6647a3e284f1c74a168acc07ca1196fa2900101",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 96.892,
+      "at": "2026-09-20T20:32:51Z",
+      "sha256": "705289946679342756ead5b817a01b426489b560d89409d8f29ff52cd08ffaa6",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 97.329,
+      "at": "2026-09-20T20:34:51Z",
+      "sha256": "1f5151999991d274864c8178412db54c0b6851badaeb84a3e6dd5602ded4ded1",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 766.654,
+      "at": "2026-09-20T20:34:52Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.101,
+      "at": "2026-09-20T20:34:54Z",
+      "boundaries": 6
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 22.146,
+      "at": "2026-09-20T20:35:18Z",
+      "prompt_sha256": "572b48416a326054c15a448f984fa38b64eb77dc6d68d144cc234bc6e6a39693"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 22.437,
+      "at": "2026-09-20T20:35:41Z",
+      "prompt_sha256": "f4f7cb71bba8434344e8efac76367f7b743934c714f6fb35e8cfb878d6563709"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 97.756,
+      "at": "2026-09-20T20:37:20Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "bffe00d2907258e2a7aea47a6ef176b4a7ee5a8a534b67c63660c29dca054b26"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 128.135,
+      "at": "2026-09-20T20:39:29Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "f5933e348f9705bfa92c10fbf77817266ef54f6eb42d2866a5916b1c881ab096"
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.511,
+      "at": "2026-09-21T03:05:13Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.374,
+      "at": "2026-09-21T03:05:17Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 3.038,
+      "at": "2026-09-21T03:05:28Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.68,
+      "at": "2026-09-21T03:05:32Z",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 75.689,
+      "at": "2026-09-21T03:07:13Z",
+      "sha256": "2a4d9de1a7d4b89c90902fcab57101933f5b02bd8eeb143c3278433614119ec5",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 78.759,
+      "at": "2026-09-21T03:08:51Z",
+      "sha256": "26654831a5f5973a99df542afe3bd9252914879324b7257ba6d49237c7d3abb6",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 127.394,
+      "at": "2026-09-21T03:11:18Z",
+      "sha256": "a6a1ba62ec2f552582c396cad5fdfe5b1d928cfea4d82593cc53d7f6545a2859",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 114.87,
+      "at": "2026-09-21T03:13:33Z",
+      "sha256": "168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 64.041,
+      "at": "2026-09-21T03:14:56Z",
+      "sha256": "3bb5f0346c573607d84157a3d5e606ca5abaf37551f47615981d84eb3d6436d4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 108.864,
+      "at": "2026-09-21T03:17:05Z",
+      "sha256": "a2c91f116ca30997567da4ab93a6ac7bab86aa2f40dd7cba1d50289724a1f166",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 88.452,
+      "at": "2026-09-21T03:18:59Z",
+      "sha256": "96dce1181321067eb8de6cbdc3f655e545d60b10bb2efef49b95e170793df770",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 97.282,
+      "at": "2026-09-21T03:20:56Z",
+      "sha256": "24e29c8ad196ef334ae7c3f6c0bb71e87cf78686914e106555e0c9d74197e30c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 106.199,
+      "at": "2026-09-21T03:23:02Z",
+      "sha256": "b878e3fe23f9abbd9e183ab4a29bb17b5a1cd516ab5b29e1ca8d006b2ef5b283",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 87.802,
+      "at": "2026-09-21T03:24:49Z",
+      "sha256": "441200cc783b32d94bfe20aadc8169d0de67f89e9fa6e631a7f0b7f6c69df06a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 99.851,
+      "at": "2026-09-21T03:26:48Z",
+      "sha256": "c2e06d66ab8cb90b0bb754db8adfc182e278afe538c52bdd5c90ba332d9b7493",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 118.068,
+      "at": "2026-09-21T03:29:06Z",
+      "sha256": "4d44c4b396ff19eafe2af2c52732f47e8a273cd9f62717ca96cafb6bf46e7ec4",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 72.724,
+      "at": "2026-09-21T03:30:41Z",
+      "sha256": "62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 126.97,
+      "at": "2026-09-21T03:33:08Z",
+      "sha256": "ffe33a0fa3955f225dc1a7f92961f6752a2f29459486872b3fe6cc23374f1b95",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_015",
+      "status": "DONE",
+      "elapsed_seconds": 78.853,
+      "at": "2026-09-21T03:34:47Z",
+      "sha256": "e67fdbae28c53f8e84373e75ea70e5b6b954eca760a039aa50d456669cf46f14",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_016",
+      "status": "DONE",
+      "elapsed_seconds": 133.85,
+      "at": "2026-09-21T03:37:21Z",
+      "sha256": "4f29a8616dbfc0f2a91388de969b28e84235e673f61ec6b3ce080f80ad791832",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_017",
+      "status": "DONE",
+      "elapsed_seconds": 99.931,
+      "at": "2026-09-21T03:39:20Z",
+      "sha256": "c6e47fac16b9b95b54052e2071b173a2ee52f0a4d3cee5e85280fd9a4855bca4",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_018",
+      "status": "DONE",
+      "elapsed_seconds": 130.525,
+      "at": "2026-09-21T03:41:50Z",
+      "sha256": "fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_019",
+      "status": "DONE",
+      "elapsed_seconds": 87.853,
+      "at": "2026-09-21T03:43:37Z",
+      "sha256": "8c4169413d8ed9b5acad859c077825947d9894d58d555fb9b0d6e0f545fd64e7",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_020",
+      "status": "DONE",
+      "elapsed_seconds": 78.864,
+      "at": "2026-09-21T03:45:16Z",
+      "sha256": "590f3f33b5f86b03ae481b3d8899f78fa7144d36814bfc23b604ba3867592034",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_021",
+      "status": "DONE",
+      "elapsed_seconds": 75.805,
+      "at": "2026-09-21T03:46:54Z",
+      "sha256": "0ed6a76d105418a19740377057e8ec31edc9758a088bea4f4ab31ccb466319ea",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_022",
+      "status": "DONE",
+      "elapsed_seconds": 218.182,
+      "at": "2026-09-21T03:50:52Z",
+      "sha256": "4f56c24a19d279ad0f6ef2cd1d8c8541137489bd64e48cfd359a8eaebabef095",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_023",
+      "status": "DONE",
+      "elapsed_seconds": 93.897,
+      "at": "2026-09-21T03:52:48Z",
+      "sha256": "5fb0d034b54ea00ed653bb79e5cc9be9d22cc5b9cfecea4d37009ed290ed51eb",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_024",
+      "status": "DONE",
+      "elapsed_seconds": 96.944,
+      "at": "2026-09-21T03:54:48Z",
+      "sha256": "5c0e0b862b92ef80e636f4b37efda3a652fdb53424cc8d812cc3f59bfb5315be",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_025",
+      "status": "DONE",
+      "elapsed_seconds": 91.062,
+      "at": "2026-09-21T03:56:38Z",
+      "sha256": "6d6f27a42fb36d78567f5cce9b38bb9ed25166db1692f6ef80c6daf3f2682c22",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_026",
+      "status": "DONE",
+      "elapsed_seconds": 67.265,
+      "at": "2026-09-21T03:58:09Z",
+      "sha256": "def7cc6b451628836e8756c74e61dab444853a01c85676120b19f8a8fa1cdcdf",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_027",
+      "status": "DONE",
+      "elapsed_seconds": 72.903,
+      "at": "2026-09-21T03:59:41Z",
+      "sha256": "5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_028",
+      "status": "DONE",
+      "elapsed_seconds": 82.188,
+      "at": "2026-09-21T04:01:24Z",
+      "sha256": "8f9988998861575195ed4dfcb3fea8d4ec51b7cf49c55ed7f8b9faa158f4d888",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_029",
+      "status": "DONE",
+      "elapsed_seconds": 84.769,
+      "at": "2026-09-21T04:03:11Z",
+      "sha256": "c390d21e607df1277a9522c07788dff80021282e0edb58890ccc43fe61a05d08",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_030",
+      "status": "DONE",
+      "elapsed_seconds": 86.063,
+      "at": "2026-09-21T04:04:56Z",
+      "sha256": "7dbbc23c0fac1cc572803d7de8dd8cc3071cd7b1d2a119ea99bec22a643e5ccf",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3564.142,
+      "at": "2026-09-21T04:04:58Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 0.952,
+      "at": "2026-09-21T04:05:00Z",
+      "boundaries": 29
+    }
+  ],
+  "updated_at": "2026-09-21T04:05:01Z"
+}

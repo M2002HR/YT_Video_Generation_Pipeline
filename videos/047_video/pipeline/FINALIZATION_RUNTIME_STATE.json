@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "video": "047_video",
+  "started_at": "2026-09-21T08:32:56.813048+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "status": "REUSED",
+      "ended_at": "2026-09-21T08:32:56.819096+00:00",
+      "elapsed_seconds": 0.0,
+      "artifact": "timeline/TIMELINE.json"
+    },
+    {
+      "stage": "motion_director",
+      "started_at": "2026-09-21T08:32:56.819320+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_motion_director.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--settings",
+        "videos/047_video/launch/CREATIVE_BRIEF.json"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:34:09.423180+00:00",
+      "elapsed_seconds": 72.604,
+      "artifact": "motion/MOTION_PLAN.json",
+      "artifact_bytes": 74587
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-21T08:34:10.734031+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 3/9 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:36:57.511185+00:00",
+      "elapsed_seconds": 166.777,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 57901991
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-21T08:36:57.511673+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:37:05.380347+00:00",
+      "elapsed_seconds": 7.869,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1555
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-21T08:37:06.769879+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:37:10.030176+00:00",
+      "elapsed_seconds": 3.26,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 58115368
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-21T08:37:11.318655+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:37:19.118631+00:00",
+      "elapsed_seconds": 7.8,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1558
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-21T08:37:20.265279+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:37:34.734256+00:00",
+      "elapsed_seconds": 14.469,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 3041450
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-21T08:37:35.987977+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T08:37:45.099286+00:00",
+      "elapsed_seconds": 9.111,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2329
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-21T08:37:46.357141+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/047_video/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-21T08:32:56.813048+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ],
+  "completed_at": "2026-09-21T08:37:46.352499+00:00",
+  "total_elapsed_seconds": 281.89,
+  "summary": {
+    "video": "047_video",
+    "duration_seconds": 36.911,
+    "beat_count": 32,
+    "video_beat_count": 2,
+    "image_beat_count": 30,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": false,
+    "opening": {
+      "spark_end": 4.0,
+      "transition_end": 7.6
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "chatgpt": [
+        "Nano Banana 2"
+      ],
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "unverified": [
+        "gemini_world_style_anchor"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": true,
+      "style": "dynamic",
+      "pace": "fast",
+      "micro_shots": 30,
+      "hard_cuts": 29,
+      "events_per_minute": 48.77,
+      "passed": true
+    },
+    "resources": {
+      "wall_seconds": 93.342,
+      "realtime_factor": 2.529,
+      "peak_child_rss_mb": 2269.4,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}

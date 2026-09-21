@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "video_id": "047",
+  "created_at": "2026-09-20T20:03:47.014619+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/047_video/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating, and Clear",
+    "model": "Eleven v3",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.5,
+    "style": 0.15,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-20T20:03:58.817863+00:00",
+      "elapsed_seconds": 11.781
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-20T20:04:03.299875+00:00",
+      "elapsed_seconds": 4.482,
+      "settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven v3",
+        "speed": 0.9,
+        "stability": 0.3,
+        "similarity": 0.5,
+        "style": 0.15,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven v3",
+        "speed": null,
+        "stability": 0.5,
+        "similarity": null,
+        "style": null,
+        "stability_mode": null,
+        "output_format": "MP3 44.1 kHz (128kbps)",
+        "capability_probe": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Seer Morganna - Intimidating, and Clear",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-20T20:04:03.299782+00:00"
+        },
+        "execution_mode": "expressive_v3"
+      },
+      "ui_capabilities": {
+        "capabilities": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Seer Morganna - Intimidating, and Clear",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-20T20:03:59.178574+00:00"
+        },
+        "execution_mode": "expressive_v3",
+        "inactive_settings": {
+          "speed": 0.9,
+          "stability": 0.3,
+          "similarity": 0.5,
+          "style": 0.15,
+          "speaker_boost": false,
+          "stability_mode_control": "categorical_numeric_slider"
+        },
+        "effective_plan": {
+          "model": "eleven_v3",
+          "numeric_settings": {
+            "stability": 0.5
+          },
+          "stability_mode": "Natural",
+          "speaker_boost": null
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-20T20:04:04.764795+00:00",
+      "elapsed_seconds": 5.947,
+      "characters": 446,
+      "text_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd"
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-20T20:04:06.035279+00:00",
+      "elapsed_seconds": 1.205,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.704,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-20T20:09:33.563167+00:00",
+      "elapsed_seconds": 1.382
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-20T20:09:38.759351+00:00",
+      "elapsed_seconds": 5.196,
+      "settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven v3",
+        "speed": 0.9,
+        "stability": 0.3,
+        "similarity": 0.5,
+        "style": 0.15,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Seer Morganna - Intimidating, and Clear",
+        "model": "Eleven v3",
+        "speed": null,
+        "stability": 0.5,
+        "similarity": null,
+        "style": null,
+        "stability_mode": null,
+        "output_format": "MP3 44.1 kHz (128kbps)",
+        "capability_probe": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Seer Morganna - Intimidating, and Clear",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-20T20:09:38.759269+00:00"
+        },
+        "execution_mode": "expressive_v3"
+      },
+      "ui_capabilities": {
+        "capabilities": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Seer Morganna - Intimidating, and Clear",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-20T20:09:34.554662+00:00"
+        },
+        "execution_mode": "expressive_v3",
+        "inactive_settings": {
+          "speed": 0.9,
+          "stability": 0.3,
+          "similarity": 0.5,
+          "style": 0.15,
+          "speaker_boost": false,
+          "stability_mode_control": "categorical_numeric_slider"
+        },
+        "effective_plan": {
+          "model": "eleven_v3",
+          "numeric_settings": {
+            "stability": 0.5
+          },
+          "stability_mode": "Natural",
+          "speaker_boost": null
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-20T20:09:40.070335+00:00",
+      "elapsed_seconds": 6.507,
+      "characters": 446,
+      "text_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd"
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-20T20:09:41.531559+00:00",
+      "elapsed_seconds": 1.327,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.756,
+        "generate": {
+          "text": "Regenerate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-20T20:09:59.351098+00:00",
+      "elapsed_seconds": 19.147,
+      "choice": "Download Audio",
+      "result_id": "audio-player:blob:https://elevenlabs.io/20ab304b-5760-41c8-b3a7-1b473f8e57b6"
+    },
+    {
+      "operation": "elevenlabs_download_recovered_after_interruption",
+      "finished_at": "2026-09-20T20:18:02.543302+00:00",
+      "elapsed_seconds": 0.0,
+      "bytes": 607224,
+      "output": "assets/audio/narration.mp3",
+      "result_id": "audio-player:blob:https://elevenlabs.io/20ab304b-5760-41c8-b3a7-1b473f8e57b6",
+      "duration_seconds": 36.911,
+      "format_name": "mp3"
+    }
+  ],
+  "updated_at": "2026-09-20T20:18:02.543790+00:00",
+  "active_attempt_id": "attempt-410544a731d84a4caee616f37f1491a5",
+  "attempt_owner": "047",
+  "result_baseline": {
+    "identities": [
+      "audio-player:blob:https://elevenlabs.io/c4e2a329-d2b9-4de1-856b-3ed67b6728d9"
+    ],
+    "captured_at": "2026-09-20T20:09:40.203766+00:00"
+  },
+  "submitted_at": "2026-09-20T20:09:41.531099+00:00",
+  "bound_result_id": "audio-player:blob:https://elevenlabs.io/20ab304b-5760-41c8-b3a7-1b473f8e57b6",
+  "adapter_state": "DOWNLOAD_BOUND_RESULT",
+  "download_choice": "Download Audio",
+  "download_requested_at": 1789934999.350607,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-20T20:18:02.543228+00:00"
+}

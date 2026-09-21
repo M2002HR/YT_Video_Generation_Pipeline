@@ -1,0 +1,712 @@
+{
+  "schema_version": 1,
+  "mode": "shorts_v2",
+  "editing_engine": "shorts_v2",
+  "nodes": [
+    {
+      "id": "preflight",
+      "title": "Shorts V2 preflight",
+      "phase": "contract",
+      "dependencies": [],
+      "owned_artifacts": [
+        "request"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "character_resolution",
+      "title": "Character and presentation",
+      "phase": "creative",
+      "dependencies": [
+        "preflight"
+      ],
+      "owned_artifacts": [
+        "character_resolution",
+        "character_performance"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "evidence",
+      "title": "Evidence pack",
+      "phase": "creative",
+      "dependencies": [
+        "preflight"
+      ],
+      "owned_artifacts": [
+        "evidence_pack"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "hook",
+      "title": "Hook tournament",
+      "phase": "creative",
+      "dependencies": [
+        "character_resolution",
+        "evidence"
+      ],
+      "owned_artifacts": [
+        "hook_packages",
+        "hook_reviews",
+        "hook_tournament"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "script",
+      "title": "Canonical script",
+      "phase": "creative",
+      "dependencies": [
+        "hook",
+        "evidence"
+      ],
+      "owned_artifacts": [
+        "story_blueprint",
+        "script_core",
+        "cta",
+        "script_reviews"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "voice_resolution",
+      "title": "Voice resolution and capabilities",
+      "phase": "voice",
+      "dependencies": [
+        "character_resolution"
+      ],
+      "owned_artifacts": [
+        "voice_resolution",
+        "voice_capabilities"
+      ],
+      "condition_name": "always",
+      "provider": "elevenlabs_web",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "voice_performance",
+      "title": "Voice performance",
+      "phase": "voice",
+      "dependencies": [
+        "script",
+        "voice_resolution"
+      ],
+      "owned_artifacts": [
+        "voice_performance"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "voice_compile",
+      "title": "Model-specific voice compile",
+      "phase": "voice",
+      "dependencies": [
+        "voice_performance"
+      ],
+      "owned_artifacts": [
+        "tts_input",
+        "voice_token_map"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "elevenlabs_voiceover",
+      "title": "Bound ElevenLabs web generation",
+      "phase": "voice",
+      "dependencies": [
+        "voice_compile"
+      ],
+      "owned_artifacts": [
+        "narration_audio",
+        "tts_receipt"
+      ],
+      "condition_name": "always",
+      "provider": "elevenlabs_web",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "narration_alignment",
+      "title": "Audio-authoritative alignment",
+      "phase": "timing",
+      "dependencies": [
+        "elevenlabs_voiceover",
+        "script"
+      ],
+      "owned_artifacts": [
+        "narration_timing"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "narration_pacing",
+      "title": "Measured narration pacing",
+      "phase": "timing",
+      "dependencies": [
+        "narration_alignment"
+      ],
+      "owned_artifacts": [
+        "narration_pacing"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "rhythm_map",
+      "title": "Rhythm map",
+      "phase": "timing",
+      "dependencies": [
+        "narration_pacing",
+        "voice_performance"
+      ],
+      "owned_artifacts": [
+        "rhythm_map"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "opening_plan",
+      "title": "Gateway and opening source plan",
+      "phase": "planning",
+      "dependencies": [
+        "rhythm_map",
+        "character_resolution"
+      ],
+      "owned_artifacts": [
+        "opening_source_plan",
+        "opening_plan"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "shot_plan",
+      "title": "Shot plan",
+      "phase": "planning",
+      "dependencies": [
+        "rhythm_map",
+        "script"
+      ],
+      "owned_artifacts": [
+        "shot_plan"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "asset_manifest",
+      "title": "Independent asset manifest",
+      "phase": "planning",
+      "dependencies": [
+        "shot_plan",
+        "character_resolution"
+      ],
+      "owned_artifacts": [
+        "asset_manifest"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "assets",
+      "title": "Visual assets",
+      "phase": "visual",
+      "dependencies": [
+        "asset_manifest"
+      ],
+      "owned_artifacts": [],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "semantic_manifest_diff",
+      "status": "QUEUED"
+    },
+    {
+      "id": "opening_media",
+      "title": "Gateway opening media",
+      "phase": "visual",
+      "dependencies": [
+        "opening_plan",
+        "assets"
+      ],
+      "owned_artifacts": [
+        "opening_media_receipt"
+      ],
+      "condition_name": "always",
+      "provider": "flow",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "media_review",
+      "title": "Optional media review",
+      "phase": "visual",
+      "dependencies": [
+        "assets",
+        "opening_media"
+      ],
+      "owned_artifacts": [
+        "media_review"
+      ],
+      "condition_name": "media_review",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "SKIPPED_CONFIG"
+    },
+    {
+      "id": "asset_observation",
+      "title": "One-pass edit observation",
+      "phase": "visual",
+      "dependencies": [
+        "assets",
+        "opening_media"
+      ],
+      "owned_artifacts": [
+        "asset_observations"
+      ],
+      "condition_name": "observation",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "assets_ready",
+      "title": "Assets ready",
+      "phase": "visual",
+      "dependencies": [
+        "assets",
+        "opening_media",
+        "media_review",
+        "asset_observation"
+      ],
+      "owned_artifacts": [],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "edit_direction",
+      "title": "Independent edit direction",
+      "phase": "edit",
+      "dependencies": [
+        "assets_ready",
+        "rhythm_map"
+      ],
+      "owned_artifacts": [
+        "layout_constraints",
+        "edit_plan"
+      ],
+      "condition_name": "always",
+      "provider": "chatgpt",
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "captions_sound",
+      "title": "Captions, branding and sound",
+      "phase": "edit",
+      "dependencies": [
+        "edit_direction",
+        "narration_alignment"
+      ],
+      "owned_artifacts": [
+        "caption_plan",
+        "overlay_plan",
+        "music_selection",
+        "sound_plan",
+        "sfx_selection"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "compile_timeline",
+      "title": "Deterministic timeline compile",
+      "phase": "render",
+      "dependencies": [
+        "captions_sound"
+      ],
+      "owned_artifacts": [
+        "compiled_timeline",
+        "segment_cache_manifest",
+        "presentation_compile"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "render_preview",
+      "title": "Audible preview",
+      "phase": "render",
+      "dependencies": [
+        "compile_timeline"
+      ],
+      "owned_artifacts": [
+        "preview"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "render_final",
+      "title": "Final render",
+      "phase": "render",
+      "dependencies": [
+        "compile_timeline"
+      ],
+      "owned_artifacts": [
+        "final",
+        "render_receipt"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "technical_qc",
+      "title": "Technical validation",
+      "phase": "render",
+      "dependencies": [
+        "render_final"
+      ],
+      "owned_artifacts": [
+        "technical_qc"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "accept_version",
+      "title": "Atomic version acceptance",
+      "phase": "revision",
+      "dependencies": [
+        "technical_qc"
+      ],
+      "owned_artifacts": [
+        "accepted_snapshot"
+      ],
+      "condition_name": "always",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "QUEUED"
+    },
+    {
+      "id": "delivery",
+      "title": "Enabled delivery",
+      "phase": "delivery",
+      "dependencies": [
+        "accept_version"
+      ],
+      "owned_artifacts": [],
+      "condition_name": "delivery",
+      "provider": null,
+      "revision_policy": "cascade",
+      "status": "SKIPPED_CONFIG"
+    }
+  ],
+  "edges": [
+    {
+      "source": "preflight",
+      "target": "character_resolution",
+      "kind": "data"
+    },
+    {
+      "source": "preflight",
+      "target": "evidence",
+      "kind": "data"
+    },
+    {
+      "source": "character_resolution",
+      "target": "hook",
+      "kind": "data"
+    },
+    {
+      "source": "evidence",
+      "target": "hook",
+      "kind": "data"
+    },
+    {
+      "source": "hook",
+      "target": "script",
+      "kind": "data"
+    },
+    {
+      "source": "evidence",
+      "target": "script",
+      "kind": "data"
+    },
+    {
+      "source": "character_resolution",
+      "target": "voice_resolution",
+      "kind": "data"
+    },
+    {
+      "source": "script",
+      "target": "voice_performance",
+      "kind": "data"
+    },
+    {
+      "source": "voice_resolution",
+      "target": "voice_performance",
+      "kind": "data"
+    },
+    {
+      "source": "voice_performance",
+      "target": "voice_compile",
+      "kind": "data"
+    },
+    {
+      "source": "voice_compile",
+      "target": "elevenlabs_voiceover",
+      "kind": "data"
+    },
+    {
+      "source": "elevenlabs_voiceover",
+      "target": "narration_alignment",
+      "kind": "data"
+    },
+    {
+      "source": "script",
+      "target": "narration_alignment",
+      "kind": "data"
+    },
+    {
+      "source": "narration_alignment",
+      "target": "narration_pacing",
+      "kind": "data"
+    },
+    {
+      "source": "narration_pacing",
+      "target": "rhythm_map",
+      "kind": "data"
+    },
+    {
+      "source": "voice_performance",
+      "target": "rhythm_map",
+      "kind": "data"
+    },
+    {
+      "source": "rhythm_map",
+      "target": "opening_plan",
+      "kind": "data"
+    },
+    {
+      "source": "character_resolution",
+      "target": "opening_plan",
+      "kind": "data"
+    },
+    {
+      "source": "rhythm_map",
+      "target": "shot_plan",
+      "kind": "data"
+    },
+    {
+      "source": "script",
+      "target": "shot_plan",
+      "kind": "data"
+    },
+    {
+      "source": "shot_plan",
+      "target": "asset_manifest",
+      "kind": "data"
+    },
+    {
+      "source": "character_resolution",
+      "target": "asset_manifest",
+      "kind": "data"
+    },
+    {
+      "source": "asset_manifest",
+      "target": "assets",
+      "kind": "data"
+    },
+    {
+      "source": "opening_plan",
+      "target": "opening_media",
+      "kind": "data"
+    },
+    {
+      "source": "assets",
+      "target": "opening_media",
+      "kind": "data"
+    },
+    {
+      "source": "assets",
+      "target": "media_review",
+      "kind": "data"
+    },
+    {
+      "source": "opening_media",
+      "target": "media_review",
+      "kind": "data"
+    },
+    {
+      "source": "assets",
+      "target": "asset_observation",
+      "kind": "data"
+    },
+    {
+      "source": "opening_media",
+      "target": "asset_observation",
+      "kind": "data"
+    },
+    {
+      "source": "assets",
+      "target": "assets_ready",
+      "kind": "data"
+    },
+    {
+      "source": "opening_media",
+      "target": "assets_ready",
+      "kind": "data"
+    },
+    {
+      "source": "media_review",
+      "target": "assets_ready",
+      "kind": "data"
+    },
+    {
+      "source": "asset_observation",
+      "target": "assets_ready",
+      "kind": "data"
+    },
+    {
+      "source": "assets_ready",
+      "target": "edit_direction",
+      "kind": "data"
+    },
+    {
+      "source": "rhythm_map",
+      "target": "edit_direction",
+      "kind": "data"
+    },
+    {
+      "source": "edit_direction",
+      "target": "captions_sound",
+      "kind": "data"
+    },
+    {
+      "source": "narration_alignment",
+      "target": "captions_sound",
+      "kind": "data"
+    },
+    {
+      "source": "captions_sound",
+      "target": "compile_timeline",
+      "kind": "data"
+    },
+    {
+      "source": "compile_timeline",
+      "target": "render_preview",
+      "kind": "data"
+    },
+    {
+      "source": "compile_timeline",
+      "target": "render_final",
+      "kind": "data"
+    },
+    {
+      "source": "render_final",
+      "target": "technical_qc",
+      "kind": "data"
+    },
+    {
+      "source": "technical_qc",
+      "target": "accept_version",
+      "kind": "data"
+    },
+    {
+      "source": "accept_version",
+      "target": "delivery",
+      "kind": "data"
+    }
+  ],
+  "order": [
+    "preflight",
+    "character_resolution",
+    "evidence",
+    "voice_resolution",
+    "hook",
+    "script",
+    "voice_performance",
+    "voice_compile",
+    "elevenlabs_voiceover",
+    "narration_alignment",
+    "narration_pacing",
+    "rhythm_map",
+    "opening_plan",
+    "shot_plan",
+    "asset_manifest",
+    "assets",
+    "opening_media",
+    "media_review",
+    "asset_observation",
+    "assets_ready",
+    "edit_direction",
+    "captions_sound",
+    "compile_timeline",
+    "render_preview",
+    "render_final",
+    "technical_qc",
+    "accept_version",
+    "delivery"
+  ],
+  "phases": [
+    "contract",
+    "creative",
+    "voice",
+    "timing",
+    "planning",
+    "visual",
+    "edit",
+    "render",
+    "revision",
+    "delivery"
+  ]
+}

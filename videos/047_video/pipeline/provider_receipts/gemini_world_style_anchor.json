@@ -1,0 +1,47 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "catalog_derivative": false,
+  "provider_receipt": null,
+  "job_id": null,
+  "request_fingerprint": "91a93125ce59e7d991f0731e254e81714aa1d4cf9d421a6cd01b4d502ae11b9e",
+  "quality_check": {
+    "passed": true,
+    "description": "Vertical crayon style sheet on a cream paper texture, with layered blue, green, yellow, orange and brown stroke tests, two rows of palette swatches, and loose marine-motif contour samples including a starfish, seaweed, shells and waves.",
+    "violations": [
+      "Marine motifs make the lower portion less neutral than the requested pure material/palette/line sample, though they remain isolated style demonstrations rather than a scene.",
+      "No visible line or texture studies specifically demonstrate broken-window, oxygen-mask, airflow or pressure-change hazard cues.",
+      "Canvas is 1143x2048, slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "material_anchor_v2.neutral_material": {
+        "passed": true,
+        "evidence": "The cream textured canvas is filled by crayon texture tests, palette swatches and isolated line samples without a framed page, doorway, character, location scene or inset composition."
+      }
+    },
+    "visual_contract_signature": "a9c331a2bd3cd13e3d84acc6ff143a3244ba10320d67ae8a6b849bf4e0fba535",
+    "raw_passed": true,
+    "raw_violations": [
+      "Marine motifs make the lower portion less neutral than the requested pure material/palette/line sample, though they remain isolated style demonstrations rather than a scene.",
+      "No visible line or texture studies specifically demonstrate broken-window, oxygen-mask, airflow or pressure-change hazard cues.",
+      "Canvas is 1143x2048, slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "observations": [
+      "Marine motifs make the lower portion less neutral than the requested pure material/palette/line sample, though they remain isolated style demonstrations rather than a scene.",
+      "No visible line or texture studies specifically demonstrate broken-window, oxygen-mask, airflow or pressure-change hazard cues.",
+      "Canvas is 1143x2048, slightly narrower than an exact 9:16 aspect ratio."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/026_colorful_crayon_adaptation_world_001/style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "body_duration_seconds": 21.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Outside pressure is lower at high altitude.",
+      "visual": "Full-bleed crayon illustration from outside a passenger airplane cruising high above a thick cloud layer, with the aircraft surrounded by thin, sparse-looking high-altitude atmosphere and expansive cool blue sky; no text, labels, borders, panels or inset framing, with the bottom 8-10% kept naturally calm for subtitles.",
+      "purpose": "show that the airplane is flying in a lower-pressure high-altitude environment",
+      "visual_fingerprint": "exterior wide aerial view of a passenger jet above clouds, cool blue daylight, sparse atmospheric strokes around the fuselage, airplane placed diagonally in the upper half with open sky below",
+      "type": "subject_world",
+      "continuity": "establishes the high-altitude exterior before moving inside the pressurized cabin",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "A break lets cabin air rush out.",
+      "visual": "Inside the aircraft cabin in full-bleed crayon style, a damaged side window is seen from a close three-quarter angle as loose lightweight objects and dense directional crayon airflow strokes stream outward through the opening; passengers remain safely farther back, with no readable text or enclosing frame.",
+      "purpose": "show cabin air escaping through a broken window",
+      "visual_fingerprint": "close three-quarter cabin view centered on one broken window, warm orange hazard accents at the opening, loose paper and fabric pulled outward, strong horizontal airflow strokes exiting toward open sky",
+      "type": "literal",
+      "continuity": "moves from the high-altitude exterior into the cabin where the pressure difference creates outward airflow",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wipeleft"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "Airflow is strongest near the opening.",
+      "visual": "A tight side-on crayon view of the broken window zone shows the most concentrated, fastest-looking airflow strokes packed immediately beside the opening, with nearby lightweight objects sharply angled toward it and calmer cabin space visible beyond; no labels or printed arrows.",
+      "purpose": "show that the strongest airflow is localized close to the broken opening",
+      "visual_fingerprint": "tight side profile of window and adjacent seat row, dense converging wax-crayon streaks nearest the opening, nearby scarf and loose items strongly deflected, focal hazard occupying the upper-right of the vertical frame",
+      "type": "diagram",
+      "continuity": "focuses tightly on the same physical cause while isolating the high-speed zone nearest the opening",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "Farther away, the air may move much less.",
+      "visual": "A wide view from the opposite end of the same cabin shows the broken window small in the distant background while foreground passengers, seat fabric and loose objects remain comparatively still; the Newton-Inspired Scholar stands securely in the calm foreground indicating the contrast through posture only, without signs or text.",
+      "purpose": "contrast the strong airflow near the opening with much weaker air movement farther away",
+      "visual_fingerprint": "wide rear-cabin perspective with calm foreground and distant broken window, host positioned low-left beside nearly still seatbacks, airflow marks confined mainly to the far background, strong depth separation",
+      "type": "subject_world",
+      "continuity": "pulls far back from the opening to reveal how rapidly the airflow effect diminishes with distance",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Pressure falls, making breathing harder.",
+      "visual": "A medium frontal cabin shot shows a seated passenger reacting to the pressure drop with a strained breathing posture while the surrounding cabin gains subtle thinning, expanding crayon atmosphere strokes and cooler tones; the broken window is out of frame so the focus stays on the consequence, with no labels or medical text.",
+      "purpose": "show the breathing difficulty caused by falling cabin pressure",
+      "visual_fingerprint": "medium frontal passenger portrait in a different cabin row, hands near chest and visibly labored posture, cool diffused cabin light, sparse expanding atmospheric strokes around face and shoulders, centered composition",
+      "type": "literal",
+      "continuity": "shifts from airflow location to the human consequence of the cabin pressure dropping",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Oxygen masks may drop as pilots descend.",
+      "visual": "Full-bleed upward-angled cabin view with several oxygen masks freshly hanging from the overhead units as passengers reach for them, while through the windows the airplane is visibly descending toward a lower cloud layer and warmer atmosphere; the Newton-Inspired Scholar is seated and correctly using a mask, with no printed instructions.",
+      "purpose": "show oxygen masks deploying while the aircraft descends toward safer altitude",
+      "visual_fingerprint": "low upward camera angle emphasizing dangling oxygen masks overhead, passengers reaching upward, host seated at lower-right wearing a mask, slanted horizon and rising cloud layer outside indicating descent",
+      "type": "literal",
+      "continuity": "follows the breathing problem with the immediate cabin safety response and descent",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideright"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "That sudden pressure loss is called rapid decompression.",
+      "visual": "A final full-bleed crayon cabin scene freezes the overall event into one clear visual: the broken window glows with restrained warm hazard accents, concentrated airflow remains localized near it, oxygen masks hang farther inside, and the aircraft is now lower above a thicker cloud layer outside; no labels, text, borders, cards or footer.",
+      "purpose": "visually summarize the sudden cabin pressure-loss event described as rapid decompression",
+      "visual_fingerprint": "wide diagonal cabin tableau combining distant broken window, localized airflow, hanging masks and visibly lower-altitude clouds outside, warm-to-cool spatial gradient with a calm subtitle-safe lower edge",
+      "type": "subject_world",
+      "continuity": "resolves the sequence by showing the airflow, pressure-loss response and descent together in one final in-world summary",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

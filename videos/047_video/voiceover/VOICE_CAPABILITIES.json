@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "observed_model": "Eleven v3",
+  "observed_voice": "Seer Morganna - Intimidating, and Clear",
+  "numeric_controls": [
+    "stability"
+  ],
+  "stability_modes": [],
+  "speaker_boost_available": false,
+  "editor_kind": "contenteditable",
+  "observed_at": "2026-09-20T20:09:34.554662+00:00"
+}

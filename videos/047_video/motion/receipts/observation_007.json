@@ -1,0 +1,518 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "37d53401085ac0fad8eea4298eb6ddc01433f749145d862abc4be2c961c39cb1",
+  "job_ids": [
+    "ec4c5a63-f099-402c-a779-ac362eb8b302"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 19,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Crayon-style airplane cabin seen diagonally down the row. A seated passenger occupies the center-right, mouth open with both hands held against the upper chest. Several orange-and-white hanging oxygen-mask assemblies are visible from the overhead panels. Curved pale blue and green strokes cross the cabin around the passenger, with windows along the left wall and seats receding to the right.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b19_face_seated_passenger",
+            "label": "seated passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.526,
+              "y": 0.421,
+              "w": 0.145,
+              "h": 0.135
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Central-right face with raised brows, wide eyes and open mouth."
+          },
+          {
+            "target_id": "b19_person_seated_passenger",
+            "label": "seated passenger",
+            "kind": "person",
+            "bbox": {
+              "x": 0.56,
+              "y": 0.568,
+              "w": 0.37,
+              "h": 0.455
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Full seated figure in pale shirt and brown trousers beside the cabin windows."
+          },
+          {
+            "target_id": "b19_hand_upper_chest",
+            "label": "hand pressed to upper chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.501,
+              "y": 0.514,
+              "w": 0.116,
+              "h": 0.096
+            },
+            "importance": "primary",
+            "confidence": 0.97,
+            "visible_evidence": "Open hand visibly placed over the passenger's upper chest."
+          },
+          {
+            "target_id": "b19_hand_lower_chest",
+            "label": "second hand at chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.588,
+              "y": 0.536,
+              "w": 0.108,
+              "h": 0.094
+            },
+            "importance": "primary",
+            "confidence": 0.96,
+            "visible_evidence": "Second open hand held against the center-right of the passenger's chest."
+          },
+          {
+            "target_id": "b19_overhead_mask_center",
+            "label": "hanging oxygen-mask assembly above passenger",
+            "kind": "object",
+            "bbox": {
+              "x": 0.621,
+              "y": 0.322,
+              "w": 0.123,
+              "h": 0.151
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "Orange hanging bag and mask with a white reservoir suspended from the overhead panel."
+          },
+          {
+            "target_id": "b19_overhead_mask_left",
+            "label": "left hanging oxygen-mask assembly",
+            "kind": "object",
+            "bbox": {
+              "x": 0.078,
+              "y": 0.295,
+              "w": 0.125,
+              "h": 0.171
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Orange and gray mask assembly with white hanging reservoir near the upper-left cabin wall."
+          },
+          {
+            "target_id": "b19_overhead_masks_right",
+            "label": "right-side hanging oxygen masks",
+            "kind": "group",
+            "bbox": {
+              "x": 0.891,
+              "y": 0.353,
+              "w": 0.198,
+              "h": 0.124
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Multiple orange mask assemblies hang from overhead panels over the right-side seats."
+          },
+          {
+            "target_id": "b19_airflow_strokes",
+            "label": "curved blue-green atmospheric strokes",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.515,
+              "y": 0.477,
+              "w": 0.79,
+              "h": 0.333
+            },
+            "importance": "context",
+            "confidence": 0.94,
+            "visible_evidence": "Several pale blue and green curved strokes visibly sweep across the cabin around the passenger."
+          },
+          {
+            "target_id": "b19_cabin_windows",
+            "label": "airplane cabin windows",
+            "kind": "context",
+            "bbox": {
+              "x": 0.318,
+              "y": 0.493,
+              "w": 0.237,
+              "h": 0.307
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "A row of rounded airplane windows is visible along the left cabin wall."
+          }
+        ],
+        "faces": [
+          "b19_face_seated_passenger"
+        ],
+        "hands_or_actions": [
+          "b19_hand_upper_chest",
+          "b19_hand_lower_chest"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.526,
+              "y": 0.421,
+              "w": 0.19,
+              "h": 0.18
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.548,
+              "y": 0.526,
+              "w": 0.25,
+              "h": 0.17
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.19,
+            "y": 0.105,
+            "w": 0.28,
+            "h": 0.17
+          }
+        ],
+        "notes": "Primary attention is the passenger's face and chest-hand posture. Preserve enough upper frame to retain the hanging masks and enough left cabin wall to retain the window context.",
+        "media_sha256": "8c4169413d8ed9b5acad859c077825947d9894d58d555fb9b0d6e0f545fd64e7"
+      },
+      {
+        "beat_id": 20,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.436,
+          "w": 1.0,
+          "h": 0.872
+        },
+        "composition_summary": "Frontal crayon-style airplane-cabin portrait. One passenger is centered in a seat, facing forward with eyes wide, mouth open and both hands clenched near the upper chest. A dark lap belt crosses the waist. Blue-green curved strokes pass across the figure and nearby seats. Overhead bins and ceiling panels converge toward the rear. A large unillustrated cream panel occupies the bottom of the source image.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b20_face_center_passenger",
+            "label": "center passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.506,
+              "y": 0.391,
+              "w": 0.244,
+              "h": 0.196
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large centered face with raised brows, wide eyes and open mouth."
+          },
+          {
+            "target_id": "b20_person_center_passenger",
+            "label": "center seated passenger",
+            "kind": "person",
+            "bbox": {
+              "x": 0.504,
+              "y": 0.579,
+              "w": 0.56,
+              "h": 0.566
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Centered seated figure in a pale green shirt and tan trousers."
+          },
+          {
+            "target_id": "b20_hand_left_fist",
+            "label": "screen-left clenched hand near chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.389,
+              "y": 0.544,
+              "w": 0.14,
+              "h": 0.136
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Clenched hand visibly held just below the left side of the passenger's collar."
+          },
+          {
+            "target_id": "b20_hand_right_fist",
+            "label": "screen-right clenched hand near chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.586,
+              "y": 0.548,
+              "w": 0.139,
+              "h": 0.138
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Clenched hand visibly held just below the right side of the passenger's collar."
+          },
+          {
+            "target_id": "b20_lap_belt",
+            "label": "lap belt across passenger waist",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.787,
+              "w": 0.544,
+              "h": 0.071
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Dark belt with a light rectangular buckle spans the passenger's waist."
+          },
+          {
+            "target_id": "b20_airflow_strokes",
+            "label": "curved blue-green atmospheric strokes",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.501,
+              "y": 0.504,
+              "w": 0.865,
+              "h": 0.249
+            },
+            "importance": "context",
+            "confidence": 0.91,
+            "visible_evidence": "Pale blue and green curved strokes visibly cross the passenger and adjacent seats."
+          },
+          {
+            "target_id": "b20_cabin_overhead",
+            "label": "overhead bins and ceiling",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.174,
+              "w": 0.94,
+              "h": 0.344
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Symmetrical overhead bins and arched ceiling panels frame the centered passenger."
+          }
+        ],
+        "faces": [
+          "b20_face_center_passenger"
+        ],
+        "hands_or_actions": [
+          "b20_hand_left_fist",
+          "b20_hand_right_fist"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.506,
+              "y": 0.391,
+              "w": 0.29,
+              "h": 0.235
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.493,
+              "y": 0.546,
+              "w": 0.39,
+              "h": 0.19
+            }
+          },
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.936,
+              "w": 1.0,
+              "h": 0.128
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.119,
+            "w": 0.36,
+            "h": 0.16
+          }
+        ],
+        "notes": "Keep the centered face and both raised hands unobstructed. The cream area below approximately y=0.872 is visibly blank and should not be treated as artwork content.",
+        "media_sha256": "590f3f33b5f86b03ae481b3d8899f78fa7144d36814bfc23b604ba3867592034"
+      },
+      {
+        "beat_id": 21,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.436,
+          "w": 1.0,
+          "h": 0.872
+        },
+        "composition_summary": "Frontal crayon-style airplane-cabin portrait with a centered seated passenger in a blue top over a green collar. The passenger faces forward with wide eyes, open mouth and both hands clenched near the chest. A lap belt crosses the waist. Other seated passengers are visible behind on both sides, while pale blue-green curved strokes cross the cabin. Overhead bins and ceiling panels frame the scene, and a large unillustrated cream panel fills the bottom of the source image.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b21_face_center_passenger",
+            "label": "center passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.505,
+              "y": 0.391,
+              "w": 0.242,
+              "h": 0.193
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large centered face with raised brows, wide blue eyes and open mouth."
+          },
+          {
+            "target_id": "b21_person_center_passenger",
+            "label": "center seated passenger",
+            "kind": "person",
+            "bbox": {
+              "x": 0.499,
+              "y": 0.579,
+              "w": 0.57,
+              "h": 0.566
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Centered seated figure wearing a blue top, green collar and tan trousers."
+          },
+          {
+            "target_id": "b21_hand_left_fist",
+            "label": "screen-left clenched hand near chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.391,
+              "y": 0.544,
+              "w": 0.137,
+              "h": 0.134
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Clenched hand held close to the upper chest on screen-left."
+          },
+          {
+            "target_id": "b21_hand_right_fist",
+            "label": "screen-right clenched hand near chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.587,
+              "y": 0.549,
+              "w": 0.137,
+              "h": 0.135
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Clenched hand held close to the upper chest on screen-right."
+          },
+          {
+            "target_id": "b21_lap_belt",
+            "label": "lap belt across passenger waist",
+            "kind": "object",
+            "bbox": {
+              "x": 0.497,
+              "y": 0.787,
+              "w": 0.552,
+              "h": 0.07
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Dark horizontal belt with light rectangular buckle crosses the waist."
+          },
+          {
+            "target_id": "b21_background_passengers",
+            "label": "seated passengers behind main figure",
+            "kind": "group",
+            "bbox": {
+              "x": 0.532,
+              "y": 0.521,
+              "w": 0.9,
+              "h": 0.292
+            },
+            "importance": "context",
+            "confidence": 0.94,
+            "visible_evidence": "Additional seated figures are visibly present behind the central passenger on the left and right sides."
+          },
+          {
+            "target_id": "b21_airflow_strokes",
+            "label": "curved blue-green atmospheric strokes",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.506,
+              "y": 0.504,
+              "w": 0.87,
+              "h": 0.25
+            },
+            "importance": "context",
+            "confidence": 0.91,
+            "visible_evidence": "Pale blue and green curved strokes visibly cross the central figure and surrounding seats."
+          },
+          {
+            "target_id": "b21_cabin_overhead",
+            "label": "overhead bins and ceiling",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.174,
+              "w": 0.94,
+              "h": 0.344
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Symmetrical overhead bins and arched ceiling panels extend toward the rear of the cabin."
+          }
+        ],
+        "faces": [
+          "b21_face_center_passenger"
+        ],
+        "hands_or_actions": [
+          "b21_hand_left_fist",
+          "b21_hand_right_fist"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.505,
+              "y": 0.391,
+              "w": 0.29,
+              "h": 0.23
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.493,
+              "y": 0.546,
+              "w": 0.39,
+              "h": 0.19
+            }
+          },
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.936,
+              "w": 1.0,
+              "h": 0.128
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.117,
+            "w": 0.35,
+            "h": 0.155
+          }
+        ],
+        "notes": "Keep the centered face, both clenched hands and lap belt readable. Background passengers provide cabin context. The cream area below approximately y=0.872 is visibly blank and should not be treated as artwork content.",
+        "media_sha256": "0ed6a76d105418a19740377057e8ec31edc9758a088bea4f4ab31ccb466319ea"
+      }
+    ]
+  }
+}

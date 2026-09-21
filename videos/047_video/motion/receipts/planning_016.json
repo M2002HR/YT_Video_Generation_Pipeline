@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "dd45ffd015d7de54a616218c439de97e591fd74026e8c0bd39cf81306c7dff28",
+  "job_ids": [
+    "860b66c0-46d5-40ec-a655-7692ac3d4b7e"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 16,
+        "start": 20.724,
+        "end": 21.372,
+        "attention_story": [
+          "Keep the cabin broad and center-weighted so the distant rear opening, seated rows, and calm foreground remain readable together.",
+          "Use stillness through the final contrast word so the reduced airflow idea lands without adding unnecessary motion."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b16_s01",
+            "role": "hold",
+            "start": 20.724,
+            "end": 21.372,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b16_seated_passenger_rows",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b16_seated_passenger_rows",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The narration resolves on the contrast word 'less,' and the wide static composition best communicates weaker movement farther from the opening while preserving the scholar, passengers, aisle, and distant opening."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b16_seated_passenger_rows",
+          "coverage": 0.94,
+          "anchor_x": 0.5,
+          "anchor_y": 0.5,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The following beat continues the same explanatory cabin idea, so a clean cut preserves continuity without spending a decorative transition."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

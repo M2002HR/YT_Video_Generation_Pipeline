@@ -1,0 +1,227 @@
+{
+  "input_fingerprint": "8327b5eb89f92f776b0966bcbe44c028dacb4e60ac9498178383d8ed11589013",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal",
+        "044",
+        "045",
+        "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+        "046"
+      ],
+      "writer_prompt_sha256": "c61f5d980cde58c514b238ad3da76fc7cdeff48ce9178b644a760a3cfd8f1ceb",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "Why does the strongest rush happen near the broken window, not across the whole cabin?",
+            "viewer_expectation": "If cabin pressure suddenly drops, air and loose objects should be pulled equally from every part of the cabin.",
+            "visible_contradiction": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+            "frame_zero": "A sealed aircraft-window pressure rig has one open test port; the nearby ribbon is stretched hard toward it while the distant ribbon barely moves.",
+            "character_action": "He compares the two ribbons, pauses at the difference, then reaches for the storybook beside the rig.",
+            "reaction": "A focused glance turns into quiet surprise when the two ribbons do not behave the same way.",
+            "activity": "Comparing airflow close to and far from a sudden opening in a pressurized cabin model.",
+            "location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+            "topic_link": "Cabin air moves toward a new opening because pressure inside is higher than pressure outside.",
+            "claim_mode": "conservative",
+            "factual_anchor": "At high altitude, cabin pressure is higher than outside pressure. If the pressure barrier breaks, air can rush outward until the pressure difference becomes smaller.",
+            "payoff": "A broken pressure window can cause rapid decompression and strong airflow near the opening, rather than equal pulling force everywhere.",
+            "entry_variant": "desk_reach",
+            "entry_bridge": {
+              "a_end": "He places the storybook flat beside the pressure rig, one hand leaving the cover.",
+              "b_start": "Top-down, host-free view of the closed topic-styled book resting flat.",
+              "reveal": "The important force comes from the pressure difference between cabin air and the thin outside air.",
+              "world_entry": "A cabin cutaway shows air rushing outward through one open window while nearby loose objects move toward it."
+            },
+            "novelty": {
+              "action_family": "near-versus-far airflow comparison",
+              "tension_family": "equal pull versus local strong flow",
+              "prop_family": "pressurized window rig with ribbons",
+              "reveal_family": "pressure difference drives outward flow"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "If the inside window layer cracks, does the cabin always lose pressure?",
+            "viewer_expectation": "Any visible crack in an aircraft window means outside air can immediately enter the cabin.",
+            "visible_contradiction": "The cabin-side clear layer is cracked, but the deeper structural pane remains intact and sealed.",
+            "frame_zero": "A full-size window cutaway shows a cracked inner clear panel, an unbroken pressure pane behind it, and a light ribbon beside the crack staying still.",
+            "character_action": "He studies the cracked front layer, shifts his eyes to the intact deeper pane, then reveals the storybook from his coat.",
+            "reaction": "His concern eases slightly when the crack stops at the inner layer.",
+            "activity": "Tracing which layer of a passenger window actually separates cabin air from outside air.",
+            "location": "An aircraft maintenance display bay with a full-size layered window cutaway.",
+            "topic_link": "What happens depends on whether the broken layer is part of the pressure barrier.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Passenger aircraft windows use several layers. On many jets, the cabin-side scratch pane is not the main pressure barrier, so breaking that layer alone may not cause decompression.",
+            "payoff": "A visible inner-layer crack can be serious without opening the cabin; rapid pressure loss begins if a pressure-holding pane is breached.",
+            "entry_variant": "pocket_reveal",
+            "entry_bridge": {
+              "a_end": "He removes the small storybook from his coat and places it flat beside the layered window display.",
+              "b_start": "Top-down, host-free view of the closed topic-styled book resting flat.",
+              "reveal": "A window can look broken before the layer holding cabin pressure has failed.",
+              "world_entry": "A clean cutaway separates the cracked cabin-side cover from the intact pressure-holding window layers behind it."
+            },
+            "novelty": {
+              "action_family": "layer-by-layer failure check",
+              "tension_family": "visible crack versus pressure breach",
+              "prop_family": "layered aircraft window cutaway",
+              "reveal_family": "different panes have different jobs"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "Why can a broken window fill the cabin with white mist, even without smoke?",
+            "viewer_expectation": "A sudden white cloud inside an aircraft would most likely mean smoke or fire.",
+            "visible_contradiction": "A white cloud appears immediately after pressure drops, even though there is no flame or smoke source.",
+            "frame_zero": "Inside a sealed cabin-pressure chamber, a sudden test opening has produced a thin white cloud around the window while every surface remains free of fire.",
+            "character_action": "He watches the cloud form, checks the empty smoke-free chamber, then takes a storybook from the display shelf.",
+            "reaction": "He pauses at the cloud, then gives a small puzzled look toward the clear area beyond it.",
+            "activity": "Watching moisture appear as pressurized cabin air suddenly expands and cools.",
+            "location": "A controlled aircraft pressure chamber with one observation window.",
+            "topic_link": "The same fast pressure drop that sends air outward can also cool the remaining cabin air.",
+            "claim_mode": "conservative",
+            "factual_anchor": "During rapid decompression, cabin air can expand and cool quickly. Water vapor in that air may condense into a short-lived white mist.",
+            "payoff": "The sudden white cloud can be condensed water, not smoke, formed as cabin air rapidly expands and cools.",
+            "entry_variant": "shelf_reveal",
+            "entry_bridge": {
+              "a_end": "He slides the storybook from a low display shelf and lays it flat beside the chamber controls.",
+              "b_start": "Top-down, host-free view of the closed topic-styled book resting flat.",
+              "reveal": "Rapid pressure loss can change temperature as well as airflow.",
+              "world_entry": "A clear cabin suddenly develops a pale mist around an opening as expanding air cools and moisture condenses."
+            },
+            "novelty": {
+              "action_family": "mist formation observation",
+              "tension_family": "smoke appearance versus cooling effect",
+              "prop_family": "sealed cabin pressure chamber",
+              "reveal_family": "expansion cooling creates condensation"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "042",
+        "042_what_if_earth_s_gravity_were_cut_in_half",
+        "043",
+        "043_what_if_human_bones_were_made_of_metal",
+        "044",
+        "045",
+        "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+        "046"
+      ],
+      "reviewer_prompt_sha256": "fad0bcb6eb7c0e2726ab850af57dbd7fc286ca2f89cfcd9918a4150de365d404",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The near-versus-far ribbon movement makes the pressure question visible before any explanation, and it directly supports the main broken-window scenario. The pressure-difference claim is conservative and the payoff correctly avoids the false idea that the whole cabin has an equal pulling force. This is materially different from the recent oxygen-mask opening: it tests local airflow strength with a pressure rig rather than cabin-wide breathing danger. The host has only three clear actions, and the book placement gives a clean A/B seam. The main practical challenge is making a pressurized full-size window rig safe and visually readable."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "This is a strong corrective sub-question: a visible crack does not necessarily mean the pressure barrier has failed. The factual anchor carefully limits the claim to the cabin-side scratch pane on many aircraft, so it does not promise that every aircraft window has the same construction. The cracked front layer, intact deeper pane and still ribbon can show the mismatch, although viewers may need a moment to understand the unfamiliar layered window display. It is less direct than c1 because it first resolves what kind of 'broken window' the title means, but its mechanism, prop family and payoff are clearly distinct from the recent opening and the other candidates."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 3,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [],
+            "reason": "The sudden white mist with no fire source is an immediate, understandable contradiction and gives the host a natural observation-and-check reaction. The condensation claim is appropriately qualified with 'can' and 'may,' so it does not say mist must appear in every decompression. It is a real consequence of rapid pressure loss, but it answers a narrower visual effect rather than the central danger and airflow question, so the overall topic fit and payoff are slightly weaker. The book transition is clean and useful, though wording such as 'rapid pressure loss' and 'change temperature' is a little more formal than ideal for first-listen B1 English and could use minor spoken polish."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The near-versus-far ribbon movement makes the pressure question visible before any explanation, and it directly supports the main broken-window scenario. The pressure-difference claim is conservative and the payoff correctly avoids the false idea that the whole cabin has an equal pulling force. This is materially different from the recent oxygen-mask opening: it tests local airflow strength with a pressure rig rather than cabin-wide breathing danger. The host has only three clear actions, and the book placement gives a clean A/B seam. The main practical challenge is making a pressurized full-size window rig safe and visually readable.",
+          "repetition_evidence": [],
+          "weighted_score": 90
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "This is a strong corrective sub-question: a visible crack does not necessarily mean the pressure barrier has failed. The factual anchor carefully limits the claim to the cabin-side scratch pane on many aircraft, so it does not promise that every aircraft window has the same construction. The cracked front layer, intact deeper pane and still ribbon can show the mismatch, although viewers may need a moment to understand the unfamiliar layered window display. It is less direct than c1 because it first resolves what kind of 'broken window' the title means, but its mechanism, prop family and payoff are clearly distinct from the recent opening and the other candidates.",
+          "repetition_evidence": [],
+          "weighted_score": 86
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 3,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [],
+          "reason": "The sudden white mist with no fire source is an immediate, understandable contradiction and gives the host a natural observation-and-check reaction. The condensation claim is appropriately qualified with 'can' and 'may,' so it does not say mist must appear in every decompression. It is a real consequence of rapid pressure loss, but it answers a narrower visual effect rather than the central danger and airflow question, so the overall topic fit and payoff are slightly weaker. The book transition is clean and useful, though wording such as 'rapid pressure loss' and 'change temperature' is a little more formal than ideal for first-listen B1 English and could use minor spoken polish.",
+          "repetition_evidence": [],
+          "weighted_score": 83
+        }
+      ],
+      "selected_id": "c1"
+    }
+  ]
+}

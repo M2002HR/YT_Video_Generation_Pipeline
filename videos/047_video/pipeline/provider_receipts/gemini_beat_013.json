@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "8bf172e72ad34bd54a34537598854860dae73e2085e4e433355c2de3fbee4fe4",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "923628b7-8a4a-45c1-8913-f5c203c0919e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/ea4b9e74d6b22d7b",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "character_sheet",
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=923628b7-8a4a-45c1-8913-f5c203c0919e_output_1.png 1536x2752 sha256=62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "8bf172e72ad34bd54a34537598854860dae73e2085e4e433355c2de3fbee4fe4",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "923628b7-8a4a-45c1-8913-f5c203c0919e",
+        "prompt_sha256": "420fd8d5f29221580745452be59c736aef617a80ca5fedab607d76f5b1750a5e",
+        "output_sha256": "62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/newton_scholar/refs/character_sheet.png",
+      "sha256": "138ca476015ccf429fd1fb2a412c2e9cc2fffb29f4756c86465cc0a8027a4dff"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/047_video/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/047_video/references/world_keyframe.png",
+      "sha256": "c3587e2a09b7be6a7794e6d03022082cf96c46d72a5a7984e52f059e004c66a2"
+    }
+  ],
+  "prompt_sha256": "420fd8d5f29221580745452be59c736aef617a80ca5fedab607d76f5b1750a5e",
+  "prompt": "Here is the standalone image prompt for the beat:\n\nSingle Beat Image Prompt\n\nCreate exactly one 9:16 full-bleed subject-world image in a colorful crayon illustration medium. The viewer is inside a high-altitude aircraft cabin, with the scene extending naturally to all four edges and no enclosing page, book spread, card, border, frame, inset window, panel, collage, grid or UI element. Use the world style reference to establish soft wax crayon grain, layered directional strokes, visible pigment buildup, gentle rubbing, uneven hand-drawn mark variation, irregular crayon contours and denser marks only around airflow and pressure-change cues. Use the established palette of bright sky and atmospheric blues, fresh cool greens, sandy yellows, warm oranges, soft cream highlights and earthy browns, with restrained warm safety accents near the distant broken window and oxygen equipment. Use clear high-altitude daylight through the cabin windows with cool exterior illumination, softly diffused cabin light and subtle warm highlights. Compose a wide rear-cabin perspective looking toward the opposite end of the same aircraft cabin: the broken window appears small and distant in the background, with only faint airflow strokes concentrated near that far opening. In the foreground, show passengers, seat fabric and loose objects remaining comparatively still, creating strong depth separation and a calm atmosphere farther from the opening. Include the Newton-Inspired Scholar only by using the character_sheet for identity: preserve the enormous rounded mass of tightly curled silver-white hair, long projecting warm orange nose, very large round white eyes with small dark pupils, compact proportions, black long coat, white neck bands and cuffs, slender legs, pale stockings and small black shoes. Place the scholar low-left in the calm foreground with a secure, steady posture that visually indicates the contrast without gestures, signs or text. Do not copy any reference pose or composition; use references only for identity, medium and world continuity. Reserve the bottom 8-10% as calm natural cabin atmosphere for two subtitle lines, but include no printed text, labels, readable writing, banners or blank footer areas. No unsupported imagery, no entry mechanism, and no opening environment elements. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Reserve only the bottom 8-10% as calm natural scene atmosphere for two subtitle lines; keep faces, hands and critical details above it. Continue the scene edge-to-edge. No printed text, separate banner, page margin or UI panel.",
+  "output_path": "assets/raw_beats/beat_013.png",
+  "output_sha256": "62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.173,
+  "completed_at": "2026-09-21T03:30:41Z"
+}

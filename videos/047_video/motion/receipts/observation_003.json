@@ -1,0 +1,453 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "a8bc9514a93835daa19c6d743bc86a954709d9e156f9c18c587c74dccadd95a1",
+  "job_ids": [
+    "7a0571be-f172-4321-9c65-1048d3c5e5ff",
+    "8df23495-2890-429c-83ae-152350d15a25"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 7,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.457,
+          "w": 1.0,
+          "h": 0.914
+        },
+        "composition_summary": "Crayon-style aircraft cabin with a large jagged broken window on the right showing blue sky, dense blue-green airflow strokes sweeping across the cabin toward the opening, loose lightweight pieces near the break, several passengers clustered on the left, and empty seats in the foreground.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b07_broken_window",
+            "label": "jagged broken cabin window and blue-sky opening",
+            "kind": "object",
+            "bbox": {
+              "x": 0.744,
+              "y": 0.395,
+              "w": 0.301,
+              "h": 0.397
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large blue opening with irregular jagged edges in the right cabin wall."
+          },
+          {
+            "target_id": "b07_airflow_streams",
+            "label": "dense airflow streaks crossing cabin toward window",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.429,
+              "y": 0.49,
+              "w": 0.858,
+              "h": 0.67
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple blue, teal, and pale curved streaks run from the left cabin toward the right-side opening."
+          },
+          {
+            "target_id": "b07_loose_items",
+            "label": "loose papers and fabric near broken window",
+            "kind": "group",
+            "bbox": {
+              "x": 0.741,
+              "y": 0.421,
+              "w": 0.214,
+              "h": 0.246
+            },
+            "importance": "secondary",
+            "confidence": 0.95,
+            "visible_evidence": "Several small white and colored lightweight pieces float in front of the blue opening."
+          },
+          {
+            "target_id": "b07_woman_face",
+            "label": "foreground left passenger woman's face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.065,
+              "y": 0.431,
+              "w": 0.071,
+              "h": 0.061
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Visible woman's face at the left beside the seatback, oriented toward the cabin opening."
+          },
+          {
+            "target_id": "b07_woman_hand",
+            "label": "foreground woman's raised hand near chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.093,
+              "y": 0.485,
+              "w": 0.043,
+              "h": 0.072
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "A visible raised hand is held near the woman's upper chest."
+          },
+          {
+            "target_id": "b07_man_face",
+            "label": "dark-haired passenger face behind center-left seat",
+            "kind": "face",
+            "bbox": {
+              "x": 0.218,
+              "y": 0.414,
+              "w": 0.075,
+              "h": 0.056
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Dark-haired man's face is visible above the tan seatback, looking generally rightward."
+          },
+          {
+            "target_id": "b07_rear_passenger_face",
+            "label": "rear passenger face left of center",
+            "kind": "face",
+            "bbox": {
+              "x": 0.138,
+              "y": 0.402,
+              "w": 0.053,
+              "h": 0.047
+            },
+            "importance": "context",
+            "confidence": 0.96,
+            "visible_evidence": "A smaller passenger face is visible behind the foreground woman and seats."
+          },
+          {
+            "target_id": "b07_foreground_seats",
+            "label": "tan foreground aircraft seats",
+            "kind": "context",
+            "bbox": {
+              "x": 0.312,
+              "y": 0.679,
+              "w": 0.624,
+              "h": 0.504
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Large tan and brown seatbacks and cushions occupy the lower-left and center foreground."
+          }
+        ],
+        "faces": [
+          "b07_woman_face",
+          "b07_man_face",
+          "b07_rear_passenger_face"
+        ],
+        "hands_or_actions": [
+          "b07_woman_hand",
+          "b07_airflow_streams"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.958,
+              "w": 1.0,
+              "h": 0.084
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.958,
+            "w": 0.92,
+            "h": 0.084
+          }
+        ],
+        "notes": "Primary attention is the right-side jagged opening and the airflow crossing the center. Preserve the left passenger faces and the complete window rim in crops. A visibly blank cream panel occupies the bottom edge.",
+        "media_sha256": "96dce1181321067eb8de6cbdc3f655e545d60b10bb2efef49b95e170793df770"
+      },
+      {
+        "beat_id": 8,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.45,
+          "w": 1.0,
+          "h": 0.9
+        },
+        "composition_summary": "Crayon-style aircraft cabin with a jagged broken window on the left, blue-green airflow bands streaming from the seated cabin toward that opening, loose sheets in the moving air, a worried foreground woman on the right holding a small white card or paper, and multiple passengers seated behind her.",
+        "visual_direction": "left",
+        "targets": [
+          {
+            "target_id": "b08_broken_window",
+            "label": "jagged broken cabin window on left",
+            "kind": "object",
+            "bbox": {
+              "x": 0.19,
+              "y": 0.371,
+              "w": 0.241,
+              "h": 0.354
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Blue-sky opening with sharp irregular edges fills the left cabin wall."
+          },
+          {
+            "target_id": "b08_airflow_streams",
+            "label": "airflow bands streaming toward left opening",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.488,
+              "y": 0.47,
+              "w": 0.79,
+              "h": 0.54
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Dense blue and green horizontal-curving streaks cross from the seating area into the left-side break."
+          },
+          {
+            "target_id": "b08_foreground_woman_face",
+            "label": "foreground right woman's face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.814,
+              "y": 0.45,
+              "w": 0.119,
+              "h": 0.097
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large brown-haired woman's face is visible in the right foreground with a worried expression."
+          },
+          {
+            "target_id": "b08_foreground_hands_card",
+            "label": "woman's hands holding small white card or paper",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.831,
+              "y": 0.578,
+              "w": 0.17,
+              "h": 0.108
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Both visible hands grip a small white rectangular paper in front of her torso."
+          },
+          {
+            "target_id": "b08_center_man_face",
+            "label": "center seated man's face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.595,
+              "y": 0.391,
+              "w": 0.075,
+              "h": 0.061
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "A dark-haired man's face is visible above the center seatback, oriented toward the left-side disturbance."
+          },
+          {
+            "target_id": "b08_blonde_woman_face",
+            "label": "blonde passenger face behind foreground woman",
+            "kind": "face",
+            "bbox": {
+              "x": 0.758,
+              "y": 0.404,
+              "w": 0.074,
+              "h": 0.058
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "A blonde passenger face is visible in the row behind, facing generally toward the broken-window side."
+          },
+          {
+            "target_id": "b08_loose_papers",
+            "label": "loose sheets carried in airflow",
+            "kind": "group",
+            "bbox": {
+              "x": 0.494,
+              "y": 0.425,
+              "w": 0.37,
+              "h": 0.408
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "Several separate pale sheets are visibly suspended and angled within the airflow bands."
+          },
+          {
+            "target_id": "b08_passenger_group",
+            "label": "seated passengers in rear cabin rows",
+            "kind": "group",
+            "bbox": {
+              "x": 0.758,
+              "y": 0.369,
+              "w": 0.47,
+              "h": 0.13
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Multiple passenger heads and faces are visible across several rows in the upper-right background."
+          }
+        ],
+        "faces": [
+          "b08_foreground_woman_face",
+          "b08_center_man_face",
+          "b08_blonde_woman_face"
+        ],
+        "hands_or_actions": [
+          "b08_foreground_hands_card",
+          "b08_airflow_streams"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.95,
+              "w": 1.0,
+              "h": 0.1
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.95,
+            "w": 0.94,
+            "h": 0.1
+          }
+        ],
+        "notes": "The main visual path runs from the right-side seating through the center into the broken window on the left. Preserve the foreground woman's face and both hands, the complete jagged opening, and the loose sheets. A visibly blank cream panel occupies the bottom portion.",
+        "media_sha256": "24e29c8ad196ef334ae7c3f6c0bb71e87cf78686914e106555e0c9d74197e30c"
+      },
+      {
+        "beat_id": 9,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Crayon-style aircraft cabin viewed along several seat rows, with a jagged broken window at right-center, concentrated blue-green airflow streaks converging toward it, a long brown scarf or fabric strip pulled toward the opening, multiple loose papers and small cabin items airborne, and several deployed oxygen masks hanging from the overhead area on the left. No faces are visibly shown.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b09_broken_window",
+            "label": "right-center jagged broken cabin window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.617,
+              "y": 0.435,
+              "w": 0.164,
+              "h": 0.196
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "A compact blue-sky opening with sharp broken edges is visible in the right-center cabin wall."
+          },
+          {
+            "target_id": "b09_concentrated_airflow",
+            "label": "dense airflow converging near broken opening",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.43,
+              "y": 0.438,
+              "w": 0.56,
+              "h": 0.354
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Closely packed blue and green streaks cross the cabin and tighten around the broken window area."
+          },
+          {
+            "target_id": "b09_flying_scarf",
+            "label": "long brown fabric or scarf pulled beside opening",
+            "kind": "object",
+            "bbox": {
+              "x": 0.699,
+              "y": 0.502,
+              "w": 0.258,
+              "h": 0.113
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "A long brown flexible strip extends from beside the broken window toward the right and is visibly bent by the flow."
+          },
+          {
+            "target_id": "b09_oxygen_masks",
+            "label": "deployed oxygen masks hanging from overhead",
+            "kind": "group",
+            "bbox": {
+              "x": 0.205,
+              "y": 0.337,
+              "w": 0.38,
+              "h": 0.191
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Several orange-and-pale mask assemblies hang on cords from overhead panels along the left side."
+          },
+          {
+            "target_id": "b09_airborne_items",
+            "label": "loose papers, cups, pencil, and small items in airflow",
+            "kind": "group",
+            "bbox": {
+              "x": 0.377,
+              "y": 0.492,
+              "w": 0.329,
+              "h": 0.214
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple separate papers, cylindrical cups, a pencil-like object, and small pieces float above the seats."
+          },
+          {
+            "target_id": "b09_seat_rows",
+            "label": "aircraft seat rows on left and center",
+            "kind": "context",
+            "bbox": {
+              "x": 0.276,
+              "y": 0.659,
+              "w": 0.552,
+              "h": 0.504
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Several tan aircraft seatbacks and cushions fill the left and center lower cabin."
+          },
+          {
+            "target_id": "b09_right_opening_sky",
+            "label": "blue sky visible through large right-side doorway or window opening",
+            "kind": "context",
+            "bbox": {
+              "x": 0.906,
+              "y": 0.413,
+              "w": 0.188,
+              "h": 0.322
+            },
+            "importance": "context",
+            "confidence": 0.94,
+            "visible_evidence": "A separate large bordered opening at the far right visibly shows blue sky and clouds."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b09_concentrated_airflow",
+          "b09_flying_scarf",
+          "b09_airborne_items"
+        ],
+        "forbidden_regions": [],
+        "negative_space": [
+          {
+            "x": 0.902,
+            "y": 0.153,
+            "w": 0.196,
+            "h": 0.306
+          }
+        ],
+        "notes": "Keep the right-center broken window, the densest nearby airflow, the flying brown fabric, and the hanging oxygen masks within the crop. The upper-right exterior sky provides the clearest low-detail negative space. No human faces or hands are visibly identifiable.",
+        "media_sha256": "b878e3fe23f9abbd9e183ab4a29bb17b5a1cd516ab5b29e1ca8d006b2ef5b283"
+      }
+    ]
+  }
+}

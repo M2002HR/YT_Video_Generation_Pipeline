@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "22521d8b7044c583f81f3dce08ba6bfeb805833cd13ebb88a3319ff5eed9c317",
+  "job_ids": [
+    "5c072ac3-1e2e-4e28-8003-39a6d6610208"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 27,
+        "shot_id": "b27_s01",
+        "code": "transition_spam",
+        "message": "The outgoing dissolve conflicts with beat 28's match_position_cut on the same boundary, creating two competing transition instructions. The verified broken windows already occupy closely matched right-side positions, so one clean match-position hard cut is stronger, preserves the reveal, and follows the episode's minimal-transition philosophy."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 27,
+        "start": 30.998,
+        "end": 32.476,
+        "attention_story": [
+          "Reframe from the prior image into the verified airflow path and broken-window relationship, hold that causal composition through 'is called,' then begin one controlled pan-push on 'rapid' toward the jagged opening so the terminology reveal gains emphasis without adding extra cuts."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b27_s01",
+            "role": "primary",
+            "start": 30.998,
+            "end": 32.476,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b27_airflow_streaks",
+                "coverage": 0.78,
+                "anchor_x": 0.68,
+                "anchor_y": 0.43
+              },
+              "end": {
+                "target_id": "b27_broken_window",
+                "coverage": 0.6,
+                "anchor_x": 0.84,
+                "anchor_y": 0.43
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "hold_then_move",
+              "start_delay": 0.462,
+              "end_hold": 0.08,
+              "reason": "Keep the explanatory cabin tableau stable until the emphasized word 'rapid,' then move rightward and inward along the verified airflow toward the broken window to concentrate attention on the visible pressure-loss source."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0066",
+              "word": "rapid",
+              "authoritative_start": 31.46,
+              "authoritative_end": 31.96
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b27_broken_window",
+          "coverage": 0.6,
+          "anchor_x": 0.84,
+          "anchor_y": 0.43,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "reveal",
+          "reason": "Use one clean match-position hard cut into the following verified right-side broken window. This preserves the terminology reveal while avoiding a competing dissolve on the same boundary."
+        }
+      }
+    ]
+  }
+}

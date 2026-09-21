@@ -280,6 +280,59 @@
     },
     {
       "video_id": "045_what_if_a_human_grew_to_the_size_of_an_elephant"
+    },
+    {
+      "video_id": "046",
+      "canonical_episode_id": "episode.46",
+      "outcome": "planned",
+      "opening_activity": "Showing that a sudden pressure loss can threaten breathing throughout the cabin rather than only beside the opening.",
+      "opening_location": "A simple aircraft safety training cabin.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "stratospheric_decompression_gouache_technical_001",
+      "character_id": "moss_cloaked_crone",
+      "presentation_id": "orb_portal",
+      "opening_signature": {
+        "action_family": "whole-cabin danger reveal",
+        "tension_family": "near-window danger versus cabin-wide breathing risk",
+        "prop_family": "aircraft training seat and oxygen mask",
+        "reveal_family": "distance from the opening does not stop the pressure drop"
+      },
+      "situation_summary": "An oxygen mask hangs beside an empty seat far from the model window opening.",
+      "hook_line": "Why can breathing become dangerous far from a broken window?",
+      "entry_variant": "raven_leads",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-20T17:16:19.383551+00:00",
+      "aliases": [
+        "046"
+      ]
+    },
+    {
+      "video_id": "047",
+      "canonical_episode_id": "episode.47",
+      "outcome": "planned",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "colorful_crayon_adaptation_world_001",
+      "character_id": "newton_scholar",
+      "presentation_id": "book_portal",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      },
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-21T03:05:32.424165+00:00",
+      "aliases": [
+        "047"
+      ]
+    },
+    {
+      "video_id": "047_video"
     }
   ]
 }

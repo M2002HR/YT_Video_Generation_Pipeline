@@ -1,0 +1,30 @@
+{
+  "concept_id": "ddc1810e0e41c1d8f3f1",
+  "opening_actions": [
+    "He watches the ribbon beside the open test port snap sharply toward the breach while the farther ribbon barely stirs.",
+    "He compares the two ribbons, pausing with a focused, quietly surprised glance at the uneven airflow.",
+    "He reaches for the storybook beside the rig and places it flat next to the window apparatus."
+  ],
+  "entry_bridge": {
+    "a_end": "The storybook lies flat beside the pressure rig as his hand leaves the cover.",
+    "b_start": "Top-down, host-free view of the closed topic-styled book resting flat.",
+    "reveal": "The pressure difference drives cabin air outward, and the small opening concentrates the escaping flow so nearby air converges and speeds up while motion farther away is spread across more of the cabin.",
+    "world_entry": "A host-free aircraft cabin cutaway shows air converging toward one broken window, moving fastest close to the breach while objects and air farther away move much less."
+  },
+  "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+  "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+  "opening_environment": "A clean aircraft safety test space containing a sealed cabin-window pressure rig, two lightweight airflow ribbons at different distances, and a storybook resting beside the apparatus.",
+  "topic_visual_link": "The unequal ribbon movement directly visualizes how a pressure breach produces concentrated, faster airflow near the opening rather than an equal pull throughout the cabin.",
+  "link_type": "direct",
+  "opening_visual_proof": "At frame zero, the ribbon immediately beside the open test port is stretched hard toward it while an otherwise matching ribbon farther across the rig hangs with only slight movement.",
+  "curiosity_trigger": "The sharp flutter and taut pull of the near ribbon contrasts with the barely moving distant ribbon under the same sudden opening.",
+  "trigger_object": "Two lightweight ribbons positioned at different distances from the open port of a pressurized aircraft-window rig.",
+  "reaction": "He shifts his gaze from the near ribbon to the distant one, pauses, and gives a small look of precise surprise at the mismatch.",
+  "entry_retrieval": "After comparing the two ribbons, he reaches to the storybook already beside the rig, draws it into a clear position, lays it flat, and removes his hand for the editorial cut.",
+  "entry_variant": "desk_reach",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "auto",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "Clear modern aircraft-cabin cutaways emphasizing pressure, converging airflow, the breached window, oxygen-mask deployment, and controlled descent without enclosing page borders.",
+  "reason": "The near-versus-far ribbon mismatch makes the script's central airflow question visible immediately and gives this observant, comparison-driven host a natural reason to investigate before the book transition."
+}

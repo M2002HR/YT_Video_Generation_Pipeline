@@ -1,0 +1,71 @@
+{
+  "schema_version": 3,
+  "status": "DONE",
+  "published_at": "2026-09-21T08:37:45.041276+00:00",
+  "recipient": "kiwibot_log",
+  "deliveries": {
+    "compressed": {
+      "status": "DONE",
+      "published_at": "2026-09-21T08:37:45.041051+00:00",
+      "recipient": "kiwibot_log",
+      "message_id": 15955,
+      "file": "assets/renders/telegram_low.mp4",
+      "bytes": 3041450,
+      "sha256": "d32a6d24fba2b75f4af865365647a48fdec900e12b1b0e74be43c028903e9bec",
+      "duration_seconds": 36.91,
+      "elapsed_seconds": 7.452,
+      "qc_report": "render/QC_REPORT_polished.json",
+      "summary": {
+        "video": "047_video",
+        "duration_seconds": 36.911,
+        "beat_count": 32,
+        "video_beat_count": 2,
+        "image_beat_count": 30,
+        "resolution": "1080x1920",
+        "fps": 30,
+        "subtitles": false,
+        "opening": {
+          "spark_end": 4.0,
+          "transition_end": 7.6
+        },
+        "stt": {
+          "backend": "ajil",
+          "timestamp_source": "word"
+        },
+        "verified_models": {
+          "chatgpt": [
+            "Nano Banana 2"
+          ],
+          "flow": [
+            "Omni 1.1 Flash"
+          ],
+          "unverified": [
+            "gemini_world_style_anchor"
+          ]
+        },
+        "qc": {
+          "report": "QC_REPORT_polished.json",
+          "passed": true
+        },
+        "motion": {
+          "enabled": true,
+          "style": "dynamic",
+          "pace": "fast",
+          "micro_shots": 30,
+          "hard_cuts": 29,
+          "events_per_minute": 48.77,
+          "passed": true
+        },
+        "resources": {
+          "wall_seconds": 93.342,
+          "realtime_factor": 2.529,
+          "peak_child_rss_mb": 2269.4,
+          "threads": 2,
+          "resource_budget": 0.8,
+          "cpus_available": 2
+        }
+      },
+      "caption": "✅ Video pipeline complete\n🎬 047_video\n⏱ Duration: 0:37\n🎞 Beats: 32 (2 video · 30 image)\n📐 1080x1920 @ 30fps\n🔒 Verified models — chatgpt: Nano Banana 2 · flow: Omni 1.1 Flash\n⚠️ Unverified receipts: 1\n🗣 Timing: ajil / word\n🔍 QC: passed\n🎥 Motion: Dynamic / Fast · 30 micro-shots · QC passed\n🧮 Render: 1:33 wall (2.529x realtime) · 2 thread(s) · peak 2269.4 MB\nArtifact: d32a6d24fba2 · Delivery: compressed"
+    }
+  }
+}

@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 36.911,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 73,
+  "words": [
+    {
+      "text": "Why",
+      "token": "why",
+      "start": 0.16,
+      "end": 0.36
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 0.36,
+      "end": 0.62
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 0.62,
+      "end": 0.78
+    },
+    {
+      "text": "rush",
+      "token": "rush",
+      "start": 0.78,
+      "end": 1.06
+    },
+    {
+      "text": "of",
+      "token": "of",
+      "start": 1.06,
+      "end": 1.24
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 1.24,
+      "end": 1.42
+    },
+    {
+      "text": "strongest",
+      "token": "strongest",
+      "start": 1.42,
+      "end": 2.02
+    },
+    {
+      "text": "near",
+      "token": "near",
+      "start": 2.02,
+      "end": 2.5
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 2.5,
+      "end": 2.66
+    },
+    {
+      "text": "broken",
+      "token": "broken",
+      "start": 2.66,
+      "end": 2.96
+    },
+    {
+      "text": "airplane",
+      "token": "airplane",
+      "start": 2.96,
+      "end": 3.44
+    },
+    {
+      "text": "window?",
+      "token": "window",
+      "start": 3.44,
+      "end": 4.0
+    },
+    {
+      "text": "Higher",
+      "token": "higher",
+      "start": 5.06,
+      "end": 5.38
+    },
+    {
+      "text": "cabin",
+      "token": "cabin",
+      "start": 5.38,
+      "end": 5.88
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 5.88,
+      "end": 6.3
+    },
+    {
+      "text": "gives",
+      "token": "gives",
+      "start": 6.3,
+      "end": 6.68
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 6.68,
+      "end": 6.88
+    },
+    {
+      "text": "key",
+      "token": "key",
+      "start": 6.88,
+      "end": 7.14
+    },
+    {
+      "text": "clue.",
+      "token": "clue",
+      "start": 7.14,
+      "end": 7.6
+    },
+    {
+      "text": "Outside",
+      "token": "outside",
+      "start": 8.52,
+      "end": 8.84
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 8.84,
+      "end": 9.34
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 9.34,
+      "end": 9.58
+    },
+    {
+      "text": "lower",
+      "token": "lower",
+      "start": 9.58,
+      "end": 10.04
+    },
+    {
+      "text": "at",
+      "token": "at",
+      "start": 10.04,
+      "end": 10.38
+    },
+    {
+      "text": "high",
+      "token": "high",
+      "start": 10.38,
+      "end": 10.72
+    },
+    {
+      "text": "altitude.",
+      "token": "altitude",
+      "start": 10.72,
+      "end": 11.24
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 12.5,
+      "end": 12.66
+    },
+    {
+      "text": "break",
+      "token": "break",
+      "start": 12.66,
+      "end": 13.0
+    },
+    {
+      "text": "lets",
+      "token": "lets",
+      "start": 13.0,
+      "end": 13.3
+    },
+    {
+      "text": "cabin",
+      "token": "cabin",
+      "start": 13.3,
+      "end": 13.68
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 13.68,
+      "end": 13.96
+    },
+    {
+      "text": "rush",
+      "token": "rush",
+      "start": 13.96,
+      "end": 14.3
+    },
+    {
+      "text": "out.",
+      "token": "out",
+      "start": 14.3,
+      "end": 15.04
+    },
+    {
+      "text": "Airflow",
+      "token": "airflow",
+      "start": 15.52,
+      "end": 15.92
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 15.92,
+      "end": 16.18
+    },
+    {
+      "text": "strongest",
+      "token": "strongest",
+      "start": 16.18,
+      "end": 16.7
+    },
+    {
+      "text": "near",
+      "token": "near",
+      "start": 16.7,
+      "end": 17.2
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 17.2,
+      "end": 17.4
+    },
+    {
+      "text": "opening.",
+      "token": "opening",
+      "start": 17.4,
+      "end": 17.9
+    },
+    {
+      "text": "Farther",
+      "token": "farther",
+      "start": 18.78,
+      "end": 19.1
+    },
+    {
+      "text": "away,",
+      "token": "away",
+      "start": 19.1,
+      "end": 19.68
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 19.68,
+      "end": 19.78
+    },
+    {
+      "text": "air",
+      "token": "air",
+      "start": 19.78,
+      "end": 20.02
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 20.02,
+      "end": 20.2
+    },
+    {
+      "text": "move",
+      "token": "move",
+      "start": 20.2,
+      "end": 20.46
+    },
+    {
+      "text": "much",
+      "token": "much",
+      "start": 20.46,
+      "end": 20.7
+    },
+    {
+      "text": "less.",
+      "token": "less",
+      "start": 20.7,
+      "end": 21.22
+    },
+    {
+      "text": "Pressure",
+      "token": "pressure",
+      "start": 22.02,
+      "end": 22.4
+    },
+    {
+      "text": "falls,",
+      "token": "falls",
+      "start": 22.4,
+      "end": 23.26
+    },
+    {
+      "text": "making",
+      "token": "making",
+      "start": 23.26,
+      "end": 23.42
+    },
+    {
+      "text": "breathing",
+      "token": "breathing",
+      "start": 23.42,
+      "end": 23.88
+    },
+    {
+      "text": "harder.",
+      "token": "harder",
+      "start": 23.88,
+      "end": 24.52
+    },
+    {
+      "text": "Oxygen",
+      "token": "oxygen",
+      "start": 25.56,
+      "end": 26.04
+    },
+    {
+      "text": "masks",
+      "token": "masks",
+      "start": 26.04,
+      "end": 26.48
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 26.48,
+      "end": 26.74
+    },
+    {
+      "text": "drop",
+      "token": "drop",
+      "start": 26.74,
+      "end": 27.06
+    },
+    {
+      "text": "as",
+      "token": "as",
+      "start": 27.06,
+      "end": 27.38
+    },
+    {
+      "text": "pilots",
+      "token": "pilots",
+      "start": 27.38,
+      "end": 27.88
+    },
+    {
+      "text": "descend.",
+      "token": "descend",
+      "start": 27.88,
+      "end": 28.32
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 29.52,
+      "end": 29.64
+    },
+    {
+      "text": "sudden",
+      "token": "sudden",
+      "start": 29.64,
+      "end": 30.04
+    },
+    {
+      "text": "pressure",
+      "token": "pressure",
+      "start": 30.04,
+      "end": 30.5
+    },
+    {
+      "text": "loss",
+      "token": "loss",
+      "start": 30.5,
+      "end": 30.88
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 30.88,
+      "end": 31.1
+    },
+    {
+      "text": "called",
+      "token": "called",
+      "start": 31.1,
+      "end": 31.46
+    },
+    {
+      "text": "rapid",
+      "token": "rapid",
+      "start": 31.46,
+      "end": 31.96
+    },
+    {
+      "text": "decompression.",
+      "token": "decompression",
+      "start": 31.96,
+      "end": 33.6
+    },
+    {
+      "text": "Comment",
+      "token": "comment",
+      "start": 34.16,
+      "end": 34.44
+    },
+    {
+      "text": "your",
+      "token": "your",
+      "start": 34.44,
+      "end": 34.7
+    },
+    {
+      "text": "next",
+      "token": "next",
+      "start": 34.7,
+      "end": 34.92
+    },
+    {
+      "text": "airplane",
+      "token": "airplane",
+      "start": 34.92,
+      "end": 35.28
+    },
+    {
+      "text": "safety",
+      "token": "safety",
+      "start": 35.28,
+      "end": 35.82
+    },
+    {
+      "text": "question.",
+      "token": "question",
+      "start": 35.82,
+      "end": 36.36
+    }
+  ]
+}

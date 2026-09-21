@@ -1,0 +1,139 @@
+{
+  "gateway_inputs_version": 1,
+  "policy_version": 2,
+  "brief": {
+    "topic": "اگر پنجره هواپیما در ارتفاع بالا ناگهان بشکند، دقیقاً چه اتفاقی می‌افتد؟",
+    "language": "English",
+    "duration_seconds": [
+      20.0,
+      30.0
+    ],
+    "working_title": "اگر پنجره هواپیما در ارتفاع بالا ناگهان بشکند، دقیقاً چه اتفاقی می‌افتد؟",
+    "hero_presence_mode": "auto"
+  },
+  "character": {
+    "id": "newton_scholar",
+    "archetype": "meticulous curious experimental thinker inspired by Newton, not a judge or an infallible historical narrator",
+    "tone": [
+      "thoughtful",
+      "precise",
+      "curious",
+      "patient",
+      "quietly surprised"
+    ],
+    "behavior": "# Newton-Inspired Scholar - behavior\n\nObserve first, notice a specific mismatch, compare an expectation with evidence, then investigate. Show curiosity through a focused glance, a small pause, a careful comparison or a modest adjustment, not a lecture pose. He is capable but can be surprised and revise an idea. Use restrained warmth and an occasional tiny visual joke; never make him a clown or an all-knowing authority.\n\nEvery opening situation comes from the actual question and editorial sources. One location and at most three readable actions in A. The book is the recurring route into the explanation, not the cause of every question. Do not impose a laboratory, library, old century, reading routine or apple-falling incident on unrelated topics. Modern topics are allowed without claiming the historical Newton knew or discovered them.\n\nA is the event that makes the question necessary. B uses the existing canonical book gateway and its exact no-host first-frame contract. Prefer placing/revealing the portal book at the end of A so the top-down book close-up in B is an intentional editorial cut. The small accessory book may be absent or already set aside. End B inside the topic world; later images explain the answer without enclosing page borders. Narration carries actual explanatory content, not claims of supernatural evidence or invented historical quotations.",
+    "negative_constraints": "# Newton-Inspired Scholar - constraints\n\nDo not identify this fictional host as a documentary reconstruction. No invented quotations, discoveries, historical eyewitness claims or universal certainty. Do not default to apples, gravity, prisms, calculations, courtrooms, gavels, royal courts or religious settings. Do not replace the supplied cartoon with a realistic portrait, modern lab-coated scientist, generic judge or another character. No compulsory small book in every shot, no accessory/portal-book conflation, no repeated study routine. Preserve hair, nose, eyes, outfit and proportions; no extra hands or inappropriate prop handling.",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "book_portal",
+    "display_name": "Question → Storybook → Topic World",
+    "entry_kind": "book",
+    "entry_segment_key": "book_transition",
+    "entry_segment_label": "book transition",
+    "script_rules": "The fixed show progression is: a topic-specific visible discrepancy or consequence makes the question visible; the host\nreaches or reveals a relevant storybook; the closed topic-styled book opens; the camera enters its\nillustrated page; the factual body begins in the topic world. The second narration segment should take roughly 3 seconds and deliver a concrete clue\nwhile the visual book retrieval/opening proceeds. The narration need not say \"book\" if\nthe visual hinge remains unmistakable, but it must support that action.\n\nThe spoken entry is not a report of camera movement or prop retrieval. It must advance the\nselected question with a supported clue. Preserve the entry mechanics; vary the specific story,\nnot the identity of the portal. Never give the host unconfigured magical powers or a fixed job.",
+    "episode_rules": "Plan a natural book retrieval or reveal after the question reaction. Return `entry_retrieval` as a\nconcise physical action and `entry_variant` as one of desk_reach, shelf_reveal, pocket_reveal,\nobject_transformation, or discovered_book. The book is the fixed bridge, not the opening activity.\nThe episode-specific environment must not be inferred from the topic-world style.",
+    "entry_frame_character_presence": "none",
+    "entry_variants": [
+      "desk_reach",
+      "shelf_reveal",
+      "pocket_reveal",
+      "object_transformation",
+      "discovered_book"
+    ],
+    "motion_contract": "",
+    "min_entry_seconds": 0.0,
+    "min_entry_words": 0
+  },
+  "writer_sha256": "006dc2738ab2942c9261ee8d54185ac1a3b4b0b6ebb036cd93d00a81775303ea",
+  "reviewer_sha256": "0154d9817bd6b4a62eeca433fbd3a282cccfa463444909210a348e9252ece081",
+  "language_policy_version": 1,
+  "input_fingerprint": "8327b5eb89f92f776b0966bcbe44c028dacb4e60ac9498178383d8ed11589013",
+  "history": [
+    {
+      "video_id": "042",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing how reduced weight affects a person's effort and the way a bridge model carries loads.",
+      "opening_location": "Open engineering display area with a simple bridge model and demonstration objects.",
+      "situation_summary": "A person carries a heavy object easily, but a bridge model bends differently.",
+      "hook_line": "If your weight was cut in half, would Earth feel the same?",
+      "entry_variant": "shelf_reveal",
+      "opening_signature": {
+        "action_family": "load comparison",
+        "tension_family": "lighter people versus changed systems",
+        "prop_family": "bridge model",
+        "reveal_family": "weight change spreads beyond bodies"
+      }
+    },
+    {
+      "video_id": "042_what_if_earth_s_gravity_were_cut_in_half"
+    },
+    {
+      "video_id": "043",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      }
+    },
+    {
+      "video_id": "043_what_if_human_bones_were_made_of_metal"
+    },
+    {
+      "video_id": "044",
+      "character_id": "newton_scholar",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      }
+    },
+    {
+      "video_id": "045",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+      "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+      "situation_summary": "Two body models lose warmth at different speeds.",
+      "hook_line": "If a human grew huge, would their body cool the same?",
+      "entry_variant": "discovered_book",
+      "opening_signature": {
+        "action_family": "heat comparison",
+        "tension_family": "size versus cooling",
+        "prop_family": "body models",
+        "reveal_family": "proportions change with growth"
+      }
+    },
+    {
+      "video_id": "045_what_if_a_human_grew_to_the_size_of_an_elephant"
+    },
+    {
+      "video_id": "046",
+      "character_id": "moss_cloaked_crone",
+      "opening_activity": "Showing that a sudden pressure loss can threaten breathing throughout the cabin rather than only beside the opening.",
+      "opening_location": "A simple aircraft safety training cabin.",
+      "situation_summary": "An oxygen mask hangs beside an empty seat far from the model window opening.",
+      "hook_line": "Why can breathing become dangerous far from a broken window?",
+      "entry_variant": "raven_leads",
+      "opening_signature": {
+        "action_family": "whole-cabin danger reveal",
+        "tension_family": "near-window danger versus cabin-wide breathing risk",
+        "prop_family": "aircraft training seat and oxygen mask",
+        "reveal_family": "distance from the opening does not stop the pressure drop"
+      }
+    }
+  ]
+}

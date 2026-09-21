@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "cc02f24e9f14cb0d657cc6baeca19d4ef840b4613af85a4a6ffb2fe6f0577012",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "27445a2b-6ec7-4d69-9f7d-10fd82810b5d",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/bdd7626a6ce9a43e",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=27445a2b-6ec7-4d69-9f7d-10fd82810b5d_output_1.png 1536x2752 sha256=5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "cc02f24e9f14cb0d657cc6baeca19d4ef840b4613af85a4a6ffb2fe6f0577012",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "27445a2b-6ec7-4d69-9f7d-10fd82810b5d",
+        "prompt_sha256": "fa62ac2ee8fa4891084bfd1661dcd4f17e049a5e87c61649e39b955fe58373e8",
+        "output_sha256": "5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/047_video/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/047_video/references/world_keyframe.png",
+      "sha256": "c3587e2a09b7be6a7794e6d03022082cf96c46d72a5a7984e52f059e004c66a2"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/047_video/assets/raw_beats/beat_026.png",
+      "sha256": "def7cc6b451628836e8756c74e61dab444853a01c85676120b19f8a8fa1cdcdf"
+    }
+  ],
+  "prompt_sha256": "fa62ac2ee8fa4891084bfd1661dcd4f17e049a5e87c61649e39b955fe58373e8",
+  "prompt": "Create exactly one 9:16 vertical full-bleed image, not a storyboard, grid, collage, panel, card, page, border, inset, doorway rim or lens mask. Show the viewer inside a topic-world crayon illustration of an aircraft cabin during rapid decompression: a wide diagonal cabin tableau with a distant damaged window as the focal hazard, restrained warm orange and yellow hazard accents glowing around the opening, localized swirling airflow concentrated near the broken window, oxygen masks hanging farther inside the cabin, and the aircraft visibly lower above a thicker cloud layer outside. Keep the strongest airflow visually distinct from calmer areas deeper in the cabin, with clear high-altitude daylight outside, softly diffused cabin illumination, and restrained warm safety highlights. Use the style_reference only to preserve the selected medium, palette, texture and lighting: soft wax crayon grain, layered strokes, visible pigment buildup, gentle rubbing, uneven hand-drawn mark variation, bright atmospheric blues, fresh cool greens, sandy yellows, warm oranges, soft cream highlights and earthy browns. Use the world_keyframe only as a guide for the topic-world consistency and environmental accuracy, not for its composition, crop, camera angle or placement. Use the previous_beat only to maintain compatible medium, texture, palette and lighting continuity, never copying its layout, pose or framing. The scene must extend naturally to all four edges with hand-drawn crayon contours, irregular edges and denser marks around airflow, pressure-change cues and focal hazards. Reserve only the bottom 8–10% for calm natural cabin or atmospheric space suitable for two subtitle lines, with no printed text, labels, captions, UI elements or readable markings anywhere in the image. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Reserve only the bottom 8-10% as calm natural scene atmosphere for two subtitle lines; keep faces, hands and critical details above it. Continue the scene edge-to-edge. No printed text, separate banner, page margin or UI panel.",
+  "output_path": "assets/raw_beats/beat_027.png",
+  "output_sha256": "5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 72.308,
+  "completed_at": "2026-09-21T03:59:41Z"
+}

@@ -1,0 +1,85 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "1c8369e1466cb9b4b6142150f1807b113053d14d40737eebfa717d4c938698c3",
+  "reference_fingerprint": "1376e0a99221a18219a97ab449163c9dfdf77900b7a02613a76795aea3e777b5",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "2b69bba19ee4f4325c964a375c14e0fc012e6d95603a72b6afd49677b7852df7",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "Why is the rush strongest near a broken airplane window?",
+        "book_transition": "Higher cabin pressure gives the key clue.",
+        "body_01": "Outside pressure is lower at high altitude.",
+        "body_02": "A break lets cabin air rush out.",
+        "body_03": "Airflow is strongest near the opening.",
+        "body_04": "Farther away, it may move much less.",
+        "body_05": "Pressure falls, making breathing harder.",
+        "body_06": "Oxygen masks may drop as pilots descend.",
+        "optional_closing": "That sudden pressure loss is called rapid decompression."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": false,
+        "terms_explained": true,
+        "easy_to_follow_once": false,
+        "meaning_preserved": true
+      },
+      "issues": [
+        {
+          "check": "clear_sentence_meaning",
+          "segment": "opening_question_spark",
+          "quote": "Why is the rush strongest near a broken airplane window?",
+          "problem": "“the rush” does not clearly say what is rushing. On first listen, some learners may not understand that this means moving air.",
+          "suggestion": "Say “the rush of air” instead of “the rush.”"
+        },
+        {
+          "check": "easy_to_follow_once",
+          "segment": "body_04",
+          "quote": "Farther away, it may move much less.",
+          "problem": "The pronoun “it” is not fully clear because the previous sentence names “airflow,” while this sentence describes air moving.",
+          "suggestion": "Say “Farther away, the air may move much less.”"
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "segments": {
+        "opening_question_spark": "Why is the rush of air strongest near a broken airplane window?",
+        "book_transition": "Higher cabin pressure gives the key clue.",
+        "body_01": "Outside pressure is lower at high altitude.",
+        "body_02": "A break lets cabin air rush out.",
+        "body_03": "Airflow is strongest near the opening.",
+        "body_04": "Farther away, the air may move much less.",
+        "body_05": "Pressure falls, making breathing harder.",
+        "body_06": "Oxygen masks may drop as pilots descend.",
+        "optional_closing": "That sudden pressure loss is called rapid decompression."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-20T19:56:07Z"
+}

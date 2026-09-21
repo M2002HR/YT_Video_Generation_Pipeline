@@ -1,0 +1,537 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "45d1292033cc44e72e87c711df84dd85217df3db171d893eabe2b27ca46d32b0",
+  "job_ids": [
+    "3b098860-aaee-4897-8f00-385a50ad6103"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 16,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Wide illustrated airplane cabin viewed down a central aisle. A white-wigged scholar character stands in the lower-left foreground, many passengers sit in rows on both sides, and a small jagged blue opening is visible in the distant rear door. Curved blue and green streaks and several loose fragments occupy the upper-right side of the cabin.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b16_scholar_person",
+            "label": "white-wigged scholar character",
+            "kind": "person",
+            "bbox": {
+              "x": 0.23,
+              "y": 0.675,
+              "w": 0.28,
+              "h": 0.39
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "White curled wig, black robe and white neck cloth; full standing figure at lower left."
+          },
+          {
+            "target_id": "b16_scholar_face",
+            "label": "scholar character face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.25,
+              "y": 0.61,
+              "w": 0.12,
+              "h": 0.12
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Orange face with two wide open eyes and long nose inside the white wig; eyes point toward screen right."
+          },
+          {
+            "target_id": "b16_scholar_left_hand",
+            "label": "scholar character hanging hand",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.158,
+              "y": 0.77,
+              "w": 0.03,
+              "h": 0.045
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Small orange hand visible below the left sleeve at the character's side."
+          },
+          {
+            "target_id": "b16_rear_jagged_opening",
+            "label": "jagged blue opening in rear door",
+            "kind": "object",
+            "bbox": {
+              "x": 0.523,
+              "y": 0.381,
+              "w": 0.064,
+              "h": 0.052
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Small blue rear-door opening with irregular dark jagged edge."
+          },
+          {
+            "target_id": "b16_blue_green_streaks",
+            "label": "blue and green curved cabin streaks",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.705,
+              "y": 0.325,
+              "w": 0.41,
+              "h": 0.21
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple curved blue and green lines spread from the rear opening across the right ceiling and wall."
+          },
+          {
+            "target_id": "b16_loose_fragments",
+            "label": "small loose fragments in streaks",
+            "kind": "group",
+            "bbox": {
+              "x": 0.69,
+              "y": 0.39,
+              "w": 0.29,
+              "h": 0.085
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Several small tan, white and dark scraps are drawn suspended among the colored streaks."
+          },
+          {
+            "target_id": "b16_foreground_right_passenger",
+            "label": "foreground right seated passenger",
+            "kind": "person",
+            "bbox": {
+              "x": 0.89,
+              "y": 0.71,
+              "w": 0.22,
+              "h": 0.43
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Large seated figure at lower right wearing a pale green top and brown trousers."
+          },
+          {
+            "target_id": "b16_foreground_right_face",
+            "label": "foreground right passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.905,
+              "y": 0.555,
+              "w": 0.115,
+              "h": 0.09
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Face above the right foreground seatback with eyes closed and head angled slightly down."
+          },
+          {
+            "target_id": "b16_left_passenger_face",
+            "label": "left-side seated passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.09,
+              "y": 0.47,
+              "w": 0.08,
+              "h": 0.06
+            },
+            "importance": "context",
+            "confidence": 0.97,
+            "visible_evidence": "Dark-haired face visible above a left-side seatback, eyes closed."
+          },
+          {
+            "target_id": "b16_center_passenger_face",
+            "label": "center-left seated passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.32,
+              "y": 0.476,
+              "w": 0.085,
+              "h": 0.065
+            },
+            "importance": "context",
+            "confidence": 0.97,
+            "visible_evidence": "Light-haired face visible above a center-left seatback, eyes closed."
+          },
+          {
+            "target_id": "b16_seated_passenger_rows",
+            "label": "rows of seated passengers",
+            "kind": "group",
+            "bbox": {
+              "x": 0.51,
+              "y": 0.525,
+              "w": 0.94,
+              "h": 0.24
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple occupied seat rows line both sides of the aisle behind the foreground figures."
+          },
+          {
+            "target_id": "b16_central_aisle",
+            "label": "central cabin aisle",
+            "kind": "place",
+            "bbox": {
+              "x": 0.555,
+              "y": 0.665,
+              "w": 0.34,
+              "h": 0.47
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Brown aisle runs from the lower foreground toward the rear door."
+          }
+        ],
+        "faces": [
+          "b16_scholar_face",
+          "b16_foreground_right_face",
+          "b16_left_passenger_face",
+          "b16_center_passenger_face"
+        ],
+        "hands_or_actions": [
+          "b16_scholar_left_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.23,
+              "y": 0.67,
+              "w": 0.29,
+              "h": 0.41
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.89,
+              "y": 0.7,
+              "w": 0.22,
+              "h": 0.42
+            }
+          },
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.955,
+              "w": 1.0,
+              "h": 0.09
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.55,
+            "y": 0.79,
+            "w": 0.25,
+            "h": 0.18
+          }
+        ],
+        "notes": "Keep the lower-left scholar and the small rear opening visible together for the depth contrast. Preserve the right-side colored streaks and loose fragments. The lowest paper margin is visually blank.",
+        "media_sha256": "4f29a8616dbfc0f2a91388de969b28e84235e673f61ec6b3ce080f80ad791832"
+      },
+      {
+        "beat_id": 17,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Wide illustrated airplane cabin with mostly empty brown seats on both sides of a centered aisle. The same white-wigged scholar character stands at lower left. A small blue rear-door window and compact green-blue curved streaks appear in the distant upper-center background.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b17_scholar_person",
+            "label": "white-wigged scholar character",
+            "kind": "person",
+            "bbox": {
+              "x": 0.24,
+              "y": 0.705,
+              "w": 0.3,
+              "h": 0.4
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Standing character at lower left with white curled wig, black robe and white neck cloth."
+          },
+          {
+            "target_id": "b17_scholar_face",
+            "label": "scholar character face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.25,
+              "y": 0.645,
+              "w": 0.12,
+              "h": 0.11
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Orange face with wide eyes and long nose visible inside the wig; eyes angle toward screen right."
+          },
+          {
+            "target_id": "b17_scholar_left_hand",
+            "label": "scholar character hanging hand",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.157,
+              "y": 0.815,
+              "w": 0.03,
+              "h": 0.05
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "Small orange hand hangs below the left sleeve."
+          },
+          {
+            "target_id": "b17_rear_blue_window",
+            "label": "small blue rear-door window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.505,
+              "y": 0.368,
+              "w": 0.052,
+              "h": 0.043
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Small rectangular blue window centered in the distant rear door."
+          },
+          {
+            "target_id": "b17_compact_streaks",
+            "label": "compact green-blue curved streaks",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.585,
+              "y": 0.32,
+              "w": 0.22,
+              "h": 0.15
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Green and blue curved lines cluster near and to the right of the distant rear window."
+          },
+          {
+            "target_id": "b17_empty_seat_rows",
+            "label": "rows of empty cabin seats",
+            "kind": "group",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.625,
+              "w": 0.98,
+              "h": 0.47
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Brown seat rows fill both sides of the cabin with no other visible seated people."
+          },
+          {
+            "target_id": "b17_central_aisle",
+            "label": "empty central aisle",
+            "kind": "place",
+            "bbox": {
+              "x": 0.505,
+              "y": 0.655,
+              "w": 0.2,
+              "h": 0.5
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Open aisle extends from the foreground directly toward the rear door."
+          }
+        ],
+        "faces": [
+          "b17_scholar_face"
+        ],
+        "hands_or_actions": [
+          "b17_scholar_left_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.24,
+              "y": 0.705,
+              "w": 0.31,
+              "h": 0.4
+            }
+          },
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.96,
+              "w": 1.0,
+              "h": 0.08
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.69,
+            "w": 0.18,
+            "h": 0.34
+          }
+        ],
+        "notes": "Maintain the full standing scholar at lower left and the distant rear window with its small streak cluster. The central aisle and empty seat rows establish depth. A blank paper margin occupies the extreme bottom.",
+        "media_sha256": "c6e47fac16b9b95b54052e2071b173a2ee52f0a4d3cee5e85280fd9a4855bca4"
+      },
+      {
+        "beat_id": 18,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Medium illustrated airplane-cabin view centered on a seated passenger with a distressed facial expression and both hands pressed high on the chest. Blue-green curved strokes cross the cabin around the figure. Several yellow-orange oxygen-mask-like objects hang from overhead panels, with seats and windows receding into the background.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b18_distressed_passenger",
+            "label": "seated passenger clutching chest",
+            "kind": "person",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.55,
+              "w": 0.37,
+              "h": 0.43
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Seated figure near center with hunched shoulders and both hands raised to the upper chest."
+          },
+          {
+            "target_id": "b18_passenger_face",
+            "label": "distressed passenger face",
+            "kind": "face",
+            "bbox": {
+              "x": 0.51,
+              "y": 0.415,
+              "w": 0.15,
+              "h": 0.115
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Wide eyes, raised brows and open mouth are visibly drawn on the central passenger's face; gaze is roughly forward."
+          },
+          {
+            "target_id": "b18_hands_on_chest",
+            "label": "both hands pressed to chest",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.52,
+              "y": 0.515,
+              "w": 0.17,
+              "h": 0.105
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Two visible hands overlap the upper chest directly below the face."
+          },
+          {
+            "target_id": "b18_hanging_oxygen_masks",
+            "label": "hanging yellow-orange mask objects",
+            "kind": "group",
+            "bbox": {
+              "x": 0.755,
+              "y": 0.33,
+              "w": 0.39,
+              "h": 0.13
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Several yellow-orange cup-shaped objects with pale tubes hang from overhead fixtures."
+          },
+          {
+            "target_id": "b18_blue_green_streaks",
+            "label": "blue-green curved cabin streaks",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.51,
+              "y": 0.42,
+              "w": 0.74,
+              "h": 0.3
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Broad pale blue and green curved lines sweep behind and around the seated passenger."
+          },
+          {
+            "target_id": "b18_overhead_bin",
+            "label": "large overhead storage bin",
+            "kind": "object",
+            "bbox": {
+              "x": 0.56,
+              "y": 0.165,
+              "w": 0.52,
+              "h": 0.25
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Large pale overhead bin spans the upper center of the frame above the passenger."
+          },
+          {
+            "target_id": "b18_cabin_seating",
+            "label": "surrounding airplane seats",
+            "kind": "context",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.64,
+              "w": 0.89,
+              "h": 0.48
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Seatbacks and armrests surround the central passenger and continue into the rear-right background."
+          }
+        ],
+        "faces": [
+          "b18_passenger_face"
+        ],
+        "hands_or_actions": [
+          "b18_hands_on_chest"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.53,
+              "y": 0.48,
+              "w": 0.4,
+              "h": 0.31
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.755,
+              "y": 0.33,
+              "w": 0.39,
+              "h": 0.13
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.66,
+            "y": 0.84,
+            "w": 0.22,
+            "h": 0.22
+          }
+        ],
+        "notes": "Prioritize the central face and both chest-clutching hands. Preserve the hanging mask objects across the upper-right area. The lower-center/right blue floor area is the clearest low-detail negative space; no separate blank caption panel is visible.",
+        "media_sha256": "fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c"
+      }
+    ]
+  }
+}

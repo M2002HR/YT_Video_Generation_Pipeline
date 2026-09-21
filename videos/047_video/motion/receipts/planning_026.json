@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "31fa113adea639eec487a99204e3e312159b27a4d08a5870a2518a997be53fbe",
+  "job_ids": [
+    "2745c2d4-d95d-4a24-9a35-7a5aec2eab68"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 26,
+        "start": 29.52,
+        "end": 30.998,
+        "attention_story": [
+          "Begin on the cabin-wide consequence so passengers using oxygen masks, hanging units, aisle, and rear rupture read as one pressure-loss event.",
+          "On the word “sudden,” begin a controlled upper-right pan-push toward the verified airflow rays and broken window, making the rupture the causal focus without abandoning its surrounding cabin context.",
+          "Settle briefly near the airflow zone before the beat boundary so the following terminology beat can continue from a stable explanatory image."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b26_s01",
+            "role": "primary",
+            "start": 29.52,
+            "end": 30.998,
+            "edit_in": {
+              "type": "establishing_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b26_masked_passenger_group",
+                "coverage": 0.92,
+                "anchor_x": 0.52,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b26_airflow_rays",
+                "coverage": 0.76,
+                "anchor_x": 0.75,
+                "anchor_y": 0.38
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_in_out",
+              "start_delay": 0.12,
+              "end_hold": 0.118,
+              "reason": "The wide cabin first summarizes the visible safety response, then the move begins exactly on “sudden” to redirect attention toward the verified rupture and localized airflow that explain the pressure loss."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0061",
+              "word": "sudden",
+              "authoritative_start": 29.64,
+              "authoritative_end": 30.04
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b26_airflow_rays",
+          "coverage": 0.76,
+          "anchor_x": 0.75,
+          "anchor_y": 0.38,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The next beat continues the same sentence and visual tableau, so a zero-duration cut preserves the explanatory continuity without adding a decorative transition before the naming payoff."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

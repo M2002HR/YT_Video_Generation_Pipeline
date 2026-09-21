@@ -1,0 +1,30 @@
+{
+  "style_id": "colorful_crayon_adaptation_world_001",
+  "decision": "reuse",
+  "reuse_of": "colorful_crayon_adaptation_world_001",
+  "medium": "crayon illustration",
+  "secondary_treatment": null,
+  "texture_family": "soft wax crayon grain with layered strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation",
+  "palette_summary": "bright sky and atmospheric blues, fresh cool greens, sandy yellows, warm oranges, soft cream highlights and earthy browns, with stronger warm accents concentrated around the broken window, oxygen masks and pressure-change cues",
+  "line_treatment": "hand-drawn crayon contours with layered directional strokes, slightly irregular edges and denser marks around airflow, pressure change and focal hazards",
+  "lighting": "clear high-altitude daylight with cool exterior illumination, softly diffused cabin light and restrained warm safety highlights",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "subject_constraints": "Topic-appropriate aircraft cabin interiors, windows, passengers, oxygen masks, airflow behavior, pressure change, high-altitude exterior atmosphere and descent-related visual cues; spatially distinguish strongest airflow near the opening from calmer air farther away",
+  "historical_accuracy_note": null,
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "The operator explicitly requires reuse of colorful_crayon_adaptation_world_001, so that choice overrides catalog recency considerations. Its tactile layered crayon marks can clearly visualize invisible airflow, pressure gradients and oxygen-safety cues while keeping the aircraft environment approachable and legible. Although recent episodes have leaned toward paper-cut and technical gouache treatments, reusing this less-recent crayon world provides episode-to-episode visual diversity without changing media within the video.",
+  "subject_affinities": [
+    "aircraft cabin cutaways",
+    "high-altitude atmosphere",
+    "airflow and pressure visualization",
+    "rapid decompression",
+    "oxygen-mask deployment",
+    "passenger safety explanations",
+    "aviation science"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": true
+}

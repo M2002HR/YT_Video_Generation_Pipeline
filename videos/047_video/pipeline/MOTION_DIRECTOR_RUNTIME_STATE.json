@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "video": "047_video",
+  "input_fingerprint": "b1b9ce7426cc0716b16c63abafd307eb44e3a501e91eccdfdf6607d8bd3d948c",
+  "status": "DONE",
+  "started_at": "2026-09-21T05:44:22.036834+00:00",
+  "resume_count": 5,
+  "checkpoints": {
+    "observation:1": {
+      "status": "REUSED",
+      "detail": "motion_observation 1/10 — beats 1, 2, 3; images: beat_001.png, beat_002.png, beat_003.png",
+      "at": "2026-09-21T08:33:00.754018+00:00"
+    },
+    "observation:2": {
+      "status": "REUSED",
+      "detail": "motion_observation 2/10 — beats 4, 5, 6; images: beat_004.png, beat_005.png, beat_006.png",
+      "at": "2026-09-21T08:33:02.013028+00:00"
+    },
+    "observation:3": {
+      "status": "REUSED",
+      "detail": "motion_observation 3/10 — beats 7, 8, 9; images: beat_007.png, beat_008.png, beat_009.png",
+      "at": "2026-09-21T08:33:03.189051+00:00"
+    },
+    "observation:4": {
+      "status": "REUSED",
+      "detail": "motion_observation 4/10 — beats 10, 11, 12; images: beat_010.png, beat_011.png, beat_012.png",
+      "at": "2026-09-21T08:33:04.131825+00:00"
+    },
+    "observation:5": {
+      "status": "REUSED",
+      "detail": "motion_observation 5/10 — beats 13, 14, 15; images: beat_013.png, beat_014.png, beat_015.png",
+      "at": "2026-09-21T08:33:05.162668+00:00"
+    },
+    "observation:6": {
+      "status": "REUSED",
+      "detail": "motion_observation 6/10 — beats 16, 17, 18; images: beat_016.png, beat_017.png, beat_018.png",
+      "at": "2026-09-21T08:33:06.388698+00:00"
+    },
+    "observation:7": {
+      "status": "REUSED",
+      "detail": "motion_observation 7/10 — beats 19, 20, 21; images: beat_019.png, beat_020.png, beat_021.png",
+      "at": "2026-09-21T08:33:07.769689+00:00"
+    },
+    "observation:8": {
+      "status": "REUSED",
+      "detail": "motion_observation 8/10 — beats 22, 23, 24; images: beat_022.png, beat_023.png, beat_024.png",
+      "at": "2026-09-21T08:33:08.974581+00:00"
+    },
+    "observation:9": {
+      "status": "REUSED",
+      "detail": "motion_observation 9/10 — beats 25, 26, 27; images: beat_025.png, beat_026.png, beat_027.png",
+      "at": "2026-09-21T08:33:10.261781+00:00"
+    },
+    "observation:10": {
+      "status": "REUSED",
+      "detail": "motion_observation 10/10 — beats 28, 29, 30; images: beat_028.png, beat_029.png, beat_030.png",
+      "at": "2026-09-21T08:33:11.735711+00:00"
+    },
+    "direction:1": {
+      "status": "REUSED",
+      "detail": "motion_direction 1/1",
+      "at": "2026-09-21T08:33:13.028975+00:00"
+    },
+    "planning:1": {
+      "status": "REUSED",
+      "detail": "motion_planning 1/30 — beats 1; images: beat_001.png",
+      "at": "2026-09-21T08:33:14.259316+00:00"
+    },
+    "planning:2": {
+      "status": "REUSED",
+      "detail": "motion_planning 2/30 — beats 2; images: beat_002.png",
+      "at": "2026-09-21T08:33:15.466660+00:00"
+    },
+    "planning:3": {
+      "status": "REUSED",
+      "detail": "motion_planning 3/30 — beats 3; images: beat_003.png",
+      "at": "2026-09-21T08:33:16.710184+00:00"
+    },
+    "planning:4": {
+      "status": "REUSED",
+      "detail": "motion_planning 4/30 — beats 4; images: beat_004.png",
+      "at": "2026-09-21T08:33:18.150892+00:00"
+    },
+    "planning:5": {
+      "status": "REUSED",
+      "detail": "motion_planning 5/30 — beats 5; images: beat_005.png",
+      "at": "2026-09-21T08:33:19.302632+00:00"
+    },
+    "planning:6": {
+      "status": "REUSED",
+      "detail": "motion_planning 6/30 — beats 6; images: beat_006.png",
+      "at": "2026-09-21T08:33:20.217784+00:00"
+    },
+    "planning:7": {
+      "status": "REUSED",
+      "detail": "motion_planning 7/30 — beats 7; images: beat_007.png",
+      "at": "2026-09-21T08:33:21.418139+00:00"
+    },
+    "planning:8": {
+      "status": "REUSED",
+      "detail": "motion_planning 8/30 — beats 8; images: beat_008.png",
+      "at": "2026-09-21T08:33:22.599234+00:00"
+    },
+    "planning:9": {
+      "status": "REUSED",
+      "detail": "motion_planning 9/30 — beats 9; images: beat_009.png",
+      "at": "2026-09-21T08:33:23.668864+00:00"
+    },
+    "planning:10": {
+      "status": "REUSED",
+      "detail": "motion_planning 10/30 — beats 10; images: beat_010.png",
+      "at": "2026-09-21T08:33:24.756897+00:00"
+    },
+    "planning:11": {
+      "status": "REUSED",
+      "detail": "motion_planning 11/30 — beats 11; images: beat_011.png",
+      "at": "2026-09-21T08:33:25.868368+00:00"
+    },
+    "planning:12": {
+      "status": "REUSED",
+      "detail": "motion_planning 12/30 — beats 12; images: beat_012.png",
+      "at": "2026-09-21T08:33:27.246777+00:00"
+    },
+    "planning:13": {
+      "status": "REUSED",
+      "detail": "motion_planning 13/30 — beats 13; images: beat_013.png",
+      "at": "2026-09-21T08:33:28.245411+00:00"
+    },
+    "planning:14": {
+      "status": "REUSED",
+      "detail": "motion_planning 14/30 — beats 14; images: beat_014.png",
+      "at": "2026-09-21T08:33:29.689456+00:00"
+    },
+    "planning:15": {
+      "status": "REUSED",
+      "detail": "motion_planning 15/30 — beats 15; images: beat_015.png",
+      "at": "2026-09-21T08:33:30.807606+00:00"
+    },
+    "planning:16": {
+      "status": "REUSED",
+      "detail": "motion_planning 16/30 — beats 16; images: beat_016.png",
+      "at": "2026-09-21T08:33:31.843716+00:00"
+    },
+    "planning:17": {
+      "status": "REUSED",
+      "detail": "motion_planning 17/30 — beats 17; images: beat_017.png",
+      "at": "2026-09-21T08:33:32.889340+00:00"
+    },
+    "planning:18": {
+      "status": "REUSED",
+      "detail": "motion_planning 18/30 — beats 18; images: beat_018.png",
+      "at": "2026-09-21T08:33:33.910285+00:00"
+    },
+    "planning:19": {
+      "status": "REUSED",
+      "detail": "motion_planning 19/30 — beats 19; images: beat_019.png",
+      "at": "2026-09-21T08:33:35.314568+00:00"
+    },
+    "planning:20": {
+      "status": "REUSED",
+      "detail": "motion_planning 20/30 — beats 20; images: beat_020.png",
+      "at": "2026-09-21T08:33:36.246326+00:00"
+    },
+    "planning:21": {
+      "status": "REUSED",
+      "detail": "motion_planning 21/30 — beats 21; images: beat_021.png",
+      "at": "2026-09-21T08:33:37.281999+00:00"
+    },
+    "planning:22": {
+      "status": "REUSED",
+      "detail": "motion_planning 22/30 — beats 22; images: beat_022.png",
+      "at": "2026-09-21T08:33:38.786665+00:00"
+    },
+    "planning:23": {
+      "status": "REUSED",
+      "detail": "motion_planning 23/30 — beats 23; images: beat_023.png",
+      "at": "2026-09-21T08:33:40.090292+00:00"
+    },
+    "planning:24": {
+      "status": "REUSED",
+      "detail": "motion_planning 24/30 — beats 24; images: beat_024.png",
+      "at": "2026-09-21T08:33:41.089776+00:00"
+    },
+    "planning:25": {
+      "status": "REUSED",
+      "detail": "motion_planning 25/30 — beats 25; images: beat_025.png",
+      "at": "2026-09-21T08:33:42.182216+00:00"
+    },
+    "planning:26": {
+      "status": "REUSED",
+      "detail": "motion_planning 26/30 — beats 26; images: beat_026.png",
+      "at": "2026-09-21T08:33:43.472916+00:00"
+    },
+    "planning:27": {
+      "status": "REUSED",
+      "detail": "motion_planning 27/30 — beats 27; images: beat_027.png",
+      "at": "2026-09-21T08:33:44.622334+00:00"
+    },
+    "planning:28": {
+      "status": "REUSED",
+      "detail": "motion_planning 28/30 — beats 28; images: beat_028.png",
+      "at": "2026-09-21T08:33:45.841920+00:00"
+    },
+    "planning:29": {
+      "status": "REUSED",
+      "detail": "motion_planning 29/30 — beats 29; images: beat_029.png",
+      "at": "2026-09-21T08:33:46.958959+00:00"
+    },
+    "planning:30": {
+      "status": "REUSED",
+      "detail": "motion_planning 30/30 — beats 30; images: beat_030.png",
+      "at": "2026-09-21T08:33:47.989776+00:00"
+    },
+    "critic:1": {
+      "status": "REUSED",
+      "detail": "motion_critic 1/15 — beats 1, 2",
+      "at": "2026-09-21T08:33:49.331581+00:00"
+    },
+    "critic:2": {
+      "status": "REUSED",
+      "detail": "motion_critic 2/15 — beats 3, 4",
+      "at": "2026-09-21T08:33:50.342784+00:00"
+    },
+    "critic:3": {
+      "status": "REUSED",
+      "detail": "motion_critic 3/15 — beats 5, 6",
+      "at": "2026-09-21T08:33:51.830055+00:00"
+    },
+    "critic:4": {
+      "status": "REUSED",
+      "detail": "motion_critic 4/15 — beats 7, 8",
+      "at": "2026-09-21T08:33:53.043535+00:00"
+    },
+    "critic:5": {
+      "status": "REUSED",
+      "detail": "motion_critic 5/15 — beats 9, 10",
+      "at": "2026-09-21T08:33:54.440179+00:00"
+    },
+    "critic:6": {
+      "status": "REUSED",
+      "detail": "motion_critic 6/15 — beats 11, 12",
+      "at": "2026-09-21T08:33:55.702845+00:00"
+    },
+    "critic:7": {
+      "status": "REUSED",
+      "detail": "motion_critic 7/15 — beats 13, 14",
+      "at": "2026-09-21T08:33:56.726660+00:00"
+    },
+    "critic:8": {
+      "status": "REUSED",
+      "detail": "motion_critic 8/15 — beats 15, 16",
+      "at": "2026-09-21T08:33:57.959577+00:00"
+    },
+    "critic:9": {
+      "status": "REUSED",
+      "detail": "motion_critic 9/15 — beats 17, 18",
+      "at": "2026-09-21T08:33:59.090574+00:00"
+    },
+    "critic:10": {
+      "status": "REUSED",
+      "detail": "motion_critic 10/15 — beats 19, 20",
+      "at": "2026-09-21T08:34:00.730600+00:00"
+    },
+    "critic:11": {
+      "status": "REUSED",
+      "detail": "motion_critic 11/15 — beats 21, 22",
+      "at": "2026-09-21T08:34:02.138768+00:00"
+    },
+    "critic:12": {
+      "status": "REUSED",
+      "detail": "motion_critic 12/15 — beats 23, 24",
+      "at": "2026-09-21T08:34:03.290226+00:00"
+    },
+    "critic:13": {
+      "status": "REUSED",
+      "detail": "motion_critic 13/15 — beats 25, 26",
+      "at": "2026-09-21T08:34:04.451824+00:00"
+    },
+    "critic:14": {
+      "status": "REUSED",
+      "detail": "motion_critic 14/15 — beats 27, 28",
+      "at": "2026-09-21T08:34:05.789199+00:00"
+    },
+    "critic:15": {
+      "status": "REUSED",
+      "detail": "motion_critic 15/15 — beats 29, 30",
+      "at": "2026-09-21T08:34:07.156658+00:00"
+    }
+  },
+  "updated_at": "2026-09-21T08:34:08.285715+00:00",
+  "current": {
+    "phase": "complete",
+    "detail": "Validated, compiled, and quality-checked all motion batches.",
+    "status": "DONE"
+  },
+  "completed_at": "2026-09-21T08:34:08.285705+00:00"
+}

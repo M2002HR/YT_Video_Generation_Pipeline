@@ -1,0 +1,499 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "76bebf862c6b74910bf42aa34c47989db1feb9c469b89a3fc9e8a88d35a8526a",
+  "job_ids": [
+    "a3e9252b-486f-444e-a348-1bbd142abfd7",
+    "0b95efbc-5783-4b5d-af38-26e74664fbdd"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 10,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Wide crayon-style airplane cabin interior. Two jagged broken passenger windows occupy the right side, with dense blue, green, and orange airflow streaks sweeping from the left cabin toward them. A striped scarf and loose cabin items are visibly airborne. Two passenger faces appear behind seatbacks on the left, and several oxygen masks hang from the overhead area.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b10_broken_window_right",
+            "label": "large jagged broken window opening at right",
+            "kind": "object",
+            "bbox": {
+              "x": 0.81,
+              "y": 0.4,
+              "w": 0.25,
+              "h": 0.25
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large light-blue exterior opening with visibly jagged broken edges in the right cabin wall."
+          },
+          {
+            "target_id": "b10_airflow_streaks",
+            "label": "dense colored airflow streaks converging toward broken windows",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.58,
+              "y": 0.4,
+              "w": 0.71,
+              "h": 0.24
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple blue, green, and orange curved strokes visibly sweep across the cabin toward the right-side openings."
+          },
+          {
+            "target_id": "b10_broken_window_inner",
+            "label": "smaller jagged broken window nearer center-right",
+            "kind": "object",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.43,
+              "w": 0.19,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "A second passenger window near center-right has clearly jagged missing sections."
+          },
+          {
+            "target_id": "b10_airborne_scarf",
+            "label": "orange and green striped scarf pulled toward opening",
+            "kind": "object",
+            "bbox": {
+              "x": 0.72,
+              "y": 0.52,
+              "w": 0.31,
+              "h": 0.13
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Striped scarf is suspended across the right seats with its fabric curved toward the broken window."
+          },
+          {
+            "target_id": "b10_face_woman",
+            "label": "frightened passenger face behind left seatback",
+            "kind": "face",
+            "bbox": {
+              "x": 0.15,
+              "y": 0.46,
+              "w": 0.08,
+              "h": 0.07
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Visible face with wide eyes and open mouth behind a seatback on the left."
+          },
+          {
+            "target_id": "b10_face_rear_passenger",
+            "label": "partially visible passenger face behind first passenger",
+            "kind": "face",
+            "bbox": {
+              "x": 0.27,
+              "y": 0.45,
+              "w": 0.09,
+              "h": 0.05
+            },
+            "importance": "secondary",
+            "confidence": 0.9,
+            "visible_evidence": "Forehead, eyes, and upper face of a second passenger are visible behind the nearer passenger."
+          },
+          {
+            "target_id": "b10_loose_paper",
+            "label": "airborne rectangular paper",
+            "kind": "object",
+            "bbox": {
+              "x": 0.41,
+              "y": 0.45,
+              "w": 0.11,
+              "h": 0.09
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "A white rectangular sheet with an orange header and drawn lines floats above the seats."
+          },
+          {
+            "target_id": "b10_loose_cup",
+            "label": "airborne cup",
+            "kind": "object",
+            "bbox": {
+              "x": 0.33,
+              "y": 0.46,
+              "w": 0.07,
+              "h": 0.06
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "A cylindrical cup is visibly suspended above a left-center seatback."
+          },
+          {
+            "target_id": "b10_hanging_oxygen_masks",
+            "label": "hanging oxygen masks from overhead panels",
+            "kind": "group",
+            "bbox": {
+              "x": 0.23,
+              "y": 0.34,
+              "w": 0.43,
+              "h": 0.14
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Several orange mask bags and mask hardware hang visibly from open overhead positions."
+          },
+          {
+            "target_id": "b10_seat_rows",
+            "label": "airplane passenger seat rows",
+            "kind": "context",
+            "bbox": {
+              "x": 0.28,
+              "y": 0.68,
+              "w": 0.56,
+              "h": 0.48
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple brown passenger seats and armrests fill the lower and left cabin."
+          }
+        ],
+        "faces": [
+          "b10_face_woman",
+          "b10_face_rear_passenger"
+        ],
+        "hands_or_actions": [
+          "b10_airflow_streaks",
+          "b10_airborne_scarf",
+          "b10_loose_paper",
+          "b10_loose_cup"
+        ],
+        "forbidden_regions": [],
+        "negative_space": [
+          {
+            "x": 0.62,
+            "y": 0.12,
+            "w": 0.35,
+            "h": 0.16
+          }
+        ],
+        "notes": "Primary attention is the large right-side broken opening and the dense streaks immediately feeding into it. Preserve the left passenger faces and airborne scarf as secondary evidence of the airflow; avoid a crop that removes the right window edge.",
+        "media_sha256": "441200cc783b32d94bfe20aadc8169d0de67f89e9fa6e631a7f0b7f6c69df06a"
+      },
+      {
+        "beat_id": 11,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Wide crayon-style airplane cabin with empty visible seats. A large dark jagged broken window dominates the upper-right and a second damaged window sits nearer center-right. Colored airflow streaks traverse the cabin toward the openings. A large orange-green striped scarf, paper, cup, bottles, and small loose items are suspended in the flow. Oxygen masks hang overhead. The lower portion fades into a largely blank cream area.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b11_broken_window_right",
+            "label": "large dark jagged broken window opening at right",
+            "kind": "object",
+            "bbox": {
+              "x": 0.81,
+              "y": 0.4,
+              "w": 0.25,
+              "h": 0.27
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large dark-blue opening with sharply jagged missing window edges is visible on the right wall."
+          },
+          {
+            "target_id": "b11_airflow_streaks",
+            "label": "colored airflow streaks directed toward right opening",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.58,
+              "y": 0.4,
+              "w": 0.72,
+              "h": 0.24
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Blue, green, and orange curved strokes visibly cross the cabin and converge toward the right-side opening."
+          },
+          {
+            "target_id": "b11_broken_window_inner",
+            "label": "second jagged damaged window at center-right",
+            "kind": "object",
+            "bbox": {
+              "x": 0.62,
+              "y": 0.42,
+              "w": 0.19,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "A smaller dark window area near center-right has visibly irregular broken edges."
+          },
+          {
+            "target_id": "b11_airborne_scarf",
+            "label": "large orange and green striped scarf in airflow",
+            "kind": "object",
+            "bbox": {
+              "x": 0.54,
+              "y": 0.58,
+              "w": 0.45,
+              "h": 0.22
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large striped scarf is visibly lifted across the center-right seats with curled fabric and trailing fringe."
+          },
+          {
+            "target_id": "b11_airborne_items",
+            "label": "group of loose cup paper bottles and small items",
+            "kind": "group",
+            "bbox": {
+              "x": 0.4,
+              "y": 0.48,
+              "w": 0.34,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "A cup, rectangular paper, bottles, and several small objects are visibly suspended above the seats within the airflow lines."
+          },
+          {
+            "target_id": "b11_hanging_oxygen_masks",
+            "label": "oxygen masks hanging from overhead panels",
+            "kind": "group",
+            "bbox": {
+              "x": 0.23,
+              "y": 0.34,
+              "w": 0.42,
+              "h": 0.14
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Multiple orange mask bags and mask assemblies hang from the overhead area."
+          },
+          {
+            "target_id": "b11_empty_seat_rows",
+            "label": "empty passenger seat rows",
+            "kind": "context",
+            "bbox": {
+              "x": 0.28,
+              "y": 0.67,
+              "w": 0.56,
+              "h": 0.42
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "Rows of unoccupied brown passenger seats and armrests are visible through the lower and left cabin."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b11_airflow_streaks",
+          "b11_airborne_scarf",
+          "b11_airborne_items"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.93,
+              "w": 1.0,
+              "h": 0.14
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.88,
+              "w": 0.95,
+              "h": 0.1
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.93,
+            "w": 0.95,
+            "h": 0.14
+          }
+        ],
+        "notes": "Keep the dark broken right window, nearby concentrated streaks, and striped scarf together in-frame. The bottom fades into a blank low-detail panel and should not become the visual focal area.",
+        "media_sha256": "c2e06d66ab8cb90b0bb754db8adfc182e278afe538c52bdd5c90ba332d9b7493"
+      },
+      {
+        "beat_id": 12,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Tight side-on crayon view of an airplane wall and broken window. The jagged blue opening fills the upper-right, while dense green and blue airflow strokes fan from the left and narrow toward the opening. An orange-green scarf, cup, paper, pens, and pencils are airborne within the streaks. An oxygen mask and hose hang on the right wall, with seat and armrest fragments at lower-left. The bottom fades into a blank cream area.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b12_broken_window",
+            "label": "large jagged broken window opening",
+            "kind": "object",
+            "bbox": {
+              "x": 0.8,
+              "y": 0.27,
+              "w": 0.29,
+              "h": 0.29
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large blue exterior opening with sharply jagged broken window edges dominates the upper-right."
+          },
+          {
+            "target_id": "b12_dense_airflow_near_opening",
+            "label": "dense airflow strokes immediately beside broken opening",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.59,
+              "y": 0.34,
+              "w": 0.58,
+              "h": 0.35
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Closely packed green and blue curved strokes visibly converge into the broken window area."
+          },
+          {
+            "target_id": "b12_airborne_scarf",
+            "label": "orange and green striped scarf in airflow",
+            "kind": "object",
+            "bbox": {
+              "x": 0.32,
+              "y": 0.29,
+              "w": 0.44,
+              "h": 0.11
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "A long striped scarf with fringe is visibly suspended across the upper-left to center, aligned with the airflow."
+          },
+          {
+            "target_id": "b12_airborne_cup",
+            "label": "loose cup above scarf",
+            "kind": "object",
+            "bbox": {
+              "x": 0.43,
+              "y": 0.23,
+              "w": 0.09,
+              "h": 0.07
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "A cylindrical cup is visibly floating within the airflow strokes above the scarf."
+          },
+          {
+            "target_id": "b12_airborne_paper",
+            "label": "loose rectangular paper",
+            "kind": "object",
+            "bbox": {
+              "x": 0.43,
+              "y": 0.4,
+              "w": 0.2,
+              "h": 0.1
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "A rectangular white sheet with drawn lines floats in the center of the airflow."
+          },
+          {
+            "target_id": "b12_airborne_writing_tools",
+            "label": "loose pens and pencils near opening",
+            "kind": "group",
+            "bbox": {
+              "x": 0.61,
+              "y": 0.38,
+              "w": 0.25,
+              "h": 0.19
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Several blue, yellow, orange, and purple writing implements are visibly suspended between the paper and broken window."
+          },
+          {
+            "target_id": "b12_oxygen_mask",
+            "label": "oxygen mask with corrugated hose on right wall",
+            "kind": "object",
+            "bbox": {
+              "x": 0.82,
+              "y": 0.52,
+              "w": 0.18,
+              "h": 0.23
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "A gray oxygen mask and long corrugated hose hang visibly beside the window on the right wall."
+          },
+          {
+            "target_id": "b12_left_seat_armrests",
+            "label": "partial passenger seat and armrests at lower-left",
+            "kind": "context",
+            "bbox": {
+              "x": 0.2,
+              "y": 0.69,
+              "w": 0.4,
+              "h": 0.31
+            },
+            "importance": "context",
+            "confidence": 0.97,
+            "visible_evidence": "Partial brown-green seat surfaces and armrests occupy the lower-left corner."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b12_dense_airflow_near_opening",
+          "b12_airborne_scarf",
+          "b12_airborne_cup",
+          "b12_airborne_paper",
+          "b12_airborne_writing_tools"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.93,
+              "w": 1.0,
+              "h": 0.14
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.87,
+              "w": 0.95,
+              "h": 0.12
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.93,
+            "w": 0.95,
+            "h": 0.14
+          }
+        ],
+        "notes": "This is the tightest view: prioritize the jagged upper-right opening and the densely packed streaks immediately adjacent to it. Preserve enough left-side scarf and loose objects to show directional pull. Avoid using the blank lower fade as an attention target.",
+        "media_sha256": "4d44c4b396ff19eafe2af2c52732f47e8a273cd9f62717ca96cafb6bf46e7ec4"
+      }
+    ]
+  }
+}

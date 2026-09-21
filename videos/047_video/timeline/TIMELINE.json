@@ -1,0 +1,1153 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 36.911,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_spark_trimmed.mp4",
+      "start": 0.0,
+      "end": 4.0,
+      "duration": 4.0,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/book_transition_trimmed.mp4",
+      "start": 4.0,
+      "end": 7.625,
+      "duration": 3.625,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 7.625,
+      "end": 8.825,
+      "duration": 1.2,
+      "speech_start": 8.52,
+      "speech_end": 9.2,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Outside pressure is lower at high altitude.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_001",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 8.825,
+      "end": 10.05,
+      "duration": 1.225,
+      "speech_start": 9.2,
+      "speech_end": 9.88,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Outside pressure is lower at high altitude.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_002",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 10.05,
+      "end": 11.275,
+      "duration": 1.225,
+      "speech_start": 9.88,
+      "speech_end": 10.56,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Outside pressure is lower at high altitude.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_003",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 11.275,
+      "end": 12.5,
+      "duration": 1.225,
+      "speech_start": 10.56,
+      "speech_end": 11.24,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Outside pressure is lower at high altitude.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_004",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 12.5,
+      "end": 13.255,
+      "duration": 0.755,
+      "speech_start": 12.5,
+      "speech_end": 13.135,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A break lets cabin air rush out.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_005",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 13.255,
+      "end": 14.01,
+      "duration": 0.755,
+      "speech_start": 13.135,
+      "speech_end": 13.77,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A break lets cabin air rush out.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_006",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 14.01,
+      "end": 14.765,
+      "duration": 0.755,
+      "speech_start": 13.77,
+      "speech_end": 14.405,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A break lets cabin air rush out.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_007",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 14.765,
+      "end": 15.52,
+      "duration": 0.755,
+      "speech_start": 14.405,
+      "speech_end": 15.04,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A break lets cabin air rush out.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_008",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 15.52,
+      "end": 16.335,
+      "duration": 0.815,
+      "speech_start": 15.52,
+      "speech_end": 16.115,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Airflow is strongest near the opening.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_009",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 16.335,
+      "end": 17.15,
+      "duration": 0.815,
+      "speech_start": 16.115,
+      "speech_end": 16.71,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Airflow is strongest near the opening.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_010",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 17.15,
+      "end": 17.965,
+      "duration": 0.815,
+      "speech_start": 16.71,
+      "speech_end": 17.305,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Airflow is strongest near the opening.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_011",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 17.965,
+      "end": 18.78,
+      "duration": 0.815,
+      "speech_start": 17.305,
+      "speech_end": 17.9,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Airflow is strongest near the opening.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_012",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 18.78,
+      "end": 19.428,
+      "duration": 0.648,
+      "speech_start": 18.78,
+      "speech_end": 19.268,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Farther away, the air may move much less.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_013",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 19.428,
+      "end": 20.076,
+      "duration": 0.648,
+      "speech_start": 19.268,
+      "speech_end": 19.756,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Farther away, the air may move much less.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_014",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 15,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_015.png",
+      "source": "assets/raw_beats/beat_015.png",
+      "start": 20.076,
+      "end": 20.724,
+      "duration": 0.648,
+      "speech_start": 19.756,
+      "speech_end": 20.244,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Farther away, the air may move much less.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_015",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 16,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_016.png",
+      "source": "assets/raw_beats/beat_016.png",
+      "start": 20.724,
+      "end": 21.372,
+      "duration": 0.648,
+      "speech_start": 20.244,
+      "speech_end": 20.732,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Farther away, the air may move much less.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_016",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 17,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_017.png",
+      "source": "assets/raw_beats/beat_017.png",
+      "start": 21.372,
+      "end": 22.02,
+      "duration": 0.648,
+      "speech_start": 20.732,
+      "speech_end": 21.22,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Farther away, the air may move much less.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_017",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 18,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_018.png",
+      "source": "assets/raw_beats/beat_018.png",
+      "start": 22.02,
+      "end": 22.905,
+      "duration": 0.885,
+      "speech_start": 22.02,
+      "speech_end": 22.645,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pressure falls, making breathing harder.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_018",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 19,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_019.png",
+      "source": "assets/raw_beats/beat_019.png",
+      "start": 22.905,
+      "end": 23.79,
+      "duration": 0.885,
+      "speech_start": 22.645,
+      "speech_end": 23.27,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pressure falls, making breathing harder.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_019",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 20,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_020.png",
+      "source": "assets/raw_beats/beat_020.png",
+      "start": 23.79,
+      "end": 24.675,
+      "duration": 0.885,
+      "speech_start": 23.27,
+      "speech_end": 23.895,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pressure falls, making breathing harder.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_020",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 21,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_021.png",
+      "source": "assets/raw_beats/beat_021.png",
+      "start": 24.675,
+      "end": 25.56,
+      "duration": 0.885,
+      "speech_start": 23.895,
+      "speech_end": 24.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Pressure falls, making breathing harder.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_021",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 22,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_022.png",
+      "source": "assets/raw_beats/beat_022.png",
+      "start": 25.56,
+      "end": 26.55,
+      "duration": 0.99,
+      "speech_start": 25.56,
+      "speech_end": 26.25,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_022",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 23,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_023.png",
+      "source": "assets/raw_beats/beat_023.png",
+      "start": 26.55,
+      "end": 27.54,
+      "duration": 0.99,
+      "speech_start": 26.25,
+      "speech_end": 26.94,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_023",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 24,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_024.png",
+      "source": "assets/raw_beats/beat_024.png",
+      "start": 27.54,
+      "end": 28.53,
+      "duration": 0.99,
+      "speech_start": 26.94,
+      "speech_end": 27.63,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_024",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 25,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_025.png",
+      "source": "assets/raw_beats/beat_025.png",
+      "start": 28.53,
+      "end": 29.52,
+      "duration": 0.99,
+      "speech_start": 27.63,
+      "speech_end": 28.32,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_025",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 26,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_026.png",
+      "source": "assets/raw_beats/beat_026.png",
+      "start": 29.52,
+      "end": 30.998,
+      "duration": 1.478,
+      "speech_start": 29.52,
+      "speech_end": 30.336,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_026",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 27,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_027.png",
+      "source": "assets/raw_beats/beat_027.png",
+      "start": 30.998,
+      "end": 32.476,
+      "duration": 1.478,
+      "speech_start": 30.336,
+      "speech_end": 31.152,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_027",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 28,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_028.png",
+      "source": "assets/raw_beats/beat_028.png",
+      "start": 32.476,
+      "end": 33.955,
+      "duration": 1.479,
+      "speech_start": 31.152,
+      "speech_end": 31.968,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_028",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 29,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_029.png",
+      "source": "assets/raw_beats/beat_029.png",
+      "start": 33.955,
+      "end": 35.433,
+      "duration": 1.478,
+      "speech_start": 31.968,
+      "speech_end": 32.784,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_029",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 30,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_030.png",
+      "source": "assets/raw_beats/beat_030.png",
+      "start": 35.433,
+      "end": 36.911,
+      "duration": 1.478,
+      "speech_start": 32.784,
+      "speech_end": 33.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_030",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.16,
+      "end": 1.42,
+      "text": "Why is the rush of air",
+      "ass_text": "Why is the rush of air",
+      "words": [
+        {
+          "text": "Why",
+          "start": 0.16,
+          "end": 0.36
+        },
+        {
+          "text": "is",
+          "start": 0.36,
+          "end": 0.62
+        },
+        {
+          "text": "the",
+          "start": 0.62,
+          "end": 0.78
+        },
+        {
+          "text": "rush",
+          "start": 0.78,
+          "end": 1.06
+        },
+        {
+          "text": "of",
+          "start": 1.06,
+          "end": 1.24
+        },
+        {
+          "text": "air",
+          "start": 1.24,
+          "end": 1.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.42,
+      "end": 4.0,
+      "text": "strongest near a broken airplane window?",
+      "ass_text": "strongest near a broken airplane\\Nwindow?",
+      "words": [
+        {
+          "text": "strongest",
+          "start": 1.42,
+          "end": 2.02
+        },
+        {
+          "text": "near",
+          "start": 2.02,
+          "end": 2.5
+        },
+        {
+          "text": "a",
+          "start": 2.5,
+          "end": 2.66
+        },
+        {
+          "text": "broken",
+          "start": 2.66,
+          "end": 2.96
+        },
+        {
+          "text": "airplane",
+          "start": 2.96,
+          "end": 3.44
+        },
+        {
+          "text": "window?",
+          "start": 3.44,
+          "end": 4.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 5.06,
+      "end": 7.14,
+      "text": "Higher cabin pressure gives the key",
+      "ass_text": "Higher cabin pressure gives the\\Nkey",
+      "words": [
+        {
+          "text": "Higher",
+          "start": 5.06,
+          "end": 5.38
+        },
+        {
+          "text": "cabin",
+          "start": 5.38,
+          "end": 5.88
+        },
+        {
+          "text": "pressure",
+          "start": 5.88,
+          "end": 6.3
+        },
+        {
+          "text": "gives",
+          "start": 6.3,
+          "end": 6.68
+        },
+        {
+          "text": "the",
+          "start": 6.68,
+          "end": 6.88
+        },
+        {
+          "text": "key",
+          "start": 6.88,
+          "end": 7.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.14,
+      "end": 7.6,
+      "text": "clue.",
+      "ass_text": "clue.",
+      "words": [
+        {
+          "text": "clue.",
+          "start": 7.14,
+          "end": 7.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.52,
+      "end": 10.72,
+      "text": "Outside pressure is lower at high",
+      "ass_text": "Outside pressure is lower at high",
+      "words": [
+        {
+          "text": "Outside",
+          "start": 8.52,
+          "end": 8.84
+        },
+        {
+          "text": "pressure",
+          "start": 8.84,
+          "end": 9.34
+        },
+        {
+          "text": "is",
+          "start": 9.34,
+          "end": 9.58
+        },
+        {
+          "text": "lower",
+          "start": 9.58,
+          "end": 10.04
+        },
+        {
+          "text": "at",
+          "start": 10.04,
+          "end": 10.38
+        },
+        {
+          "text": "high",
+          "start": 10.38,
+          "end": 10.72
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 10.72,
+      "end": 11.24,
+      "text": "altitude.",
+      "ass_text": "altitude.",
+      "words": [
+        {
+          "text": "altitude.",
+          "start": 10.72,
+          "end": 11.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 3
+    },
+    {
+      "start": 12.5,
+      "end": 14.3,
+      "text": "A break lets cabin air rush",
+      "ass_text": "A break lets cabin air rush",
+      "words": [
+        {
+          "text": "A",
+          "start": 12.5,
+          "end": 12.66
+        },
+        {
+          "text": "break",
+          "start": 12.66,
+          "end": 13.0
+        },
+        {
+          "text": "lets",
+          "start": 13.0,
+          "end": 13.3
+        },
+        {
+          "text": "cabin",
+          "start": 13.3,
+          "end": 13.68
+        },
+        {
+          "text": "air",
+          "start": 13.68,
+          "end": 13.96
+        },
+        {
+          "text": "rush",
+          "start": 13.96,
+          "end": 14.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 14.3,
+      "end": 15.04,
+      "text": "out.",
+      "ass_text": "out.",
+      "words": [
+        {
+          "text": "out.",
+          "start": 14.3,
+          "end": 15.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 15.52,
+      "end": 17.9,
+      "text": "Airflow is strongest near the opening.",
+      "ass_text": "Airflow is strongest near the\\Nopening.",
+      "words": [
+        {
+          "text": "Airflow",
+          "start": 15.52,
+          "end": 15.92
+        },
+        {
+          "text": "is",
+          "start": 15.92,
+          "end": 16.18
+        },
+        {
+          "text": "strongest",
+          "start": 16.18,
+          "end": 16.7
+        },
+        {
+          "text": "near",
+          "start": 16.7,
+          "end": 17.2
+        },
+        {
+          "text": "the",
+          "start": 17.2,
+          "end": 17.4
+        },
+        {
+          "text": "opening.",
+          "start": 17.4,
+          "end": 17.9
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 18.78,
+      "end": 20.46,
+      "text": "Farther away, the air may move",
+      "ass_text": "Farther away, the air may move",
+      "words": [
+        {
+          "text": "Farther",
+          "start": 18.78,
+          "end": 19.1
+        },
+        {
+          "text": "away,",
+          "start": 19.1,
+          "end": 19.68
+        },
+        {
+          "text": "the",
+          "start": 19.68,
+          "end": 19.78
+        },
+        {
+          "text": "air",
+          "start": 19.78,
+          "end": 20.02
+        },
+        {
+          "text": "may",
+          "start": 20.02,
+          "end": 20.2
+        },
+        {
+          "text": "move",
+          "start": 20.2,
+          "end": 20.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 14
+    },
+    {
+      "start": 20.46,
+      "end": 21.22,
+      "text": "much less.",
+      "ass_text": "much less.",
+      "words": [
+        {
+          "text": "much",
+          "start": 20.46,
+          "end": 20.7
+        },
+        {
+          "text": "less.",
+          "start": 20.7,
+          "end": 21.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 16
+    },
+    {
+      "start": 22.02,
+      "end": 24.52,
+      "text": "Pressure falls, making breathing harder.",
+      "ass_text": "Pressure falls, making breathing\\Nharder.",
+      "words": [
+        {
+          "text": "Pressure",
+          "start": 22.02,
+          "end": 22.4
+        },
+        {
+          "text": "falls,",
+          "start": 22.4,
+          "end": 23.26
+        },
+        {
+          "text": "making",
+          "start": 23.26,
+          "end": 23.42
+        },
+        {
+          "text": "breathing",
+          "start": 23.42,
+          "end": 23.88
+        },
+        {
+          "text": "harder.",
+          "start": 23.88,
+          "end": 24.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 18
+    },
+    {
+      "start": 25.56,
+      "end": 27.88,
+      "text": "Oxygen masks may drop as pilots",
+      "ass_text": "Oxygen masks may drop as pilots",
+      "words": [
+        {
+          "text": "Oxygen",
+          "start": 25.56,
+          "end": 26.04
+        },
+        {
+          "text": "masks",
+          "start": 26.04,
+          "end": 26.48
+        },
+        {
+          "text": "may",
+          "start": 26.48,
+          "end": 26.74
+        },
+        {
+          "text": "drop",
+          "start": 26.74,
+          "end": 27.06
+        },
+        {
+          "text": "as",
+          "start": 27.06,
+          "end": 27.38
+        },
+        {
+          "text": "pilots",
+          "start": 27.38,
+          "end": 27.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 22
+    },
+    {
+      "start": 27.88,
+      "end": 28.32,
+      "text": "descend.",
+      "ass_text": "descend.",
+      "words": [
+        {
+          "text": "descend.",
+          "start": 27.88,
+          "end": 28.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 24
+    },
+    {
+      "start": 29.52,
+      "end": 31.46,
+      "text": "That sudden pressure loss is called",
+      "ass_text": "That sudden pressure loss is\\Ncalled",
+      "words": [
+        {
+          "text": "That",
+          "start": 29.52,
+          "end": 29.64
+        },
+        {
+          "text": "sudden",
+          "start": 29.64,
+          "end": 30.04
+        },
+        {
+          "text": "pressure",
+          "start": 30.04,
+          "end": 30.5
+        },
+        {
+          "text": "loss",
+          "start": 30.5,
+          "end": 30.88
+        },
+        {
+          "text": "is",
+          "start": 30.88,
+          "end": 31.1
+        },
+        {
+          "text": "called",
+          "start": 31.1,
+          "end": 31.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 26
+    },
+    {
+      "start": 31.46,
+      "end": 33.6,
+      "text": "rapid decompression.",
+      "ass_text": "rapid decompression.",
+      "words": [
+        {
+          "text": "rapid",
+          "start": 31.46,
+          "end": 31.96
+        },
+        {
+          "text": "decompression.",
+          "start": 31.96,
+          "end": 33.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 34.16,
+      "end": 36.36,
+      "text": "Comment your next airplane safety question.",
+      "ass_text": "Comment your next airplane safety\\Nquestion.",
+      "words": [
+        {
+          "text": "Comment",
+          "start": 34.16,
+          "end": 34.44
+        },
+        {
+          "text": "your",
+          "start": 34.44,
+          "end": 34.7
+        },
+        {
+          "text": "next",
+          "start": 34.7,
+          "end": 34.92
+        },
+        {
+          "text": "airplane",
+          "start": 34.92,
+          "end": 35.28
+        },
+        {
+          "text": "safety",
+          "start": 35.28,
+          "end": 35.82
+        },
+        {
+          "text": "question.",
+          "start": 35.82,
+          "end": 36.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    }
+  ],
+  "qc": {
+    "beat_count": 32,
+    "low_confidence_beats": [],
+    "timestamp_overlap_adjustments": [],
+    "subtitle_overlap_adjustments": [],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 17,
+    "subtitle_cues_estimated": 0
+  }
+}

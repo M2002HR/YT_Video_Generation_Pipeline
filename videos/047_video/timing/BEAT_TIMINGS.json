@@ -1,0 +1,86 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 36.911,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "Why is the rush of air strongest near a broken airplane window? Higher cabin pressure gives the key clue. Outside pressure is lower at high altitude. A break lets cabin air rush out. Airflow is strongest near the opening. Farther away, the air may move much less. Pressure falls, making breathing harder. Oxygen masks may drop as pilots descend. That sudden pressure loss is called rapid decompression. Comment your next airplane safety question.",
+  "word_count": 73,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Outside pressure is lower at high altitude.",
+      "speech_start": 8.52,
+      "speech_end": 11.24,
+      "match_confidence": 1.0,
+      "display_start": 0.0,
+      "display_end": 12.5,
+      "display_duration": 12.5
+    },
+    {
+      "beat_id": 2,
+      "narration": "A break lets cabin air rush out.",
+      "speech_start": 12.5,
+      "speech_end": 15.04,
+      "match_confidence": 1.0,
+      "display_start": 12.5,
+      "display_end": 15.52,
+      "display_duration": 3.02
+    },
+    {
+      "beat_id": 3,
+      "narration": "Airflow is strongest near the opening.",
+      "speech_start": 15.52,
+      "speech_end": 17.9,
+      "match_confidence": 1.0,
+      "display_start": 15.52,
+      "display_end": 18.78,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 4,
+      "narration": "Farther away, the air may move much less.",
+      "speech_start": 18.78,
+      "speech_end": 21.22,
+      "match_confidence": 1.0,
+      "display_start": 18.78,
+      "display_end": 22.02,
+      "display_duration": 3.24
+    },
+    {
+      "beat_id": 5,
+      "narration": "Pressure falls, making breathing harder.",
+      "speech_start": 22.02,
+      "speech_end": 24.52,
+      "match_confidence": 1.0,
+      "display_start": 22.02,
+      "display_end": 25.56,
+      "display_duration": 3.54
+    },
+    {
+      "beat_id": 6,
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "speech_start": 25.56,
+      "speech_end": 28.32,
+      "match_confidence": 1.0,
+      "display_start": 25.56,
+      "display_end": 29.52,
+      "display_duration": 3.96
+    },
+    {
+      "beat_id": 7,
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "speech_start": 29.52,
+      "speech_end": 33.6,
+      "match_confidence": 1.0,
+      "display_start": 29.52,
+      "display_end": 36.911,
+      "display_duration": 7.391
+    }
+  ]
+}

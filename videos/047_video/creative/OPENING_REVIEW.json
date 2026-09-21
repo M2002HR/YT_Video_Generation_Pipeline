@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "topic_specific": true,
+    "visible_from_start": true,
+    "character_consistent": true,
+    "honest_claims": true,
+    "hook_paid_off": true,
+    "entry_continuity": true,
+    "production_feasible": true,
+    "meaningfully_distinct": true
+  },
+  "issues": [],
+  "passed": true,
+  "history_ids": [
+    "042",
+    "042_what_if_earth_s_gravity_were_cut_in_half",
+    "043",
+    "043_what_if_human_bones_were_made_of_metal",
+    "044",
+    "045",
+    "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+    "046"
+  ],
+  "prompt_sha256": "8cadc7e0fc1f01ee19b28d2b6bde9e21edf36240bfa38c645b1b5c63d0736c12",
+  "input_fingerprint": "ab86fdca111ce214811ab28d2dc951246fa8a974a38b6c6d7fd0eebbb13a8b65",
+  "concept_id": "ddc1810e0e41c1d8f3f1"
+}

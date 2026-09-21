@@ -1,0 +1,27 @@
+{
+  "presentation_profile": "book_portal",
+  "spark_end": 4.0,
+  "transition_end": 7.6,
+  "max_rate_adjust": 0.2,
+  "clips": [
+    {
+      "label": "Intro A",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/opening/question_spark_trimmed.mp4",
+      "target": 4.0,
+      "actual": 4.0,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    },
+    {
+      "label": "Intro B",
+      "path": "/opt/YT_Video_Generation_Pipeline/videos/047_video/assets/opening/book_transition_trimmed.mp4",
+      "target": 3.6,
+      "actual": 3.625,
+      "speed_factor": 1.0,
+      "rate_adjusted": false
+    }
+  ],
+  "opening_total_seconds": 7.625,
+  "opening_total_target_seconds": 7.6,
+  "opening_total_drift_seconds": 0.025
+}

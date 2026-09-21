@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "789b07cc3b59cd552331d5f7f071f47111068fcd02d31d7bb6c6d3fbcebfed24",
+  "job_ids": [
+    "d09ab1d3-5b98-45c3-9395-d222744bf79d"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 17,
+        "start": 21.372,
+        "end": 22.02,
+        "attention_story": [
+          "Hold the wide cabin depth so the calm foreground seat rows and scholar register first while the compact distant streaks remain visibly confined near the rear, reinforcing that airflow is weaker farther away.",
+          "Use stillness as the contrast beat before the narration shifts to the human consequence of falling pressure."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b17_s01",
+            "role": "hold",
+            "start": 21.372,
+            "end": 22.02,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b17_central_aisle",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.53
+              },
+              "end": {
+                "target_id": "b17_central_aisle",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.53
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The beat has no spoken words and functions as a brief visual breathing space; a stable wide aisle composition preserves the distant airflow cue, empty seats, and scholar without adding purposeless motion."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b17_central_aisle",
+          "coverage": 0.94,
+          "anchor_x": 0.5,
+          "anchor_y": 0.53,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "dissolve",
+          "duration": 0.28,
+          "reason_code": "emotional_continuity",
+          "reason": "A short dissolve softens the shift from the calm distance contrast into the next beat's breathing difficulty, matching the planned reduction in motion density before the physiological consequence."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

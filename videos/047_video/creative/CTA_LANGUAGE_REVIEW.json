@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "3fbe89c7459f65e39ec98a898611ea75359790aae54431db27e58d9175dde29b",
+  "reference_fingerprint": "13fd2328647e33438e536af98b59599f1d2aa134f78215b8badf8f978303c7d8",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "d810d6016a551b6219c716ec01492cc89d3168f0e83d1214e500eb33d20bb4a3",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Comment your next airplane safety question."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-20T19:58:22Z"
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "828a58427b2fb24ee804dfff1fcee9ffcaf2cf93602d89181b36d98f976d75b8",
+  "job_ids": [
+    "a4b8e30b-f0ed-43ff-8384-5e81497bc31b",
+    "a334ebf0-8c8f-4f4d-b472-7f4e5ddac7aa"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 3,
+        "start": 10.05,
+        "end": 11.275,
+        "attention_story": [
+          "Match-position cut preserves the aircraft's screen position from the preceding exterior shot.",
+          "On the emphasized word 'altitude,' begin a gentle pull-out from the verified airplane, widening into the existing sky and cloud context to reinforce the sense of high altitude."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b03_s01",
+            "role": "context",
+            "start": 10.05,
+            "end": 11.275,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b03_target_airplane",
+                "coverage": 0.84,
+                "anchor_x": 0.52,
+                "anchor_y": 0.29
+              },
+              "end": {
+                "target_id": "b03_target_airplane",
+                "coverage": 0.74,
+                "anchor_x": 0.5,
+                "anchor_y": 0.31
+              }
+            },
+            "motion": {
+              "type": "pull_out",
+              "easing": "gentle",
+              "start_delay": 0.67,
+              "end_hold": 0.035,
+              "reason": "The widening begins exactly as 'altitude' is spoken, reducing airplane coverage to reveal more verified open sky and cloud layer while maintaining exterior continuity."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0026",
+              "word": "altitude.",
+              "authoritative_start": 10.72,
+              "authoritative_end": 11.24
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b03_target_airplane",
+          "coverage": 0.74,
+          "anchor_x": 0.5,
+          "anchor_y": 0.31,
+          "movement_direction": "out"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The next beat remains in the same high-altitude exterior sequence, so a clean cut preserves momentum without adding an unnecessary transition effect."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

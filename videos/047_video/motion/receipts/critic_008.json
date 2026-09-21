@@ -1,0 +1,81 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "54c7b2af390a53649343462d5136c4f938a06fce2c55a55b8b9617decfb05f51",
+  "job_ids": [
+    "70300df1-4235-403d-b192-6006f8aac774"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 16,
+        "shot_id": "b16_s01",
+        "code": "unmotivated_cut",
+        "message": "The match_position_cut is not supportable because beat 15 has no inspectable pixels, so positional correspondence into the centered passenger rows cannot be verified; it also conflicts with beat 15's declared plain cut transition_out. Use a standard continuity cut and retain the wide hold."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 16,
+        "start": 20.724,
+        "end": 21.372,
+        "attention_story": [
+          "Keep the cabin broad and center-weighted so the distant rear opening, seated rows, and calm foreground remain readable together.",
+          "Use stillness through the final contrast word so the reduced airflow idea lands without adding unnecessary motion."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b16_s01",
+            "role": "hold",
+            "start": 20.724,
+            "end": 21.372,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b16_seated_passenger_rows",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b16_seated_passenger_rows",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.5
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The narration resolves on the contrast word 'less,' and the wide static composition best communicates weaker movement farther from the opening while preserving the scholar, passengers, aisle, and distant opening."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b16_seated_passenger_rows",
+          "coverage": 0.94,
+          "anchor_x": 0.5,
+          "anchor_y": 0.5,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The following beat continues the same explanatory cabin idea, so a clean cut preserves continuity without spending a decorative transition."
+        }
+      }
+    ]
+  }
+}

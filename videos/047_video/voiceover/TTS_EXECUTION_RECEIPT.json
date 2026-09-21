@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "provider": "ElevenLabs web UI",
+  "transport": "elevenlabs_web",
+  "attempt_id": "attempt-410544a731d84a4caee616f37f1491a5",
+  "result_id": "audio-player:blob:https://elevenlabs.io/20ab304b-5760-41c8-b3a7-1b473f8e57b6",
+  "input_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd",
+  "compiled_input_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating, and Clear",
+    "model": "Eleven v3",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.5,
+    "style": 0.15,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "effective_settings": {
+    "voice": "Seer Morganna - Intimidating, and Clear",
+    "model": "Eleven v3",
+    "speed": null,
+    "stability": 0.5,
+    "similarity": null,
+    "style": null,
+    "stability_mode": null,
+    "output_format": "MP3 44.1 kHz (128kbps)",
+    "capability_probe": {
+      "schema_version": 1,
+      "observed_model": "Eleven v3",
+      "observed_voice": "Seer Morganna - Intimidating, and Clear",
+      "numeric_controls": [
+        "stability"
+      ],
+      "stability_modes": [],
+      "speaker_boost_available": false,
+      "editor_kind": "contenteditable",
+      "observed_at": "2026-09-20T20:09:38.759269+00:00"
+    },
+    "execution_mode": "expressive_v3"
+  },
+  "capability_schema_version": 1,
+  "capabilities": {
+    "capabilities": {
+      "schema_version": 1,
+      "observed_model": "Eleven v3",
+      "observed_voice": "Seer Morganna - Intimidating, and Clear",
+      "numeric_controls": [
+        "stability"
+      ],
+      "stability_modes": [],
+      "speaker_boost_available": false,
+      "editor_kind": "contenteditable",
+      "observed_at": "2026-09-20T20:09:34.554662+00:00"
+    },
+    "execution_mode": "expressive_v3",
+    "inactive_settings": {
+      "speed": 0.9,
+      "stability": 0.3,
+      "similarity": 0.5,
+      "style": 0.15,
+      "speaker_boost": false,
+      "stability_mode_control": "categorical_numeric_slider"
+    },
+    "effective_plan": {
+      "model": "eleven_v3",
+      "numeric_settings": {
+        "stability": 0.5
+      },
+      "stability_mode": "Natural",
+      "speaker_boost": null
+    }
+  },
+  "result_baseline": {
+    "identities": [
+      "audio-player:blob:https://elevenlabs.io/c4e2a329-d2b9-4de1-856b-3ed67b6728d9"
+    ],
+    "captured_at": "2026-09-20T20:09:40.203766+00:00"
+  },
+  "output": "assets/audio/narration.mp3",
+  "output_sha256": "9c2b7622155b5afeebb4c97af98c97e8eec8c69dc63bbe681242da4069f026e4",
+  "technical": {
+    "duration_seconds": 36.911,
+    "format_name": "mp3"
+  },
+  "recovered_after_interruption": true,
+  "generated_at": "2026-09-20T20:18:02.542642+00:00"
+}

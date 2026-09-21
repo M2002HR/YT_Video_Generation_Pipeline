@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "407d6e92a72a3c9cda24035eddffad6c3119a2a10ede7098c89017f2c1145d40",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "1ec544f5-b564-48ea-808b-bdfbf6f12879",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=1ec544f5-b564-48ea-808b-bdfbf6f12879_output_1.png 1536x2752 sha256=168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "407d6e92a72a3c9cda24035eddffad6c3119a2a10ede7098c89017f2c1145d40",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "1ec544f5-b564-48ea-808b-bdfbf6f12879",
+        "prompt_sha256": "8014f9d49bdaf275dd24f347aca1d17a03c47fda162489f9ff7c1d206968ebb5",
+        "output_sha256": "168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/047_video/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/047_video/references/world_keyframe.png",
+      "sha256": "c3587e2a09b7be6a7794e6d03022082cf96c46d72a5a7984e52f059e004c66a2"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/047_video/assets/raw_beats/beat_003.png",
+      "sha256": "a6a1ba62ec2f552582c396cad5fdfe5b1d928cfea4d82593cc53d7f6545a2859"
+    }
+  ],
+  "prompt_sha256": "8014f9d49bdaf275dd24f347aca1d17a03c47fda162489f9ff7c1d206968ebb5",
+  "prompt": "Create exactly one 9:16 image: a full-bleed subject-world crayon illustration showing a wide exterior aerial view of a passenger airplane cruising high above a thick cloud layer, with the aircraft placed diagonally in the upper half of the composition and surrounded by a vast cool blue sky with thin, sparse high-altitude atmospheric strokes to visually suggest lower outside pressure. Use the style_reference only to preserve the selected crayon illustration medium, texture, palette and lighting; use the world_keyframe only to maintain the topic-world continuity of aircraft, high-altitude atmosphere and spatial depth; use the previous_beat reference only for compatible medium, texture, palette and lighting continuity, never for its composition, crop, framing, placement or layout. Render soft wax crayon grain with layered directional strokes, visible pigment buildup, gentle rubbing and uneven hand-drawn mark variation. Use bright sky and atmospheric blues, fresh cool greens where appropriate in the distant cloud tones, sandy yellows, warm oranges, soft cream highlights and earthy browns, with clear high-altitude daylight and softly diffused atmospheric depth. Show the airplane as a topic-accurate passenger jet with subtle pressure-change visual cues through the open, sparse surrounding atmosphere rather than text or labels. Keep the bottom 8–10% naturally calm with open sky or soft cloud atmosphere for two subtitle lines, while keeping the aircraft and important details above that area. The scene must extend naturally to all four edges with no enclosing page, border, panel, inset frame, collage, storyboard, grid, caption box, UI element, printed words or readable text. Do not depict any host or unrelated characters. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Reserve only the bottom 8-10% as calm natural scene atmosphere for two subtitle lines; keep faces, hands and critical details above it. Continue the scene edge-to-edge. No printed text, separate banner, page margin or UI panel.",
+  "output_path": "assets/raw_beats/beat_004.png",
+  "output_sha256": "168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 114.338,
+  "completed_at": "2026-09-21T03:13:33Z"
+}

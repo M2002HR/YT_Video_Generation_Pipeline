@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "266e0589eec8f2d8054822be75774bbaeae7761b933df7fef9ae6a054812e357",
+  "job_ids": [
+    "a3d1a18a-8a18-467e-af6b-14e2fbba9e55",
+    "8042a29a-b422-4890-9f32-5c8dafeb342d"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 6,
+        "start": 13.255,
+        "end": 14.01,
+        "attention_story": [
+          "Begin on the verified seated passengers and cabin interior so the spoken word cabin has immediate spatial context.",
+          "As air begins, redirect attention rightward into the verified airflow stream, following its visible path toward the broken window."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b06_s01",
+            "role": "primary",
+            "start": 13.255,
+            "end": 14.01,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b06_target_passenger_group",
+                "coverage": 0.76,
+                "anchor_x": 0.32,
+                "anchor_y": 0.36
+              },
+              "end": {
+                "target_id": "b06_target_airflow",
+                "coverage": 0.66,
+                "anchor_x": 0.56,
+                "anchor_y": 0.46
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "hold_then_move",
+              "start_delay": 0.425,
+              "end_hold": 0.05,
+              "reason": "Hold briefly on the verified cabin occupants for context, then move rightward into the visible airflow exactly when the narration says air, preserving the artwork's established outward direction."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0031",
+              "word": "air",
+              "authoritative_start": 13.68,
+              "authoritative_end": 13.96
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b06_target_airflow",
+          "coverage": 0.66,
+          "anchor_x": 0.56,
+          "anchor_y": 0.46,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Continue the same causal phrase into rush out with a clean cut while preserving the rightward airflow direction."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "190870741a6ffdaa85fbb9407c2517cd29f10440c871cf3a91a3a4eb963b0e93",
+  "job_ids": [
+    "77e82173-29a4-4259-8dff-eceb611e18d1"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 9,
+        "start": 15.52,
+        "end": 16.335,
+        "attention_story": [
+          "Cut on “Airflow” to the verified concentrated airflow field, then make one compact rightward push toward the jagged opening so the viewer follows the visible flow into its source before the next beat delivers “strongest near.”"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b09_s01",
+            "role": "primary",
+            "start": 15.52,
+            "end": 16.335,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b09_concentrated_airflow",
+                "coverage": 0.7,
+                "anchor_x": 0.43,
+                "anchor_y": 0.438
+              },
+              "end": {
+                "target_id": "b09_broken_window",
+                "coverage": 0.58,
+                "anchor_x": 0.617,
+                "anchor_y": 0.435
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.155,
+              "reason": "The short beat cannot support a valid split, so one controlled move traces the verified dense airflow rightward toward the broken opening and then briefly locks as the phrase pauses after “is.”"
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0034",
+              "word": "Airflow",
+              "authoritative_start": 15.52,
+              "authoritative_end": 15.92
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b09_broken_window",
+          "coverage": 0.58,
+          "anchor_x": 0.617,
+          "anchor_y": 0.435,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The narration continues the same sentence into “strongest near,” so a clean cut preserves explanatory momentum without adding a decorative transition."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

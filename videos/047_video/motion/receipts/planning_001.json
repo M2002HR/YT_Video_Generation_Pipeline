@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "1a3437e3f4df319e20d162b247909836e64ac58487c37e9f6f128c65ad61d550",
+  "job_ids": [
+    "6444a987-ad8e-4c4c-b821-83545aa6d42a"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 1,
+        "start": 7.625,
+        "end": 8.825,
+        "attention_story": [
+          "Establish the high-altitude cloud context while keeping the airplane readable in the upper half.",
+          "On “Outside,” redirect attention upward toward the passenger airplane with a restrained tightening move."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b01_s01",
+            "role": "establish",
+            "start": 7.625,
+            "end": 8.825,
+            "edit_in": {
+              "type": "establishing_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b01_target_cloud_layer",
+                "coverage": 0.9,
+                "anchor_x": 0.5,
+                "anchor_y": 0.67
+              },
+              "end": {
+                "target_id": "b01_target_airplane",
+                "coverage": 0.76,
+                "anchor_x": 0.52,
+                "anchor_y": 0.3
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "snappy",
+              "start_delay": 0.895,
+              "end_hold": 0.0,
+              "reason": "Hold the exterior altitude context first, then use the spoken word “Outside” to shift attention upward and slightly inward onto the verified airplane without obscuring the surrounding sky."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0020",
+              "word": "Outside",
+              "authoritative_start": 8.52,
+              "authoritative_end": 8.84
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b01_target_airplane",
+          "coverage": 0.76,
+          "anchor_x": 0.52,
+          "anchor_y": 0.3,
+          "movement_direction": "up"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The narration continues the same exterior-pressure explanation, so a clean cut preserves fast pacing without adding a decorative transition."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

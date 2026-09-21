@@ -1,0 +1,163 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "b4dace85d04b78aa4b6db60791d42d242e556bad001ab80a983a2977bdfc59b6",
+  "job_ids": [
+    "b7d486d1-1823-43f9-a9e4-398ecc5a4798"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 7,
+        "shot_id": "b07_s01",
+        "code": "face_risk",
+        "message": "The move tightens from 0.78 to 0.62 coverage while anchoring progressively rightward on the broken window, which can crop out the verified left-side passenger faces despite the inventory explicitly requiring those faces and the complete window rim to be preserved."
+      },
+      {
+        "severity": "error",
+        "beat_id": 7,
+        "shot_id": "b07_s01",
+        "code": "bad_crop",
+        "message": "The 0.62 end coverage is unnecessarily aggressive for image_zoom_strength 0.14 and risks isolating the opening at the expense of the verified full cabin relationship. The rush-out emphasis can be preserved with a restrained rightward pan-push that keeps both the passengers and complete opening visible."
+      },
+      {
+        "severity": "error",
+        "beat_id": 8,
+        "shot_id": "b08_s01",
+        "code": "bad_crop",
+        "message": "The 0.74 coverage centered near the airflow path risks clipping both the left edge of the complete jagged opening and the right foreground woman's face or hands. Inventory specifically requires the complete opening, foreground face, both hands, and loose sheets to survive the crop."
+      },
+      {
+        "severity": "error",
+        "beat_id": 8,
+        "shot_id": "b08_s01",
+        "code": "unmotivated_cut",
+        "message": "After beat 7 settles on the right-side opening, the reframe cut lands only on the generic airflow field instead of exploiting the directed left-versus-right broken-window contrast prescribed for beats 5-8. A broad hard cut that clearly establishes the verified left opening gives the silent beat a stronger narrative purpose."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 7,
+        "start": 14.01,
+        "end": 14.765,
+        "attention_story": [
+          "Carry the established rightward airflow logic into the cabin with a decisive cut onto the verified airflow path while retaining the left-side passengers and the complete opening in frame.",
+          "Use one restrained rightward pan-push so attention completes on the jagged broken window exactly as “rush” ends, then hold the visible exit point through “out.”"
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b07_s01",
+            "role": "primary",
+            "start": 14.01,
+            "end": 14.765,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b07_airflow_streams",
+                "coverage": 0.94,
+                "anchor_x": 0.46,
+                "anchor_y": 0.46
+              },
+              "end": {
+                "target_id": "b07_broken_window",
+                "coverage": 0.9,
+                "anchor_x": 0.475,
+                "anchor_y": 0.44
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.465,
+              "reason": "Track the verified rightward airflow toward the opening with only a restrained crop change, preserving the left passenger faces and complete jagged rim while completing the attention move on the emphasized word “rush.”"
+            },
+            "sync": {
+              "mode": "settle_on_word_end",
+              "word_id": "w_0032",
+              "word": "rush",
+              "authoritative_start": 13.96,
+              "authoritative_end": 14.3
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b07_broken_window",
+          "coverage": 0.9,
+          "anchor_x": 0.475,
+          "anchor_y": 0.44,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "A hard cut into the opposite-side cabin opening creates the prescribed left-right contrast without adding decorative transition language."
+        }
+      },
+      {
+        "beat_id": 8,
+        "start": 14.765,
+        "end": 15.52,
+        "attention_story": [
+          "Hard cut from the prior right-side opening to a broad composition that clearly establishes the verified left-side broken window while retaining the foreground woman, her hands, the loose sheets, and the visible airflow path.",
+          "Hold through the silent beat so the reversal in opening position and escape direction registers cleanly before the next explanatory claim begins."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b08_s01",
+            "role": "hold",
+            "start": 14.765,
+            "end": 15.52,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b08_broken_window",
+                "coverage": 0.9,
+                "anchor_x": 0.47,
+                "anchor_y": 0.45
+              },
+              "end": {
+                "target_id": "b08_broken_window",
+                "coverage": 0.9,
+                "anchor_x": 0.47,
+                "anchor_y": 0.45
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The silent 0.755-second beat is too short for a valid split; a broad stable hold makes the verified left-side opening and leftward airflow reversal legible while preserving the foreground woman's face, both hands, loose papers, and complete window rim."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b08_broken_window",
+          "coverage": 0.9,
+          "anchor_x": 0.47,
+          "anchor_y": 0.45,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "The next beat begins the distinct claim about airflow being strongest near the opening, so a clean hard cut can localize attention without transition spam."
+        }
+      }
+    ]
+  }
+}

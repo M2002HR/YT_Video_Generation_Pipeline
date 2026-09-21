@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "8f9fb89b703c9fad1f8efb9483f0e28a9f7ebb26d152ae91bc874c904dd01aa1",
+  "job_ids": [
+    "c59112af-bc61-4ecc-a3a1-6b193fed2927"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": true,
+    "issues": [],
+    "replacement_beats": []
+  }
+}

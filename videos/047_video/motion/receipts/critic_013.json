@@ -1,0 +1,81 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "bd206af150ac68cac4fc84f80b813f4530db284412c2442423cab9c0be50b332",
+  "job_ids": [
+    "66746e2e-f352-46c2-b76b-9aff1621d7cb"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 25,
+        "shot_id": "b25_s01",
+        "code": "transition_spam",
+        "message": "The 0.28s dissolve is not motivated by the episode transition philosophy: this boundary moves from the settled oxygen-mask consequence into the causal terminology setup, not from consequence into reflection. It also softens the clean explanatory reset requested for beats 26-28 and conflicts with the following beat's establishing cut. Preserve the hold, then use a hard cut."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 25,
+        "start": 28.53,
+        "end": 29.52,
+        "attention_story": [
+          "Preserve the descending-cloud composition from the preceding beat through a matched position cut.",
+          "Hold the wide cabin context without adding motion during the narration-free tail, allowing the hanging masks, reaching passengers, and masked seated figure to register before the terminology reveal."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b25_s01",
+            "role": "release",
+            "start": 28.53,
+            "end": 29.52,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b25_cloud_windows",
+                "coverage": 0.9,
+                "anchor_x": 0.48,
+                "anchor_y": 0.467
+              },
+              "end": {
+                "target_id": "b25_cloud_windows",
+                "coverage": 0.9,
+                "anchor_x": 0.48,
+                "anchor_y": 0.467
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The previous beat already carries the descent motion; this narration-free remainder benefits from stillness so the safety response can settle visually before the rapid-decompression explanation begins."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b25_cloud_windows",
+          "coverage": 0.9,
+          "anchor_x": 0.48,
+          "anchor_y": 0.467,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "A hard cut cleanly separates the settled oxygen-mask consequence from the next explanatory setup, preserves the minimal-transition strategy, and gives the terminology sequence a decisive reset without decorative softening."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "947cef99d1a71c773615ff92a89f3b836e0a19e9351d151191307f9422c1b51d",
+  "job_ids": [
+    "b1bbd00b-a63b-4c06-89b9-ed2c88adaa55"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 17,
+        "shot_id": "b17_s01",
+        "code": "transition_spam",
+        "message": "The 0.28s dissolve into beat 18 contradicts the stated decisive cut on the emphasized word 'Pressure' and spends dissolve language on an explanation-to-consequence shift rather than a consequence-to-reflection transition."
+      },
+      {
+        "severity": "error",
+        "beat_id": 18,
+        "shot_id": "b18_s01",
+        "code": "transition_spam",
+        "message": "A second consecutive 0.28s dissolve continues effect-first boundary treatment through the breathing-difficulty passage, where the direction calls for reduced motion complexity, fewer transitions, and stable emotional emphasis."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 17,
+        "start": 21.372,
+        "end": 22.02,
+        "attention_story": [
+          "Hold the wide cabin depth so the calm foreground seat rows and scholar register first while the compact distant streaks remain visibly confined near the rear, reinforcing that airflow is weaker farther away.",
+          "Use stillness as the contrast beat before the narration shifts to the human consequence of falling pressure."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b17_s01",
+            "role": "hold",
+            "start": 21.372,
+            "end": 22.02,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b17_central_aisle",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.53
+              },
+              "end": {
+                "target_id": "b17_central_aisle",
+                "coverage": 0.94,
+                "anchor_x": 0.5,
+                "anchor_y": 0.53
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "linear",
+              "start_delay": 0.0,
+              "end_hold": 0.0,
+              "reason": "The beat has no spoken words and functions as a brief visual breathing space; a stable wide aisle composition preserves the distant airflow cue, empty seats, and scholar without adding purposeless motion."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b17_central_aisle",
+          "coverage": 0.94,
+          "anchor_x": 0.5,
+          "anchor_y": 0.53,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "verbal_emphasis",
+          "reason": "Cut directly on the upcoming emphasized word 'Pressure' so the calm distance contrast snaps cleanly into the human consequence without spending a decorative transition."
+        }
+      },
+      {
+        "beat_id": 18,
+        "start": 22.02,
+        "end": 22.905,
+        "attention_story": [
+          "Cut decisively from the prior wide calm-cabin view to the distressed seated passenger on the emphasized word Pressure.",
+          "Use the single permitted micro-shot for this short beat, gently tightening toward the passenger while keeping the distressed face and chest-clutching hands readable.",
+          "Let the restrained inward motion introduce the physiological consequence without over-animating the breathing-difficulty passage."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b18_s01",
+            "role": "reaction",
+            "start": 22.02,
+            "end": 22.905,
+            "edit_in": {
+              "type": "cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b18_distressed_passenger",
+                "coverage": 0.7,
+                "anchor_x": 0.55,
+                "anchor_y": 0.55
+              },
+              "end": {
+                "target_id": "b18_distressed_passenger",
+                "coverage": 0.82,
+                "anchor_x": 0.53,
+                "anchor_y": 0.51
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.08,
+              "reason": "A restrained push transfers attention from the passenger's full distressed posture toward the face and chest-clutching hands as the narration introduces falling pressure, supporting the planned emotional slowdown without obscuring either primary action."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0048",
+              "word": "Pressure",
+              "authoritative_start": 22.02,
+              "authoritative_end": 22.4
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b18_distressed_passenger",
+          "coverage": 0.82,
+          "anchor_x": 0.53,
+          "anchor_y": 0.51,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Use a clean cut rather than another dissolve so the breathing-difficulty sequence remains restrained and does not accumulate decorative transition language across consecutive beat boundaries."
+        }
+      }
+    ]
+  }
+}

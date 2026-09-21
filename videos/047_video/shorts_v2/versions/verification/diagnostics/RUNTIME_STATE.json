@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "editing_engine": "shorts_v2",
+  "run_id": "verify-047",
+  "revision_id": "verification",
+  "owner_epoch": 0,
+  "stages": {
+    "preflight": {
+      "status": "DONE",
+      "updated_at": "2026-09-20T18:11:29.720585+00:00",
+      "request_fingerprint": "623584bef396f444e42ccce361bad5fef29928a05a5b94e78462ca1ee80c8ea4"
+    }
+  },
+  "created_at": "2026-09-20T18:11:29.713897+00:00",
+  "updated_at": "2026-09-20T18:11:29.720595+00:00"
+}

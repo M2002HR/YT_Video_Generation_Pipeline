@@ -1,0 +1,556 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "45474ea99fa10fa2f34ff85c89729232965fac5a2c64f222556cb84d71c0c887",
+  "job_ids": [
+    "1b31ebca-926d-48be-a1e6-41da82945d94",
+    "4aa0f618-c0ec-4abc-ae7e-97d4d3b14f1c"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 22,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-frame illustrated airplane cabin. Several orange oxygen-mask assemblies hang from overhead panels. A foreground passenger at lower right wears a yellow oxygen mask and a large white curled wig with black clothing. Other seated passengers reach upward toward the hanging masks. Multiple windows show bright sky and clouds outside.",
+        "visual_direction": "up",
+        "targets": [
+          {
+            "target_id": "b22_masks_group",
+            "label": "hanging oxygen masks across overhead cabin",
+            "kind": "group",
+            "bbox": {
+              "x": 0.69,
+              "y": 0.331,
+              "w": 0.605,
+              "h": 0.186
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Several orange mask bags and pale mask cups hang on hoses from the ceiling panels."
+          },
+          {
+            "target_id": "b22_foreground_face",
+            "label": "foreground wigged passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.768,
+              "y": 0.594,
+              "w": 0.155,
+              "h": 0.118
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Orange face with wide eyes is surrounded by white curls and covered at the mouth and nose by a yellow mask."
+          },
+          {
+            "target_id": "b22_foreground_person",
+            "label": "foreground passenger in black clothing using oxygen mask",
+            "kind": "person",
+            "bbox": {
+              "x": 0.752,
+              "y": 0.711,
+              "w": 0.392,
+              "h": 0.41
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Seated figure at lower right wears black clothing, white neck tabs, white curled hair and an attached oxygen mask."
+          },
+          {
+            "target_id": "b22_left_reaching_hand",
+            "label": "left passenger raised hand",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.462,
+              "y": 0.486,
+              "w": 0.055,
+              "h": 0.053
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "A passenger in a green sleeve extends an open hand upward toward the overhead masks."
+          },
+          {
+            "target_id": "b22_center_reaching_hand",
+            "label": "center passenger raised hand",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.668,
+              "y": 0.409,
+              "w": 0.053,
+              "h": 0.054
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "An open hand rises above the seated center passenger toward the hanging equipment."
+          },
+          {
+            "target_id": "b22_cloud_windows",
+            "label": "airplane windows with clouds outside",
+            "kind": "context",
+            "bbox": {
+              "x": 0.421,
+              "y": 0.49,
+              "w": 0.48,
+              "h": 0.33
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Several cabin windows visibly contain pale blue sky, horizon bands and clouds."
+          }
+        ],
+        "faces": [
+          "b22_foreground_face"
+        ],
+        "hands_or_actions": [
+          "b22_left_reaching_hand",
+          "b22_center_reaching_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.012,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.988,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.012,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.988,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.752,
+              "y": 0.711,
+              "w": 0.392,
+              "h": 0.41
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.69,
+              "y": 0.331,
+              "w": 0.605,
+              "h": 0.186
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.091,
+            "y": 0.177,
+            "w": 0.175,
+            "h": 0.285
+          },
+          {
+            "x": 0.165,
+            "y": 0.851,
+            "w": 0.245,
+            "h": 0.18
+          }
+        ],
+        "notes": "Full source is illustrated artwork with no blank caption card or embedded text visible. Preserve the overhead mask cluster and lower-right masked face. The foreground face appears oriented generally forward and slightly up-left; passenger gestures direct attention upward.",
+        "media_sha256": "4f56c24a19d279ad0f6ef2cd1d8c8541137489bd64e48cfd359a8eaebabef095"
+      },
+      {
+        "beat_id": 23,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-frame illustrated airplane cabin with hanging oxygen masks and passengers reaching upward. A foreground white-wigged passenger at lower right wears a yellow oxygen mask. A left-center cabin window has visibly jagged broken edges, with curved blue-green streaks extending from that area across the cabin toward the upper right. Clouds are visible through the windows.",
+        "visual_direction": "mixed",
+        "targets": [
+          {
+            "target_id": "b23_masks_group",
+            "label": "hanging oxygen masks across overhead cabin",
+            "kind": "group",
+            "bbox": {
+              "x": 0.69,
+              "y": 0.331,
+              "w": 0.605,
+              "h": 0.187
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Several orange oxygen-mask assemblies hang on hoses from ceiling panels."
+          },
+          {
+            "target_id": "b23_broken_window",
+            "label": "jagged broken left-center cabin window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.382,
+              "y": 0.438,
+              "w": 0.19,
+              "h": 0.19
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "The left-center window opening has clear irregular jagged edges around the pane area."
+          },
+          {
+            "target_id": "b23_airflow_streaks",
+            "label": "blue-green curved streaks across cabin",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.666,
+              "y": 0.278,
+              "w": 0.575,
+              "h": 0.335
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Multiple translucent blue and green curved lines sweep from the broken-window area toward the upper-right cabin."
+          },
+          {
+            "target_id": "b23_foreground_face",
+            "label": "foreground wigged passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.768,
+              "y": 0.594,
+              "w": 0.155,
+              "h": 0.118
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Wide-eyed orange face is framed by white curls and covered at the mouth and nose by a yellow mask."
+          },
+          {
+            "target_id": "b23_left_reaching_hand",
+            "label": "left passenger raised hand near broken window",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.462,
+              "y": 0.486,
+              "w": 0.055,
+              "h": 0.053
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "An open hand in front of a green sleeve reaches upward beside the damaged window."
+          },
+          {
+            "target_id": "b23_center_reaching_hand",
+            "label": "center passenger raised hand",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.668,
+              "y": 0.409,
+              "w": 0.053,
+              "h": 0.054
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "An open hand extends above the center seated passenger toward the overhead masks."
+          }
+        ],
+        "faces": [
+          "b23_foreground_face"
+        ],
+        "hands_or_actions": [
+          "b23_left_reaching_hand",
+          "b23_center_reaching_hand"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.012,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.988,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.012,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.988,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.752,
+              "y": 0.711,
+              "w": 0.392,
+              "h": 0.41
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.356,
+              "w": 0.55,
+              "h": 0.31
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.09,
+            "y": 0.178,
+            "w": 0.174,
+            "h": 0.286
+          },
+          {
+            "x": 0.167,
+            "y": 0.85,
+            "w": 0.245,
+            "h": 0.18
+          }
+        ],
+        "notes": "Full source is illustrated artwork with no blank caption card or embedded text visible. Preserve the broken-window silhouette, visible airflow streaks, hanging masks and lower-right masked face. The strongest screen flow runs from left-center toward upper right while reaching arms point upward.",
+        "media_sha256": "5fb0d034b54ea00ed653bb79e5cc9be9d22cc5b9cfecea4d37009ed290ed51eb"
+      },
+      {
+        "beat_id": 24,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-frame illustrated airplane cabin from a low upward angle. Multiple overhead storage compartments are visibly open, exposing hoses and equipment, while several orange oxygen masks hang downward. Multiple passengers in the middle and rear raise their arms. A large foreground passenger at lower right wears a yellow oxygen mask, white curled wig and black clothing. Clouds and a small airplane silhouette are visible through the windows.",
+        "visual_direction": "up",
+        "targets": [
+          {
+            "target_id": "b24_masks_group",
+            "label": "multiple hanging oxygen masks",
+            "kind": "group",
+            "bbox": {
+              "x": 0.493,
+              "y": 0.326,
+              "w": 0.911,
+              "h": 0.303
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Orange mask assemblies with pale mask cups hang from several ceiling positions across the cabin."
+          },
+          {
+            "target_id": "b24_open_overhead_bins",
+            "label": "open overhead compartments with exposed hoses",
+            "kind": "object",
+            "bbox": {
+              "x": 0.584,
+              "y": 0.135,
+              "w": 0.825,
+              "h": 0.25
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Large hinged overhead doors are open, revealing dark compartment interiors and gray hoses."
+          },
+          {
+            "target_id": "b24_foreground_face",
+            "label": "large foreground wigged passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.77,
+              "y": 0.604,
+              "w": 0.172,
+              "h": 0.118
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large wide-eyed orange face at lower right is surrounded by white curls and covered by a yellow oxygen mask."
+          },
+          {
+            "target_id": "b24_foreground_person",
+            "label": "foreground passenger in black clothing using oxygen mask",
+            "kind": "person",
+            "bbox": {
+              "x": 0.744,
+              "y": 0.728,
+              "w": 0.408,
+              "h": 0.445
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Seated lower-right figure wears black clothing, white neck tabs, white curled hair and a connected oxygen mask."
+          },
+          {
+            "target_id": "b24_reaching_hands_group",
+            "label": "passengers raising hands toward overhead masks",
+            "kind": "group",
+            "bbox": {
+              "x": 0.687,
+              "y": 0.416,
+              "w": 0.348,
+              "h": 0.184
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Several visible arms and open hands extend upward from the center and rear seats."
+          },
+          {
+            "target_id": "b24_aircraft_window_silhouette",
+            "label": "small airplane silhouette outside center-left window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.382,
+              "y": 0.401,
+              "w": 0.075,
+              "h": 0.025
+            },
+            "importance": "context",
+            "confidence": 0.96,
+            "visible_evidence": "A small dark side-view airplane shape appears against the pale sky through the center-left window."
+          },
+          {
+            "target_id": "b24_cloud_windows",
+            "label": "windows showing sky and cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.328,
+              "y": 0.467,
+              "w": 0.59,
+              "h": 0.355
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "Multiple windows visibly show blue-green sky bands and white cloud forms."
+          }
+        ],
+        "faces": [
+          "b24_foreground_face"
+        ],
+        "hands_or_actions": [
+          "b24_reaching_hands_group"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.012,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.988,
+              "w": 1.0,
+              "h": 0.024
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.012,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "frame_border",
+            "bbox": {
+              "x": 0.988,
+              "y": 0.5,
+              "w": 0.024,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.744,
+              "y": 0.728,
+              "w": 0.408,
+              "h": 0.445
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.493,
+              "y": 0.326,
+              "w": 0.911,
+              "h": 0.303
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.445,
+            "y": 0.881,
+            "w": 0.205,
+            "h": 0.18
+          },
+          {
+            "x": 0.104,
+            "y": 0.592,
+            "w": 0.16,
+            "h": 0.17
+          }
+        ],
+        "notes": "Full source is illustrated artwork with no blank caption card or embedded text visible. Preserve the open overhead compartments, dangling masks, raised hands and large lower-right masked face. The foreground face is oriented generally forward/up-left. No pilot or cockpit is visible; only a small exterior airplane silhouette appears through one window.",
+        "media_sha256": "5c0e0b862b92ef80e636f4b37efda3a652fdb53424cc8d812cc3f59bfb5315be"
+      }
+    ]
+  }
+}

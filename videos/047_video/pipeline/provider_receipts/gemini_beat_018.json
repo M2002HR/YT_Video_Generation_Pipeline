@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "a70886cd67a5a6e91753f6301c0a3061a65ae8953a7f412793951d7ec31ec0d2",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "f8539277-0f0e-4b6c-abed-92c095707452",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/62ff0f1552d8013a",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f8539277-0f0e-4b6c-abed-92c095707452_output_1.png 1536x2752 sha256=fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "a70886cd67a5a6e91753f6301c0a3061a65ae8953a7f412793951d7ec31ec0d2",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "f8539277-0f0e-4b6c-abed-92c095707452",
+        "prompt_sha256": "dd9bbdbcf7ca758078587c66ebea0a693a6b2db1e6d2b020193fb8f249820303",
+        "output_sha256": "fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/047_video/references/world_style_anchor.png",
+      "sha256": "1e52ce0a245bf312dbbf9e51d2ff97111ea178fc2a79278d6a37755b99c0f112"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/047_video/references/world_keyframe.png",
+      "sha256": "c3587e2a09b7be6a7794e6d03022082cf96c46d72a5a7984e52f059e004c66a2"
+    }
+  ],
+  "prompt_sha256": "dd9bbdbcf7ca758078587c66ebea0a693a6b2db1e6d2b020193fb8f249820303",
+  "prompt": "Create exactly one 9:16 full-bleed image inside the topic world: a crayon illustration of an aircraft cabin interior showing a medium frontal view of a seated passenger in a different cabin row, reacting to falling cabin pressure with a strained breathing posture, hands near the chest and a visibly labored expression. Use the style_reference to preserve the established crayon illustration medium, soft wax crayon grain, layered pigment buildup, uneven hand-drawn mark variation, bright atmospheric blues, cool greens, sandy yellows, warm oranges, cream highlights and earthy browns; use the world_keyframe only as the canonical anchor for overall world texture, palette, lighting and aircraft atmosphere, not for copying its composition or pose. Keep the broken window out of frame and focus on the human consequence of pressure loss, with subtle thinning expanding crayon atmosphere strokes around the face and shoulders, cooler tones suggesting reduced cabin pressure, clear high-altitude daylight filtering through the cabin and softly diffused interior light with restrained warm safety highlights. Maintain hand-drawn crayon contours with irregular edges and denser directional marks around airflow and pressure-change cues. Compose the passenger centrally with calm natural atmosphere reserved only in the bottom 8–10% for two subtitle lines, while keeping the face, hands and critical details above that area. The scene must extend naturally to all four edges with no enclosing page, border, card, panel, collage, grid, inset frame, doorway rim or decorative mask. Include no printed text, labels, medical symbols or readable writing anywhere in the image. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Reserve only the bottom 8-10% as calm natural scene atmosphere for two subtitle lines; keep faces, hands and critical details above it. Continue the scene edge-to-edge. No printed text, separate banner, page margin or UI panel.",
+  "output_path": "assets/raw_beats/beat_018.png",
+  "output_sha256": "fcb210183ca7de86333386e451cfa497c1eb8db28962f12723ca5890d0bee10c",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 108.349,
+  "completed_at": "2026-09-21T03:41:50Z"
+}

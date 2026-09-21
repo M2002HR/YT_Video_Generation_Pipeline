@@ -153,7 +153,7 @@
       "status": "ready",
       "path": "026_colorful_crayon_adaptation_world_001",
       "anchor": "026_colorful_crayon_adaptation_world_001/style_anchor.png",
-      "usage_count": 1
+      "usage_count": 2
     },
     {
       "style_id": "gravity_halfworld_dough_clay_001",
@@ -186,6 +186,17 @@
       "status": "ready",
       "path": "029_thermal_scale_papercut_anatomy_001",
       "anchor": "029_thermal_scale_papercut_anatomy_001/style_anchor.png",
+      "usage_count": 1
+    },
+    {
+      "style_id": "stratospheric_decompression_gouache_technical_001",
+      "display_name": "Stratospheric Decompression Gouache Technical 001",
+      "medium_family": "technical gouache illustration",
+      "texture_family": "matte layered gouache with softly granular pigment, controlled dry-brush airflow streaks, and subtle atmospheric diffusion",
+      "palette_summary": "deep midnight navy and cold stratospheric blue outside the aircraft, muted aviation gray and warm bone-white cabin structures, pale cyan for breathable pressurized air, restrained amber for oxygen-mask and human-safety cues, and sparse coral-red reserved for the rupture point and acute pressure hazard",
+      "status": "ready",
+      "path": "030_stratospheric_decompression_gouache_tech",
+      "anchor": "030_stratospheric_decompression_gouache_tech/style_anchor.png",
       "usage_count": 1
     }
   ]

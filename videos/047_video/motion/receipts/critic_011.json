@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "c050dc9b8abe80ca1451f5d84fd1e80fabea0b438aa1e14950cb8cbe2e02e2d7",
+  "job_ids": [
+    "c360e0ec-ac20-43cd-9300-a683818d89b5"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 22,
+        "shot_id": "b22_s01",
+        "code": "bad_crop",
+        "message": "The move tightens from 0.68 to 0.84 coverage on the overhead mask group, which overcommits to the ceiling cluster and risks losing the verified lower-right masked passenger and reaching-hand context that the inventory explicitly says to preserve."
+      },
+      {
+        "severity": "error",
+        "beat_id": 22,
+        "shot_id": "b22_s01",
+        "code": "face_risk",
+        "message": "The end framing centers high at y=0.33 while pushing tightly into the masks, creating unnecessary risk of cropping the verified foreground masked face at lower right during a beat whose inventory requires that face to remain readable."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 22,
+        "start": 25.56,
+        "end": 26.55,
+        "attention_story": [
+          "Cut decisively from the prior centered breathing consequence to a wider cabin composition on the spoken word Oxygen, with the verified hanging-mask group becoming the dominant upper-frame subject.",
+          "Use a restrained upward pan-push that strengthens attention on the masks without sacrificing the lower-right masked face or the passengers reaching toward the deployed equipment.",
+          "Settle briefly at the end so the mask deployment reads as a clear safety response before the sentence continues."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b22_s01",
+            "role": "primary",
+            "start": 25.56,
+            "end": 26.55,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b22_masks_group",
+                "coverage": 0.5,
+                "anchor_x": 0.58,
+                "anchor_y": 0.48
+              },
+              "end": {
+                "target_id": "b22_masks_group",
+                "coverage": 0.6,
+                "anchor_x": 0.62,
+                "anchor_y": 0.43
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.1,
+              "reason": "The narration names the oxygen masks, so attention redirects upward immediately, but the move remains wide enough to preserve the verified lower-right masked face and reaching passengers as supporting evidence of mask deployment."
+            },
+            "sync": {
+              "mode": "cut_on_word_start",
+              "word_id": "w_0053",
+              "word": "Oxygen",
+              "authoritative_start": 25.56,
+              "authoritative_end": 26.04
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b22_masks_group",
+          "coverage": 0.6,
+          "anchor_x": 0.62,
+          "anchor_y": 0.43,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The next beat continues the same sentence and safety-response sequence, so a hard cut maintains pace without spending a decorative transition."
+        }
+      }
+    ]
+  }
+}

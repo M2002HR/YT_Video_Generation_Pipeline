@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "9de799a1d7cddf53f5537e52b35283c4a78c87faded8c96fc0073c966d651ed7",
+  "job_ids": [
+    "1a2714a9-06a3-4194-8386-8434043e4adb"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 4,
+        "start": 11.275,
+        "end": 12.5,
+        "attention_story": [
+          "Keep attention on the verified airplane as the final exterior high-altitude context.",
+          "Use a restrained rightward follow that preserves the aircraft's verified travel direction, then cut cleanly into the cabin rupture."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b04_s01",
+            "role": "release",
+            "start": 11.275,
+            "end": 12.5,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b04_target_airplane",
+                "coverage": 0.74,
+                "anchor_x": 0.52,
+                "anchor_y": 0.29
+              },
+              "end": {
+                "target_id": "b04_target_airplane",
+                "coverage": 0.74,
+                "anchor_x": 0.56,
+                "anchor_y": 0.29
+              }
+            },
+            "motion": {
+              "type": "pan",
+              "easing": "gentle",
+              "start_delay": 0.0,
+              "end_hold": 0.12,
+              "reason": "Preserve the verified airplane's rightward directional continuity while giving the final exterior pressure context a controlled release before the abrupt cabin break."
+            },
+            "sync": {
+              "mode": "none"
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b04_target_airplane",
+          "coverage": 0.74,
+          "anchor_x": 0.56,
+          "anchor_y": 0.29,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "new_fact",
+          "reason": "The narration shifts from exterior pressure context to the causal cabin break, so a hard cut creates the intended rupture without decorative transition language."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

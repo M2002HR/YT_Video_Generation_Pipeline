@@ -1,0 +1,85 @@
+{
+  "audio_duration_seconds": 36.911,
+  "spark_start": 0.16,
+  "spark_end": 4.0,
+  "spark_duration": 3.84,
+  "transition_start": 5.06,
+  "transition_end": 7.6,
+  "transition_duration": 2.54,
+  "entry_segment": "book_transition",
+  "clip_a_target_seconds": 4.0,
+  "clip_b_target_seconds": 3.6,
+  "body_start": 8.52,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "Why is the rush of air strongest near a broken airplane window?",
+      "speech_start": 0.16,
+      "speech_end": 4.0,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "book_transition",
+      "narration": "Higher cabin pressure gives the key clue.",
+      "speech_start": 5.06,
+      "speech_end": 7.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Outside pressure is lower at high altitude.",
+      "speech_start": 8.52,
+      "speech_end": 11.24,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_02",
+      "narration": "A break lets cabin air rush out.",
+      "speech_start": 12.5,
+      "speech_end": 15.04,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "Airflow is strongest near the opening.",
+      "speech_start": 15.52,
+      "speech_end": 17.9,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "Farther away, the air may move much less.",
+      "speech_start": 18.78,
+      "speech_end": 21.22,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Pressure falls, making breathing harder.",
+      "speech_start": 22.02,
+      "speech_end": 24.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Oxygen masks may drop as pilots descend.",
+      "speech_start": 25.56,
+      "speech_end": 28.32,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "That sudden pressure loss is called rapid decompression.",
+      "speech_start": 29.52,
+      "speech_end": 33.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Comment your next airplane safety question.",
+      "speech_start": 34.16,
+      "speech_end": 36.36,
+      "match_confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "912f21c4586943554fd73896ad6ab3c760db373d26c45e681bcc30a5bd7b6dc7",
+  "job_ids": [
+    "a8c4bbad-1c0b-4954-b900-244f4f1d4ebd"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 13,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Image pixels were not available for visual inspection, so no scene elements can be verified without inventing them.",
+        "visual_direction": "none",
+        "targets": [
+          {
+            "target_id": "b13_source_canvas",
+            "label": "source image canvas",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            },
+            "importance": "context",
+            "confidence": 0.0,
+            "visible_evidence": "No inspectable image pixels were available in the attachment context."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [],
+        "notes": "Cannot verify artwork boundaries, blank panels, faces, hands, objects, gaze, or screen direction from pixels; scene details from the manifest were intentionally not treated as visual evidence.",
+        "media_sha256": "62ddbe953ce518b31be7456189e634d8f2d9256f7815b3e36080ab50a9e18da5"
+      },
+      {
+        "beat_id": 14,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Image pixels were not available for visual inspection, so no scene elements can be verified without inventing them.",
+        "visual_direction": "none",
+        "targets": [
+          {
+            "target_id": "b14_source_canvas",
+            "label": "source image canvas",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            },
+            "importance": "context",
+            "confidence": 0.0,
+            "visible_evidence": "No inspectable image pixels were available in the attachment context."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [],
+        "notes": "Cannot verify artwork boundaries, blank panels, faces, hands, objects, gaze, or screen direction from pixels; scene details from the manifest were intentionally not treated as visual evidence.",
+        "media_sha256": "ffe33a0fa3955f225dc1a7f92961f6752a2f29459486872b3fe6cc23374f1b95"
+      },
+      {
+        "beat_id": 15,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Image pixels were not available for visual inspection, so no scene elements can be verified without inventing them.",
+        "visual_direction": "none",
+        "targets": [
+          {
+            "target_id": "b15_source_canvas",
+            "label": "source image canvas",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            },
+            "importance": "context",
+            "confidence": 0.0,
+            "visible_evidence": "No inspectable image pixels were available in the attachment context."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [],
+        "notes": "Cannot verify artwork boundaries, blank panels, faces, hands, objects, gaze, or screen direction from pixels; scene details from the manifest were intentionally not treated as visual evidence.",
+        "media_sha256": "e67fdbae28c53f8e84373e75ea70e5b6b954eca760a039aa50d456669cf46f14"
+      }
+    ]
+  }
+}

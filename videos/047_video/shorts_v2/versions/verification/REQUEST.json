@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "editing_engine": "shorts_v2",
+  "settings": {
+    "schema_version": 1,
+    "design_version": "2.2",
+    "editing_engine": "shorts_v2",
+    "recipe_version": "shorts_v2.2-r1",
+    "voice": {
+      "tts_model": "eleven_v3",
+      "provider_model_label": "Eleven v3",
+      "transport": "elevenlabs_web",
+      "execution_mode": "expressive_v3",
+      "voice_id": null,
+      "voice_label": "Seer Morganna - Intimidating, and Clear",
+      "candidate_count": 1,
+      "manual_take_selection": false,
+      "profiles": {
+        "eleven_multilingual_v2": {
+          "speed": 0.9,
+          "stability": 0.3,
+          "similarity": 0.5,
+          "style": 0.15
+        },
+        "eleven_v3": {
+          "stability": 0.3,
+          "tag_palette": "minimal"
+        }
+      },
+      "manual_locks": {}
+    },
+    "quality": {
+      "media_review": "off",
+      "media_review_scope": "all_visual_assets",
+      "media_auto_corrections": 0,
+      "editorial_render_review": "off",
+      "audio_performance_review": "off",
+      "technical_validation": true,
+      "text_contract_review": true,
+      "editing_observation": "auto_once",
+      "observation_failure_policy": "safe_geometry_fallback",
+      "human_approval_required": false
+    },
+    "locks": {
+      "studio_product_controls": {
+        "rhythm_preset": "intense",
+        "hook_intensity": 1.0,
+        "body_intensity": 0.55,
+        "allow_pauses": true,
+        "allow_emphasis": true,
+        "v3_tag_palette": "minimal",
+        "hook_direction": "intense",
+        "burst_permission": true,
+        "hook_candidate_count": 6,
+        "history_policy": "semantic",
+        "shot_density": "dense",
+        "min_shot_seconds": 0.55,
+        "max_shot_seconds": 1.0,
+        "body_video": false
+      }
+    },
+    "test_fixture_mode": false
+  },
+  "request_fingerprint": "623584bef396f444e42ccce361bad5fef29928a05a5b94e78462ca1ee80c8ea4"
+}

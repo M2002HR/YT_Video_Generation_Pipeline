@@ -1,0 +1,420 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "beats": 30,
+  "micro_shots": 30,
+  "motion_distribution": {
+    "pan_push": 7,
+    "push_in": 5,
+    "pull_out": 4,
+    "pan": 1,
+    "hold": 10,
+    "settle": 2,
+    "pan_pull": 1
+  },
+  "edit_distribution": {
+    "establishing_cut": 4,
+    "match_position_cut": 12,
+    "reframe_cut": 5,
+    "cut": 9
+  },
+  "transition_distribution": {
+    "cut": 29
+  },
+  "average_micro_shot_duration": 0.976,
+  "min_micro_shot_duration": 0.648,
+  "max_micro_shot_duration": 1.479,
+  "average_visual_event_interval": 0.976,
+  "still_hold_percentage": 28.68,
+  "synced_event_count": 18,
+  "sync_coverage_percent": 60.0,
+  "repeated_motion_streak": 2,
+  "decorative_transition_fraction": 0.0,
+  "average_camera_distance": 0.0255,
+  "maximum_camera_distance": 0.1662,
+  "average_zoom_range": 0.0796,
+  "maximum_zoom": 1.32,
+  "non_hold_noop_count": 3,
+  "input_fingerprint": "b1b9ce7426cc0716b16c63abafd307eb44e3a501e91eccdfdf6607d8bd3d948c",
+  "target_correction_count": 27,
+  "unsafe_target_count": 0,
+  "target_corrections": [
+    {
+      "beat_id": 1,
+      "shot_id": "b01_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 2,
+      "shot_id": "b02_s01",
+      "corrections": [
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 3,
+      "shot_id": "b03_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 4,
+      "shot_id": "b04_s01",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 5,
+      "shot_id": "b05_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 6,
+      "shot_id": "b06_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "subject_horizontal_edge_protected",
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 9,
+      "shot_id": "b09_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 10,
+      "shot_id": "b10_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 11,
+      "shot_id": "b11_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 12,
+      "shot_id": "b12_s01",
+      "corrections": [
+        "zoom_limited"
+      ]
+    },
+    {
+      "beat_id": 16,
+      "shot_id": "b16_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 17,
+      "shot_id": "b17_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 18,
+      "shot_id": "b18_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 19,
+      "shot_id": "b19_s01",
+      "corrections": [
+        "zoom_limited",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 20,
+      "shot_id": "b20_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 21,
+      "shot_id": "b21_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 22,
+      "shot_id": "b22_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 23,
+      "shot_id": "b23_s01",
+      "corrections": [
+        "zoom_limited",
+        "subject_horizontal_edge_protected",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 24,
+      "shot_id": "b24_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 25,
+      "shot_id": "b25_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    },
+    {
+      "beat_id": 26,
+      "shot_id": "b26_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "zoom_limited",
+        "subject_horizontal_edge_protected"
+      ]
+    },
+    {
+      "beat_id": 27,
+      "shot_id": "b27_s01",
+      "corrections": [
+        "zoom_limited",
+        "subject_horizontal_edge_protected",
+        "minimum_push_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 28,
+      "shot_id": "b28_s01",
+      "corrections": [
+        "zoom_limited",
+        "subject_horizontal_edge_protected"
+      ]
+    },
+    {
+      "beat_id": 29,
+      "shot_id": "b29_s01",
+      "corrections": [
+        "viewport_clamped_to_artwork",
+        "minimum_pull_shape_enforced"
+      ]
+    },
+    {
+      "beat_id": 30,
+      "shot_id": "b30_s01",
+      "corrections": [
+        "zoom_limited",
+        "viewport_clamped_to_artwork"
+      ]
+    }
+  ],
+  "visual_events_per_minute": 48.77,
+  "hard_cut_count": 29,
+  "transition_count": 0,
+  "face_detector": {
+    "provider": "mediapipe",
+    "available": false,
+    "required": false
+  },
+  "critic_approved": true,
+  "critic_original_approved": false,
+  "critic_issues": [
+    {
+      "severity": "error",
+      "beat_id": 6,
+      "shot_id": "b06_s01",
+      "code": "repetition",
+      "message": "Beat 6 repeats the same rightward pan-push trajectory used immediately in beat 5. The reset from beat 5's airflow framing to the left-side passenger group and subsequent move back toward airflow creates mechanical camera repetition instead of the directed contrast between left- and right-positioned broken windows called for in the episode direction."
+    },
+    {
+      "severity": "error",
+      "beat_id": 6,
+      "shot_id": "b06_s01",
+      "code": "unmotivated_cut",
+      "message": "The beat-boundary reframe to the passenger group is a weak semantic detour: the narration is continuing the pressure-loss phrase, while the verified right-side broken window is the stronger causal subject. Cutting to passengers only to leave them 0.425 seconds later wastes the short beat and unnecessarily churns face attention."
+    },
+    {
+      "severity": "error",
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "code": "face_risk",
+      "message": "The move tightens from 0.78 to 0.62 coverage while anchoring progressively rightward on the broken window, which can crop out the verified left-side passenger faces despite the inventory explicitly requiring those faces and the complete window rim to be preserved."
+    },
+    {
+      "severity": "error",
+      "beat_id": 7,
+      "shot_id": "b07_s01",
+      "code": "bad_crop",
+      "message": "The 0.62 end coverage is unnecessarily aggressive for image_zoom_strength 0.14 and risks isolating the opening at the expense of the verified full cabin relationship. The rush-out emphasis can be preserved with a restrained rightward pan-push that keeps both the passengers and complete opening visible."
+    },
+    {
+      "severity": "error",
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "code": "bad_crop",
+      "message": "The 0.74 coverage centered near the airflow path risks clipping both the left edge of the complete jagged opening and the right foreground woman's face or hands. Inventory specifically requires the complete opening, foreground face, both hands, and loose sheets to survive the crop."
+    },
+    {
+      "severity": "error",
+      "beat_id": 8,
+      "shot_id": "b08_s01",
+      "code": "unmotivated_cut",
+      "message": "After beat 7 settles on the right-side opening, the reframe cut lands only on the generic airflow field instead of exploiting the directed left-versus-right broken-window contrast prescribed for beats 5-8. A broad hard cut that clearly establishes the verified left opening gives the silent beat a stronger narrative purpose."
+    },
+    {
+      "severity": "error",
+      "beat_id": 9,
+      "shot_id": "b09_s01",
+      "code": "bad_sync",
+      "message": "The shot resolves onto the broken window during “Airflow is,” before the spatial qualifier “near.” This spends the opening-location emphasis early instead of letting the airflow field carry the setup into the next beat."
+    },
+    {
+      "severity": "error",
+      "beat_id": 9,
+      "shot_id": "b09_s01",
+      "code": "bad_crop",
+      "message": "The 0.58 end coverage centered on the right-center window risks excluding much of the verified hanging oxygen-mask group and fabric that the inventory explicitly says to retain in the crop."
+    },
+    {
+      "severity": "error",
+      "beat_id": 10,
+      "shot_id": "b10_s01",
+      "code": "repetition",
+      "message": "This repeats the preceding beat's same airflow-to-window rightward pan-push trajectory, creating a visible reset-and-repeat pattern instead of one progressively developing explanatory phrase."
+    },
+    {
+      "severity": "error",
+      "beat_id": 10,
+      "shot_id": "b10_s01",
+      "code": "face_risk",
+      "message": "The 0.52 end coverage anchored toward the far-right opening risks cropping both verified left-side passenger faces despite the inventory instruction to preserve them as secondary airflow evidence."
+    },
+    {
+      "severity": "error",
+      "beat_id": 10,
+      "shot_id": "b10_s01",
+      "code": "bad_sync",
+      "message": "The beat begins exactly on emphasized word w_0036 “strongest,” but its only explicit sync is assigned to non-emphasis word “near.” The entry cut should carry the “strongest” emphasis while the delayed motion can still begin at 16.700 on “near.”"
+    },
+    {
+      "severity": "error",
+      "beat_id": 16,
+      "shot_id": "b16_s01",
+      "code": "unmotivated_cut",
+      "message": "The match_position_cut is not supportable because beat 15 has no inspectable pixels, so positional correspondence into the centered passenger rows cannot be verified; it also conflicts with beat 15's declared plain cut transition_out. Use a standard continuity cut and retain the wide hold."
+    },
+    {
+      "severity": "error",
+      "beat_id": 17,
+      "shot_id": "b17_s01",
+      "code": "transition_spam",
+      "message": "The 0.28s dissolve into beat 18 contradicts the stated decisive cut on the emphasized word 'Pressure' and spends dissolve language on an explanation-to-consequence shift rather than a consequence-to-reflection transition."
+    },
+    {
+      "severity": "error",
+      "beat_id": 18,
+      "shot_id": "b18_s01",
+      "code": "transition_spam",
+      "message": "A second consecutive 0.28s dissolve continues effect-first boundary treatment through the breathing-difficulty passage, where the direction calls for reduced motion complexity, fewer transitions, and stable emotional emphasis."
+    },
+    {
+      "severity": "error",
+      "beat_id": 19,
+      "shot_id": "b19_s01",
+      "code": "bad_crop",
+      "message": "The endpoint commits to the passenger face at 0.68 coverage, which is too tight for the verified inventory note requiring enough upper frame for the hanging masks and enough left cabin wall for window context; it also risks losing part of the two-hand chest posture that carries the breathing-distress meaning."
+    },
+    {
+      "severity": "error",
+      "beat_id": 20,
+      "shot_id": "b20_s01",
+      "code": "repetition",
+      "message": "A second consecutive push-in immediately after beat 19 creates a repeated inward trajectory across the breathing-difficulty passage. This section is explicitly directed to slow perceptibly with holds, subtle movement and fewer motion events; the match-position cut already supplies the necessary emphasis before 'harder.'"
+    },
+    {
+      "severity": "error",
+      "beat_id": 22,
+      "shot_id": "b22_s01",
+      "code": "bad_crop",
+      "message": "The move tightens from 0.68 to 0.84 coverage on the overhead mask group, which overcommits to the ceiling cluster and risks losing the verified lower-right masked passenger and reaching-hand context that the inventory explicitly says to preserve."
+    },
+    {
+      "severity": "error",
+      "beat_id": 22,
+      "shot_id": "b22_s01",
+      "code": "face_risk",
+      "message": "The end framing centers high at y=0.33 while pushing tightly into the masks, creating unnecessary risk of cropping the verified foreground masked face at lower right during a beat whose inventory requires that face to remain readable."
+    },
+    {
+      "severity": "error",
+      "beat_id": 24,
+      "shot_id": "b24_s01",
+      "code": "bad_sync",
+      "message": "The movement is timed correctly to “descend,” but the downward-left pan literalizes the word by abandoning the verified primary oxygen-mask group for contextual cloud windows. Whole-episode direction explicitly calls for oxygen masks to remain dominant through beats 22-25 and for the image to settle as pilots descending is spoken."
+    },
+    {
+      "severity": "error",
+      "beat_id": 25,
+      "shot_id": "b25_s01",
+      "code": "transition_spam",
+      "message": "The 0.28s dissolve is not motivated by the episode transition philosophy: this boundary moves from the settled oxygen-mask consequence into the causal terminology setup, not from consequence into reflection. It also softens the clean explanatory reset requested for beats 26-28 and conflicts with the following beat's establishing cut. Preserve the hold, then use a hard cut."
+    },
+    {
+      "severity": "error",
+      "beat_id": 27,
+      "shot_id": "b27_s01",
+      "code": "transition_spam",
+      "message": "The outgoing dissolve conflicts with beat 28's match_position_cut on the same boundary, creating two competing transition instructions. The verified broken windows already occupy closely matched right-side positions, so one clean match-position hard cut is stronger, preserves the reveal, and follows the episode's minimal-transition philosophy."
+    }
+  ],
+  "speech_end": 36.36,
+  "visual_tail_seconds": 0.551,
+  "tail_has_meaningful_motion": false
+}

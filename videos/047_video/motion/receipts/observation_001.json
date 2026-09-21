@@ -1,0 +1,233 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "5b6fcf34698132e948f974c5030da4972efe46c6cdce89dcf01ccbf3220d90ad",
+  "job_ids": [
+    "80558711-6c42-4804-bf31-02b819b6e143"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 1,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed crayon illustration of a passenger airplane flying diagonally across a large blue sky above a thick layer of clouds. The aircraft is the main visible subject in the upper half, with open sky and cloud layers below.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b01_target_airplane",
+            "label": "passenger airplane",
+            "kind": "object",
+            "bbox": {
+              "x": 0.52,
+              "y": 0.29,
+              "w": 0.7,
+              "h": 0.17
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large jet aircraft with wings, fuselage, engines, and tail visibly drawn in the sky."
+          },
+          {
+            "target_id": "b01_target_cloud_layer",
+            "label": "cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.74,
+              "w": 1.0,
+              "h": 0.35
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Thick white and beige cloud formations fill the lower portion of the image."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.14,
+              "w": 0.8,
+              "h": 0.22
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.95,
+              "w": 1.0,
+              "h": 0.1
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.12,
+            "w": 0.8,
+            "h": 0.2
+          }
+        ],
+        "notes": "Keep the airplane as the attention anchor; avoid covering the open sky area or the aircraft with overlays.",
+        "media_sha256": "2a4d9de1a7d4b89c90902fcab57101933f5b02bd8eeb143c3278433614119ec5"
+      },
+      {
+        "beat_id": 2,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed crayon illustration matching the exterior aircraft view. A passenger jet occupies the upper-middle area against sparse blue atmospheric strokes, with clouds across the lower section.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b02_target_airplane",
+            "label": "passenger airplane",
+            "kind": "object",
+            "bbox": {
+              "x": 0.51,
+              "y": 0.29,
+              "w": 0.68,
+              "h": 0.16
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Visible commercial aircraft with nose pointing right, wings and engines clearly outlined."
+          },
+          {
+            "target_id": "b02_target_cloud_layer",
+            "label": "cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.76,
+              "w": 1.0,
+              "h": 0.33
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Large cloud bank is visibly drawn below the airplane."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.12,
+              "w": 0.8,
+              "h": 0.2
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.95,
+              "w": 1.0,
+              "h": 0.1
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.45,
+            "y": 0.16,
+            "w": 0.7,
+            "h": 0.18
+          }
+        ],
+        "notes": "Maintain the diagonal flight composition; the sky is open negative space around the aircraft.",
+        "media_sha256": "26654831a5f5973a99df542afe3bd9252914879324b7257ba6d49237c7d3abb6"
+      },
+      {
+        "beat_id": 3,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed crayon illustration of a passenger jet cruising above clouds. The airplane appears smaller and more centered in a broad blue sky, with a large cloud layer along the bottom.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b03_target_airplane",
+            "label": "passenger airplane",
+            "kind": "object",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.28,
+              "w": 0.42,
+              "h": 0.11
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Small but clearly visible jet silhouette with fuselage, wings, engines, and tail."
+          },
+          {
+            "target_id": "b03_target_cloud_layer",
+            "label": "cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.78,
+              "w": 1.0,
+              "h": 0.3
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Cloud formations visibly occupy the lower part of the illustration."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.12,
+              "w": 0.9,
+              "h": 0.22
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.95,
+              "w": 1.0,
+              "h": 0.1
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.5,
+            "y": 0.16,
+            "w": 0.8,
+            "h": 0.25
+          }
+        ],
+        "notes": "The wide sky framing creates emphasis on altitude and distance; avoid placing text over the airplane.",
+        "media_sha256": "a6a1ba62ec2f552582c396cad5fdfe5b1d928cfea4d82593cc53d7f6545a2859"
+      }
+    ]
+  }
+}

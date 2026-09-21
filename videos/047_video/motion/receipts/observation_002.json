@@ -1,0 +1,320 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "b37f1670edb5f2032ea8d711b2a03ff1a43463451a79e0caef8b82f2fe615efa",
+  "job_ids": [
+    "5c50cf10-f86e-442e-97c8-fdf5316341c4"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 4,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed crayon illustration of a passenger airplane flying diagonally above a thick cloud layer in a large blue sky. The aircraft is the main visible subject in the upper-middle area, with expansive open atmosphere and clouds below.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b04_target_airplane",
+            "label": "passenger airplane",
+            "kind": "object",
+            "bbox": {
+              "x": 0.52,
+              "y": 0.29,
+              "w": 0.43,
+              "h": 0.13
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Single large airplane with wings, fuselage, tail, and engines visible above clouds."
+          },
+          {
+            "target_id": "b04_target_cloud_layer",
+            "label": "cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.72,
+              "w": 0.95,
+              "h": 0.22
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Thick pale cloud formations occupy the lower portion of the image."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.12,
+              "w": 0.95,
+              "h": 0.2
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.94,
+              "w": 0.9,
+              "h": 0.08
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.55",
+            "y": "0.48",
+            "w": "0.55",
+            "h": "0.35"
+          }
+        ],
+        "notes": "Keep airplane as focal point; avoid adding motion over open sky and cloud texture.",
+        "media_sha256": "168f47593ad3acc2133dc71934b18e4ee2011eb9692049b934a2b2d3103e5501"
+      },
+      {
+        "beat_id": 5,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Interior aircraft cabin crayon illustration viewed from an angled perspective. A damaged orange-trimmed side window dominates the left side with airflow strokes and loose objects moving outward; passengers and seats appear farther back on the right.",
+        "visual_direction": "left",
+        "targets": [
+          {
+            "target_id": "b05_target_broken_window",
+            "label": "broken airplane window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.23,
+              "y": 0.4,
+              "w": 0.25,
+              "h": 0.38
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large irregular window opening with cracked edges and orange trim visible on cabin wall."
+          },
+          {
+            "target_id": "b05_target_airflow",
+            "label": "airflow strokes exiting window",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.48,
+              "y": 0.48,
+              "w": 0.48,
+              "h": 0.22
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Multiple white and blue directional strokes extend from the broken window toward the cabin."
+          },
+          {
+            "target_id": "b05_target_passenger_group",
+            "label": "passengers in cabin",
+            "kind": "group",
+            "bbox": {
+              "x": 0.78,
+              "y": 0.45,
+              "w": 0.25,
+              "h": 0.35
+            },
+            "importance": "secondary",
+            "confidence": 0.9,
+            "visible_evidence": "Several seated people are visible farther back on the right side of the cabin."
+          },
+          {
+            "target_id": "b05_target_loose_objects",
+            "label": "loose papers and small objects",
+            "kind": "object",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.46,
+              "w": 0.3,
+              "h": 0.25
+            },
+            "importance": "secondary",
+            "confidence": 0.85,
+            "visible_evidence": "Small paper-like shapes and fabric pieces appear caught in airflow."
+          }
+        ],
+        "faces": [
+          "b05_target_passenger_group"
+        ],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.05,
+              "y": 0.9,
+              "w": 0.9,
+              "h": 0.08
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.94,
+              "w": 0.9,
+              "h": 0.08
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.15",
+            "y": "0.1",
+            "w": "0.25",
+            "h": "0.18"
+          }
+        ],
+        "notes": "Prioritize broken window and airflow direction; do not invent additional damage or objects.",
+        "media_sha256": "3bb5f0346c573607d84157a3d5e606ca5abaf37551f47615981d84eb3d6436d4"
+      },
+      {
+        "beat_id": 6,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Interior aircraft cabin scene with a large broken side window on the right, strong airflow strokes crossing the cabin, loose objects, and a row of seated passengers on the left side.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b06_target_broken_window",
+            "label": "broken airplane window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.79,
+              "y": 0.35,
+              "w": 0.22,
+              "h": 0.3
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Large jagged window opening with blue sky visible outside and cracked edges."
+          },
+          {
+            "target_id": "b06_target_airflow",
+            "label": "airflow stream",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.55,
+              "y": 0.45,
+              "w": 0.7,
+              "h": 0.22
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Blue and green directional strokes travel across the cabin toward the broken window."
+          },
+          {
+            "target_id": "b06_target_passenger_group",
+            "label": "seated passengers",
+            "kind": "group",
+            "bbox": {
+              "x": 0.22,
+              "y": 0.34,
+              "w": 0.32,
+              "h": 0.32
+            },
+            "importance": "secondary",
+            "confidence": 0.93,
+            "visible_evidence": "Multiple seated people are visible in rows on the left side."
+          },
+          {
+            "target_id": "b06_target_loose_objects",
+            "label": "loose papers and debris",
+            "kind": "object",
+            "bbox": {
+              "x": 0.48,
+              "y": 0.5,
+              "w": 0.28,
+              "h": 0.2
+            },
+            "importance": "secondary",
+            "confidence": 0.87,
+            "visible_evidence": "Several small paper-like shapes are floating along the airflow path."
+          }
+        ],
+        "faces": [
+          "b06_target_passenger_group"
+        ],
+        "hands_or_actions": [],
+        "forbidden_regions": [
+          {
+            "type": "blank",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          },
+          {
+            "type": "low_detail",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.92,
+              "w": 0.9,
+              "h": 0.08
+            }
+          },
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.94,
+              "w": 0.9,
+              "h": 0.08
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": "0.1",
+            "y": "0.85",
+            "w": "0.35",
+            "h": "0.12"
+          }
+        ],
+        "notes": "Maintain the visual relationship between passengers, airflow direction, and window opening; avoid adding unseen actions.",
+        "media_sha256": "a2c91f116ca30997567da4ab93a6ac7bab86aa2f40dd7cba1d50289724a1f166"
+      }
+    ]
+  }
+}

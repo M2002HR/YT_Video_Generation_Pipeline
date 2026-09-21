@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "aspect_ratio": "9:16",
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "video": {
+    "codec": "libx264",
+    "preset": "medium",
+    "crf": 18,
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "192k"
+  },
+  "resource_limits": {
+    "ffmpeg_threads": 2,
+    "filter_threads": 2,
+    "filter_complex_threads": 2
+  },
+  "motion": {
+    "enabled": true,
+    "strength": 0.14,
+    "supersample": 2,
+    "cycle": [
+      "zoom_in"
+    ],
+    "image_zoom_policy": "push_in_except_final_pull_out"
+  },
+  "transitions": {
+    "image_beat_style": "cut_fade_dissolve",
+    "image_beat_seconds": 0.28,
+    "opening_to_image_type": "fade",
+    "opening_to_image_seconds": 0.28,
+    "default_type": "fade",
+    "default_seconds": 0.28,
+    "ai_selection_enabled": false,
+    "manual_overrides": []
+  },
+  "subtitles": {
+    "enabled": false,
+    "font_name": "Roboto",
+    "font_size": 56,
+    "bold": true,
+    "outline": 3.0,
+    "shadow": 0,
+    "max_words_per_cue": 6,
+    "max_chars_per_line": 34,
+    "max_lines": 2,
+    "word_highlight": {
+      "enabled": true,
+      "active_colour": "&H0000D7FF",
+      "inactive_colour": "&H00F5F5F5",
+      "outline_colour": "&H00130D09"
+    },
+    "italic": false,
+    "position": "standard",
+    "custom_offset_value": 10.0,
+    "custom_offset_unit": "percent",
+    "font_colour": "#FFFFFF",
+    "outline_colour": "#000000"
+  },
+  "branding": {
+    "logo": {
+      "enabled": false,
+      "source": "",
+      "sha256": "",
+      "position": "top_right",
+      "width_percent": 14.0,
+      "opacity": 1.0,
+      "margin_x_percent": 3.0,
+      "margin_y_percent": 2.5,
+      "custom_x_percent": 85.0,
+      "custom_y_percent": 10.0
+    },
+    "title": {
+      "enabled": true,
+      "text": "اگر پنجره هواپیما در ارتفاع بالا ناگهان بشکند، دقیقاً چه اتفاقی می‌افتد؟",
+      "position": "below_logo",
+      "font_name": "Roboto",
+      "font_size": 38,
+      "bold": true,
+      "italic": false,
+      "text_align": "right",
+      "max_characters_per_line": 42,
+      "line_spacing": 6.0,
+      "max_width_percent": 34.0,
+      "margin_x_percent": 3.0,
+      "margin_y_percent": 2.5,
+      "logo_gap_percent": 1.0,
+      "custom_x_percent": 80.0,
+      "custom_y_percent": 18.0,
+      "font_colour": "#FFFFFF",
+      "outline_colour": "#000000",
+      "outline": 2.0
+    },
+    "watermark": {
+      "enabled": false,
+      "text": "",
+      "position": "bottom_right",
+      "font_name": "Roboto",
+      "font_size": 28,
+      "opacity": 0.72,
+      "bold": true,
+      "italic": false,
+      "text_align": "right",
+      "max_words_per_line": 7,
+      "line_spacing": 6.0,
+      "max_width_percent": 34.0,
+      "margin_x_percent": 3.0,
+      "margin_y_percent": 2.5,
+      "logo_gap_percent": 1.0,
+      "custom_x_percent": 80.0,
+      "custom_y_percent": 88.0,
+      "font_colour": "#FFFFFF",
+      "outline_colour": "#000000",
+      "outline": 2.0
+    }
+  }
+}

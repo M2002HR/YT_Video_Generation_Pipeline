@@ -1,0 +1,487 @@
+{
+  "schema_version": 2,
+  "stage": "observation",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "39da3d4ea021f7ba7ad82b21de57eae10f24e5c17dcc4cbb3da2dccb402bef4a",
+  "job_ids": [
+    "5f069230-105a-449f-9e2a-9baf175ca9b8"
+  ],
+  "response": {
+    "schema_version": 2,
+    "beats": [
+      {
+        "beat_id": 25,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed illustrated airplane cabin viewed upward along the left-side windows and overhead bins. Multiple yellow oxygen masks hang from opened overhead units. Several background passengers raise their arms toward masks. A seated robed figure with a large gray curled wig occupies the lower-right and is visibly wearing an oxygen mask. Clouds are visible through the cabin windows.",
+        "visual_direction": "up",
+        "targets": [
+          {
+            "target_id": "b25_masked_face",
+            "label": "seated gray-wigged figure's visible face behind oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.742,
+              "y": 0.616,
+              "w": 0.166,
+              "h": 0.164
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Two wide eyes and orange facial area are visible inside the gray wig, with a mask covering the nose and mouth."
+          },
+          {
+            "target_id": "b25_worn_oxygen_mask",
+            "label": "oxygen mask worn by seated lower-right figure",
+            "kind": "object",
+            "bbox": {
+              "x": 0.756,
+              "y": 0.656,
+              "w": 0.135,
+              "h": 0.132
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "A translucent orange oxygen mask with dark strap is visibly fitted over the figure's nose and mouth."
+          },
+          {
+            "target_id": "b25_large_hanging_masks",
+            "label": "two large deployed oxygen masks hanging at upper-left",
+            "kind": "group",
+            "bbox": {
+              "x": 0.252,
+              "y": 0.278,
+              "w": 0.378,
+              "h": 0.197
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Two large yellow mask bags with pale mask cups hang on hoses below the overhead panel."
+          },
+          {
+            "target_id": "b25_right_mask_row",
+            "label": "additional deployed oxygen masks along upper-right cabin",
+            "kind": "group",
+            "bbox": {
+              "x": 0.799,
+              "y": 0.343,
+              "w": 0.388,
+              "h": 0.151
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Several smaller yellow oxygen-mask assemblies visibly hang in a row toward the rear."
+          },
+          {
+            "target_id": "b25_reaching_hands",
+            "label": "passengers reaching upward toward hanging masks",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.73,
+              "y": 0.424,
+              "w": 0.329,
+              "h": 0.168
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "Multiple raised arms and open hands are visibly extended upward beneath the masks."
+          },
+          {
+            "target_id": "b25_seated_masked_person",
+            "label": "seated robed gray-wigged person at lower-right",
+            "kind": "person",
+            "bbox": {
+              "x": 0.711,
+              "y": 0.716,
+              "w": 0.399,
+              "h": 0.507
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "A full seated figure in a black robe, white neck tabs, gray curled wig, and oxygen mask is clearly visible."
+          },
+          {
+            "target_id": "b25_cloud_windows",
+            "label": "cabin windows showing blue sky and cloud layer",
+            "kind": "context",
+            "bbox": {
+              "x": 0.3,
+              "y": 0.484,
+              "w": 0.6,
+              "h": 0.34
+            },
+            "importance": "context",
+            "confidence": 0.97,
+            "visible_evidence": "Several left-side windows visibly show blue sky and pale clouds outside."
+          }
+        ],
+        "faces": [
+          "b25_masked_face"
+        ],
+        "hands_or_actions": [
+          "b25_reaching_hands",
+          "b25_worn_oxygen_mask"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.493,
+            "y": 0.897,
+            "w": 0.348,
+            "h": 0.206
+          }
+        ],
+        "notes": "Full-frame artwork with no blank caption card or embedded text. Preserve the hanging masks across the upper frame and the seated masked figure at lower-right; the pale lower-center aisle is the least detailed area.",
+        "media_sha256": "6d6f27a42fb36d78567f5cce9b38bb9ed25166db1692f6ef80c6daf3f2682c22"
+      },
+      {
+        "beat_id": 26,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed illustrated airplane cabin looking down the central aisle. Rows of seated passengers visibly hold oxygen masks to their faces. Several small suspended oxygen units hang from the ceiling. At the far end, a jagged broken window is surrounded by bright radiating lines, with clouds and a small airplane shape visible through the opening.",
+        "visual_direction": "center",
+        "targets": [
+          {
+            "target_id": "b26_broken_window",
+            "label": "jagged broken window at rear of cabin",
+            "kind": "object",
+            "bbox": {
+              "x": 0.799,
+              "y": 0.355,
+              "w": 0.151,
+              "h": 0.147
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "A bright rear window has a clearly jagged, irregular opening around its edges."
+          },
+          {
+            "target_id": "b26_airflow_rays",
+            "label": "radiating airflow-like lines around rear broken window",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.781,
+              "y": 0.365,
+              "w": 0.438,
+              "h": 0.251
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Numerous pale blue and warm radial strokes visibly converge around the broken rear opening."
+          },
+          {
+            "target_id": "b26_left_masked_face",
+            "label": "foreground-left passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.161,
+              "y": 0.5,
+              "w": 0.164,
+              "h": 0.134
+            },
+            "importance": "secondary",
+            "confidence": 0.98,
+            "visible_evidence": "Foreground-left passenger has closed eyes and a pale green oxygen mask covering nose and mouth."
+          },
+          {
+            "target_id": "b26_left_hand_on_mask",
+            "label": "foreground-left passenger hand holding oxygen mask",
+            "kind": "hand",
+            "bbox": {
+              "x": 0.158,
+              "y": 0.548,
+              "w": 0.119,
+              "h": 0.091
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "The passenger's raised hand visibly grips the lower edge of the mask."
+          },
+          {
+            "target_id": "b26_center_masked_face",
+            "label": "center-left seated passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.393,
+              "y": 0.445,
+              "w": 0.129,
+              "h": 0.126
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "A brown-haired passenger near the aisle visibly has a green mask over the lower face."
+          },
+          {
+            "target_id": "b26_right_masked_face",
+            "label": "foreground-right passenger face wearing oxygen mask",
+            "kind": "face",
+            "bbox": {
+              "x": 0.929,
+              "y": 0.535,
+              "w": 0.142,
+              "h": 0.137
+            },
+            "importance": "secondary",
+            "confidence": 0.97,
+            "visible_evidence": "The partially cropped foreground-right passenger visibly presses a green mask to the face."
+          },
+          {
+            "target_id": "b26_masked_passenger_group",
+            "label": "rows of seated passengers using oxygen masks",
+            "kind": "group",
+            "bbox": {
+              "x": 0.511,
+              "y": 0.491,
+              "w": 0.958,
+              "h": 0.387
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple seated passengers on both sides of the aisle visibly wear or hold pale green oxygen masks."
+          },
+          {
+            "target_id": "b26_hanging_oxygen_units",
+            "label": "three suspended oxygen units above left-center aisle",
+            "kind": "group",
+            "bbox": {
+              "x": 0.407,
+              "y": 0.336,
+              "w": 0.383,
+              "h": 0.171
+            },
+            "importance": "secondary",
+            "confidence": 0.96,
+            "visible_evidence": "Three pale bag-like units hang vertically on dark lines from the overhead area."
+          },
+          {
+            "target_id": "b26_small_plane_shape",
+            "label": "small airplane shape visible through rear opening",
+            "kind": "object",
+            "bbox": {
+              "x": 0.8,
+              "y": 0.337,
+              "w": 0.08,
+              "h": 0.041
+            },
+            "importance": "context",
+            "confidence": 0.91,
+            "visible_evidence": "A small side-view airplane drawing is visibly centered against the blue area beyond the jagged opening."
+          },
+          {
+            "target_id": "b26_center_aisle",
+            "label": "long central cabin aisle",
+            "kind": "place",
+            "bbox": {
+              "x": 0.558,
+              "y": 0.737,
+              "w": 0.352,
+              "h": 0.477
+            },
+            "importance": "context",
+            "confidence": 0.99,
+            "visible_evidence": "A broad tan and pale-blue aisle runs unobstructed from the foreground toward the rear window."
+          }
+        ],
+        "faces": [
+          "b26_left_masked_face",
+          "b26_center_masked_face",
+          "b26_right_masked_face"
+        ],
+        "hands_or_actions": [
+          "b26_left_hand_on_mask",
+          "b26_masked_passenger_group",
+          "b26_airflow_rays"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.558,
+            "y": 0.781,
+            "w": 0.327,
+            "h": 0.394
+          }
+        ],
+        "notes": "Full-frame artwork with no visible caption panel or embedded text. The strongest attention anchor is the illuminated jagged rear opening; maintain enough width to retain masked passengers on both sides. The lower central aisle is comparatively low-detail.",
+        "media_sha256": "def7cc6b451628836e8756c74e61dab444853a01c85676120b19f8a8fa1cdcdf"
+      },
+      {
+        "beat_id": 27,
+        "artwork_region": {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 1.0,
+          "h": 1.0
+        },
+        "composition_summary": "Full-bleed illustrated airplane cabin with mostly empty seats. Several yellow oxygen masks hang from the overhead panels along the left and center. Colored curved streaks sweep across the cabin toward a jagged broken window on the right, where blue sky and clouds are visible. Only small partial passenger heads appear far in the background.",
+        "visual_direction": "right",
+        "targets": [
+          {
+            "target_id": "b27_broken_window",
+            "label": "jagged broken right-side airplane window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.869,
+              "y": 0.428,
+              "w": 0.177,
+              "h": 0.181
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "The right-side window has a clearly irregular broken perimeter opening onto blue sky and clouds."
+          },
+          {
+            "target_id": "b27_airflow_streaks",
+            "label": "curved colored airflow-like streaks sweeping toward broken window",
+            "kind": "detail",
+            "bbox": {
+              "x": 0.647,
+              "y": 0.433,
+              "w": 0.487,
+              "h": 0.31
+            },
+            "importance": "primary",
+            "confidence": 0.98,
+            "visible_evidence": "Blue and green curved strokes visibly cross the cabin and tighten toward the broken right-side window."
+          },
+          {
+            "target_id": "b27_hanging_mask_group",
+            "label": "row of deployed oxygen masks beneath overhead panels",
+            "kind": "group",
+            "bbox": {
+              "x": 0.347,
+              "y": 0.353,
+              "w": 0.539,
+              "h": 0.164
+            },
+            "importance": "primary",
+            "confidence": 0.99,
+            "visible_evidence": "Several yellow oxygen-mask assemblies visibly hang at different sizes along the upper-left and center."
+          },
+          {
+            "target_id": "b27_nearest_hanging_mask",
+            "label": "large hanging oxygen mask near upper-center",
+            "kind": "object",
+            "bbox": {
+              "x": 0.613,
+              "y": 0.312,
+              "w": 0.119,
+              "h": 0.132
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "One larger yellow mask bag with pale hanging mask is clearly visible near the center overhead panel."
+          },
+          {
+            "target_id": "b27_empty_seat_row",
+            "label": "mostly empty left-center passenger seats",
+            "kind": "group",
+            "bbox": {
+              "x": 0.391,
+              "y": 0.585,
+              "w": 0.538,
+              "h": 0.353
+            },
+            "importance": "secondary",
+            "confidence": 0.99,
+            "visible_evidence": "Multiple tan airplane seats are clearly visible with no occupants in the nearer rows."
+          },
+          {
+            "target_id": "b27_foreground_right_seat",
+            "label": "empty seat nearest broken window",
+            "kind": "object",
+            "bbox": {
+              "x": 0.755,
+              "y": 0.647,
+              "w": 0.29,
+              "h": 0.33
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "A large empty tan seat with armrests and seatback pocket occupies the center-right foreground."
+          },
+          {
+            "target_id": "b27_distant_passenger_heads",
+            "label": "small partial passenger heads behind far-left seats",
+            "kind": "group",
+            "bbox": {
+              "x": 0.143,
+              "y": 0.42,
+              "w": 0.215,
+              "h": 0.059
+            },
+            "importance": "context",
+            "confidence": 0.86,
+            "visible_evidence": "Several small head shapes are visible just above the seatbacks at the far-left rear."
+          },
+          {
+            "target_id": "b27_clouds_through_opening",
+            "label": "cloud layer visible through broken window",
+            "kind": "context",
+            "bbox": {
+              "x": 0.873,
+              "y": 0.431,
+              "w": 0.139,
+              "h": 0.118
+            },
+            "importance": "context",
+            "confidence": 0.98,
+            "visible_evidence": "White cloud forms and blue sky are visibly seen through the jagged opening."
+          }
+        ],
+        "faces": [],
+        "hands_or_actions": [
+          "b27_airflow_streaks"
+        ],
+        "forbidden_regions": [
+          {
+            "type": "subtitle_collision_risk",
+            "bbox": {
+              "x": 0.5,
+              "y": 0.5,
+              "w": 1.0,
+              "h": 1.0
+            }
+          }
+        ],
+        "negative_space": [
+          {
+            "x": 0.51,
+            "y": 0.891,
+            "w": 0.469,
+            "h": 0.205
+          }
+        ],
+        "notes": "Full-frame artwork with no visible caption panel or embedded text. Preserve the right-side broken window and the overhead mask row together; the airflow lines visually connect them. No clearly readable facial features or hands are visible. The pale lower-center floor is the broadest low-detail area.",
+        "media_sha256": "5238b55acd784ea2783a0a188d6ec97ac0e61ce4b183288cb1a3f6309aba75ce"
+      }
+    ]
+  }
+}

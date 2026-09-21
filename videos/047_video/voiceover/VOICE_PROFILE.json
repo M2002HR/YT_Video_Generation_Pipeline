@@ -1,0 +1,19 @@
+{
+  "provider": "ElevenLabs web UI",
+  "settings": {
+    "voice": "Seer Morganna - Intimidating, and Clear",
+    "model": "Eleven v3",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.5,
+    "style": 0.15,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "input_sha256": "240129a54441169f8be0da884ec6ae12db9b166df6866d8720627b93f71173dd",
+  "output": "assets/audio/narration.mp3",
+  "output_sha256": "9c2b7622155b5afeebb4c97af98c97e8eec8c69dc63bbe681242da4069f026e4",
+  "result_id": "audio-player:blob:https://elevenlabs.io/20ab304b-5760-41c8-b3a7-1b473f8e57b6",
+  "generated_at": "2026-09-20T20:18:02.542642+00:00",
+  "recovered_after_interruption": true
+}

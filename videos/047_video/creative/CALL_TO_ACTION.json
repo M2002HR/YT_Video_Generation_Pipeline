@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "language_review_required": true,
+  "language_policy_version": 1,
+  "input_fingerprint": "32678a5dfd116b1a0e3815848b620f53f8bd673600455bfc2521cd3f665026a1",
+  "hint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "hint_provided": false,
+  "cta": "Comment your next airplane safety question.",
+  "word_count": 6,
+  "created_at": "2026-09-20T19:58:22Z"
+}

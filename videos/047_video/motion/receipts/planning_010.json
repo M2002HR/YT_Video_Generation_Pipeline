@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "stage": "planning",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "029ad7d32b93ff0a3fe1d75c640d57a8b8dbf09c72348f56d52c97ac6013c34b",
+  "job_ids": [
+    "50f40f59-8bb2-47fa-8e74-6ddbea144789"
+  ],
+  "response": {
+    "schema_version": 2,
+    "duration_seconds": 36.911,
+    "beats": [
+      {
+        "beat_id": 10,
+        "start": 16.335,
+        "end": 17.15,
+        "attention_story": [
+          "Enter on the dense airflow field so the already-spoken emphasis on 'strongest' is visually carried into this beat without inventing a late impact.",
+          "On 'near,' drive attention rightward toward the large broken opening, linking the concentrated streaks directly to their nearest hazard zone."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b10_s01",
+            "role": "detail",
+            "start": 16.335,
+            "end": 17.15,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b10_airflow_streaks",
+                "coverage": 0.72,
+                "anchor_x": 0.58,
+                "anchor_y": 0.4
+              },
+              "end": {
+                "target_id": "b10_broken_window_right",
+                "coverage": 0.52,
+                "anchor_x": 0.77,
+                "anchor_y": 0.42
+              }
+            },
+            "motion": {
+              "type": "pan_push",
+              "easing": "snappy",
+              "start_delay": 0.365,
+              "end_hold": 0.05,
+              "reason": "Hold the concentrated airflow field briefly, then on 'near' move rightward and slightly inward so the strongest streaks resolve spatially against the large broken window opening."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0037",
+              "word": "near",
+              "authoritative_start": 16.7,
+              "authoritative_end": 17.2
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b10_broken_window_right",
+          "coverage": 0.52,
+          "anchor_x": 0.77,
+          "anchor_y": 0.42,
+          "movement_direction": "right"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The next beat completes the same sentence with 'the opening,' so a clean cut preserves explanatory momentum without adding a decorative transition."
+        }
+      }
+    ],
+    "settings_snapshot": {
+      "enabled": true,
+      "planning_quality": "professional",
+      "pace": "fast",
+      "style": "dynamic",
+      "intensity": "normal",
+      "max_micro_shots_per_beat": 3,
+      "min_micro_shot_duration": 0.55,
+      "max_micro_shot_duration": 3.2,
+      "target_interval_min": 0.8,
+      "target_interval_max": 1.8,
+      "allow_hold": true,
+      "allow_push": true,
+      "allow_pull": true,
+      "allow_pan": true,
+      "allow_tilt": true,
+      "allow_pan_push": true,
+      "allow_pan_pull": true,
+      "allow_drift": true,
+      "allow_settle": true,
+      "allow_reveal_move": true,
+      "allow_punch_cuts": true,
+      "allow_hard_reframes": true,
+      "allow_match_position_cuts": true,
+      "allow_decorative_transitions": true,
+      "allow_directional_transitions": true,
+      "allow_reveal_transitions": true,
+      "transition_preference": "minimal",
+      "max_decorative_transition_fraction": 0.25,
+      "image_transition_style": "cut_fade_dissolve",
+      "image_transition_seconds": 0.28,
+      "transition_duration_min": 0.1,
+      "transition_duration_max": 0.4,
+      "normal_max_zoom": 1.32,
+      "punch_max_zoom": 1.48,
+      "max_pan_distance": 0.32,
+      "max_pan_velocity": 0.42,
+      "max_zoom_velocity": 0.34,
+      "image_zoom_strength": 0.14,
+      "enforce_image_zoom_policy": false,
+      "face_protection": true,
+      "face_padding": 0.18,
+      "subtitle_avoidance": true,
+      "blank_region_avoidance": true,
+      "word_sync": true,
+      "word_sync_tolerance_ms": 50,
+      "observation_batch_size": 3,
+      "planning_batch_size": 1,
+      "critic_batch_size": 2,
+      "neighbor_context": 1,
+      "editorial_critic": true,
+      "correction_attempts": 4,
+      "debug_preview": false,
+      "supersample": 2
+    }
+  }
+}

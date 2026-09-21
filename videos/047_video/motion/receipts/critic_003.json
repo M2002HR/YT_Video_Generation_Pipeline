@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "f69b4b019cf3a5f0503b78a547d4c5310100c88b9b3100854b7fa5b5fc440fae",
+  "job_ids": [
+    "ab2a3aad-8898-426d-a918-99c1738fcd6b"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 6,
+        "shot_id": "b06_s01",
+        "code": "repetition",
+        "message": "Beat 6 repeats the same rightward pan-push trajectory used immediately in beat 5. The reset from beat 5's airflow framing to the left-side passenger group and subsequent move back toward airflow creates mechanical camera repetition instead of the directed contrast between left- and right-positioned broken windows called for in the episode direction."
+      },
+      {
+        "severity": "error",
+        "beat_id": 6,
+        "shot_id": "b06_s01",
+        "code": "unmotivated_cut",
+        "message": "The beat-boundary reframe to the passenger group is a weak semantic detour: the narration is continuing the pressure-loss phrase, while the verified right-side broken window is the stronger causal subject. Cutting to passengers only to leave them 0.425 seconds later wastes the short beat and unnecessarily churns face attention."
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 6,
+        "start": 13.255,
+        "end": 14.01,
+        "attention_story": [
+          "Use the beat boundary itself for contrast: hard reframe from beat 5's left-side rupture/airflow composition directly to the verified right-side broken window, making the cabin break feel immediate without a passenger detour.",
+          "Hold the opening long enough to register, then begin only a restrained inward push on the spoken word 'air'; do not repeat the preceding rightward pan trajectory."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b06_s01",
+            "role": "primary",
+            "start": 13.255,
+            "end": 14.01,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b06_target_broken_window",
+                "coverage": 0.78,
+                "anchor_x": 0.79,
+                "anchor_y": 0.35
+              },
+              "end": {
+                "target_id": "b06_target_broken_window",
+                "coverage": 0.7,
+                "anchor_x": 0.79,
+                "anchor_y": 0.35
+              }
+            },
+            "motion": {
+              "type": "push",
+              "easing": "hold_then_move",
+              "start_delay": 0.425,
+              "end_hold": 0.05,
+              "reason": "The hard cut supplies the left-to-right rupture contrast at the beat boundary. The small inward push begins exactly on 'air' and keeps attention on the verified opening without another lateral camera sweep or unnecessary face reframe."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0031",
+              "word": "air",
+              "authoritative_start": 13.68,
+              "authoritative_end": 13.96
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b06_target_broken_window",
+          "coverage": 0.7,
+          "anchor_x": 0.79,
+          "anchor_y": 0.35,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The causal explanation continues into the next beat, so retain a clean cut and avoid decorative transition language."
+        }
+      }
+    ]
+  }
+}

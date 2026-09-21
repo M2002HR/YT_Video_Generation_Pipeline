@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "stage": "critic",
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "a7b0a4689c46e2f02f2a258deba90f9b53a1594470d840097c717f270cddff74",
+  "job_ids": [
+    "c47b21e4-219b-4b47-8513-4882d45e6a45"
+  ],
+  "response": {
+    "schema_version": 2,
+    "approved": false,
+    "issues": [
+      {
+        "severity": "error",
+        "beat_id": 19,
+        "shot_id": "b19_s01",
+        "code": "bad_crop",
+        "message": "The endpoint commits to the passenger face at 0.68 coverage, which is too tight for the verified inventory note requiring enough upper frame for the hanging masks and enough left cabin wall for window context; it also risks losing part of the two-hand chest posture that carries the breathing-distress meaning."
+      },
+      {
+        "severity": "error",
+        "beat_id": 20,
+        "shot_id": "b20_s01",
+        "code": "repetition",
+        "message": "A second consecutive push-in immediately after beat 19 creates a repeated inward trajectory across the breathing-difficulty passage. This section is explicitly directed to slow perceptibly with holds, subtle movement and fewer motion events; the match-position cut already supplies the necessary emphasis before 'harder.'"
+      }
+    ],
+    "replacement_beats": [
+      {
+        "beat_id": 19,
+        "start": 22.905,
+        "end": 23.79,
+        "attention_story": [
+          "Open on the seated passenger with the distressed face, both chest-hand actions, overhead mask context and left-side cabin windows simultaneously readable.",
+          "Use one restrained inward emphasis that finishes as “breathing” begins, but remain on an upper-body composition rather than isolating the face so the physiological posture and cabin context survive the move."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b19_s01",
+            "role": "reaction",
+            "start": 22.905,
+            "end": 23.79,
+            "edit_in": {
+              "type": "reframe_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b19_person_seated_passenger",
+                "coverage": 0.64,
+                "anchor_x": 0.55,
+                "anchor_y": 0.5
+              },
+              "end": {
+                "target_id": "b19_person_seated_passenger",
+                "coverage": 0.72,
+                "anchor_x": 0.55,
+                "anchor_y": 0.49
+              }
+            },
+            "motion": {
+              "type": "push_in",
+              "easing": "ease_out",
+              "start_delay": 0.0,
+              "end_hold": 0.37,
+              "reason": "The single restrained push compresses attention toward the passenger's distressed upper body and finishes on “breathing” while preserving the verified face, both chest-hand actions, overhead mask context and enough left cabin wall to retain the windows."
+            },
+            "sync": {
+              "mode": "impact_apex_on_word",
+              "word_id": "w_0051",
+              "word": "breathing",
+              "authoritative_start": 23.42,
+              "authoritative_end": 23.88
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b19_person_seated_passenger",
+          "coverage": 0.72,
+          "anchor_x": 0.55,
+          "anchor_y": 0.49,
+          "movement_direction": "in"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "The following image continues the same breathing-difficulty phrase, so a clean matchable cut preserves emotional continuity without adding a soft transition."
+        }
+      },
+      {
+        "beat_id": 20,
+        "start": 23.79,
+        "end": 24.675,
+        "attention_story": [
+          "Use the centered passenger as a clean match-position continuation from beat 19, preserving the face and both clenched hands.",
+          "Let the composition remain nearly still through “harder” so the word lands through performance and framing rather than repeating the previous inward camera trajectory."
+        ],
+        "micro_shots": [
+          {
+            "shot_id": "b20_s01",
+            "role": "reaction",
+            "start": 23.79,
+            "end": 24.675,
+            "edit_in": {
+              "type": "match_position_cut"
+            },
+            "camera": {
+              "start": {
+                "target_id": "b20_person_center_passenger",
+                "coverage": 0.66,
+                "anchor_x": 0.51,
+                "anchor_y": 0.45
+              },
+              "end": {
+                "target_id": "b20_person_center_passenger",
+                "coverage": 0.66,
+                "anchor_x": 0.51,
+                "anchor_y": 0.45
+              }
+            },
+            "motion": {
+              "type": "hold",
+              "easing": "gentle",
+              "start_delay": 0.09,
+              "end_hold": 0.155,
+              "reason": "The match-position cut supplies the visual change, while the hold prevents a second consecutive push-in and gives the emphasized word “harder” room to land on the verified strained face and clenched hands."
+            },
+            "sync": {
+              "mode": "movement_start_on_word",
+              "word_id": "w_0052",
+              "word": "harder.",
+              "authoritative_start": 23.88,
+              "authoritative_end": 24.52
+            }
+          }
+        ],
+        "ending_state": {
+          "target_id": "b20_person_center_passenger",
+          "coverage": 0.66,
+          "anchor_x": 0.51,
+          "anchor_y": 0.45,
+          "movement_direction": "none"
+        },
+        "transition_out": {
+          "type": "cut",
+          "duration": 0.0,
+          "reason_code": "continuity",
+          "reason": "Maintain the breathing-difficulty sequence with a clean cut rather than introducing a decorative transition during the emotional passage."
+        }
+      }
+    ]
+  }
+}

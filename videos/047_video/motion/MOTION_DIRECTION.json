@@ -1,0 +1,189 @@
+{
+  "schema_version": 2,
+  "prompt_version": "motion-director-v2.0",
+  "input_fingerprint": "b1b9ce7426cc0716b16c63abafd307eb44e3a501e91eccdfdf6607d8bd3d948c",
+  "direction": {
+    "schema_version": 2,
+    "pace": "fast",
+    "sections": [
+      {
+        "name": "hook",
+        "start": 0,
+        "end": 0.207,
+        "energy": 0.92,
+        "attention_velocity": 0.95
+      },
+      {
+        "name": "setup",
+        "start": 0.207,
+        "end": 0.339,
+        "energy": 0.72,
+        "attention_velocity": 0.78
+      },
+      {
+        "name": "body",
+        "start": 0.339,
+        "end": 0.597,
+        "energy": 0.84,
+        "attention_velocity": 0.9
+      },
+      {
+        "name": "climax",
+        "start": 0.597,
+        "end": 0.8,
+        "energy": 0.9,
+        "attention_velocity": 0.82
+      },
+      {
+        "name": "ending",
+        "start": 0.8,
+        "end": 0.92,
+        "energy": 0.78,
+        "attention_velocity": 0.62
+      },
+      {
+        "name": "cta",
+        "start": 0.92,
+        "end": 1,
+        "energy": 0.66,
+        "attention_velocity": 0.72
+      }
+    ],
+    "emphasis_words": [
+      {
+        "word_id": "w_0004",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0007",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0010",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0015",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0023",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0026",
+        "reason": "location"
+      },
+      {
+        "word_id": "w_0028",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0032",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0036",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0039",
+        "reason": "location"
+      },
+      {
+        "word_id": "w_0040",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0047",
+        "reason": "contrast"
+      },
+      {
+        "word_id": "w_0048",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0051",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0052",
+        "reason": "emotion"
+      },
+      {
+        "word_id": "w_0053",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0054",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0056",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0059",
+        "reason": "object"
+      },
+      {
+        "word_id": "w_0061",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0066",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0067",
+        "reason": "reveal"
+      },
+      {
+        "word_id": "w_0068",
+        "reason": "reveal"
+      }
+    ],
+    "rhythm_notes": [
+      "Open with the fastest attention rhythm: let the spoken question drive two or three decisive reframes rather than continuous motion, then briefly settle on the pressure clue before the image sequence begins.",
+      "From beats 1-4, keep exterior-aircraft motion coherent and directional, using restrained pushes or pans toward the verified airplane rather than treating each image as an unrelated shot.",
+      "At the cabin break in beats 5-8, increase contrast through hard cuts between verified left- and right-positioned broken windows; use framing changes to make the rupture feel immediate without adding any unverified debris or objects.",
+      "Beats 9-12 should form one explanatory phrase: start slightly wider, then progressively commit attention toward the verified broken-window targets as the narration says airflow is strongest near the opening.",
+      "For beats 13-15, where pixels are unavailable for verification, avoid object-specific moves or invented focal details; use conservative holds, center-weighted reframes, or simple continuity cuts based only on the source canvas.",
+      "Let the 'farther away' idea breathe slightly before the breathing difficulty sequence, creating a short timing contrast instead of maintaining maximum cut density.",
+      "Beats 18-21 should slow perceptibly around the distressed passenger and centered faces; favor holds, subtle pushes, and fewer cuts so the physiological consequence lands emotionally.",
+      "Re-accelerate at beats 22-25 as oxygen masks become the verified dominant subject, using upward-directed reframing where supported by the inventory and avoiding unnecessary transition effects.",
+      "Treat beats 26-28 as the conceptual payoff: reduce motion complexity, hold visual continuity around the verified broken-window imagery, and let the phrase 'rapid decompression' receive the strongest verbal reveal.",
+      "The CTA should release tension: simplify motion, reduce energy, and avoid introducing a final decorative flourish that competes with the request to comment."
+    ],
+    "transition_philosophy": [
+      "Default to hard cuts for causal changes and attention shifts; use short fades or dissolves only when the narration changes from consequence to reflection rather than as a routine beat separator.",
+      "Exploit match-position cuts when successive verified targets occupy similar screen regions, especially repeated airplane exteriors, broken windows, centered passenger faces, and overhead mask groups.",
+      "Use directional continuity only when supported by the inventory's left, right, center, or up orientation; do not manufacture directional wipes that imply unseen scene geography.",
+      "Reserve reveal-style transitions for the pressure-loss naming payoff near 'rapid decompression'; avoid spending that visual language earlier.",
+      "Do not transition on every word. Let spoken emphasis determine edit points, and allow clean holds through low-information or empty spoken beats."
+    ],
+    "motion_contrast_plan": [
+      "0-7.625s: high attention velocity with decisive reframes and brief pushes, but retain at least one short hold so the hook does not become mechanically restless.",
+      "7.625-12.5s: moderate, coherent exterior motion with similar directional behavior across the airplane images to establish spatial continuity.",
+      "12.5-17.965s: strongest motion contrast of the episode, alternating hard cuts and controlled pushes toward verified broken-window targets as the narration explains the escaping air and strongest airflow zone.",
+      "17.965-22.02s: deliberately reduce motion density; use stillness or gentle settling to embody the contrast that air farther away may move much less.",
+      "22.02-25.56s: emotional compression around verified passenger faces, with subtle inward motion and longer shot durations than the preceding explanation.",
+      "25.56-29.52s: renewed vertical and upward attention toward verified oxygen-mask groups, then settle as pilots descending is spoken.",
+      "29.52-33.955s: simplify again for the terminology reveal, prioritizing stable composition and one controlled emphasis move over multiple micro-shots.",
+      "33.955-36.911s: low-complexity CTA with a clean hold or gentle settle so the viewer's attention can transfer from imagery to the spoken prompt."
+    ],
+    "ending_strategy": "Make 'rapid decompression' the final explanatory peak, then visibly reduce motion complexity for the CTA. Hold or gently settle on the existing verified cabin imagery rather than adding a new visual idea, allowing the episode to end with a clear invitation to comment instead of an effect-driven button.",
+    "prohibited_patterns": [
+      "No constant zooming across every image.",
+      "No automatic transition on every beat boundary.",
+      "No decorative transition chains, spin effects, repeated wipes, or effect-first motion.",
+      "No invented particles, debris, warning graphics, arrows, labels, masks, passengers, or aircraft elements beyond what the verified inventory supports.",
+      "No object-specific movement in beats 13-15 because their pixels were unavailable for verification.",
+      "No aggressive reframing that pushes primary targets off-screen or obscures verified faces, broken windows, aircraft, or oxygen masks.",
+      "No repetitive left-right ping-pong pans solely to create activity.",
+      "No punch cut on every emphasized word; reserve punch cuts for major causal or reveal moments.",
+      "No prolonged maximum-energy treatment through the breathing-difficulty section; that passage needs contrast and breathing room.",
+      "No final flourish that competes with the spoken CTA."
+    ]
+  }
+}
