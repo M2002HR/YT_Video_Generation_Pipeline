@@ -349,6 +349,59 @@ def normalize_safe_contradictions(payload: dict[str, Any], context: dict[str, An
         previous_end = None
         for shot in beat.get("micro_shots") or []:
             motion = shot.get("motion") or {}
+            # Critic replacements sometimes use the human shorthand "push" or
+            # "pull" although the executable contract names those primitives
+            # ``push_in`` and ``pull_out``.  This is a one-to-one vocabulary
+            # normalization: it preserves target, timing, camera and intent,
+            # and prevents a completed critic batch from blocking a resume.
+            shorthand_motion = {"push": "push_in", "pull": "pull_out"}
+            original_motion = str(motion.get("type") or "")
+            normalized_motion = shorthand_motion.get(original_motion)
+            if normalized_motion:
+                # Camera geometry is the executable evidence when shorthand
+                # prose contradicts itself.  For one target, decreasing
+                # coverage is a pull-out and increasing coverage is a push-in.
+                # This avoids silently changing the recorded camera move.
+                camera = shot.get("camera") or {}
+                start_camera = camera.get("start") or {}
+                end_camera = camera.get("end") or {}
+                if start_camera.get("target_id") == end_camera.get("target_id"):
+                    try:
+                        coverage_delta = float(end_camera.get("coverage")) - float(start_camera.get("coverage"))
+                    except (TypeError, ValueError):
+                        coverage_delta = 0.0
+                    if coverage_delta < -0.001:
+                        normalized_motion = "pull_out"
+                    elif coverage_delta > 0.001:
+                        normalized_motion = "push_in"
+                motion["type"] = normalized_motion
+                shot["motion"] = motion
+                corrections.append({
+                    "shot_id": shot.get("shot_id"),
+                    "code": f"motion_{original_motion}_normalized_to_{normalized_motion}",
+                })
+            # Critic replacements may round a camera coverage just outside the
+            # strict normalized viewport bounds (for example 0.96).  Clamp only
+            # those absolute safety bounds; target selection and composition are
+            # left untouched.
+            camera = shot.get("camera") or {}
+            for state_name in ("start", "end"):
+                state = camera.get(state_name)
+                if not isinstance(state, dict):
+                    continue
+                for field, lower, upper in (("coverage", .08, .95), ("anchor_x", 0.0, 1.0), ("anchor_y", 0.0, 1.0)):
+                    try:
+                        value = float(state.get(field))
+                    except (TypeError, ValueError):
+                        continue
+                    clamped = min(upper, max(lower, value))
+                    if clamped != value:
+                        state[field] = clamped
+                        corrections.append({
+                            "shot_id": shot.get("shot_id"),
+                            "code": f"camera_{state_name}_{field}_clamped_to_safe_bounds",
+                        })
+            shot["camera"] = camera
             if motion.get("type") == "hold" and motion.get("easing") == "hold":
                 motion["easing"] = "linear"
                 corrections.append({"shot_id": shot.get("shot_id"), "code": "hold_easing_normalized"})
@@ -403,6 +456,22 @@ def normalize_safe_contradictions(payload: dict[str, Any], context: dict[str, An
                         shot["sync"] = {"mode": "none"}
                         corrections.append({"shot_id": shot.get("shot_id"), "code": "impossible_cut_sync_removed"})
             previous_end = (shot.get("camera") or {}).get("end") or previous_end
+        transition = beat.get("transition_out") or {}
+        # ``verbal_emphasis`` is the critic's descriptive synonym for the
+        # established contrast cut. Preserve the transition itself and map its
+        # reason onto the closed executable vocabulary.
+        if transition.get("reason_code") == "verbal_emphasis":
+            transition["reason_code"] = "contrast"
+            beat["transition_out"] = transition
+            corrections.append({"beat_id": beat.get("beat_id"), "code": "transition_verbal_emphasis_normalized_to_contrast"})
+        ending = beat.get("ending_state") or {}
+        ending_aliases = {"neutral": "none", "static": "none", "still": "none", "zoom_in": "in", "zoom_out": "out"}
+        original_direction = str(ending.get("movement_direction") or "")
+        normalized_direction = ending_aliases.get(original_direction)
+        if normalized_direction:
+            ending["movement_direction"] = normalized_direction
+            beat["ending_state"] = ending
+            corrections.append({"beat_id": beat.get("beat_id"), "code": f"ending_direction_{original_direction}_normalized_to_{normalized_direction}"})
     if corrections:
         payload["normalization_corrections"] = corrections
     return payload

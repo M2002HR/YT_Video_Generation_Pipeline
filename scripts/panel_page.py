@@ -208,6 +208,11 @@ function renderJobs(jobs){
       what += '<div class="stage">Motion: ' + (m.enabled ? esc(m.style) + ' / ' + esc(m.pace) : 'disabled') +
         (m.micro_shots != null ? ' · ' + esc(m.micro_shots) + ' micro-shots' : '') +
         (m.qc ? ' · QC ' + esc(m.qc) : '') + '</div>';
+      if (m.progress && m.progress.current != null && m.progress.total != null) {
+        what += '<div class="stage">↻ Motion ' + esc(m.progress.phase || 'work') + ' ' +
+          esc(m.progress.current) + '/' + esc(m.progress.total) +
+          (m.progress.detail ? ' · ' + esc(m.progress.detail) : '') + '</div>';
+      }
     }
     var acts = ['<button class="ghost" onclick="tail(\'' + job.job_id + '\')">Log</button>'];
     if (job.resumable) acts.push('<button class="ghost" onclick="post(\'/resume\',\'' + job.job_id + '\')">Resume</button>');

@@ -176,6 +176,27 @@ def test_short_physical_beat_is_retimed_without_another_model_correction(tmp_pat
     assert validated["beats"][0]["ending_state"]["target_id"] == "b01_red"
 
 
+@pytest.mark.parametrize(("shorthand", "expected"), [("push", "push_in"), ("pull", "pull_out")])
+def test_critic_motion_shorthand_is_normalized_before_final_validation(tmp_path: Path, shorthand: str, expected: str) -> None:
+    _, context, inventory, _ = make_episode(tmp_path)
+    candidate = copy.deepcopy(PLAN)
+    candidate["beats"][0]["micro_shots"][0]["motion"]["type"] = shorthand
+    normalized = normalize_safe_contradictions(candidate, context, CFG)
+    assert normalized["beats"][0]["micro_shots"][0]["motion"]["type"] == expected
+    validate_plan(normalized, context, inventory, CFG)
+
+
+def test_critic_motion_shorthand_defers_to_same_target_camera_geometry(tmp_path: Path) -> None:
+    _, context, inventory, _ = make_episode(tmp_path)
+    candidate = copy.deepcopy(PLAN)
+    shot = candidate["beats"][0]["micro_shots"][0]
+    shot["motion"]["type"] = "push"
+    shot["camera"]["end"]["coverage"] = .20
+    normalized = normalize_safe_contradictions(candidate, context, CFG)
+    assert normalized["beats"][0]["micro_shots"][0]["motion"]["type"] == "pull_out"
+    validate_plan(normalized, context, inventory, CFG)
+
+
 @pytest.mark.parametrize(("motion_type", "switch"), [
     ("drift", "allow_drift"),
     ("settle", "allow_settle"),

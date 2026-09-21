@@ -2126,6 +2126,22 @@ def motion_status_of(record: dict) -> dict:
     }
     if not result["enabled"]:
         result["plan_status"] = "disabled"; return result
+    # Show the live Motion Director checkpoint before a final plan exists. The
+    # ordinary plan/QC artifacts are deliberately written only after all audit
+    # batches finish, so relying on them made an active run look like "pending".
+    try:
+        runtime = json.loads((project / "pipeline/MOTION_DIRECTOR_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        runtime = {}
+    current = runtime.get("current") if isinstance(runtime.get("current"), dict) else {}
+    if str(runtime.get("status") or "").upper() == "RUNNING":
+        result["plan_status"] = "running"
+        result["progress"] = {
+            "phase": current.get("phase"),
+            "current": current.get("current"),
+            "total": current.get("total"),
+            "detail": current.get("detail"),
+        }
     try:
         plan = json.loads((project / "motion" / "MOTION_PLAN.json").read_text(encoding="utf-8"))
         result["plan_status"] = "ready"
