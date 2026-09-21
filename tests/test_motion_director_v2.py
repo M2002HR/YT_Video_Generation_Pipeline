@@ -17,7 +17,7 @@ from motion_compiler import dynamic_motion_filter_v2, plan_render_units_v2
 from motion_context import build_motion_context
 from motion_schema import MotionPlanError
 from motion_targets import resolve_target
-from motion_v2_schema import MOTIONS, TRANSITIONS, settings, validate_inventory, validate_plan
+from motion_v2_schema import MOTIONS, TRANSITIONS, semantic_qc, settings, validate_inventory, validate_plan
 from run_motion_director import normalize_safe_contradictions, plan_fingerprint, receipt_value
 
 
@@ -195,6 +195,20 @@ def test_critic_motion_shorthand_defers_to_same_target_camera_geometry(tmp_path:
     normalized = normalize_safe_contradictions(candidate, context, CFG)
     assert normalized["beats"][0]["micro_shots"][0]["motion"]["type"] == "pull_out"
     validate_plan(normalized, context, inventory, CFG)
+
+
+def test_static_holds_separated_by_cuts_are_not_a_motion_repetition_failure() -> None:
+    shots = [
+        {"motion": {"type": "hold"}, "edit_in": {"type": "cut"}, "start": index, "end": index + 1, "sync": {"mode": "none"}}
+        for index in range(4)
+    ]
+    plan = {
+        "beats": [{"micro_shots": [shot], "start": shot["start"], "end": shot["end"], "transition_out": {"type": "cut"}}
+                  for shot in shots],
+    }
+    qc = semantic_qc(plan, CFG)
+    assert qc["repeated_motion_streak"] == 1
+    assert "motion repetition streak >= 4" not in qc["errors"]
 
 
 @pytest.mark.parametrize(("motion_type", "switch"), [

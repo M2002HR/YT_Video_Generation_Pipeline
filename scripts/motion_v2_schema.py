@@ -256,7 +256,14 @@ def semantic_qc(plan: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any]:
     durations=[s["end"]-s["start"] for s in shots]; synced=[s for s in shots if s.get("sync",{}).get("mode")!="none"]
     transitions=[b["transition_out"] for b in plan["beats"][:-1]]; noncuts=[t for t in transitions if t["type"]!="cut"]
     streak=best=1
-    for left,right in zip(motions,motions[1:]): streak=streak+1 if left==right else 1; best=max(best,streak)
+    for left, right, right_edit in zip(motions, motions[1:], edits[1:]):
+        # Consecutive static holds separated by a real cut/reframe are distinct
+        # visual beats, not a repeated camera movement.  Penalising them made
+        # short, evidence-limited images impossible to compile even though each
+        # one visibly changes at the edit boundary.
+        distinct_static_beat = right == "hold" and right_edit != "continue"
+        streak = streak + 1 if left == right and not distinct_static_beat else 1
+        best = max(best, streak)
     warnings=[]; errors=[]
     fraction=len(noncuts)/max(1,len(transitions))
     image_duration=sum(float(beat["end"])-float(beat["start"]) for beat in plan["beats"])
