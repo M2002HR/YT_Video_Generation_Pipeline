@@ -1,0 +1,239 @@
+{
+  "schema_version": 2,
+  "ai_selection_enabled": false,
+  "decisions": [
+    {
+      "from_beat_id": 1,
+      "to_beat_id": 2,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 2,
+      "to_beat_id": 3,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 3,
+      "to_beat_id": 4,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 4,
+      "to_beat_id": 5,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 5,
+      "to_beat_id": 6,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 6,
+      "to_beat_id": 7,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 7,
+      "to_beat_id": 8,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 8,
+      "to_beat_id": 9,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 9,
+      "to_beat_id": 10,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 10,
+      "to_beat_id": 11,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 11,
+      "to_beat_id": 12,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 12,
+      "to_beat_id": 13,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 13,
+      "to_beat_id": 14,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 14,
+      "to_beat_id": 15,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 15,
+      "to_beat_id": 16,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 16,
+      "to_beat_id": 17,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 17,
+      "to_beat_id": 18,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 18,
+      "to_beat_id": 19,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 19,
+      "to_beat_id": 20,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 20,
+      "to_beat_id": 21,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 21,
+      "to_beat_id": 22,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 22,
+      "to_beat_id": 23,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 23,
+      "to_beat_id": 24,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 24,
+      "to_beat_id": 25,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 25,
+      "to_beat_id": 26,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 26,
+      "to_beat_id": 27,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 27,
+      "to_beat_id": 28,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 28,
+      "to_beat_id": 29,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    },
+    {
+      "from_beat_id": 29,
+      "to_beat_id": 30,
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "reason": "Frozen default transition policy (AI selection disabled).",
+      "source": "default"
+    }
+  ],
+  "created_at": "2026-09-21T12:13:16Z"
+}

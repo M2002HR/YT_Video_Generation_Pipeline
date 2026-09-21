@@ -1,0 +1,106 @@
+{
+  "audio_duration_seconds": 44.121,
+  "spark_start": 0.64,
+  "spark_end": 3.8,
+  "spark_duration": 3.16,
+  "transition_start": 4.62,
+  "transition_end": 10.76,
+  "transition_duration": 6.14,
+  "entry_segment": "entry_transition",
+  "clip_a_target_seconds": 3.8,
+  "clip_b_target_seconds": 6.96,
+  "body_start": 12.02,
+  "segments": [
+    {
+      "segment": "opening_question_spark",
+      "narration": "How can one atom decide a whole cat's fate?",
+      "speech_start": 0.64,
+      "speech_end": 3.8,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "entry_transition",
+      "narration": "Below the red hatch, decay may trigger a detector and start a larger chain.",
+      "speech_start": 4.62,
+      "speech_end": 10.76,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_01",
+      "narration": "Schrödinger proposed it in 1935.",
+      "speech_start": 12.02,
+      "speech_end": 13.94,
+      "match_confidence": 0.667
+    },
+    {
+      "segment": "body_02",
+      "narration": "A cat is sealed in a box.",
+      "speech_start": 14.98,
+      "speech_end": 16.86,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_03",
+      "narration": "One radioactive atom may decay.",
+      "speech_start": 17.48,
+      "speech_end": 19.6,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_04",
+      "narration": "A detector watches for decay.",
+      "speech_start": 20.32,
+      "speech_end": 22.12,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_05",
+      "narration": "Decay can trigger a poison mechanism.",
+      "speech_start": 22.86,
+      "speech_end": 25.46,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_06",
+      "narration": "Then the cat dies.",
+      "speech_start": 26.12,
+      "speech_end": 27.52,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_07",
+      "narration": "No decay leaves it alive.",
+      "speech_start": 26.84,
+      "speech_end": 29.56,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_08",
+      "narration": "Quantum theory can describe both possibilities together.",
+      "speech_start": 30.32,
+      "speech_end": 33.48,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "body_09",
+      "narration": "That state is called a superposition.",
+      "speech_start": 34.02,
+      "speech_end": 35.92,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "optional_closing",
+      "narration": "That jump from atom to cat was the point.",
+      "speech_start": 36.64,
+      "speech_end": 39.3,
+      "match_confidence": 1.0
+    },
+    {
+      "segment": "cta",
+      "narration": "Choose the next video's topic and question in the comments.",
+      "speech_start": 39.94,
+      "speech_end": 42.88,
+      "match_confidence": 1.0
+    }
+  ]
+}

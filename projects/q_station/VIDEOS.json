@@ -333,6 +333,34 @@
     },
     {
       "video_id": "047_video"
+    },
+    {
+      "video_id": "049",
+      "canonical_episode_id": "episode.49",
+      "outcome": "planned",
+      "opening_activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence.",
+      "opening_location": "A simple physics exhibit room centered on one transparent teaching rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "fractured_probability_screenprint_001",
+      "character_id": "red_horned_everyman",
+      "presentation_id": "red_door_portal",
+      "opening_signature": {
+        "action_family": "microscopic event drives large consequence",
+        "tension_family": "tiny cause versus large outcome",
+        "prop_family": "cutaway detector and relay chain",
+        "reveal_family": "the scale jump follows one physical chain"
+      },
+      "situation_summary": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+      "hook_line": "How can one atom decide a whole cat's fate?",
+      "entry_variant": "floor_hatch",
+      "opening_policy_version": 2,
+      "updated_at": "2026-09-21T11:10:47.614453+00:00",
+      "aliases": [
+        "049"
+      ]
+    },
+    {
+      "video_id": "049_schr_dinger_s_cat"
     }
   ]
 }

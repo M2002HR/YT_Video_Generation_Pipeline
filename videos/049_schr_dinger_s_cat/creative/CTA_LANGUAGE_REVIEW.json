@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "cta",
+  "content_fingerprint": "58d89a033fbfe2ef6c2ddd8c18ee528f5533d8582ad878687348ce59d81241d2",
+  "reference_fingerprint": "5541f7930ce73b2f406e945ce1340cae48cde5ab796f14d365a7f8507d8736d7",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "6df51c9a92c171dfb5205f9ddb66f514c1259da71db0294ab354b22937612c28",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "cta": "Choose the next video's topic and question in the comments."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-21T11:07:52Z"
+}

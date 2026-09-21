@@ -1,0 +1,120 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "ef29eb0302858982b2edd304cc62717aeae1c79bc0091e07d8651206e489c330",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "f7455c5d-9c84-4aa8-9ca5-9f8a7e24d9b2",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/e23525df1b2c5c6e",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "entry_identity",
+      "style_reference",
+      "character_sheet",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=f7455c5d-9c84-4aa8-9ca5-9f8a7e24d9b2_output_1.png 1536x2752 sha256=536df80be2bf3590f8a85dd684d1c499a20aaf0e8f69a26cd902220d7bc705d0"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "ef29eb0302858982b2edd304cc62717aeae1c79bc0091e07d8651206e489c330",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "f7455c5d-9c84-4aa8-9ca5-9f8a7e24d9b2",
+        "prompt_sha256": "0c066356c2d2d31b6bfcdd02dfdec10f5755b9ba2b819dd58fd7142c737c01f2",
+        "output_sha256": "536df80be2bf3590f8a85dd684d1c499a20aaf0e8f69a26cd902220d7bc705d0",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "entry_identity",
+      "path": "projects/q_station/presentation_profiles/red_door_portal/refs/red_door_design_sheet.png",
+      "sha256": "2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0"
+    },
+    {
+      "role": "style_reference",
+      "path": "videos/049_schr_dinger_s_cat/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "character_sheet",
+      "path": "projects/q_station/characters/red_horned_everyman/refs/character_sheet.png",
+      "sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/049_schr_dinger_s_cat/references/world_keyframe.png",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd"
+    }
+  ],
+  "prompt_sha256": "0c066356c2d2d31b6bfcdd02dfdec10f5755b9ba2b819dd58fd7142c737c01f2",
+  "prompt": "[VISUAL_CONTRACT:red_door_entry_v1] Create one full-bleed 9:16 SCENE, the beginning of B, not a sheet or montage. Show the canonical red host from character_sheet in a readable three-quarter medium-full view beside ONE canonical door from entry_identity, including both horns, feet and threshold. He is within one step, not already inside or hidden behind the leaf. The door is almost closed, just beginning to part. A thin aperture contains a specific hint of the target world's subject, medium, texture and light from style_reference; the red leaf and charcoal frame retain their canonical identity. Do not paint a scene on the opaque red leaf. No generic white void or blank hole.\n\nFollow ENTRY CAMERA PLAN exactly for supporting plane, hinge clearance, actor route and screen direction. Wall/freestanding doors have grounded feet and a passable threshold. Floor variants rotate the same door into a horizontal hatch with a visible supported stair/descent route; the leaf cannot collide with the actor. Choose an oblique view that establishes the plane, not a misleading overhead flat graphic. Preserve front-right ring handle/front-left hinges relative to the door, rather than mirroring with camera angle. The host has not yet completed his glance/open/cross; leave these actions for B. Frame enough room for his horn silhouette. The world style is for the aperture, not the identity or the surrounding setting. No page border, lens mask, second door, book, text, grid or extra limbs.\n\nEPISODE TOPIC: Schrödinger's cat\nEPISODE DIRECTION: Full-bleed 9:16 museum physics exhibit, oblique floor-level view. The red horned host stands three-quarter medium-full beside one horizontal canonical red hatch, both horns and feet clear, within one step. Front-left hinges, front-right ring handle; leaf barely lifting toward screen-left with safe stair descent exposed toward screen-right. Through the thin opening: radioactive source, detector, relay wiring, metallic mechanisms, cool conceptual light. His hand hovers over the ring, claiming the action; restrained skeptical gaze downward. No text.\nTOPIC-WORLD STYLE: {\"style_id\": \"fractured_probability_screenprint_001\", \"decision\": \"reuse\", \"reuse_of\": \"fractured_probability_screenprint_001\", \"medium\": \"screen print\", \"secondary_treatment\": null, \"texture_family\": \"dry matte screen-print ink with coarse archival print grain and slight registration wear\", \"palette_summary\": \"bone white and pale stone grounds, dense soot black, muted storm blue-gray, restrained oxidized teal, with sparse vermilion accents reserved for decay events, trigger mechanisms, and the conceptual rupture between microscopic and macroscopic states\", \"line_treatment\": \"bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, and slight misregistration used consistently to suggest overlapping quantum possibilities without changing medium\", \"lighting\": \"graphic high-contrast illumination with broad flat light masses, deep printed shadows, and restrained directional highlights around the detector, atom, and box interior\", \"subject_constraints\": \"Use topic-specific imagery: sealed box interiors, cat, single radioactive atom, decay detector, mechanical trigger, poison apparatus, and visual overlap of alive/dead possibilities. Emphasize the scale jump from microscopic radioactive uncertainty to the macroscopic cat through composition and repeated state-overlap motifs. Keep apparatus physically legible rather than futuristic.\", \"historical_accuracy_note\": \"Schrödinger introduced the cat thought experiment in 1935. When apparatus details are shown, keep them generic and period-plausible rather than depicting modern digital laboratory interfaces.\", \"hero_rendering_in_world\": \"Only when a later shot requests the host, translate the supplied identity into this medium\", \"negative_constraints\": \"No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery\", \"reserve_subtitle_space\": false, \"frame_language\": \"Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.\", \"layout_policy\": \"full_bleed_topic_world_v2\", \"subtitle_reserve\": \"No reserved caption field; continue the scene through the full height.\"}\nENTRY CAMERA PLAN: {\"surface\": \"floor\", \"transition\": \"follow_through\", \"attention_cue\": \"The almost-closed hatch clicks and a narrow sliver reveals the detector chain moving below, drawing his gaze downward.\", \"opening_action\": \"He lifts the screen-left-hinged red hatch toward screen-left, leaving clear hinge space and exposing supported steps descending toward screen-right.\", \"crossing_action\": \"He turns toward screen-right, places a foot on the first visible step, and deliberately descends until his full body clears the opening and camera path.\", \"camera_path\": \"From the same axis, the camera makes a restrained over-shoulder push with a gentle downward tilt, follows the steps, then continues forward after the host moves ahead and out of frame.\", \"world_reveal\": \"The hatch edges disappear as the camera arrives on a full-bleed host-free detector chain where one possible decay propagates through the relay toward two large-scale cat outcomes.\"}",
+  "output_path": "references/red_door_entry_frame.png",
+  "output_sha256": "536df80be2bf3590f8a85dd684d1c499a20aaf0e8f69a26cd902220d7bc705d0",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 102.319,
+  "completed_at": "2026-09-21T11:16:29Z"
+}

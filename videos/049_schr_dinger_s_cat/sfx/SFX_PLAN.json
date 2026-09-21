@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "episode_duration_seconds": 44.121,
+  "planner": {
+    "approach": "restrained",
+    "event_density": "minimal",
+    "notes": "Use sparse tactile details only where they reinforce physical scale or mechanism. Preserve narration clarity and avoid adding sound to every visual transition.",
+    "provider": "chatgpt_ordak",
+    "style": "restrained"
+  },
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 5.2,
+      "window_start": 4.6,
+      "window_end": 6.8,
+      "category": "mechanical",
+      "intent": "Subtle physical presence for the sealed experiment setup and red hatch imagery.",
+      "search_query": "quiet old laboratory wooden box mechanism subtle mechanical creak",
+      "alternate_queries": [
+        "vintage scientific apparatus soft metal movement",
+        "wooden enclosure latch close foley"
+      ],
+      "desired_duration_seconds": 1.6,
+      "max_duration_seconds": 2.2,
+      "priority": 2,
+      "suggested_gain_db": -24.0,
+      "speech_overlap": true,
+      "reason": "Adds realism to the opening experiment imagery while staying underneath explanatory narration."
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 21.0,
+      "window_start": 20.4,
+      "window_end": 22.4,
+      "category": "mechanical",
+      "intent": "A restrained detector activation texture as the apparatus observes decay.",
+      "search_query": "vintage radiation detector soft click relay laboratory equipment",
+      "alternate_queries": [
+        "old scientific instrument relay click",
+        "analog detector faint electrical pulse"
+      ],
+      "desired_duration_seconds": 1.0,
+      "max_duration_seconds": 1.5,
+      "priority": 1,
+      "suggested_gain_db": -22.0,
+      "speech_overlap": true,
+      "reason": "Supports the detector visual with a small physical cue without creating suspense or competing with narration."
+    }
+  ],
+  "timeline_context_sha256": "e7d12ca00bfcc42ad32b22566996a14a6a962ac0a1bd0206c88b3192c75b70a8",
+  "event_count": 2,
+  "updated_at": "2026-09-21T12:18:26.255226+00:00",
+  "status": "DONE"
+}

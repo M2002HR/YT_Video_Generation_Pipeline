@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "5206705d3aa14992c3c9c63d1682f8680efc8773dafbc24a4f5a44a90735c328",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "fa235073-bc98-40fa-98d7-1b36918756b1",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/1258adda78c7add1",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=fa235073-bc98-40fa-98d7-1b36918756b1_output_1.png 1536x2752 sha256=72ccfc888dd2a2389d1b0b90141baea7502dd588bd9aee11d2be7caa2f0d6b50"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "5206705d3aa14992c3c9c63d1682f8680efc8773dafbc24a4f5a44a90735c328",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "fa235073-bc98-40fa-98d7-1b36918756b1",
+        "prompt_sha256": "fead740d732e9c00c6c0595af7c0ff7359da6623d9a891f9d94c62785d5501c8",
+        "output_sha256": "72ccfc888dd2a2389d1b0b90141baea7502dd588bd9aee11d2be7caa2f0d6b50",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/049_schr_dinger_s_cat/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/049_schr_dinger_s_cat/references/world_keyframe.png",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/049_schr_dinger_s_cat/assets/raw_beats/beat_018.png",
+      "sha256": "0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb"
+    }
+  ],
+  "prompt_sha256": "fead740d732e9c00c6c0595af7c0ff7359da6623d9a891f9d94c62785d5501c8",
+  "prompt": "Create exactly one 9:16 image, a full-bleed topic-world scene inside the conceptual Schrödinger cat experiment chamber, rendered as a dry matte screen-print with coarse archival print grain and slight registration wear. Use bone white and pale stone grounds, dense soot black, muted storm blue-gray, restrained oxidized teal, and sparse vermilion only for the conceptual rupture and decay-related mechanism accents. Show a genuinely new high-angle corner composition: the viewer looks down into the sealed, period-plausible box interior where a living cat stands alert near the center with its head raised, clearly illuminated by broad pale light. Along one opposite wall, isolate the intact poison vial and dormant mechanical trigger lever, visibly untouched and unactivated, emphasizing the no-decay outcome. Keep the causal apparatus physically legible: simple mechanical trigger, detector, vial, and chamber relationships rather than modern technology. Use bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, graphic high-contrast illumination, deep printed shadows, and restrained directional highlights around the cat, detector, atom concept, and box interior. The composition should communicate the transition from microscopic radioactive uncertainty to a single macroscopic alive state through subtle state-overlap motifs and visual contrast, without duplicating previous imagery or copying any reference composition. The provided style references define only the medium, texture, palette, lighting, and world consistency; do not copy their layout, framing, pose, or camera angle. Fill the entire image edge-to-edge with natural scene content: no enclosing page, border, card, inset window, doorway rim, lens mask, blank footer, caption area, printed labels, readable text, storyboard, grid, collage, or panels. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_019.png",
+  "output_sha256": "72ccfc888dd2a2389d1b0b90141baea7502dd588bd9aee11d2be7caa2f0d6b50",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.259,
+  "completed_at": "2026-09-21T11:50:07Z"
+}

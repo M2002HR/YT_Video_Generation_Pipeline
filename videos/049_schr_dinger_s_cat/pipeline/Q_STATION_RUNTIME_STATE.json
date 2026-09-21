@@ -1,0 +1,1050 @@
+{
+  "schema_version": 2,
+  "video_id": "049",
+  "topic": "Schrödinger's cat",
+  "created_at": "2026-09-21T09:40:56Z",
+  "pipeline_state": "DONE",
+  "stages": {
+    "preflight": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:10:43Z"
+    },
+    "character_resolution": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "requested_mode": "manual",
+      "requested_character_id": "red_horned_everyman",
+      "resolved_character_id": "red_horned_everyman",
+      "resolution_source": "manual",
+      "character_version": 1,
+      "character_sheet_sha256": "169254671e13e3a623d2a278d36b0a92360f8129d6f1a641e51b983bd888391c"
+    },
+    "opening_concept": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "OPENING_CONCEPT.json"
+    },
+    "script_draft": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "SCRIPT_DRAFT.json"
+    },
+    "retention_edit": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "SCRIPT_CORE_PLAN.json"
+    },
+    "episode_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "EPISODE_PLAN.json"
+    },
+    "call_to_action": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "CALL_TO_ACTION.json"
+    },
+    "world_style_director": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:45Z",
+      "artifact": "WORLD_STYLE_PLAN.json"
+    },
+    "episode_history": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:10:47Z",
+      "opening_activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence.",
+      "opening_location": "A simple physics exhibit room centered on one transparent teaching rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "fractured_probability_screenprint_001",
+      "character_id": "red_horned_everyman",
+      "presentation_id": "red_door_portal",
+      "opening_signature": {
+        "action_family": "microscopic event drives large consequence",
+        "tension_family": "tiny cause versus large outcome",
+        "prop_family": "cutaway detector and relay chain",
+        "reveal_family": "the scale jump follows one physical chain"
+      },
+      "situation_summary": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+      "hook_line": "How can one atom decide a whole cat's fate?",
+      "entry_variant": "floor_hatch",
+      "opening_policy_version": 2
+    },
+    "visual_plan": {
+      "status": "REUSED",
+      "updated_at": "2026-09-21T11:10:48Z",
+      "artifact": "VISUAL_PLAN.json"
+    },
+    "q_station_narration_ready": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:09:38Z",
+      "body_beats": 10,
+      "visual_media": "deferred_until_narration_alignment"
+    },
+    "world_style_anchor": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:11:27Z",
+      "reuse_of": "fractured_probability_screenprint_001",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65",
+      "usage_count": 2
+    },
+    "world_keyframe_prompt": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:11:53Z",
+      "prompt_sha256": "3d5fed96f1a2f881233d8bd6cd59d8d22322b9f226a3bc0d4843e2e96b492886"
+    },
+    "world_keyframe": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:12:53Z",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd",
+      "model": "nano_banana_2"
+    },
+    "book_design_sheet": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:14:20Z",
+      "sha256": "2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0",
+      "profile_id": "red_door_portal"
+    },
+    "book_cover_design": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:14:43Z",
+      "profile_id": "red_door_portal"
+    },
+    "book_cover": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:16:29Z",
+      "sha256": "536df80be2bf3590f8a85dd684d1c499a20aaf0e8f69a26cd902220d7bc705d0",
+      "model": "nano_banana_2",
+      "profile_id": "red_door_portal"
+    },
+    "body_images": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:13:13Z"
+    },
+    "beat_image_001": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:18:02Z",
+      "sha256": "70a953d5b400a1ac5e51ddce5b3f211c3eabeb18176f56b34605f900efa27dcd",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_002": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:19:44Z",
+      "sha256": "313d932a521412af14614947ed00595493a64d7a5be1d1e2791e80b20f4330ec",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_003": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:21:22Z",
+      "sha256": "faa626606df6ceef35dbac05e6a79151d0552ffe6e18a39d4623c78e27a72954",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_004": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:23:15Z",
+      "sha256": "cb3289a2304dfd4cd4e52323268688455971fa6d256cc2a6efa75decc06c1eec",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_005": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:25:45Z",
+      "sha256": "b53a1e543aa7c09beca735444f9ea0bd56ed420a8f0c9aa6f0712420b70fbf6c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_006": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:27:50Z",
+      "sha256": "18fb53ad7abb34f481bb13a34fcab115f7a0ff8b3840038c76a8b96ff94adf22",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_007": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:29:28Z",
+      "sha256": "f668f2e87a0fe23de22d22db4257c3aabb3a747e57a16e75d87efa3d40bf8ba4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_008": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:31:19Z",
+      "sha256": "30d7f1182b3694d1dd0902540608c3fc67e29cc0482c640cc155b8559bba8591",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_009": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:32:57Z",
+      "sha256": "bacd0ead8bbd00f3c6ff746db65941e80e9051957bdee418a1942874e06d6e52",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_010": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:34:23Z",
+      "sha256": "ce9711b289d271f8e331476e2e1e40a28b50a04d5fabc2659abd6477e0ef91e2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_011": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:36:10Z",
+      "sha256": "b6e1ce28164f7368c5826d41d168c5a7936ec2fde5f986ef21841222c0ea9d74",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_012": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:37:49Z",
+      "sha256": "b9eab8eece7fab818681bc721e02a9edaffb02df3c98f9d90a07c8a99f17763f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_013": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:39:30Z",
+      "sha256": "3abbbdf73c5f38dc1d33949001cf41b4c236fb985206ee20f933a888c30f080d",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_014": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:41:11Z",
+      "sha256": "8931b0a346d035d9d2f1b02992bd0848fb06694ee0e6b93ac58147d7232580a5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_015": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:42:55Z",
+      "sha256": "0781b29de21fde2e2c6ace9bce176281ca8b88fd29835bef51664819cdf1066f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_016": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:44:39Z",
+      "sha256": "d0f3e85f4288af987c819e6a318128759d8aeb2c9fe114bfac1642ac307655b4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_017": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:46:42Z",
+      "sha256": "d5211a664e125073d7b0660bf3a3bb6b0887001a64e1a5b00535c585223244cd",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_018": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:48:29Z",
+      "sha256": "0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_019": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:50:07Z",
+      "sha256": "72ccfc888dd2a2389d1b0b90141baea7502dd588bd9aee11d2be7caa2f0d6b50",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_020": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:51:58Z",
+      "sha256": "5d0c8ff7fec2477425d07ee5bbae0f3a48949bcb8c1f86deac96fbbb2959db14",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_021": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:53:39Z",
+      "sha256": "3d96d85f234c91f4a8ab9e74366c1ae7fe2af290c152bc13714a4b75ff316a82",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_022": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:56:02Z",
+      "sha256": "a5309323fbeba21871334d567b181605f7ebc347ca44432c0a278eb9a6e1abf0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_023": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:58:08Z",
+      "sha256": "d4fa93a0582b1cc40f718054b2e514aaa25bd691d5824f16dde2df9c5d1ec8dc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_024": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T11:59:37Z",
+      "sha256": "f653a7a96a838c3f0a484339926df1ed2de3f1c22cb90a6543aba9983f33e7d2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_025": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:01:12Z",
+      "sha256": "cf98f456cb0067258ab095341fd7beff2a8945f21be7803bb272df3dc2735e1a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_026": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:02:56Z",
+      "sha256": "3a62f7b3b5169729e7448fd952a9a6f1617e5972d03c37db1ebc33081b09bf94",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_027": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:04:58Z",
+      "sha256": "4eaf37751fdb9222e4c122e25bf034c93597f42dc8991dfd4fcae32c14faba4d",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    "beat_image_028": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:07:04Z",
+      "sha256": "bc04af4a093f6ec99b7fe00afa72d049d2f796c4c0db29551fb2390488784e8e",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_029": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:11:12Z",
+      "sha256": "f1692f66a16b510ee66bf792038261d3b8b60e05378b097f3e721a0047b909a2",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "beat_image_030": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:13:12Z",
+      "sha256": "eae425379c00234aaebe338b0a306bb7d8badbc047e5a6aa14ead71ceef63df9",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    "transition_direction": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:13:16Z",
+      "boundaries": 29
+    },
+    "flow_prompt_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:13:36Z",
+      "prompt_sha256": "dd6cce5a148057647322e88802c091110e9ca67e50ddcd8413ea9e76c78942ba"
+    },
+    "flow_prompt_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:13:56Z",
+      "prompt_sha256": "42fdea5cff56c3a6a211933d5fa8539b616aa4688d0b048002744878563ac89e"
+    },
+    "flow_clip_a": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:15:38Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "e8170a000bad1e860c28e04172b50483575232be943f4ce182b4e3ae85a19ccb"
+    },
+    "flow_clip_b": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:17:48Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "d4a83ac5de66667b2f90877188a6b6178fbadf983950189ac85e34ff8607d247"
+    },
+    "q_station_visual_complete": {
+      "status": "DONE",
+      "updated_at": "2026-09-21T12:17:49Z",
+      "body_images": 30
+    }
+  },
+  "events": [
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.431,
+      "at": "2026-09-21T09:40:59Z"
+    },
+    {
+      "stage": "opening_concept",
+      "status": "DONE",
+      "elapsed_seconds": 139.726,
+      "at": "2026-09-21T09:43:20Z",
+      "selected_id": "c2",
+      "concept_id": "d05b1d07145def95cd05"
+    },
+    {
+      "stage": "script_draft",
+      "status": "DONE",
+      "elapsed_seconds": 58.322,
+      "at": "2026-09-21T09:44:19Z",
+      "words": 100
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 178.646,
+      "at": "2026-09-21T09:47:19Z",
+      "words": 98
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 67.614,
+      "at": "2026-09-21T09:48:28Z",
+      "activity": "Following how a microscopic radioactive event can propagate through a detector and mechanism into a much larger physical consequence."
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.678,
+      "at": "2026-09-21T10:28:18Z"
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.298,
+      "at": "2026-09-21T10:54:12Z"
+    },
+    {
+      "stage": "retention_edit",
+      "status": "DONE",
+      "elapsed_seconds": 240.0,
+      "at": "2026-09-21T10:58:13Z",
+      "words": 86
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.623,
+      "at": "2026-09-21T11:06:07Z"
+    },
+    {
+      "stage": "episode_director",
+      "status": "DONE",
+      "elapsed_seconds": 59.573,
+      "at": "2026-09-21T11:07:08Z",
+      "activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence."
+    },
+    {
+      "stage": "call_to_action",
+      "status": "DONE",
+      "elapsed_seconds": 43.459,
+      "at": "2026-09-21T11:07:52Z",
+      "hint_provided": true
+    },
+    {
+      "stage": "world_style_director",
+      "status": "DONE",
+      "elapsed_seconds": 43.699,
+      "at": "2026-09-21T11:08:38Z",
+      "style_id": "fractured_probability_screenprint_001"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 1.588,
+      "at": "2026-09-21T11:08:41Z",
+      "opening_activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence.",
+      "opening_location": "A simple physics exhibit room centered on one transparent teaching rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "fractured_probability_screenprint_001",
+      "character_id": "red_horned_everyman",
+      "presentation_id": "red_door_portal",
+      "opening_signature": {
+        "action_family": "microscopic event drives large consequence",
+        "tension_family": "tiny cause versus large outcome",
+        "prop_family": "cutaway detector and relay chain",
+        "reveal_family": "the scale jump follows one physical chain"
+      },
+      "situation_summary": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+      "hook_line": "How can one atom decide a whole cat's fate?",
+      "entry_variant": "floor_hatch",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "visual_plan",
+      "status": "DONE",
+      "elapsed_seconds": 55.1,
+      "at": "2026-09-21T11:09:37Z",
+      "beats": 10
+    },
+    {
+      "stage": "preflight",
+      "status": "DONE",
+      "elapsed_seconds": 2.697,
+      "at": "2026-09-21T11:10:43Z"
+    },
+    {
+      "stage": "episode_history",
+      "status": "DONE",
+      "elapsed_seconds": 2.596,
+      "at": "2026-09-21T11:10:47Z",
+      "opening_activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence.",
+      "opening_location": "A simple physics exhibit room centered on one transparent teaching rig.",
+      "camera_pattern": "slow_push_in",
+      "world_style_id": "fractured_probability_screenprint_001",
+      "character_id": "red_horned_everyman",
+      "presentation_id": "red_door_portal",
+      "opening_signature": {
+        "action_family": "microscopic event drives large consequence",
+        "tension_family": "tiny cause versus large outcome",
+        "prop_family": "cutaway detector and relay chain",
+        "reveal_family": "the scale jump follows one physical chain"
+      },
+      "situation_summary": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+      "hook_line": "How can one atom decide a whole cat's fate?",
+      "entry_variant": "floor_hatch",
+      "opening_policy_version": 2
+    },
+    {
+      "stage": "world_style_anchor",
+      "status": "DONE",
+      "elapsed_seconds": 38.357,
+      "at": "2026-09-21T11:11:27Z",
+      "reuse_of": "fractured_probability_screenprint_001",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65",
+      "usage_count": 2
+    },
+    {
+      "stage": "world_keyframe_prompt",
+      "status": "DONE",
+      "elapsed_seconds": 25.092,
+      "at": "2026-09-21T11:11:53Z",
+      "prompt_sha256": "3d5fed96f1a2f881233d8bd6cd59d8d22322b9f226a3bc0d4843e2e96b492886"
+    },
+    {
+      "stage": "world_keyframe",
+      "status": "DONE",
+      "elapsed_seconds": 58.54,
+      "at": "2026-09-21T11:12:53Z",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd",
+      "model": "nano_banana_2"
+    },
+    {
+      "stage": "book_design_sheet",
+      "status": "DONE",
+      "elapsed_seconds": 85.847,
+      "at": "2026-09-21T11:14:20Z",
+      "sha256": "2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0",
+      "profile_id": "red_door_portal"
+    },
+    {
+      "stage": "book_cover_design",
+      "status": "DONE",
+      "elapsed_seconds": 22.406,
+      "at": "2026-09-21T11:14:43Z",
+      "profile_id": "red_door_portal"
+    },
+    {
+      "stage": "book_cover",
+      "status": "DONE",
+      "elapsed_seconds": 104.15,
+      "at": "2026-09-21T11:16:29Z",
+      "sha256": "536df80be2bf3590f8a85dd684d1c499a20aaf0e8f69a26cd902220d7bc705d0",
+      "model": "nano_banana_2",
+      "profile_id": "red_door_portal"
+    },
+    {
+      "stage": "beat_image_001",
+      "status": "DONE",
+      "elapsed_seconds": 66.559,
+      "at": "2026-09-21T11:18:02Z",
+      "sha256": "70a953d5b400a1ac5e51ddce5b3f211c3eabeb18176f56b34605f900efa27dcd",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_002",
+      "status": "DONE",
+      "elapsed_seconds": 81.822,
+      "at": "2026-09-21T11:19:44Z",
+      "sha256": "313d932a521412af14614947ed00595493a64d7a5be1d1e2791e80b20f4330ec",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_003",
+      "status": "DONE",
+      "elapsed_seconds": 75.805,
+      "at": "2026-09-21T11:21:22Z",
+      "sha256": "faa626606df6ceef35dbac05e6a79151d0552ffe6e18a39d4623c78e27a72954",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_004",
+      "status": "DONE",
+      "elapsed_seconds": 93.72,
+      "at": "2026-09-21T11:23:15Z",
+      "sha256": "cb3289a2304dfd4cd4e52323268688455971fa6d256cc2a6efa75decc06c1eec",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_005",
+      "status": "DONE",
+      "elapsed_seconds": 130.03,
+      "at": "2026-09-21T11:25:45Z",
+      "sha256": "b53a1e543aa7c09beca735444f9ea0bd56ed420a8f0c9aa6f0712420b70fbf6c",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_006",
+      "status": "DONE",
+      "elapsed_seconds": 105.813,
+      "at": "2026-09-21T11:27:50Z",
+      "sha256": "18fb53ad7abb34f481bb13a34fcab115f7a0ff8b3840038c76a8b96ff94adf22",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_007",
+      "status": "DONE",
+      "elapsed_seconds": 78.667,
+      "at": "2026-09-21T11:29:28Z",
+      "sha256": "f668f2e87a0fe23de22d22db4257c3aabb3a747e57a16e75d87efa3d40bf8ba4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_008",
+      "status": "DONE",
+      "elapsed_seconds": 90.849,
+      "at": "2026-09-21T11:31:19Z",
+      "sha256": "30d7f1182b3694d1dd0902540608c3fc67e29cc0482c640cc155b8559bba8591",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_009",
+      "status": "DONE",
+      "elapsed_seconds": 78.721,
+      "at": "2026-09-21T11:32:57Z",
+      "sha256": "bacd0ead8bbd00f3c6ff746db65941e80e9051957bdee418a1942874e06d6e52",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_010",
+      "status": "DONE",
+      "elapsed_seconds": 66.604,
+      "at": "2026-09-21T11:34:23Z",
+      "sha256": "ce9711b289d271f8e331476e2e1e40a28b50a04d5fabc2659abd6477e0ef91e2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_011",
+      "status": "DONE",
+      "elapsed_seconds": 87.75,
+      "at": "2026-09-21T11:36:10Z",
+      "sha256": "b6e1ce28164f7368c5826d41d168c5a7936ec2fde5f986ef21841222c0ea9d74",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_012",
+      "status": "DONE",
+      "elapsed_seconds": 75.899,
+      "at": "2026-09-21T11:37:49Z",
+      "sha256": "b9eab8eece7fab818681bc721e02a9edaffb02df3c98f9d90a07c8a99f17763f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_013",
+      "status": "DONE",
+      "elapsed_seconds": 81.65,
+      "at": "2026-09-21T11:39:30Z",
+      "sha256": "3abbbdf73c5f38dc1d33949001cf41b4c236fb985206ee20f933a888c30f080d",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_014",
+      "status": "DONE",
+      "elapsed_seconds": 78.863,
+      "at": "2026-09-21T11:41:11Z",
+      "sha256": "8931b0a346d035d9d2f1b02992bd0848fb06694ee0e6b93ac58147d7232580a5",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_015",
+      "status": "DONE",
+      "elapsed_seconds": 81.783,
+      "at": "2026-09-21T11:42:55Z",
+      "sha256": "0781b29de21fde2e2c6ace9bce176281ca8b88fd29835bef51664819cdf1066f",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_016",
+      "status": "DONE",
+      "elapsed_seconds": 84.682,
+      "at": "2026-09-21T11:44:39Z",
+      "sha256": "d0f3e85f4288af987c819e6a318128759d8aeb2c9fe114bfac1642ac307655b4",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_017",
+      "status": "DONE",
+      "elapsed_seconds": 99.945,
+      "at": "2026-09-21T11:46:42Z",
+      "sha256": "d5211a664e125073d7b0660bf3a3bb6b0887001a64e1a5b00535c585223244cd",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_018",
+      "status": "DONE",
+      "elapsed_seconds": 84.693,
+      "at": "2026-09-21T11:48:29Z",
+      "sha256": "0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_019",
+      "status": "DONE",
+      "elapsed_seconds": 75.768,
+      "at": "2026-09-21T11:50:07Z",
+      "sha256": "72ccfc888dd2a2389d1b0b90141baea7502dd588bd9aee11d2be7caa2f0d6b50",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_020",
+      "status": "DONE",
+      "elapsed_seconds": 90.925,
+      "at": "2026-09-21T11:51:58Z",
+      "sha256": "5d0c8ff7fec2477425d07ee5bbae0f3a48949bcb8c1f86deac96fbbb2959db14",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_021",
+      "status": "DONE",
+      "elapsed_seconds": 78.683,
+      "at": "2026-09-21T11:53:39Z",
+      "sha256": "3d96d85f234c91f4a8ab9e74366c1ae7fe2af290c152bc13714a4b75ff316a82",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_022",
+      "status": "DONE",
+      "elapsed_seconds": 123.916,
+      "at": "2026-09-21T11:56:02Z",
+      "sha256": "a5309323fbeba21871334d567b181605f7ebc347ca44432c0a278eb9a6e1abf0",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_023",
+      "status": "DONE",
+      "elapsed_seconds": 105.86,
+      "at": "2026-09-21T11:58:08Z",
+      "sha256": "d4fa93a0582b1cc40f718054b2e514aaa25bd691d5824f16dde2df9c5d1ec8dc",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_024",
+      "status": "DONE",
+      "elapsed_seconds": 69.566,
+      "at": "2026-09-21T11:59:37Z",
+      "sha256": "f653a7a96a838c3f0a484339926df1ed2de3f1c22cb90a6543aba9983f33e7d2",
+      "references": [
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_025",
+      "status": "DONE",
+      "elapsed_seconds": 75.8,
+      "at": "2026-09-21T12:01:12Z",
+      "sha256": "cf98f456cb0067258ab095341fd7beff2a8945f21be7803bb272df3dc2735e1a",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_026",
+      "status": "DONE",
+      "elapsed_seconds": 84.768,
+      "at": "2026-09-21T12:02:56Z",
+      "sha256": "3a62f7b3b5169729e7448fd952a9a6f1617e5972d03c37db1ebc33081b09bf94",
+      "references": [
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_027",
+      "status": "DONE",
+      "elapsed_seconds": 102.815,
+      "at": "2026-09-21T12:04:58Z",
+      "sha256": "4eaf37751fdb9222e4c122e25bf034c93597f42dc8991dfd4fcae32c14faba4d",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe"
+      ]
+    },
+    {
+      "stage": "beat_image_028",
+      "status": "DONE",
+      "elapsed_seconds": 102.937,
+      "at": "2026-09-21T12:07:04Z",
+      "sha256": "bc04af4a093f6ec99b7fe00afa72d049d2f796c4c0db29551fb2390488784e8e",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_029",
+      "status": "DONE",
+      "elapsed_seconds": 226.288,
+      "at": "2026-09-21T12:11:12Z",
+      "sha256": "f1692f66a16b510ee66bf792038261d3b8b60e05378b097f3e721a0047b909a2",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "beat_image_030",
+      "status": "DONE",
+      "elapsed_seconds": 96.917,
+      "at": "2026-09-21T12:13:12Z",
+      "sha256": "eae425379c00234aaebe338b0a306bb7d8badbc047e5a6aa14ead71ceef63df9",
+      "references": [
+        "character_sheet",
+        "style_reference",
+        "world_keyframe",
+        "previous_beat"
+      ]
+    },
+    {
+      "stage": "body_images",
+      "status": "DONE",
+      "elapsed_seconds": 3403.323,
+      "at": "2026-09-21T12:13:13Z"
+    },
+    {
+      "stage": "transition_direction",
+      "status": "DONE",
+      "elapsed_seconds": 1.274,
+      "at": "2026-09-21T12:13:16Z",
+      "boundaries": 29
+    },
+    {
+      "stage": "flow_prompt_a",
+      "status": "DONE",
+      "elapsed_seconds": 19.123,
+      "at": "2026-09-21T12:13:36Z",
+      "prompt_sha256": "dd6cce5a148057647322e88802c091110e9ca67e50ddcd8413ea9e76c78942ba"
+    },
+    {
+      "stage": "flow_prompt_b",
+      "status": "DONE",
+      "elapsed_seconds": 19.751,
+      "at": "2026-09-21T12:13:56Z",
+      "prompt_sha256": "42fdea5cff56c3a6a211933d5fa8539b616aa4688d0b048002744878563ac89e"
+    },
+    {
+      "stage": "flow_clip_a",
+      "status": "DONE",
+      "elapsed_seconds": 100.994,
+      "at": "2026-09-21T12:15:38Z",
+      "duration_seconds": 4.01,
+      "roles": [
+        "character_sheet"
+      ],
+      "sha256": "e8170a000bad1e860c28e04172b50483575232be943f4ce182b4e3ae85a19ccb"
+    },
+    {
+      "stage": "flow_clip_b",
+      "status": "DONE",
+      "elapsed_seconds": 127.978,
+      "at": "2026-09-21T12:17:48Z",
+      "duration_seconds": 6.016,
+      "roles": [
+        "first_frame",
+        "last_frame"
+      ],
+      "sha256": "d4a83ac5de66667b2f90877188a6b6178fbadf983950189ac85e34ff8607d247"
+    }
+  ],
+  "updated_at": "2026-09-21T12:17:49Z"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 2,
+  "provider": "ElevenLabs web UI",
+  "transport": "elevenlabs_web",
+  "attempt_id": "attempt-2684f5c01cfc4cb6afaf8cdfd6a4743a",
+  "result_id": "audio-player:blob:https://elevenlabs.io/b41502aa-0620-4ef5-a01e-0be19ac2ba16",
+  "input_sha256": "9bae1b152ce936183cca5307ca670d891fbb846cd335da8fb606a79011c58d74",
+  "compiled_input_sha256": "9bae1b152ce936183cca5307ca670d891fbb846cd335da8fb606a79011c58d74",
+  "settings": {
+    "voice": "Jerry B - Jolly Santa Claus",
+    "model": "Eleven v3",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.35,
+    "style": 0.3,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "effective_settings": {
+    "voice": "Jerry B - Jolly Santa Claus",
+    "model": "Eleven v3",
+    "speed": null,
+    "stability": 0.5,
+    "similarity": null,
+    "style": null,
+    "stability_mode": null,
+    "output_format": "MP3 44.1 kHz (128kbps)",
+    "capability_probe": {
+      "schema_version": 1,
+      "observed_model": "Eleven v3",
+      "observed_voice": "Jerry B - Jolly Santa Claus",
+      "numeric_controls": [
+        "stability"
+      ],
+      "stability_modes": [],
+      "speaker_boost_available": false,
+      "editor_kind": "contenteditable",
+      "observed_at": "2026-09-21T11:10:05.032676+00:00"
+    },
+    "execution_mode": "expressive_v3"
+  },
+  "capability_schema_version": 1,
+  "capabilities": {
+    "schema_version": 1,
+    "observed_model": "Eleven v3",
+    "observed_voice": "Jerry B - Jolly Santa Claus",
+    "numeric_controls": [
+      "stability"
+    ],
+    "stability_modes": [],
+    "speaker_boost_available": false,
+    "editor_kind": "contenteditable",
+    "observed_at": "2026-09-21T11:10:00.677129+00:00"
+  },
+  "result_baseline": {
+    "identities": []
+  },
+  "output": "assets/audio/narration.mp3",
+  "output_sha256": "64a736c5a7d30528a942325ee0b35c27a699425520635ae74ca8ca2b32a625c1",
+  "technical": {
+    "duration_seconds": 44.120813,
+    "format_name": "mp3"
+  },
+  "generated_at": "2026-09-21T11:10:31.414573+00:00"
+}

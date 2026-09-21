@@ -1,0 +1,20 @@
+{
+  "opening_question_spark": "How can one atom decide a whole cat's fate?",
+  "entry_transition": "Below the red hatch, decay may trigger a detector and start a larger chain.",
+  "cta": "Which part feels strangest?",
+  "body": [
+    "Schrödinger proposed it in 1935.",
+    "A cat is sealed in a box.",
+    "One radioactive atom may decay.",
+    "A detector watches for decay.",
+    "Decay can trigger a poison mechanism.",
+    "Then the cat dies.",
+    "No decay leaves it alive.",
+    "Quantum theory can describe both possibilities together.",
+    "That state is called a superposition."
+  ],
+  "optional_closing": "That jump from atom to cat was the point.",
+  "full_narration": "How can one atom decide a whole cat's fate? Below the red hatch, decay may trigger a detector and start a larger chain. Schrödinger proposed it in 1935. A cat is sealed in a box. One radioactive atom may decay. A detector watches for decay. Decay can trigger a poison mechanism. Then the cat dies. No decay leaves it alive. Quantum theory can describe both possibilities together. That state is called a superposition. That jump from atom to cat was the point. Which part feels strangest?",
+  "word_count": 86,
+  "created_at": "2026-09-21T10:57:46Z"
+}

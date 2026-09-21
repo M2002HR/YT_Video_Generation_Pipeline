@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "operator_upload",
+  "selection_mode": "operator_upload",
+  "file": "assets/music/operator_background.mp3",
+  "source_url": null,
+  "source_sha256": "7a0a29b0d1c01517ae9280c321a1c0310f349e13c5735fd0864e5ba574bea7ad",
+  "license": "Operator-supplied; publication rights must be verified by the operator.",
+  "original_name": "numbthefeelings - glass house (freetouse.com).mp3",
+  "library_origin": "upload",
+  "selected_at": "2026-09-21T11:10:32.764935+00:00"
+}

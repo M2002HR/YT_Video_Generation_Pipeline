@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "DONE",
+  "plan_context_sha256": "e7d12ca00bfcc42ad32b22566996a14a6a962ac0a1bd0206c88b3192c75b70a8",
+  "events": [
+    {
+      "event_id": "sfx_001",
+      "at": 5.2,
+      "intent": "Subtle physical presence for the sealed experiment setup and red hatch imagery.",
+      "query": "quiet old laboratory wooden box mechanism subtle mechanical creak",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_801035",
+      "provider": "freesound",
+      "provider_id": "801035",
+      "source_url": "https://freesound.org/people/RIFORKA/sounds/801035/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_801035_ec36d766f7e4.mp3",
+      "duration_seconds": 2.2,
+      "gain_db": -9.0,
+      "score": 1.0
+    },
+    {
+      "event_id": "sfx_002",
+      "at": 21.0,
+      "intent": "A restrained detector activation texture as the apparatus observes decay.",
+      "query": "vintage radiation detector soft click relay laboratory equipment",
+      "selection_mode": "FREESOUND_DOWNLOAD",
+      "library_id": "freesound_482748",
+      "provider": "freesound",
+      "provider_id": "482748",
+      "source_url": "https://freesound.org/people/craigsmith/sounds/482748/",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "file": "/opt/YT_Video_Generation_Pipeline/runtime/sfx_library/assets/freesound_482748_ae706717319f.mp3",
+      "duration_seconds": 1.5,
+      "gain_db": -9.0,
+      "score": 1.0
+    }
+  ]
+}

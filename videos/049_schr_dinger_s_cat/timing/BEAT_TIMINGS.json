@@ -1,0 +1,116 @@
+{
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 44.121,
+  "stt": {
+    "backend": "ajil",
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "fallback_used": false,
+    "timestamp_source": "word",
+    "ajil_base_url": "http://127.0.0.1:18080"
+  },
+  "transcript": "How can one atom decide a whole cat's fate? Below the red hatch, decay may trigger a detector and start a larger chain. Schrodinger proposed it in 1935. A cat is sealed in a box. One radioactive atom may decay. A detector watches for decay. Decay can trigger a poison mechanism. Then the cat dies. No decay leaves it alive. Quantum theory can describe both possibilities together. That state is called a superposition. That jump from atom to cat was the point. Choose the next video's topic and question in the comments.",
+  "word_count": 92,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration": "Schrödinger proposed it in 1935.",
+      "speech_start": 12.02,
+      "speech_end": 13.94,
+      "match_confidence": 0.667,
+      "display_start": 0.0,
+      "display_end": 14.98,
+      "display_duration": 14.98
+    },
+    {
+      "beat_id": 2,
+      "narration": "A cat is sealed in a box.",
+      "speech_start": 14.98,
+      "speech_end": 16.86,
+      "match_confidence": 1.0,
+      "display_start": 14.98,
+      "display_end": 17.48,
+      "display_duration": 2.5
+    },
+    {
+      "beat_id": 3,
+      "narration": "One radioactive atom may decay.",
+      "speech_start": 17.48,
+      "speech_end": 19.6,
+      "match_confidence": 1.0,
+      "display_start": 17.48,
+      "display_end": 20.32,
+      "display_duration": 2.84
+    },
+    {
+      "beat_id": 4,
+      "narration": "A detector watches for decay.",
+      "speech_start": 20.32,
+      "speech_end": 22.12,
+      "match_confidence": 1.0,
+      "display_start": 20.32,
+      "display_end": 22.86,
+      "display_duration": 2.54
+    },
+    {
+      "beat_id": 5,
+      "narration": "Decay can trigger a poison mechanism.",
+      "speech_start": 22.86,
+      "speech_end": 25.46,
+      "match_confidence": 1.0,
+      "display_start": 22.86,
+      "display_end": 26.12,
+      "display_duration": 3.26
+    },
+    {
+      "beat_id": 6,
+      "narration": "Then the cat dies.",
+      "speech_start": 26.12,
+      "speech_end": 27.52,
+      "match_confidence": 1.0,
+      "display_start": 26.12,
+      "display_end": 26.84,
+      "display_duration": 0.72
+    },
+    {
+      "beat_id": 7,
+      "narration": "No decay leaves it alive.",
+      "speech_start": 26.84,
+      "speech_end": 29.56,
+      "match_confidence": 1.0,
+      "display_start": 26.84,
+      "display_end": 30.32,
+      "display_duration": 3.48
+    },
+    {
+      "beat_id": 8,
+      "narration": "Quantum theory can describe both possibilities together.",
+      "speech_start": 30.32,
+      "speech_end": 33.48,
+      "match_confidence": 1.0,
+      "display_start": 30.32,
+      "display_end": 34.02,
+      "display_duration": 3.7
+    },
+    {
+      "beat_id": 9,
+      "narration": "That state is called a superposition.",
+      "speech_start": 34.02,
+      "speech_end": 35.92,
+      "match_confidence": 1.0,
+      "display_start": 34.02,
+      "display_end": 36.64,
+      "display_duration": 2.62
+    },
+    {
+      "beat_id": 10,
+      "narration": "That jump from atom to cat was the point.",
+      "speech_start": 36.64,
+      "speech_end": 39.3,
+      "match_confidence": 1.0,
+      "display_start": 36.64,
+      "display_end": 44.121,
+      "display_duration": 7.481
+    }
+  ]
+}

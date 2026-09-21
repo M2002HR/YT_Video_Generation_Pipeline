@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "video": "049_schr_dinger_s_cat",
+  "started_at": "2026-09-21T12:18:04.033067+00:00",
+  "status": "RUNNING",
+  "events": [
+    {
+      "stage": "build_timeline",
+      "started_at": "2026-09-21T12:18:04.057244+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/build_timeline.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:18:05.755583+00:00",
+      "elapsed_seconds": 1.698,
+      "artifact": "timeline/TIMELINE.json",
+      "artifact_bytes": 44370
+    },
+    {
+      "stage": "sfx_plan",
+      "started_at": "2026-09-21T12:18:06.827426+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_sfx_planner.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--style",
+        "restrained",
+        "--max-events-per-minute",
+        "4.0",
+        "--minimum-gap-seconds",
+        "2.0"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:18:26.277735+00:00",
+      "elapsed_seconds": 19.45,
+      "artifact": "sfx/SFX_PLAN.json",
+      "artifact_bytes": 2088
+    },
+    {
+      "stage": "render_baseline",
+      "started_at": "2026-09-21T12:18:27.412059+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/render_video.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/final.mp4",
+        "--resource-budget",
+        "0.800",
+        "--telegram-title",
+        "step 3/10 · Render Baseline"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:21:28.592494+00:00",
+      "elapsed_seconds": 181.18,
+      "artifact": "assets/renders/final.mp4",
+      "artifact_bytes": 68512474
+    },
+    {
+      "stage": "qc_baseline",
+      "started_at": "2026-09-21T12:21:28.593026+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/final.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:21:37.826001+00:00",
+      "elapsed_seconds": 9.233,
+      "artifact": "render/QC_REPORT.json",
+      "artifact_bytes": 1557
+    },
+    {
+      "stage": "sfx_acquire",
+      "started_at": "2026-09-21T12:21:38.986299+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/run_sfx_acquire.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--local-threshold",
+        "0.35",
+        "--license-policy",
+        "cc0",
+        "--candidate-count",
+        "12",
+        "--max-queries-per-event",
+        "2",
+        "--default-gain-db",
+        "-9.0",
+        "--min-gain-db",
+        "-20",
+        "--max-gain-db",
+        "-3"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:22:03.452099+00:00",
+      "elapsed_seconds": 24.466,
+      "artifact": "sfx/SFX_SELECTION.json",
+      "artifact_bytes": 1594
+    },
+    {
+      "stage": "polish_audio",
+      "started_at": "2026-09-21T12:22:04.551624+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/polish_audio.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/polished.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:22:08.420302+00:00",
+      "elapsed_seconds": 3.869,
+      "artifact": "assets/renders/polished.mp4",
+      "artifact_bytes": 68681772
+    },
+    {
+      "stage": "qc_polished",
+      "started_at": "2026-09-21T12:22:09.465253+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/qc_render.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/polished.mp4",
+        "--decode"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:22:18.525186+00:00",
+      "elapsed_seconds": 9.06,
+      "artifact": "render/QC_REPORT_polished.json",
+      "artifact_bytes": 1560
+    },
+    {
+      "stage": "telegram_compress",
+      "started_at": "2026-09-21T12:22:19.548908+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/compress_for_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/polished.mp4",
+        "--output",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/telegram_low.mp4"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:22:37.548889+00:00",
+      "elapsed_seconds": 18.0,
+      "artifact": "assets/renders/telegram_low.mp4",
+      "artifact_bytes": 3495926
+    },
+    {
+      "stage": "publish_telegram",
+      "started_at": "2026-09-21T12:22:39.013224+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/publish_to_telegram.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--input",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/assets/renders/telegram_low.mp4",
+        "--kind",
+        "compressed"
+      ],
+      "status": "DONE",
+      "ended_at": "2026-09-21T12:22:48.563786+00:00",
+      "elapsed_seconds": 9.551,
+      "artifact": "publish/TELEGRAM_PUBLISH_STATE.json",
+      "artifact_bytes": 2120
+    },
+    {
+      "stage": "git_commit_push",
+      "started_at": "2026-09-21T12:22:49.735466+00:00",
+      "command": [
+        "/opt/YT_Video_Generation_Pipeline/.venv/bin/python",
+        "scripts/commit_video_artifacts.py",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat",
+        "--full-state",
+        "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/pipeline/FINALIZATION_RUNTIME_STATE.json",
+        "--started-at",
+        "2026-09-21T12:18:04.033067+00:00"
+      ],
+      "status": "RUNNING"
+    }
+  ],
+  "completed_at": "2026-09-21T12:22:49.730898+00:00",
+  "total_elapsed_seconds": 276.507,
+  "summary": {
+    "video": "049_schr_dinger_s_cat",
+    "duration_seconds": 44.121,
+    "beat_count": 32,
+    "video_beat_count": 2,
+    "image_beat_count": 30,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "subtitles": true,
+    "opening": {
+      "spark_end": 3.8,
+      "transition_end": 10.76
+    },
+    "stt": {
+      "backend": "ajil",
+      "timestamp_source": "word"
+    },
+    "verified_models": {
+      "chatgpt": [
+        "Nano Banana 2"
+      ],
+      "flow": [
+        "Omni 1.1 Flash"
+      ],
+      "unverified": [
+        "gemini_world_style_anchor"
+      ]
+    },
+    "qc": {
+      "report": "QC_REPORT_polished.json",
+      "passed": true
+    },
+    "motion": {
+      "enabled": false
+    },
+    "resources": {
+      "wall_seconds": 180.66,
+      "realtime_factor": 4.095,
+      "peak_child_rss_mb": 2711.8,
+      "threads": 2,
+      "resource_budget": 0.8,
+      "cpus_available": 2
+    }
+  }
+}

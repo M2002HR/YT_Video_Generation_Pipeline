@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "source_seconds": 4,
+  "target_seconds": 3.8,
+  "input_fingerprint": "8e4583825a19a5e55a7e4adeef93ec80aeb016355ac9aeaf1c833800fe98838b",
+  "prompt_sha256": "dd6cce5a148057647322e88802c091110e9ca67e50ddcd8413ea9e76c78942ba"
+}

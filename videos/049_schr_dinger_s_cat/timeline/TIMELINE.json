@@ -1,0 +1,2020 @@
+{
+  "schema_version": 1,
+  "source_timing": "timing/BEAT_TIMINGS.json",
+  "render_profile": "render/RENDER_PROFILE.json",
+  "audio": "assets/audio/narration.mp3",
+  "duration": 44.121,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "fps": 30,
+  "beats": [
+    {
+      "media_type": "video",
+      "source": "assets/opening/question_intro_trimmed.mp4",
+      "start": 0.0,
+      "end": 3.833,
+      "duration": 3.833,
+      "beat_id": "video_opening_a",
+      "motion": "still",
+      "transition_in": "cut",
+      "transition_seconds": 0.0
+    },
+    {
+      "media_type": "video",
+      "source": "assets/opening/red_door_transition_trimmed.mp4",
+      "start": 3.833,
+      "end": 10.792,
+      "duration": 6.958,
+      "beat_id": "video_opening_b",
+      "motion": "still",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 1,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_001.png",
+      "source": "assets/raw_beats/beat_001.png",
+      "start": 10.792,
+      "end": 12.167,
+      "duration": 1.375,
+      "speech_start": 12.02,
+      "speech_end": 12.66,
+      "match_confidence": 0.667,
+      "motion": "zoom_in",
+      "narration": "Schrödinger proposed it in 1935.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_001",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 2,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_002.png",
+      "source": "assets/raw_beats/beat_002.png",
+      "start": 12.167,
+      "end": 13.573,
+      "duration": 1.406,
+      "speech_start": 12.66,
+      "speech_end": 13.3,
+      "match_confidence": 0.667,
+      "motion": "zoom_in",
+      "narration": "Schrödinger proposed it in 1935.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_002",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 3,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_003.png",
+      "source": "assets/raw_beats/beat_003.png",
+      "start": 13.573,
+      "end": 14.98,
+      "duration": 1.407,
+      "speech_start": 13.3,
+      "speech_end": 13.94,
+      "match_confidence": 0.667,
+      "motion": "zoom_in",
+      "narration": "Schrödinger proposed it in 1935.",
+      "semantic_beat_id": 1,
+      "asset_id": "body_asset_003",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 4,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_004.png",
+      "source": "assets/raw_beats/beat_004.png",
+      "start": 14.98,
+      "end": 15.813,
+      "duration": 0.833,
+      "speech_start": 14.98,
+      "speech_end": 15.607,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A cat is sealed in a box.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_004",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 5,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_005.png",
+      "source": "assets/raw_beats/beat_005.png",
+      "start": 15.813,
+      "end": 16.647,
+      "duration": 0.834,
+      "speech_start": 15.607,
+      "speech_end": 16.233,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A cat is sealed in a box.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_005",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 6,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_006.png",
+      "source": "assets/raw_beats/beat_006.png",
+      "start": 16.647,
+      "end": 17.48,
+      "duration": 0.833,
+      "speech_start": 16.233,
+      "speech_end": 16.86,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A cat is sealed in a box.",
+      "semantic_beat_id": 2,
+      "asset_id": "body_asset_006",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 7,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_007.png",
+      "source": "assets/raw_beats/beat_007.png",
+      "start": 17.48,
+      "end": 18.427,
+      "duration": 0.947,
+      "speech_start": 17.48,
+      "speech_end": 18.187,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "One radioactive atom may decay.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_007",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 8,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_008.png",
+      "source": "assets/raw_beats/beat_008.png",
+      "start": 18.427,
+      "end": 19.373,
+      "duration": 0.946,
+      "speech_start": 18.187,
+      "speech_end": 18.893,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "One radioactive atom may decay.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_008",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 9,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_009.png",
+      "source": "assets/raw_beats/beat_009.png",
+      "start": 19.373,
+      "end": 20.32,
+      "duration": 0.947,
+      "speech_start": 18.893,
+      "speech_end": 19.6,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "One radioactive atom may decay.",
+      "semantic_beat_id": 3,
+      "asset_id": "body_asset_009",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 10,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_010.png",
+      "source": "assets/raw_beats/beat_010.png",
+      "start": 20.32,
+      "end": 21.167,
+      "duration": 0.847,
+      "speech_start": 20.32,
+      "speech_end": 20.92,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A detector watches for decay.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_010",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 11,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_011.png",
+      "source": "assets/raw_beats/beat_011.png",
+      "start": 21.167,
+      "end": 22.013,
+      "duration": 0.846,
+      "speech_start": 20.92,
+      "speech_end": 21.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A detector watches for decay.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_011",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 12,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_012.png",
+      "source": "assets/raw_beats/beat_012.png",
+      "start": 22.013,
+      "end": 22.86,
+      "duration": 0.847,
+      "speech_start": 21.52,
+      "speech_end": 22.12,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "A detector watches for decay.",
+      "semantic_beat_id": 4,
+      "asset_id": "body_asset_012",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 13,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_013.png",
+      "source": "assets/raw_beats/beat_013.png",
+      "start": 22.86,
+      "end": 23.947,
+      "duration": 1.087,
+      "speech_start": 22.86,
+      "speech_end": 23.727,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Decay can trigger a poison mechanism.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_013",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 14,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_014.png",
+      "source": "assets/raw_beats/beat_014.png",
+      "start": 23.947,
+      "end": 25.033,
+      "duration": 1.086,
+      "speech_start": 23.727,
+      "speech_end": 24.593,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Decay can trigger a poison mechanism.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_014",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 15,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_015.png",
+      "source": "assets/raw_beats/beat_015.png",
+      "start": 25.033,
+      "end": 26.12,
+      "duration": 1.087,
+      "speech_start": 24.593,
+      "speech_end": 25.46,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Decay can trigger a poison mechanism.",
+      "semantic_beat_id": 5,
+      "asset_id": "body_asset_015",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 16,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_016.png",
+      "source": "assets/raw_beats/beat_016.png",
+      "start": 26.12,
+      "end": 26.65,
+      "duration": 0.53,
+      "speech_start": 26.12,
+      "speech_end": 26.82,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Then the cat dies.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_016",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 17,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_017.png",
+      "source": "assets/raw_beats/beat_017.png",
+      "start": 26.65,
+      "end": 27.18,
+      "duration": 0.53,
+      "speech_start": 26.82,
+      "speech_end": 27.52,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Then the cat dies.",
+      "semantic_beat_id": 6,
+      "asset_id": "body_asset_017",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 18,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_018.png",
+      "source": "assets/raw_beats/beat_018.png",
+      "start": 27.18,
+      "end": 28.227,
+      "duration": 1.047,
+      "speech_start": 26.84,
+      "speech_end": 27.747,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "No decay leaves it alive.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_018",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 19,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_019.png",
+      "source": "assets/raw_beats/beat_019.png",
+      "start": 28.227,
+      "end": 29.273,
+      "duration": 1.046,
+      "speech_start": 27.747,
+      "speech_end": 28.653,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "No decay leaves it alive.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_019",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 20,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_020.png",
+      "source": "assets/raw_beats/beat_020.png",
+      "start": 29.273,
+      "end": 30.32,
+      "duration": 1.047,
+      "speech_start": 28.653,
+      "speech_end": 29.56,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "No decay leaves it alive.",
+      "semantic_beat_id": 7,
+      "asset_id": "body_asset_020",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 21,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_021.png",
+      "source": "assets/raw_beats/beat_021.png",
+      "start": 30.32,
+      "end": 31.553,
+      "duration": 1.233,
+      "speech_start": 30.32,
+      "speech_end": 31.373,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Quantum theory can describe both possibilities together.",
+      "semantic_beat_id": 8,
+      "asset_id": "body_asset_021",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 22,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_022.png",
+      "source": "assets/raw_beats/beat_022.png",
+      "start": 31.553,
+      "end": 32.787,
+      "duration": 1.234,
+      "speech_start": 31.373,
+      "speech_end": 32.427,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Quantum theory can describe both possibilities together.",
+      "semantic_beat_id": 8,
+      "asset_id": "body_asset_022",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 23,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_023.png",
+      "source": "assets/raw_beats/beat_023.png",
+      "start": 32.787,
+      "end": 34.02,
+      "duration": 1.233,
+      "speech_start": 32.427,
+      "speech_end": 33.48,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "Quantum theory can describe both possibilities together.",
+      "semantic_beat_id": 8,
+      "asset_id": "body_asset_023",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 24,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_024.png",
+      "source": "assets/raw_beats/beat_024.png",
+      "start": 34.02,
+      "end": 34.893,
+      "duration": 0.873,
+      "speech_start": 34.02,
+      "speech_end": 34.653,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That state is called a superposition.",
+      "semantic_beat_id": 9,
+      "asset_id": "body_asset_024",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 25,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_025.png",
+      "source": "assets/raw_beats/beat_025.png",
+      "start": 34.893,
+      "end": 35.767,
+      "duration": 0.874,
+      "speech_start": 34.653,
+      "speech_end": 35.287,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That state is called a superposition.",
+      "semantic_beat_id": 9,
+      "asset_id": "body_asset_025",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 26,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_026.png",
+      "source": "assets/raw_beats/beat_026.png",
+      "start": 35.767,
+      "end": 36.64,
+      "duration": 0.873,
+      "speech_start": 35.287,
+      "speech_end": 35.92,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That state is called a superposition.",
+      "semantic_beat_id": 9,
+      "asset_id": "body_asset_026",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 27,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_027.png",
+      "source": "assets/raw_beats/beat_027.png",
+      "start": 36.64,
+      "end": 38.51,
+      "duration": 1.87,
+      "speech_start": 36.64,
+      "speech_end": 37.305,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That jump from atom to cat was the point.",
+      "semantic_beat_id": 10,
+      "asset_id": "body_asset_027",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 28,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_028.png",
+      "source": "assets/raw_beats/beat_028.png",
+      "start": 38.51,
+      "end": 40.38,
+      "duration": 1.87,
+      "speech_start": 37.305,
+      "speech_end": 37.97,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That jump from atom to cat was the point.",
+      "semantic_beat_id": 10,
+      "asset_id": "body_asset_028",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 29,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_029.png",
+      "source": "assets/raw_beats/beat_029.png",
+      "start": 40.38,
+      "end": 42.251,
+      "duration": 1.871,
+      "speech_start": 37.97,
+      "speech_end": 38.635,
+      "match_confidence": 1.0,
+      "motion": "zoom_in",
+      "narration": "That jump from atom to cat was the point.",
+      "semantic_beat_id": 10,
+      "asset_id": "body_asset_029",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    },
+    {
+      "beat_id": 30,
+      "media_type": "image",
+      "image": "assets/raw_beats/beat_030.png",
+      "source": "assets/raw_beats/beat_030.png",
+      "start": 42.251,
+      "end": 44.121,
+      "duration": 1.87,
+      "speech_start": 38.635,
+      "speech_end": 39.3,
+      "match_confidence": 1.0,
+      "motion": "zoom_out",
+      "narration": "That jump from atom to cat was the point.",
+      "semantic_beat_id": 10,
+      "asset_id": "body_asset_030",
+      "transition_in": "fade",
+      "transition_seconds": 0.28,
+      "transition_source": "default"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0.64,
+      "end": 0.8,
+      "text": "How",
+      "ass_text": "How",
+      "words": [
+        {
+          "text": "How",
+          "start": 0.64,
+          "end": 0.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 0.8,
+      "end": 1.1,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 0.8,
+          "end": 1.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.1,
+      "end": 1.42,
+      "text": "one",
+      "ass_text": "one",
+      "words": [
+        {
+          "text": "one",
+          "start": 1.1,
+          "end": 1.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.42,
+      "end": 1.78,
+      "text": "atom",
+      "ass_text": "atom",
+      "words": [
+        {
+          "text": "atom",
+          "start": 1.42,
+          "end": 1.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 1.78,
+      "end": 2.26,
+      "text": "decide",
+      "ass_text": "decide",
+      "words": [
+        {
+          "text": "decide",
+          "start": 1.78,
+          "end": 2.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.26,
+      "end": 2.56,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 2.26,
+          "end": 2.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.56,
+      "end": 2.82,
+      "text": "whole",
+      "ass_text": "whole",
+      "words": [
+        {
+          "text": "whole",
+          "start": 2.56,
+          "end": 2.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 2.82,
+      "end": 3.44,
+      "text": "cat's",
+      "ass_text": "cat's",
+      "words": [
+        {
+          "text": "cat's",
+          "start": 2.82,
+          "end": 3.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 3.44,
+      "end": 3.8,
+      "text": "fate?",
+      "ass_text": "fate?",
+      "words": [
+        {
+          "text": "fate?",
+          "start": 3.44,
+          "end": 3.8
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_a"
+    },
+    {
+      "start": 4.62,
+      "end": 4.88,
+      "text": "Below",
+      "ass_text": "Below",
+      "words": [
+        {
+          "text": "Below",
+          "start": 4.62,
+          "end": 4.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 4.88,
+      "end": 5.16,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 4.88,
+          "end": 5.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.16,
+      "end": 5.38,
+      "text": "red",
+      "ass_text": "red",
+      "words": [
+        {
+          "text": "red",
+          "start": 5.16,
+          "end": 5.38
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 5.38,
+      "end": 6.02,
+      "text": "hatch,",
+      "ass_text": "hatch,",
+      "words": [
+        {
+          "text": "hatch,",
+          "start": 5.38,
+          "end": 6.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.02,
+      "end": 6.64,
+      "text": "decay",
+      "ass_text": "decay",
+      "words": [
+        {
+          "text": "decay",
+          "start": 6.02,
+          "end": 6.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 6.64,
+      "end": 7.06,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 6.64,
+          "end": 7.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.06,
+      "end": 7.42,
+      "text": "trigger",
+      "ass_text": "trigger",
+      "words": [
+        {
+          "text": "trigger",
+          "start": 7.06,
+          "end": 7.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.42,
+      "end": 7.62,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 7.42,
+          "end": 7.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 7.62,
+      "end": 8.12,
+      "text": "detector",
+      "ass_text": "detector",
+      "words": [
+        {
+          "text": "detector",
+          "start": 7.62,
+          "end": 8.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.12,
+      "end": 8.82,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 8.12,
+          "end": 8.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 8.82,
+      "end": 9.24,
+      "text": "start",
+      "ass_text": "start",
+      "words": [
+        {
+          "text": "start",
+          "start": 8.82,
+          "end": 9.24
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.24,
+      "end": 9.52,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 9.24,
+          "end": 9.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.52,
+      "end": 9.98,
+      "text": "larger",
+      "ass_text": "larger",
+      "words": [
+        {
+          "text": "larger",
+          "start": 9.52,
+          "end": 9.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 9.98,
+      "end": 10.76,
+      "text": "chain.",
+      "ass_text": "chain.",
+      "words": [
+        {
+          "text": "chain.",
+          "start": 9.98,
+          "end": 10.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": "video_opening_b"
+    },
+    {
+      "start": 11.5,
+      "end": 12.02,
+      "text": "Schrodinger",
+      "ass_text": "Schrodinger",
+      "words": [
+        {
+          "text": "Schrodinger",
+          "start": 11.5,
+          "end": 12.02
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 1
+    },
+    {
+      "start": 12.02,
+      "end": 12.44,
+      "text": "proposed",
+      "ass_text": "proposed",
+      "words": [
+        {
+          "text": "proposed",
+          "start": 12.02,
+          "end": 12.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.44,
+      "end": 12.76,
+      "text": "it",
+      "ass_text": "it",
+      "words": [
+        {
+          "text": "it",
+          "start": 12.44,
+          "end": 12.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.76,
+      "end": 12.92,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 12.76,
+          "end": 12.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 12.92,
+      "end": 13.94,
+      "text": "1935.",
+      "ass_text": "1935.",
+      "words": [
+        {
+          "text": "1935.",
+          "start": 12.92,
+          "end": 13.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 2
+    },
+    {
+      "start": 14.98,
+      "end": 15.14,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 14.98,
+          "end": 15.14
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 15.14,
+      "end": 15.44,
+      "text": "cat",
+      "ass_text": "cat",
+      "words": [
+        {
+          "text": "cat",
+          "start": 15.14,
+          "end": 15.44
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 15.44,
+      "end": 15.74,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 15.44,
+          "end": 15.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 4
+    },
+    {
+      "start": 15.74,
+      "end": 16.12,
+      "text": "sealed",
+      "ass_text": "sealed",
+      "words": [
+        {
+          "text": "sealed",
+          "start": 15.74,
+          "end": 16.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 16.12,
+      "end": 16.36,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 16.12,
+          "end": 16.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 16.36,
+      "end": 16.46,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 16.36,
+          "end": 16.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 5
+    },
+    {
+      "start": 16.46,
+      "end": 16.86,
+      "text": "box.",
+      "ass_text": "box.",
+      "words": [
+        {
+          "text": "box.",
+          "start": 16.46,
+          "end": 16.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 6
+    },
+    {
+      "start": 17.48,
+      "end": 17.74,
+      "text": "One",
+      "ass_text": "One",
+      "words": [
+        {
+          "text": "One",
+          "start": 17.48,
+          "end": 17.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 17.74,
+      "end": 18.26,
+      "text": "radioactive",
+      "ass_text": "radioactive",
+      "words": [
+        {
+          "text": "radioactive",
+          "start": 17.74,
+          "end": 18.26
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 7
+    },
+    {
+      "start": 18.26,
+      "end": 19.0,
+      "text": "atom",
+      "ass_text": "atom",
+      "words": [
+        {
+          "text": "atom",
+          "start": 18.26,
+          "end": 19.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 19.0,
+      "end": 19.28,
+      "text": "may",
+      "ass_text": "may",
+      "words": [
+        {
+          "text": "may",
+          "start": 19.0,
+          "end": 19.28
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 8
+    },
+    {
+      "start": 19.28,
+      "end": 19.6,
+      "text": "decay.",
+      "ass_text": "decay.",
+      "words": [
+        {
+          "text": "decay.",
+          "start": 19.28,
+          "end": 19.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 9
+    },
+    {
+      "start": 20.32,
+      "end": 20.46,
+      "text": "A",
+      "ass_text": "A",
+      "words": [
+        {
+          "text": "A",
+          "start": 20.32,
+          "end": 20.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 20.46,
+      "end": 20.98,
+      "text": "detector",
+      "ass_text": "detector",
+      "words": [
+        {
+          "text": "detector",
+          "start": 20.46,
+          "end": 20.98
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 10
+    },
+    {
+      "start": 20.98,
+      "end": 21.48,
+      "text": "watches",
+      "ass_text": "watches",
+      "words": [
+        {
+          "text": "watches",
+          "start": 20.98,
+          "end": 21.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 21.48,
+      "end": 21.82,
+      "text": "for",
+      "ass_text": "for",
+      "words": [
+        {
+          "text": "for",
+          "start": 21.48,
+          "end": 21.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 21.82,
+      "end": 22.12,
+      "text": "decay.",
+      "ass_text": "decay.",
+      "words": [
+        {
+          "text": "decay.",
+          "start": 21.82,
+          "end": 22.12
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 11
+    },
+    {
+      "start": 22.86,
+      "end": 23.36,
+      "text": "Decay",
+      "ass_text": "Decay",
+      "words": [
+        {
+          "text": "Decay",
+          "start": 22.86,
+          "end": 23.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 13
+    },
+    {
+      "start": 23.36,
+      "end": 23.64,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 23.36,
+          "end": 23.64
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 13
+    },
+    {
+      "start": 23.64,
+      "end": 24.04,
+      "text": "trigger",
+      "ass_text": "trigger",
+      "words": [
+        {
+          "text": "trigger",
+          "start": 23.64,
+          "end": 24.04
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 13
+    },
+    {
+      "start": 24.04,
+      "end": 24.36,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 24.04,
+          "end": 24.36
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 14
+    },
+    {
+      "start": 24.36,
+      "end": 24.84,
+      "text": "poison",
+      "ass_text": "poison",
+      "words": [
+        {
+          "text": "poison",
+          "start": 24.36,
+          "end": 24.84
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 14
+    },
+    {
+      "start": 24.84,
+      "end": 25.46,
+      "text": "mechanism.",
+      "ass_text": "mechanism.",
+      "words": [
+        {
+          "text": "mechanism.",
+          "start": 24.84,
+          "end": 25.46
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 15
+    },
+    {
+      "start": 26.12,
+      "end": 26.32,
+      "text": "Then",
+      "ass_text": "Then",
+      "words": [
+        {
+          "text": "Then",
+          "start": 26.12,
+          "end": 26.32
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 16
+    },
+    {
+      "start": 26.32,
+      "end": 26.5,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 26.32,
+          "end": 26.5
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 16
+    },
+    {
+      "start": 26.5,
+      "end": 26.7,
+      "text": "cat",
+      "ass_text": "cat",
+      "words": [
+        {
+          "text": "cat",
+          "start": 26.5,
+          "end": 26.7
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 16
+    },
+    {
+      "start": 26.7,
+      "end": 27.18,
+      "text": "dies.",
+      "ass_text": "dies.",
+      "words": [
+        {
+          "text": "dies.",
+          "start": 26.7,
+          "end": 27.52
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 17
+    },
+    {
+      "start": 27.18,
+      "end": 28.06,
+      "text": "No",
+      "ass_text": "No",
+      "words": [
+        {
+          "text": "No",
+          "start": 26.84,
+          "end": 28.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 18
+    },
+    {
+      "start": 28.06,
+      "end": 28.48,
+      "text": "decay",
+      "ass_text": "decay",
+      "words": [
+        {
+          "text": "decay",
+          "start": 28.06,
+          "end": 28.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 19
+    },
+    {
+      "start": 28.48,
+      "end": 29.0,
+      "text": "leaves",
+      "ass_text": "leaves",
+      "words": [
+        {
+          "text": "leaves",
+          "start": 28.48,
+          "end": 29.0
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 19
+    },
+    {
+      "start": 29.0,
+      "end": 29.18,
+      "text": "it",
+      "ass_text": "it",
+      "words": [
+        {
+          "text": "it",
+          "start": 29.0,
+          "end": 29.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 19
+    },
+    {
+      "start": 29.18,
+      "end": 29.56,
+      "text": "alive.",
+      "ass_text": "alive.",
+      "words": [
+        {
+          "text": "alive.",
+          "start": 29.18,
+          "end": 29.56
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 20
+    },
+    {
+      "start": 30.32,
+      "end": 30.62,
+      "text": "Quantum",
+      "ass_text": "Quantum",
+      "words": [
+        {
+          "text": "Quantum",
+          "start": 30.32,
+          "end": 30.62
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 21
+    },
+    {
+      "start": 30.62,
+      "end": 31.06,
+      "text": "theory",
+      "ass_text": "theory",
+      "words": [
+        {
+          "text": "theory",
+          "start": 30.62,
+          "end": 31.06
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 21
+    },
+    {
+      "start": 31.06,
+      "end": 31.34,
+      "text": "can",
+      "ass_text": "can",
+      "words": [
+        {
+          "text": "can",
+          "start": 31.06,
+          "end": 31.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 21
+    },
+    {
+      "start": 31.34,
+      "end": 31.78,
+      "text": "describe",
+      "ass_text": "describe",
+      "words": [
+        {
+          "text": "describe",
+          "start": 31.34,
+          "end": 31.78
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 22
+    },
+    {
+      "start": 31.78,
+      "end": 32.18,
+      "text": "both",
+      "ass_text": "both",
+      "words": [
+        {
+          "text": "both",
+          "start": 31.78,
+          "end": 32.18
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 22
+    },
+    {
+      "start": 32.18,
+      "end": 32.88,
+      "text": "possibilities",
+      "ass_text": "possibilities",
+      "words": [
+        {
+          "text": "possibilities",
+          "start": 32.18,
+          "end": 32.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 22
+    },
+    {
+      "start": 32.88,
+      "end": 33.48,
+      "text": "together.",
+      "ass_text": "together.",
+      "words": [
+        {
+          "text": "together.",
+          "start": 32.88,
+          "end": 33.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 23
+    },
+    {
+      "start": 34.02,
+      "end": 34.22,
+      "text": "That",
+      "ass_text": "That",
+      "words": [
+        {
+          "text": "That",
+          "start": 34.02,
+          "end": 34.22
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 24
+    },
+    {
+      "start": 34.22,
+      "end": 34.58,
+      "text": "state",
+      "ass_text": "state",
+      "words": [
+        {
+          "text": "state",
+          "start": 34.22,
+          "end": 34.58
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 24
+    },
+    {
+      "start": 34.58,
+      "end": 34.82,
+      "text": "is",
+      "ass_text": "is",
+      "words": [
+        {
+          "text": "is",
+          "start": 34.58,
+          "end": 34.82
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 24
+    },
+    {
+      "start": 34.82,
+      "end": 35.1,
+      "text": "called",
+      "ass_text": "called",
+      "words": [
+        {
+          "text": "called",
+          "start": 34.82,
+          "end": 35.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 25
+    },
+    {
+      "start": 35.1,
+      "end": 35.34,
+      "text": "a",
+      "ass_text": "a",
+      "words": [
+        {
+          "text": "a",
+          "start": 35.1,
+          "end": 35.34
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 25
+    },
+    {
+      "start": 35.34,
+      "end": 35.92,
+      "text": "superposition.",
+      "ass_text": "superposition.",
+      "words": [
+        {
+          "text": "superposition.",
+          "start": 35.34,
+          "end": 35.92
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 25
+    },
+    {
+      "start": 36.64,
+      "end": 36.86,
+      "text": "That",
+      "ass_text": "That",
+      "words": [
+        {
+          "text": "That",
+          "start": 36.64,
+          "end": 36.86
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 36.86,
+      "end": 37.2,
+      "text": "jump",
+      "ass_text": "jump",
+      "words": [
+        {
+          "text": "jump",
+          "start": 36.86,
+          "end": 37.2
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 37.2,
+      "end": 37.48,
+      "text": "from",
+      "ass_text": "from",
+      "words": [
+        {
+          "text": "from",
+          "start": 37.2,
+          "end": 37.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 37.48,
+      "end": 37.88,
+      "text": "atom",
+      "ass_text": "atom",
+      "words": [
+        {
+          "text": "atom",
+          "start": 37.48,
+          "end": 37.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 37.88,
+      "end": 38.16,
+      "text": "to",
+      "ass_text": "to",
+      "words": [
+        {
+          "text": "to",
+          "start": 37.88,
+          "end": 38.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 38.16,
+      "end": 38.48,
+      "text": "cat",
+      "ass_text": "cat",
+      "words": [
+        {
+          "text": "cat",
+          "start": 38.16,
+          "end": 38.48
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 27
+    },
+    {
+      "start": 38.48,
+      "end": 38.76,
+      "text": "was",
+      "ass_text": "was",
+      "words": [
+        {
+          "text": "was",
+          "start": 38.48,
+          "end": 38.76
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 38.76,
+      "end": 38.94,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 38.76,
+          "end": 38.94
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 38.94,
+      "end": 39.3,
+      "text": "point.",
+      "ass_text": "point.",
+      "words": [
+        {
+          "text": "point.",
+          "start": 38.94,
+          "end": 39.3
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 39.94,
+      "end": 40.16,
+      "text": "Choose",
+      "ass_text": "Choose",
+      "words": [
+        {
+          "text": "Choose",
+          "start": 39.94,
+          "end": 40.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 40.16,
+      "end": 40.42,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 40.16,
+          "end": 40.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 28
+    },
+    {
+      "start": 40.42,
+      "end": 40.6,
+      "text": "next",
+      "ass_text": "next",
+      "words": [
+        {
+          "text": "next",
+          "start": 40.42,
+          "end": 40.6
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    },
+    {
+      "start": 40.6,
+      "end": 41.1,
+      "text": "video's",
+      "ass_text": "video's",
+      "words": [
+        {
+          "text": "video's",
+          "start": 40.6,
+          "end": 41.1
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    },
+    {
+      "start": 41.1,
+      "end": 41.42,
+      "text": "topic",
+      "ass_text": "topic",
+      "words": [
+        {
+          "text": "topic",
+          "start": 41.1,
+          "end": 41.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    },
+    {
+      "start": 41.42,
+      "end": 41.74,
+      "text": "and",
+      "ass_text": "and",
+      "words": [
+        {
+          "text": "and",
+          "start": 41.42,
+          "end": 41.74
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    },
+    {
+      "start": 41.74,
+      "end": 42.16,
+      "text": "question",
+      "ass_text": "question",
+      "words": [
+        {
+          "text": "question",
+          "start": 41.74,
+          "end": 42.16
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 29
+    },
+    {
+      "start": 42.16,
+      "end": 42.42,
+      "text": "in",
+      "ass_text": "in",
+      "words": [
+        {
+          "text": "in",
+          "start": 42.16,
+          "end": 42.42
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 30
+    },
+    {
+      "start": 42.42,
+      "end": 42.54,
+      "text": "the",
+      "ass_text": "the",
+      "words": [
+        {
+          "text": "the",
+          "start": 42.42,
+          "end": 42.54
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 30
+    },
+    {
+      "start": 42.54,
+      "end": 42.88,
+      "text": "comments.",
+      "ass_text": "comments.",
+      "words": [
+        {
+          "text": "comments.",
+          "start": 42.54,
+          "end": 42.88
+        }
+      ],
+      "timing_source": "word",
+      "beat_id": 30
+    }
+  ],
+  "qc": {
+    "beat_count": 32,
+    "low_confidence_beats": [
+      1
+    ],
+    "timestamp_overlap_adjustments": [
+      {
+        "after_beat": 6,
+        "before_beat": 7,
+        "current_speech_end": 27.52,
+        "next_speech_start": 26.84,
+        "overlap_seconds": 0.68,
+        "chosen_boundary": 27.18
+      }
+    ],
+    "subtitle_overlap_adjustments": [
+      {
+        "previous_beat": null,
+        "current_beat": null,
+        "previous_cue": 54,
+        "current_cue": 55,
+        "previous_end": 27.52,
+        "current_start": 26.84,
+        "overlap_seconds": 0.68,
+        "chosen_boundary": 27.18
+      }
+    ],
+    "subtitle_word_timings_available": true,
+    "subtitle_cues_from_measured_words": 92,
+    "subtitle_cues_estimated": 0
+  }
+}

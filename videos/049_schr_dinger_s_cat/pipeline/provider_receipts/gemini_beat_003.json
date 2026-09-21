@@ -1,0 +1,114 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "3b582a7b57ec927fdb1f1b7c05fbf0faf5b70cc9788305620476c6bbc4e9fc60",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "d6ed0c25-dc43-440a-a71b-5a36bd2a36b4",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/065bd9e8c4aeb64d",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe",
+      "previous_beat"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=d6ed0c25-dc43-440a-a71b-5a36bd2a36b4_output_1.png 1536x2752 sha256=faa626606df6ceef35dbac05e6a79151d0552ffe6e18a39d4623c78e27a72954"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "3b582a7b57ec927fdb1f1b7c05fbf0faf5b70cc9788305620476c6bbc4e9fc60",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "d6ed0c25-dc43-440a-a71b-5a36bd2a36b4",
+        "prompt_sha256": "43588224bf60ffc8d874ff7ba1f05d1033ab8dbe2abe6ccc1efaaf0625344854",
+        "output_sha256": "faa626606df6ceef35dbac05e6a79151d0552ffe6e18a39d4623c78e27a72954",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/049_schr_dinger_s_cat/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/049_schr_dinger_s_cat/references/world_keyframe.png",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd"
+    },
+    {
+      "role": "previous_beat",
+      "path": "videos/049_schr_dinger_s_cat/assets/raw_beats/beat_002.png",
+      "sha256": "313d932a521412af14614947ed00595493a64d7a5be1d1e2791e80b20f4330ec"
+    }
+  ],
+  "prompt_sha256": "43588224bf60ffc8d874ff7ba1f05d1033ab8dbe2abe6ccc1efaaf0625344854",
+  "prompt": "Single Beat Image Prompt\n\nCreate exactly one 9:16 full-bleed image, edge-to-edge subject-world composition inside the Schrödinger thought-experiment world, with no storyboard, grid, collage, panels, captions, readable text, labels, borders, page frames, inset windows, doorway rims, or lens masks. Use the supplied style_reference only to preserve the chosen medium qualities: dry matte screen-print ink, coarse archival print grain, slight registration wear, bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, and consistent fractured-probability screen-print treatment. Use the world_keyframe only as a guide for topic continuity, palette, lighting, and spatial depth, not for its composition or layout; use the previous_beat only as a reference for compatible medium, texture, palette, and lighting, never copying its camera angle, crop, pose, placement, or focal arrangement. Depict a genuinely new close-up composition: an overhead three-quarter view of a period-plausible 1930s physicist’s worktable, with a closed wooden experiment box centered in the lower-middle area, generic mechanical apparatus components scattered around the surface, and a single human hand entering from the upper edge to carefully arrange the thought-experiment components. Keep the apparatus physically legible and historically plausible rather than futuristic, suggesting the 1935 proposal through the laboratory setting without any written documents or visible text. Use a pale stone ground, bone-white and muted storm blue-gray surfaces, dense soot-black printed shadows, restrained oxidized teal details, and sparse vermilion accents only where they suggest conceptual rupture or experimental uncertainty. Apply graphic high-contrast illumination with broad flat light masses, deep printed shadows, and restrained directional highlights around the box and apparatus. Fill the entire vertical frame naturally with the scene, with no empty caption area or footer, maintaining the screen-print texture and full-height visual continuity. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_003.png",
+  "output_sha256": "faa626606df6ceef35dbac05e6a79151d0552ffe6e18a39d4623c78e27a72954",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 75.264,
+  "completed_at": "2026-09-21T11:21:22Z"
+}

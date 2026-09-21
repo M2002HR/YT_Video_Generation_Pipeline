@@ -1,0 +1,39 @@
+{
+  "concept_id": "d05b1d07145def95cd05",
+  "opening_actions": [
+    "He traces from the tiny radioactive source to the detector.",
+    "He follows the connection through the relay to the much larger sealed cat-box model.",
+    "He looks back at the tiny source with a restrained skeptical glance."
+  ],
+  "entry_bridge": {
+    "a_end": "He finishes tracing the mechanism, then looks down beside the large box as if questioning how such a tiny source can control the whole outcome.",
+    "b_start": "Cut: the red host is fully visible, both horns and feet readable, one step from the almost-closed red floor hatch; safe steps descend toward screen-right beneath it.",
+    "reveal": "The hatch clicks and opens enough to reveal the actual detector-and-relay chain below; he deliberately steps onto the visible stairs and descends through the opening.",
+    "world_entry": "The host clears the camera path, leaving a full-bleed host-free view that follows one possible atomic decay into a detector, relay, and two diverging cat-scale consequences."
+  },
+  "opening_activity": "Following how one possible microscopic decay can propagate through a detector and relay into a much larger physical consequence.",
+  "opening_location": "A simple physics exhibit room centered on one transparent teaching rig.",
+  "opening_environment": "A restrained museum-like physics exhibit with a transparent radioactive-source, detector, relay, and sealed cat-box teaching model arranged as one visible causal chain.",
+  "topic_visual_link": "The opening directly shows a microscopic possible event physically connected through a detector and mechanism to a cat-scale outcome, which is the scale jump at the heart of Schrödinger's thought experiment.",
+  "link_type": "cause_effect",
+  "opening_visual_proof": "At frame zero, the tiny source, detector, relay, and much larger sealed cat-box model are visibly connected in one transparent mechanism, making the extreme jump in scale readable without text.",
+  "curiosity_trigger": "His eyes follow the connection from the tiny source to the oversized sealed box, then return to the source as the mismatch in scale becomes hard to ignore.",
+  "trigger_object": "The transparent causal chain linking a tiny radioactive source to the large sealed cat-box model.",
+  "reaction": "He gives the tiny source a dry, doubtful look, then glances back at the large box.",
+  "entry_retrieval": "After questioning the scale jump, he looks down beside the exhibit; the editorial cut places him beside the red floor hatch just as it clicks and reveals the detector chain below.",
+  "entry_variant": "floor_hatch",
+  "camera_pattern": "slow_push_in",
+  "hero_presence_mode": "auto",
+  "closing_mode": "stay_in_world",
+  "world_style_hint": "A clean host-free conceptual physics world where one atomic decay branches through a detector and relay into clearly separated alive-cat and dead-cat macroscopic outcomes.",
+  "reason": "The selected staging makes the thought experiment's defining microscopic-to-macroscopic linkage immediately visible while giving the serious skeptical host a natural reason to question how one atom can govern such a large consequence.",
+  "entry_camera": {
+    "surface": "floor",
+    "transition": "follow_through",
+    "attention_cue": "The almost-closed hatch clicks and a narrow sliver reveals the detector chain moving below, drawing his gaze downward.",
+    "opening_action": "He lifts the screen-left-hinged red hatch toward screen-left, leaving clear hinge space and exposing supported steps descending toward screen-right.",
+    "crossing_action": "He turns toward screen-right, places a foot on the first visible step, and deliberately descends until his full body clears the opening and camera path.",
+    "camera_path": "From the same axis, the camera makes a restrained over-shoulder push with a gentle downward tilt, follows the steps, then continues forward after the host moves ahead and out of frame.",
+    "world_reveal": "The hatch edges disappear as the camera arrives on a full-bleed host-free detector chain where one possible decay propagates through the relay toward two large-scale cat outcomes."
+  }
+}

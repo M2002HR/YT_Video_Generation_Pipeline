@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "video_id": "049",
+  "created_at": "2026-09-21T11:09:40.261161+00:00",
+  "input_path": "/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/voiceover/VOICEOVER_INPUT.txt",
+  "input_sha256": "9bae1b152ce936183cca5307ca670d891fbb846cd335da8fb606a79011c58d74",
+  "settings": {
+    "voice": "Jerry B - Jolly Santa Claus",
+    "model": "Eleven v3",
+    "speed": 0.9,
+    "stability": 0.3,
+    "similarity": 0.35,
+    "style": 0.3,
+    "speaker_boost": false,
+    "output_format": "MP3 44.1 kHz (128kbps)"
+  },
+  "status": "DONE",
+  "events": [
+    {
+      "operation": "elevenlabs_ui_ready",
+      "finished_at": "2026-09-21T11:09:52.610340+00:00",
+      "elapsed_seconds": 12.324
+    },
+    {
+      "operation": "elevenlabs_settings_applied",
+      "finished_at": "2026-09-21T11:10:05.032770+00:00",
+      "elapsed_seconds": 12.422,
+      "settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven v3",
+        "speed": 0.9,
+        "stability": 0.3,
+        "similarity": 0.35,
+        "style": 0.3,
+        "speaker_boost": false,
+        "output_format": "MP3 44.1 kHz (128kbps)"
+      },
+      "effective_settings": {
+        "voice": "Jerry B - Jolly Santa Claus",
+        "model": "Eleven v3",
+        "speed": null,
+        "stability": 0.5,
+        "similarity": null,
+        "style": null,
+        "stability_mode": null,
+        "output_format": "MP3 44.1 kHz (128kbps)",
+        "capability_probe": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Jerry B - Jolly Santa Claus",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-21T11:10:05.032676+00:00"
+        },
+        "execution_mode": "expressive_v3"
+      },
+      "ui_capabilities": {
+        "capabilities": {
+          "schema_version": 1,
+          "observed_model": "Eleven v3",
+          "observed_voice": "Jerry B - Jolly Santa Claus",
+          "numeric_controls": [
+            "stability"
+          ],
+          "stability_modes": [],
+          "speaker_boost_available": false,
+          "editor_kind": "contenteditable",
+          "observed_at": "2026-09-21T11:10:00.677129+00:00"
+        },
+        "execution_mode": "expressive_v3",
+        "inactive_settings": {
+          "speed": 0.9,
+          "stability": 0.3,
+          "similarity": 0.35,
+          "style": 0.3,
+          "speaker_boost": false,
+          "stability_mode_control": "categorical_numeric_slider"
+        },
+        "effective_plan": {
+          "model": "eleven_v3",
+          "numeric_settings": {
+            "stability": 0.5
+          },
+          "stability_mode": "Natural",
+          "speaker_boost": null
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_text_entered",
+      "finished_at": "2026-09-21T11:10:06.302502+00:00",
+      "elapsed_seconds": 13.692,
+      "characters": 520,
+      "text_sha256": "9bae1b152ce936183cca5307ca670d891fbb846cd335da8fb606a79011c58d74"
+    },
+    {
+      "operation": "elevenlabs_submit",
+      "finished_at": "2026-09-21T11:10:07.703830+00:00",
+      "elapsed_seconds": 1.32,
+      "acknowledgement": {
+        "acknowledged": true,
+        "method": "selector_keyboard",
+        "delay_seconds": 0.771,
+        "generate": {
+          "text": "Generate speech\nLoading...",
+          "aria": "Loading",
+          "title": "",
+          "disabled": true,
+          "ariaDisabled": false
+        }
+      }
+    },
+    {
+      "operation": "elevenlabs_download_requested",
+      "finished_at": "2026-09-21T11:10:25.133165+00:00",
+      "elapsed_seconds": 18.749,
+      "choice": "Download Audio",
+      "result_id": "audio-player:blob:https://elevenlabs.io/b41502aa-0620-4ef5-a01e-0be19ac2ba16"
+    },
+    {
+      "operation": "elevenlabs_download",
+      "finished_at": "2026-09-21T11:10:31.414137+00:00",
+      "elapsed_seconds": 25.03,
+      "bytes": 722581,
+      "output": "assets/audio/narration.mp3",
+      "result_id": "audio-player:blob:https://elevenlabs.io/b41502aa-0620-4ef5-a01e-0be19ac2ba16",
+      "duration_seconds": 44.120813,
+      "format_name": "mp3"
+    }
+  ],
+  "updated_at": "2026-09-21T11:10:31.414145+00:00",
+  "active_attempt_id": "attempt-2684f5c01cfc4cb6afaf8cdfd6a4743a",
+  "attempt_owner": "049",
+  "result_baseline": {
+    "identities": [],
+    "captured_at": "2026-09-21T11:10:06.383801+00:00"
+  },
+  "submitted_at": "2026-09-21T11:10:07.703453+00:00",
+  "bound_result_id": "audio-player:blob:https://elevenlabs.io/b41502aa-0620-4ef5-a01e-0be19ac2ba16",
+  "download_choice": "Download Audio",
+  "download_requested_at": 1789989025.1055405,
+  "output": "assets/audio/narration.mp3",
+  "completed_at": "2026-09-21T11:10:31.414065+00:00"
+}

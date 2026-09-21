@@ -1,0 +1,93 @@
+{
+  "contract_version": 1,
+  "source_type": "canonical",
+  "request_fingerprint": "715b38d1771c7049202a748d71947029b2226df956375bf4408941b3158f384c",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "prompt": "[VISUAL_CONTRACT:red_door_identity_v1] Create exactly one 9:16 portrait hand-drawn object reference sheet for ONE impossible red door. Show the same object in front and three-quarter partly-open views, on a neutral background, not an episode. A narrow tall rectangular solid door with subtly rounded upper shoulders, deep vermilion-red painted wood, two vertically stacked recessed panels, thick charcoal frame, a small aged-brass circular ring handle on the FRONT RIGHT and two black hinges on the FRONT LEFT. Keep physical proportions, hardware and panel order identical between views. Plain unmarked solid leaf; no window, text, number, plaque, skull, eyes, runes or energy ring. Human-scale, wide and tall enough for the horned host in later scenes, but no host here. No topic motifs, landscape, paper border, surrounding room or fabricated receipt. The world appears only through the opened aperture in the later entry scene.",
+  "prompt_sha256": "a50dbc00be467abed2eb212e2dc043f72915dd777d3b4e028e5e0d1640f58a1c",
+  "output_path": "projects/q_station/presentation_profiles/red_door_portal/refs/red_door_design_sheet.png",
+  "output_sha256": "2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "references": [],
+  "validated_at": "2026-09-21T11:14:20Z",
+  "origin": {
+    "provider": "chatgpt",
+    "job_id": "88de4f18-59a9-4f9b-93a3-0c1fb0406d9e",
+    "requested_model": "nano_banana_2",
+    "provider_receipt": {
+      "provider": "gemini",
+      "requested_model": "nano_banana_2",
+      "actual_model_label": "Open mode picker, currently Flash",
+      "model_verified": true,
+      "pro_regeneration_used": false,
+      "requested_quality": "best",
+      "requested_aspect_ratio": "9:16",
+      "actual_aspect_ratio": "1536:2752",
+      "requested_duration_seconds": null,
+      "actual_duration_seconds": null,
+      "requested_resolution": null,
+      "actual_resolution": null,
+      "workspace_url": "https://gemini.google.com/app",
+      "submission_fingerprint": null,
+      "reference_roles": [],
+      "notes": [
+        "model_label_source=mode-picker",
+        "extended_thinking_mode=Open mode picker, currently Flash Extended",
+        "artifact_source=download",
+        "image=88de4f18-59a9-4f9b-93a3-0c1fb0406d9e_output_1.png 1536x2752 sha256=2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0"
+      ],
+      "quality_check": {
+        "passed": true,
+        "raw_passed": null,
+        "review_status": "disabled",
+        "description": "ChatGPT visual QC disabled by the launch configuration.",
+        "violations": [],
+        "raw_violations": [],
+        "blocking_violations": [],
+        "observations": [],
+        "regressions": [],
+        "review_provider": null
+      },
+      "request_fingerprint": "28171f8d2769297289179e6de55f87a1a2498244c2cd3be439e7cbbfcfe3acda",
+      "quality_iterations": [
+        {
+          "attempt": 1,
+          "provider": "gemini",
+          "job_id": "88de4f18-59a9-4f9b-93a3-0c1fb0406d9e",
+          "prompt_sha256": "a50dbc00be467abed2eb212e2dc043f72915dd777d3b4e028e5e0d1640f58a1c",
+          "output_sha256": "2716fb993da5700b65add27879b8330f5da8cdb1e03aca66d063f242d17206f0",
+          "quality_check": {
+            "passed": true,
+            "raw_passed": null,
+            "review_status": "disabled",
+            "description": "ChatGPT visual QC disabled by the launch configuration.",
+            "violations": [],
+            "raw_violations": [],
+            "blocking_violations": [],
+            "observations": [],
+            "regressions": [],
+            "review_provider": null
+          },
+          "fully_clean": true,
+          "selected": true
+        }
+      ],
+      "qc_policy": "disabled",
+      "qc_selected_attempt": 1
+    }
+  }
+}

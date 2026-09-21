@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "c3b4d6d846fd282185ebc759471c639070522f8560771e35a4041ebc44b9e4cf",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "866cdae9-ec95-40dd-a043-c10c7a4d7322",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/e9434b48e88c2dfb",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=866cdae9-ec95-40dd-a043-c10c7a4d7322_output_1.png 1536x2752 sha256=0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "c3b4d6d846fd282185ebc759471c639070522f8560771e35a4041ebc44b9e4cf",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "866cdae9-ec95-40dd-a043-c10c7a4d7322",
+        "prompt_sha256": "47226c36c70c5131136996610ffaa1750b3666b48042fcb0fd3fc034970e3bb4",
+        "output_sha256": "0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/049_schr_dinger_s_cat/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/049_schr_dinger_s_cat/references/world_keyframe.png",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd"
+    }
+  ],
+  "prompt_sha256": "47226c36c70c5131136996610ffaa1750b3666b48042fcb0fd3fc034970e3bb4",
+  "prompt": "Create exactly one 9:16 full-bleed image inside the Schrödinger’s cat topic world, rendered as a dry matte screen-print with coarse archival print grain and slight registration wear. Use the provided style_reference only as the authority for the established screen-print medium, texture, palette, line treatment, and lighting language; use the provided world_keyframe only as a continuity anchor for the world’s visual logic, not its composition or pose. Show a genuinely new high-angle corner view of the same conceptual sealed box interior in the no-decay outcome: a living cat stands near the center of the chamber with its head raised, alert and unharmed, while a small intact poison vial and an untouched mechanical trigger lever sit isolated along the opposite wall, clearly showing the dormant apparatus state. Emphasize the scale connection between microscopic uncertainty and the macroscopic result through repeated state-overlap motifs subtly integrated into the print texture and shadows, while keeping the apparatus generic, physically legible, and period-plausible rather than modern. Use bone white and pale stone grounds, dense soot black, muted storm blue-gray, restrained oxidized teal, and sparse vermilion accents only for conceptual rupture or decay-related elements. Apply bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, graphic high-contrast illumination, broad flat pale light masses, deep printed shadows, and restrained directional highlights around the cat, detector elements, and box interior. Fill the entire frame edge-to-edge with natural scene content; no enclosing page, border, card, frame, inset window, doorway rim, lens mask, collage panels, storyboard layout, caption area, footer, labels, or readable text. Do not depict any host or unrelated entry mechanism. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_018.png",
+  "output_sha256": "0352cd2457060e8e9bcb5d3e22aff08d1b68a7c1d5a03dd8cd721d2f026d3ccb",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 84.305,
+  "completed_at": "2026-09-21T11:48:29Z"
+}

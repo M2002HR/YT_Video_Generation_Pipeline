@@ -1,0 +1,126 @@
+{
+  "body_duration_seconds": 29.0,
+  "beats": [
+    {
+      "beat_id": 1,
+      "narration_slice": "Schrödinger proposed it in 1935.",
+      "visual": "Full-bleed screen-print scene of a period-plausible 1930s physicist's worktable with a closed wooden experiment box, loose scientific apparatus parts, and a human hand arranging the thought-experiment components; no readable writing anywhere.",
+      "purpose": "establish the thought experiment as a historical 1935 proposal",
+      "visual_fingerprint": "overhead three-quarter view of a 1930s workbench, closed wooden box centered low, period apparatus scattered around it, lone hand entering from upper edge, pale stone ground with soot-black shadows",
+      "type": "subject_world",
+      "continuity": "introduces the apparatus before moving inside the imagined experiment",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "fade"
+    },
+    {
+      "beat_id": 2,
+      "narration_slice": "A cat is sealed in a box.",
+      "visual": "Cut inside the wooden box: a living cat crouches in the enclosed chamber while the heavy lid closes above, rendered as bold screen-print silhouettes with the surrounding enclosure filling the vertical frame.",
+      "purpose": "show the cat physically isolated inside the sealed box",
+      "visual_fingerprint": "low interior angle beside crouching cat, descending wooden lid dominating the upper frame, narrow closing shaft of light, dark enclosed box walls extending edge-to-edge",
+      "type": "literal",
+      "continuity": "moves from the exterior setup directly into the sealed interior",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "circleopen"
+    },
+    {
+      "beat_id": 3,
+      "narration_slice": "One radioactive atom may decay.",
+      "visual": "Extreme microscopic visualization of a single radioactive atom suspended against a coarse dark field, with restrained vermilion rupture marks suggesting the possibility of decay without showing a definite outcome.",
+      "purpose": "introduce the single microscopic radioactive uncertainty",
+      "visual_fingerprint": "extreme macro atom alone in a vast soot-black field, off-center nucleus with storm-blue halftone orbit forms, sparse vermilion fracture marks radiating into negative space",
+      "type": "diagram",
+      "continuity": "jumps from the cat-scale enclosure to the microscopic source of uncertainty",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "radial"
+    },
+    {
+      "beat_id": 4,
+      "narration_slice": "A detector watches for decay.",
+      "visual": "Period-plausible mechanical radiation detector shown in close profile beside the tiny source chamber, its sensing element aimed toward the atom's container and linked onward by a physical wire.",
+      "purpose": "show that a detector monitors whether radioactive decay occurs",
+      "visual_fingerprint": "tight side-profile apparatus shot, detector tube occupying right half, tiny source vessel at lower left, taut wire exiting frame, oxidized-teal metal accents under broad directional light",
+      "type": "literal",
+      "continuity": "pulls back from the atom to the mechanism observing it",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothleft"
+    },
+    {
+      "beat_id": 5,
+      "narration_slice": "Decay can trigger a poison mechanism.",
+      "visual": "A vermilion decay impulse reaches the detector and drives a clearly legible mechanical linkage that releases a small hammer toward a sealed poison vial, captured at the instant the trigger begins moving.",
+      "purpose": "show the causal chain from atomic decay to the poison apparatus",
+      "visual_fingerprint": "diagonal cause-and-effect composition from glowing vermilion detector contact at upper left through lever and spring to glass poison vial at lower right, machinery caught mid-motion",
+      "type": "literal",
+      "continuity": "follows the detector's physical connection into the consequence mechanism",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 6,
+      "narration_slice": "Then the cat dies.",
+      "visual": "Wide interior view of the box after the mechanism has fired: the poison vial is broken near the apparatus and the cat lies motionless in deep printed shadow, with the machinery receding behind it.",
+      "purpose": "show the macroscopic death outcome if decay triggers the mechanism",
+      "visual_fingerprint": "wide floor-level view across box interior, motionless cat in foreground silhouette, shattered vial and spent hammer small in distant upper corner, heavy soot-black shadow mass with sparse vermilion residue",
+      "type": "literal",
+      "continuity": "shows the completed consequence of the trigger introduced in the prior beat",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "slideleft"
+    },
+    {
+      "beat_id": 7,
+      "narration_slice": "No decay leaves it alive.",
+      "visual": "A distinctly different high-angle view of the same conceptual box in the no-decay outcome: the poison vial remains intact, the trigger is untouched, and the alert cat stands alive beneath broad pale illumination.",
+      "purpose": "show the alternative macroscopic outcome when no decay occurs",
+      "visual_fingerprint": "high overhead corner angle, living cat standing near center with raised head, intact poison vial and dormant lever isolated along opposite wall, pale stone light covering most of the chamber",
+      "type": "literal",
+      "continuity": "contrasts the fired outcome with the untouched no-decay branch",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "wiperight"
+    },
+    {
+      "beat_id": 8,
+      "narration_slice": "Quantum theory can describe both possibilities together.",
+      "visual": "The box interior is overlaid as two slightly misregistered screen-print states occupying the same full-bleed space: one imprint contains the standing live cat and intact mechanism while the other contains the motionless cat and fired apparatus.",
+      "purpose": "visually pay off how microscopic uncertainty carries into two cat-scale possibilities described together",
+      "visual_fingerprint": "frontal cutaway of entire box with two offset state impressions superposed in one space, storm-blue live-cat silhouette displaced upward-right and soot-black dead-cat silhouette displaced downward-left, intact and fired mechanisms likewise overlapped",
+      "type": "diagram",
+      "continuity": "merges the two previously separated outcomes into one simultaneous conceptual description",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 9,
+      "narration_slice": "That state is called a superposition.",
+      "visual": "A simplified full-frame conceptual image isolates the overlapping cat states and apparatus as doubled, misregistered silhouettes within one shared box volume, emphasizing coexistence of alternatives without any labels or text.",
+      "purpose": "identify the combined description of alternatives as superposition",
+      "visual_fingerprint": "near-symmetrical straight-on composition, box walls reduced to bold outer planes, paired live/dead cat silhouettes interpenetrating at center, doubled detector and trigger forms forming a restrained teal-and-black overlap halo",
+      "type": "diagram",
+      "continuity": "abstracts the combined-state image into a cleaner visual definition",
+      "hero_present": false,
+      "world_keyframe_is_first": false,
+      "transition_in": "dissolve"
+    },
+    {
+      "beat_id": 10,
+      "narration_slice": "That jump from atom to cat was the point.",
+      "visual": "Full-bleed scale-bridge composition with a huge magnified radioactive atom dominating the lower foreground and the sealed cat box looming far above in the same continuous space; the Red Horned Everyman stands small between them, observing the visual chain from microscopic source to macroscopic consequence.",
+      "purpose": "emphasize that the thought experiment deliberately extends atomic uncertainty to a macroscopic cat",
+      "visual_fingerprint": "dramatic low-angle vertical scale composition, enormous halftone atom at bottom edge, tiny full-body horned host centered mid-distance, sealed wooden cat box towering across the upper third, vermilion causal accent threading upward between scales",
+      "type": "subject_world",
+      "continuity": "steps outward from the abstract superposition to reveal the deliberate microscopic-to-macroscopic scale jump",
+      "hero_present": true,
+      "world_keyframe_is_first": false,
+      "transition_in": "smoothright"
+    }
+  ],
+  "layout_policy": "full_bleed_topic_world_v2"
+}

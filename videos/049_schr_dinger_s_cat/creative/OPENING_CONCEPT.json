@@ -1,0 +1,36 @@
+{
+  "policy_version": 2,
+  "input_fingerprint": "c928b9ed72eae8d65e4d3f9476ca974dee915894d511891b17353310516395fd",
+  "concept_id": "d05b1d07145def95cd05",
+  "character_id": "red_horned_everyman",
+  "presentation_id": "red_door_portal",
+  "selected": {
+    "id": "c2",
+    "hook_line": "How can one tiny atomic event decide a whole cat's fate?",
+    "viewer_expectation": "A change inside one atom seems too small to control something as large as a cat.",
+    "visible_contradiction": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+    "frame_zero": "A transparent teaching rig shows a tiny radioactive source, detector, relay and large sealed cat-box model connected in one chain.",
+    "character_action": "He traces the chain from the tiny source to the detector, then to the much larger box.",
+    "reaction": "His eyes move back to the tiny source, doubtful that such a small event can start so much.",
+    "activity": "Following how a microscopic event can trigger a large physical consequence.",
+    "location": "A simple physics exhibit room with one clear cutaway mechanism.",
+    "topic_link": "A microscopic quantum event can be linked to a detector and mechanism that produces a large everyday outcome.",
+    "factual_anchor": "Schrödinger's thought experiment links a possible atomic decay to a detector and mechanism. One decay can trigger the chain, so microscopic alternatives become linked to different large outcomes.",
+    "payoff": "Show how the thought experiment carries uncertainty from one atom into two different cat-scale outcomes.",
+    "claim_mode": "conservative",
+    "entry_variant": "floor_hatch",
+    "entry_bridge": {
+      "a_end": "He finishes tracing the mechanism and looks down beside the large box.",
+      "b_start": "Cut: the red host, fully visible, stands one step from the almost-closed red door laid as a floor hatch with safe steps below.",
+      "reveal": "The hatch clicks open onto a detector chain below; he steps down and crosses as the camera gently follows.",
+      "world_entry": "A host-free view follows one atomic event into a detector, relay and two diverging large-scale consequences."
+    },
+    "novelty": {
+      "action_family": "microscopic event drives large consequence",
+      "tension_family": "tiny cause versus large outcome",
+      "prop_family": "cutaway detector and relay chain",
+      "reveal_family": "the scale jump follows one physical chain"
+    }
+  },
+  "created_at": "2026-09-21T09:43:20Z"
+}

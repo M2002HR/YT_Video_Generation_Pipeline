@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "language_review_required": true,
+  "language_policy_version": 1,
+  "input_fingerprint": "0c80b93e22b522a2b9dab60da90aebfa14057d4bc9f7e8ac43ddf2d046aef356",
+  "hint_sha256": "14053930ebdcab4fd5fc49c2c6d73f1e3f807a4e909a8b4309f7da18ce269883",
+  "hint_provided": true,
+  "cta": "Choose the next video's topic and question in the comments.",
+  "word_count": 10,
+  "created_at": "2026-09-21T11:07:52Z"
+}

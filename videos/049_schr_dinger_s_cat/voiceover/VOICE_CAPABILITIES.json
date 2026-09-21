@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "observed_model": "Eleven v3",
+  "observed_voice": "Jerry B - Jolly Santa Claus",
+  "numeric_controls": [
+    "stability"
+  ],
+  "stability_modes": [],
+  "speaker_boost_available": false,
+  "editor_kind": "contenteditable",
+  "observed_at": "2026-09-21T11:10:00.677129+00:00"
+}

@@ -1,0 +1,108 @@
+{
+  "contract_version": 1,
+  "request_fingerprint": "2e8d10d94d8296a77f08dc5372cf0f641ddd3782b8b9603337772b8abca1b11d",
+  "quality_check": {
+    "passed": true,
+    "raw_passed": null,
+    "review_status": "disabled",
+    "description": "ChatGPT visual QC disabled by the launch configuration.",
+    "violations": [],
+    "raw_violations": [],
+    "blocking_violations": [],
+    "observations": [],
+    "regressions": [],
+    "review_provider": null
+  },
+  "provider": "chatgpt",
+  "job_id": "bbdab47d-7b7a-4e40-9997-8ec30230ab5e",
+  "requested_model": "nano_banana_2",
+  "actual_model_label": "Open mode picker, currently Flash",
+  "model_verified": true,
+  "pro_regeneration_used": false,
+  "provider_receipt": {
+    "provider": "gemini",
+    "requested_model": "nano_banana_2",
+    "actual_model_label": "Open mode picker, currently Flash",
+    "model_verified": true,
+    "pro_regeneration_used": false,
+    "requested_quality": "best",
+    "requested_aspect_ratio": "9:16",
+    "actual_aspect_ratio": "1536:2752",
+    "requested_duration_seconds": null,
+    "actual_duration_seconds": null,
+    "requested_resolution": null,
+    "actual_resolution": null,
+    "workspace_url": "https://gemini.google.com/app/61c454fa3a2ab2ee",
+    "submission_fingerprint": null,
+    "reference_roles": [
+      "style_reference",
+      "world_keyframe"
+    ],
+    "notes": [
+      "model_label_source=mode-picker",
+      "extended_thinking_mode=Open mode picker, currently Flash Extended",
+      "artifact_source=download",
+      "image=bbdab47d-7b7a-4e40-9997-8ec30230ab5e_output_1.png 1536x2752 sha256=ce9711b289d271f8e331476e2e1e40a28b50a04d5fabc2659abd6477e0ef91e2"
+    ],
+    "quality_check": {
+      "passed": true,
+      "raw_passed": null,
+      "review_status": "disabled",
+      "description": "ChatGPT visual QC disabled by the launch configuration.",
+      "violations": [],
+      "raw_violations": [],
+      "blocking_violations": [],
+      "observations": [],
+      "regressions": [],
+      "review_provider": null
+    },
+    "request_fingerprint": "2e8d10d94d8296a77f08dc5372cf0f641ddd3782b8b9603337772b8abca1b11d",
+    "quality_iterations": [
+      {
+        "attempt": 1,
+        "provider": "gemini",
+        "job_id": "bbdab47d-7b7a-4e40-9997-8ec30230ab5e",
+        "prompt_sha256": "a960e084cdb65f7b0c87b8ed4161c5b8c214fe4dc89012fb3af814e932fb57b8",
+        "output_sha256": "ce9711b289d271f8e331476e2e1e40a28b50a04d5fabc2659abd6477e0ef91e2",
+        "quality_check": {
+          "passed": true,
+          "raw_passed": null,
+          "review_status": "disabled",
+          "description": "ChatGPT visual QC disabled by the launch configuration.",
+          "violations": [],
+          "raw_violations": [],
+          "blocking_violations": [],
+          "observations": [],
+          "regressions": [],
+          "review_provider": null
+        },
+        "fully_clean": true,
+        "selected": true
+      }
+    ],
+    "qc_policy": "disabled",
+    "qc_selected_attempt": 1
+  },
+  "references": [
+    {
+      "role": "style_reference",
+      "path": "videos/049_schr_dinger_s_cat/references/world_style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    },
+    {
+      "role": "world_keyframe",
+      "path": "videos/049_schr_dinger_s_cat/references/world_keyframe.png",
+      "sha256": "ac697619ebf45998964e4743110746e9cc60006180454d69ce809df940c801dd"
+    }
+  ],
+  "prompt_sha256": "a960e084cdb65f7b0c87b8ed4161c5b8c214fe4dc89012fb3af814e932fb57b8",
+  "prompt": "Create exactly one 9:16 full-bleed image inside the topic world: a period-plausible mechanical radiation detector observing radioactive decay, shown in a tight side-profile apparatus composition. Use the supplied style reference only for the visual language: dry matte screen-print ink, coarse archival print grain, slight registration wear, bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, and graphic high-contrast illumination. Use the world keyframe only as a consistency anchor for medium, palette, texture, lighting, and spatial depth, not for its layout or composition. Show a detector tube occupying the right half of the frame, its sensing element aimed toward a tiny source chamber at the lower left, with a taut physical wire extending out of frame; keep the apparatus generic, mechanical, and period-plausible rather than futuristic. Emphasize the scale contrast between the small radioactive source and the larger observing mechanism through composition and repeated state-overlap motifs. Use a bone white and pale stone ground, dense soot black shadows, muted storm blue-gray forms, restrained oxidized teal metal accents, and sparse vermilion hints only around the conceptual rupture or decay-related elements. Apply broad flat printed light masses with deep shadows and restrained directional highlights around the detector, source chamber, and connections. The scene must fill all four image edges naturally with no border, page, card, inset window, mask, panel, grid, collage, storyboard, caption area, footer, labels, or readable text. No host character, no extra figures, no unsupported modern interfaces; preserve the full usable height for the scene. [VISUAL_CONTRACT:topic_world_v2] NON-NEGOTIABLE TOPIC-WORLD LAYOUT: The viewer is inside the explanatory world, not looking at an illustration mounted on a page. Fill the entire 9:16 canvas with the scene. No enclosing book/page/card, visible paper edge, deckled or parchment border, gutter, binding, decorative outer frame, inset illustration window, persistent doorway or circular lens mask. Paper grain, ink, collage and other chosen media remain valid as edge-to-edge rendering textures, not a physical sheet around the scene. A book or doorway may be a genuine in-world subject when the factual beat requires one, but must never become the enclosing layout. A reference's obsolete border, margins, labels, swatches or composition are not continuity requirements. Preserve its medium and palette only. Do not reserve a lower caption field, blank strip or empty panel. Use the full usable height for natural scene content, with consistent medium, texture, palette and lighting. No embedded text.",
+  "output_path": "assets/raw_beats/beat_010.png",
+  "output_sha256": "ce9711b289d271f8e331476e2e1e40a28b50a04d5fabc2659abd6477e0ef91e2",
+  "output_dimensions": [
+    1536,
+    2752
+  ],
+  "elapsed_seconds": 66.181,
+  "completed_at": "2026-09-21T11:34:23Z"
+}

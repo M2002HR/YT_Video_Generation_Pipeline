@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "stage": "elevenlabs_voiceover",
+      "status": "DONE",
+      "started_at": "2026-09-21T11:09:40.135433+00:00",
+      "ended_at": "2026-09-21T11:10:32.697945+00:00",
+      "artifact": "assets/audio/narration.mp3"
+    },
+    {
+      "stage": "background_music",
+      "status": "REUSED",
+      "started_at": "2026-09-21T11:10:32.765372+00:00",
+      "artifact": "assets/music"
+    },
+    {
+      "stage": "ajil_alignment",
+      "status": "DONE",
+      "started_at": "2026-09-21T11:10:32.765699+00:00",
+      "ended_at": "2026-09-21T11:10:38.174098+00:00",
+      "artifact": "timing/BEAT_TIMINGS.json"
+    },
+    {
+      "stage": "opening_source_plan",
+      "status": "DONE",
+      "started_at": "2026-09-21T11:10:38.174335+00:00",
+      "ended_at": "2026-09-21T11:10:40.718924+00:00",
+      "artifact": "timing/OPENING_SOURCE_PLAN.json"
+    },
+    {
+      "stage": "opening_trim",
+      "status": "DONE",
+      "started_at": "2026-09-21T12:17:51.247047+00:00",
+      "ended_at": "2026-09-21T12:17:58.002830+00:00",
+      "artifact": "timing/OPENING_TRIM_REPORT.json"
+    },
+    {
+      "stage": "audio_mix_profile",
+      "status": "DONE",
+      "started_at": "2026-09-21T12:17:59.717020+00:00",
+      "ended_at": "2026-09-21T12:17:59.717811+00:00",
+      "artifact": "audio_mix/AUDIO_MIX_PROFILE.json"
+    },
+    {
+      "stage": "render_profile",
+      "status": "DONE",
+      "started_at": "2026-09-21T12:18:02.235498+00:00",
+      "ended_at": "2026-09-21T12:18:02.236913+00:00",
+      "artifact": "render/RENDER_PROFILE.json"
+    }
+  ],
+  "status": "DONE",
+  "failed_at": "2026-09-21T10:58:18.285594+00:00",
+  "error": "CalledProcessError: Command '['/opt/YT_Video_Generation_Pipeline/.venv/bin/python', '-u', 'scripts/run_q_station_pipeline.py', '--topic', \"Schrödinger's cat\", '--video-id', '049', '--content-project', 'q_station', '--creative-brief', '/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/launch/CREATIVE_BRIEF.json', '--voice-profile', '/opt/YT_Video_Generation_Pipeline/videos/049_schr_dinger_s_cat/voiceover/REQUESTED_VOICE_PROFILE.json', '--aspect-ratio', '9:16', '--image-provider', 'gemini', '--image-qc-correction-policy', '0', '--flow-model', 'gemini_omni_1_1_flash', '--flow-resolution', '720p', '--opening-a-seconds', '6', '--opening-b-seconds', '4', '--world-style-policy', 'auto', '--chatgpt-fallback-mode', 'approval', '--min-duration-seconds', '30.0', '--max-duration-seconds', '40.0', '--opening-speed-tolerance', '0.2', '--gemini-model', 'nano_banana_2', '--disable-beat-image-qc', '--character-mode', 'manual', '--character-id', 'red_horned_everyman', '--defer-flow-clips']'",
+  "updated_at": "2026-09-21T12:18:02.236913+00:00"
+}

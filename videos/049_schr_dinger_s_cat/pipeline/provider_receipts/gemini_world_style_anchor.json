@@ -1,0 +1,44 @@
+{
+  "contract_version": 1,
+  "source_type": "catalog",
+  "catalog_derivative": false,
+  "provider_receipt": null,
+  "job_id": null,
+  "request_fingerprint": "707eae92c9e55ddc55aca570eece9b106a2a730ff08845957603d1d30cbb8cec",
+  "quality_check": {
+    "passed": true,
+    "description": "Vertical abstract screen-print material sample using bone white, pale stone, soot black, storm blue-gray, oxidized teal and sparse vermilion, with bold silhouettes, diagrammatic lines, coarse print grain, halftone-like fields and visible registration wear.",
+    "violations": [
+      "Aspect ratio appears slightly wider than an exact 9:16 vertical format.",
+      "The composition reads more like an abstract arranged print study than a clearly segmented palette-and-texture reference sheet, though it remains a non-scene material sample."
+    ],
+    "blocking_violations": [],
+    "regressions": [],
+    "contract_checks": {
+      "material_anchor_v2.neutral_material": {
+        "passed": true,
+        "evidence": "The canvas is occupied by an edge-to-edge abstract print sample with overlapping ink masses, line treatments and palette relationships; there is no book, doorway, character, location, enclosing page border or inset illustration."
+      }
+    },
+    "visual_contract_signature": "a9c331a2bd3cd13e3d84acc6ff143a3244ba10320d67ae8a6b849bf4e0fba535",
+    "raw_passed": true,
+    "raw_violations": [
+      "Aspect ratio appears slightly wider than an exact 9:16 vertical format.",
+      "The composition reads more like an abstract arranged print study than a clearly segmented palette-and-texture reference sheet, though it remains a non-scene material sample."
+    ],
+    "observations": [
+      "Aspect ratio appears slightly wider than an exact 9:16 vertical format.",
+      "The composition reads more like an abstract arranged print study than a clearly segmented palette-and-texture reference sheet, though it remains a non-scene material sample."
+    ],
+    "review_status": "passed_with_warnings"
+  },
+  "output_sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65",
+  "output_path": "references/world_style_anchor.png",
+  "references": [
+    {
+      "role": "catalog_style",
+      "path": "/opt/YT_Video_Generation_Pipeline/projects/q_station/world_styles/015_fractured_probability_screenprint_001/style_anchor.png",
+      "sha256": "e9e09f471f3e2750a3ae604d2e49b072541615fb682170509ab90ef2a85cee65"
+    }
+  ]
+}

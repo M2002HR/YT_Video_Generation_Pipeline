@@ -1,0 +1,20 @@
+{
+  "opening_question_spark": "How can one atomic event decide a whole cat's fate?",
+  "entry_transition": "The clue is a chain: one possible decay can trigger a detector and larger outcome.",
+  "cta": "What part feels strangest to you?",
+  "body": [
+    "Schrödinger proposed this thought experiment in 1935.",
+    "A cat sits inside a sealed box.",
+    "One radioactive atom may decay.",
+    "A detector watches for that decay.",
+    "Its signal can trigger a poison mechanism.",
+    "Then the cat dies.",
+    "No decay leaves the cat alive.",
+    "Quantum theory can describe both atomic possibilities together, called a superposition.",
+    "The setup links that uncertainty to two cat-sized outcomes."
+  ],
+  "optional_closing": "That scale jump was the point.",
+  "full_narration": "How can one atomic event decide a whole cat's fate? The clue is a chain: one possible decay can trigger a detector and larger outcome. Schrödinger proposed this thought experiment in 1935. A cat sits inside a sealed box. One radioactive atom may decay. A detector watches for that decay. Its signal can trigger a poison mechanism. Then the cat dies. No decay leaves the cat alive. Quantum theory can describe both atomic possibilities together, called a superposition. The setup links that uncertainty to two cat-sized outcomes. That scale jump was the point. What part feels strangest to you?",
+  "word_count": 100,
+  "created_at": "2026-09-21T09:44:19Z"
+}

@@ -1,0 +1,226 @@
+{
+  "input_fingerprint": "c928b9ed72eae8d65e4d3f9476ca974dee915894d511891b17353310516395fd",
+  "attempts": [
+    {
+      "attempt": 1,
+      "writer_history_ids": [
+        "043",
+        "043_what_if_human_bones_were_made_of_metal",
+        "044",
+        "045",
+        "045_what_if_a_human_grew_to_the_size_of_an_elephant",
+        "046",
+        "047",
+        "047_video"
+      ],
+      "writer_prompt_sha256": "1111cae15b6d50fd9198af82dc894fa9054ade903c633f57cf4ab57ac5d8a4d9",
+      "candidate_response": {
+        "candidates": [
+          {
+            "id": "c1",
+            "hook_line": "If the box is closed, isn't the cat already alive or dead?",
+            "viewer_expectation": "Not looking should only hide an answer that is already fixed.",
+            "visible_contradiction": "An ordinary hidden outcome has one result, but the quantum model keeps two possible atom outcomes together.",
+            "frame_zero": "Two sealed teaching boxes sit side by side: one uses a hidden coin, the other is linked to a quantum-event model with two active branches.",
+            "character_action": "He checks the coin box, then studies the two active branches on the quantum model and stops.",
+            "reaction": "A small skeptical head tilt: hiding an answer and not having one fixed are different ideas.",
+            "activity": "Comparing an ordinary hidden result with a quantum description of two possible outcomes.",
+            "location": "A quiet science demonstration room with two simple sealed-box models.",
+            "topic_link": "The puzzle comes from treating two quantum possibilities together, not simply from missing information.",
+            "claim_mode": "conservative",
+            "factual_anchor": "In the thought experiment, the cat's fate is tied to a quantum event. Before measurement, quantum theory can describe decay and no decay together, linking both possible outcomes to the cat.",
+            "payoff": "Explain why quantum superposition is not the same as an ordinary answer hidden inside a closed box.",
+            "entry_variant": "wrong_wall",
+            "entry_bridge": {
+              "a_end": "He stands beside the quantum model, still looking at its two active branches.",
+              "b_start": "Cut: the red host, horns and feet clear, is one step from an almost-closed red door set into the wrong wall.",
+              "reveal": "A click and a thin glow reveal two branching quantum outcomes inside; he opens the door and crosses.",
+              "world_entry": "A host-free quantum scene shows one undecayed branch and one decayed branch, each linked to a different large-scale result."
+            },
+            "novelty": {
+              "action_family": "hidden result versus quantum alternatives",
+              "tension_family": "unknown answer versus unfixed quantum result",
+              "prop_family": "coin box and branching quantum model",
+              "reveal_family": "two kinds of uncertainty separate clearly"
+            }
+          },
+          {
+            "id": "c2",
+            "hook_line": "How can one tiny atomic event decide a whole cat's fate?",
+            "viewer_expectation": "A change inside one atom seems too small to control something as large as a cat.",
+            "visible_contradiction": "A teaching rig connects one possible atomic decay to a chain that reaches the whole sealed cat setup.",
+            "frame_zero": "A transparent teaching rig shows a tiny radioactive source, detector, relay and large sealed cat-box model connected in one chain.",
+            "character_action": "He traces the chain from the tiny source to the detector, then to the much larger box.",
+            "reaction": "His eyes move back to the tiny source, doubtful that such a small event can start so much.",
+            "activity": "Following how a microscopic event can trigger a large physical consequence.",
+            "location": "A simple physics exhibit room with one clear cutaway mechanism.",
+            "topic_link": "A microscopic quantum event can be linked to a detector and mechanism that produces a large everyday outcome.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Schrödinger's thought experiment links a possible atomic decay to a detector and mechanism. One decay can trigger the chain, so microscopic alternatives become linked to different large outcomes.",
+            "payoff": "Show how the thought experiment carries uncertainty from one atom into two different cat-scale outcomes.",
+            "entry_variant": "floor_hatch",
+            "entry_bridge": {
+              "a_end": "He finishes tracing the mechanism and looks down beside the large box.",
+              "b_start": "Cut: the red host, fully visible, stands one step from the almost-closed red door laid as a floor hatch with safe steps below.",
+              "reveal": "The hatch clicks open onto a detector chain below; he steps down and crosses as the camera gently follows.",
+              "world_entry": "A host-free view follows one atomic event into a detector, relay and two diverging large-scale consequences."
+            },
+            "novelty": {
+              "action_family": "microscopic event drives large consequence",
+              "tension_family": "tiny cause versus large outcome",
+              "prop_family": "cutaway detector and relay chain",
+              "reveal_family": "the scale jump follows one physical chain"
+            }
+          },
+          {
+            "id": "c3",
+            "hook_line": "Was Schrödinger really saying a cat stays both alive and dead until we look?",
+            "viewer_expectation": "The famous cat story sounds like a claim about what real cats literally do in closed boxes.",
+            "visible_contradiction": "The display presents the cat as an extreme test of quantum rules, not as an ordinary animal experiment.",
+            "frame_zero": "A large classroom model places a tiny quantum trigger beside two sharply different cat outcomes, making the mismatch in scale obvious at once.",
+            "character_action": "He looks from the tiny trigger to the two cat outcomes, then gives the model a doubtful sideways glance.",
+            "reaction": "A dry expression says the setup looks intentionally unreasonable at everyday scale.",
+            "activity": "Testing what the famous cat example was meant to show about applying quantum rules to large objects.",
+            "location": "A plain teaching hall with one oversized Schrödinger's-cat demonstration model.",
+            "topic_link": "The example pushes quantum rules from a tiny event to an everyday object so the measurement problem becomes hard to ignore.",
+            "claim_mode": "conservative",
+            "factual_anchor": "Schrödinger created the cat as a thought experiment to show how strange quantum rules become when applied to large everyday objects. It was not a normal experiment claiming ordinary cats behave this way.",
+            "payoff": "Explain that the cat was designed to expose a problem about measurement and scale, not to describe a normal cat in a box.",
+            "entry_variant": "freestanding_door",
+            "entry_bridge": {
+              "a_end": "He remains beside the model, looking between the tiny trigger and the two cat outcomes.",
+              "b_start": "Cut: the red host, horns and feet clear, stands one step from an almost-closed freestanding red door beside the exhibit.",
+              "reveal": "A moving quantum pattern appears through the gap; he opens the stable door, crosses, and clears the camera path.",
+              "world_entry": "A host-free world begins with a tiny quantum event spreading into two different large-scale branches, showing why the example feels strange."
+            },
+            "novelty": {
+              "action_family": "test the meaning of the famous example",
+              "tension_family": "literal cat claim versus thought experiment",
+              "prop_family": "oversized quantum-to-cat teaching model",
+              "reveal_family": "the cat exposes a scale and measurement problem"
+            }
+          }
+        ]
+      },
+      "reviewer_history_ids": [
+        "047",
+        "047_video"
+      ],
+      "reviewer_prompt_sha256": "b822149de05bb2643a22ca5659a154c6c873f72c75d23143d84102647c78c9d3",
+      "review_response": {
+        "reviews": [
+          {
+            "id": "c1",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 2,
+              "payoff": 3,
+              "entry_fit": 4,
+              "feasibility": 3,
+              "novelty": 4,
+              "spoken_clarity": 3
+            },
+            "blocking_issues": [
+              "The proposal treats an \"unfixed quantum result\" or \"not having one fixed\" as a settled fact. Quantum theory uses a superposition of decay and no-decay possibilities, but whether there is literally no definite outcome before measurement depends on interpretation. The payoff needs to distinguish quantum superposition from ordinary hidden information without making that stronger ontological claim."
+            ],
+            "reason": "The coin-box comparison gives a clear, topic-specific contrast and fits the host's skeptical style. The wrong-wall entry is simple, physical and carries useful topic information through the doorway. The main weakness is factual framing: the hidden-answer comparison is valuable, but the current wording moves from the formal quantum description to a disputed claim about whether a result is actually fixed. The branching display is also somewhat abstract on first sight, so it needs especially clear visual labels or behavior to make the discrepancy readable."
+          },
+          {
+            "id": "c2",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 4,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The first frame already shows the unusual scale jump: a tiny source is physically connected through a detector and relay to the large sealed setup. Tracing that one chain is a readable action that naturally raises the stated question without depending on an explanatory rationale. The factual anchor stays conservative: a possible atomic decay can trigger a detector and mechanism, linking microscopic alternatives to different large outcomes. The floor-hatch route is supported by steps, starts the host beside the door, and can carry the detector chain into the topic world while he crosses. The hook uses familiar language and keeps the necessary idea of an atomic event understandable on first listen."
+          },
+          {
+            "id": "c3",
+            "scores": {
+              "topic_fit": 4,
+              "visible_hook": 3,
+              "character_fit": 4,
+              "honesty": 4,
+              "payoff": 4,
+              "entry_fit": 4,
+              "feasibility": 4,
+              "novelty": 4,
+              "spoken_clarity": 4
+            },
+            "blocking_issues": [],
+            "reason": "The candidate addresses a central misunderstanding of the cat thought experiment and gives the host a natural reason for a dry skeptical reaction. The oversized model makes the tiny-trigger versus cat-scale mismatch visible, although the image alone does not fully prove the intended distinction between a literal claim and a deliberately extreme thought experiment; the spoken hook must carry part of that setup. The historical and scientific promise is appropriately cautious, and the payoff can explain why Schrödinger used the large everyday example without claiming that ordinary cats literally behave this way. The freestanding-door transition follows the physical crossing contract and supplies a relevant quantum-to-large-scale clue during entry."
+          }
+        ]
+      },
+      "decisions": [
+        {
+          "id": "c1",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 2,
+            "payoff": 3,
+            "entry_fit": 4,
+            "feasibility": 3,
+            "novelty": 4,
+            "spoken_clarity": 3
+          },
+          "blocking_issues": [
+            "The proposal treats an \"unfixed quantum result\" or \"not having one fixed\" as a settled fact. Quantum theory uses a superposition of decay and no-decay possibilities, but whether there is literally no definite outcome before measurement depends on interpretation. The payoff needs to distinguish quantum superposition from ordinary hidden information without making that stronger ontological claim.",
+            "Insufficient topic fit, honesty, payoff, entry feasibility, visible hook or spoken clarity."
+          ],
+          "reason": "The coin-box comparison gives a clear, topic-specific contrast and fits the host's skeptical style. The wrong-wall entry is simple, physical and carries useful topic information through the doorway. The main weakness is factual framing: the hidden-answer comparison is valuable, but the current wording moves from the formal quantum description to a disputed claim about whether a result is actually fixed. The branching display is also somewhat abstract on first sight, so it needs especially clear visual labels or behavior to make the discrepancy readable.",
+          "repetition_evidence": [],
+          "weighted_score": 75
+        },
+        {
+          "id": "c2",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 4,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The first frame already shows the unusual scale jump: a tiny source is physically connected through a detector and relay to the large sealed setup. Tracing that one chain is a readable action that naturally raises the stated question without depending on an explanatory rationale. The factual anchor stays conservative: a possible atomic decay can trigger a detector and mechanism, linking microscopic alternatives to different large outcomes. The floor-hatch route is supported by steps, starts the host beside the door, and can carry the detector chain into the topic world while he crosses. The hook uses familiar language and keeps the necessary idea of an atomic event understandable on first listen.",
+          "repetition_evidence": [],
+          "weighted_score": 92
+        },
+        {
+          "id": "c3",
+          "scores": {
+            "topic_fit": 4,
+            "visible_hook": 3,
+            "character_fit": 4,
+            "honesty": 4,
+            "payoff": 4,
+            "entry_fit": 4,
+            "feasibility": 4,
+            "novelty": 4,
+            "spoken_clarity": 4
+          },
+          "blocking_issues": [],
+          "reason": "The candidate addresses a central misunderstanding of the cat thought experiment and gives the host a natural reason for a dry skeptical reaction. The oversized model makes the tiny-trigger versus cat-scale mismatch visible, although the image alone does not fully prove the intended distinction between a literal claim and a deliberately extreme thought experiment; the spoken hook must carry part of that setup. The historical and scientific promise is appropriately cautious, and the payoff can explain why Schrödinger used the large everyday example without claiming that ordinary cats literally behave this way. The freestanding-door transition follows the physical crossing contract and supplies a relevant quantum-to-large-scale clue during entry.",
+          "repetition_evidence": [],
+          "weighted_score": 89
+        }
+      ],
+      "selected_id": "c2"
+    }
+  ]
+}

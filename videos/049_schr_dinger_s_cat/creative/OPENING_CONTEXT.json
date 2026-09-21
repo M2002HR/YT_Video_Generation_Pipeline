@@ -1,0 +1,140 @@
+{
+  "gateway_inputs_version": 1,
+  "policy_version": 2,
+  "brief": {
+    "topic": "Schrödinger's cat",
+    "language": "English",
+    "duration_seconds": [
+      30.0,
+      40.0
+    ],
+    "working_title": "Schrödinger's cat",
+    "hero_presence_mode": "auto"
+  },
+  "character": {
+    "id": "red_horned_everyman",
+    "archetype": "serious skeptical everyday explainer",
+    "tone": [
+      "serious",
+      "dry",
+      "skeptical",
+      "observant",
+      "slightly weary"
+    ],
+    "behavior": "# Red Horned Everyman - Behavior\n\nRestrained, grounded physical acting: subtle head turns, skeptical observation, dry/deadpan curiosity and small facial changes instead of slapstick. He wants to understand why something works. He is not constantly furious, villainous, supernatural, manic or hyperactive, and does not cast spells by default. Keep actions readable in a short video.\n\n## Dynamic environment\nInfer location and activity from the actual topic, script and his observant temperament. No permanent home, city, lair, occupation or infernal scenery. Do not force chores, a workshop, sorting objects, or a catchphrase into every question.\n\n## Story agency\nHe may notice a specific contradiction, make a grounded prediction, try a simple comparison or recognize an unexpected consequence. A visibly shows why the question arises, in one place and no more than three clear actions. Calm acting can accompany a strong event.\n\nThe episode's resolved presentation owns its gateway, not this identity pack. Follow that presentation's exact attention cue, prop interaction, route and camera handoff; never substitute a different gateway because of the character's appearance or an accessory in his sheet. New runs use the impossible red door. A frozen historical presentation remains authoritative when an older episode is resumed. The mechanism is an editorial route to explanation, not scientific evidence or proof of supernatural powers.",
+    "negative_constraints": "# Red Horned Everyman — Negative Constraints\n\nDo not add wings.\nDo not add a tail.\nDo not add hooves.\nDo not add extra horns.\nDo not add goat legs.\nDo not add armor.\nDo not add flames.\nDo not add a hell environment because of his appearance.\nDo not add glowing eyes.\nDo not add a supernatural aura.\nDo not turn him into a muscular monster.\nDo not make him villainous unless the actual story explicitly requires a villainous performance.\nDo not replace the plaid outfit with fantasy clothing.\nDo not unintentionally crop both horn tips in a composition intended to show the full head.\n\n## IMPORTANT — labeling\n\nAvoid using the words **demon**, **devil**, **satan**, or equivalent infernal\nlabels as the PRIMARY character identity prompt. Those labels bias image/video\nmodels toward unwanted supernatural environments and iconography.\n\n## Canonical sheet is IDENTITY_ONLY\n\nThe sheet defines:\n\n- face\n- silhouette\n- horn geometry\n- body proportions\n- hair\n- facial hair\n- outfit\n\nThe sheet does NOT define:\n\n- scene layout\n- turnaround grid\n- background\n- pose\n- camera angle\n- environment",
+    "environment_policy": "dynamic",
+    "environment_affinities": []
+  },
+  "presentation": {
+    "profile_id": "red_door_portal",
+    "display_name": "Question -> Impossible Red Door -> Topic World",
+    "entry_kind": "red_door",
+    "entry_segment_key": "entry_transition",
+    "entry_segment_label": "red door transition",
+    "script_rules": "A shows the topic-specific observation, failed expectation, comparison or consequence that naturally creates the question. One location, up to three readable actions, dry observant host. The door is not the topic hook and need not appear in A. B alone owns attention shifting to the impossible red door, its opening, a glimpse of the topic world's actual texture/clue, the host physically crossing, and camera arrival in the world. Keep the same canonical door but vary the premise by the actual question; do not rotate stock chores or portal gags.\n\nUse opening_question_spark plus entry_transition, then the factual body, optional closing and CTA. Plan B for roughly 5-8 seconds with 13-18 clear spoken words that supply an initial factual clue, not a list of stage directions or 'let us enter'. Actual word alignment remains authoritative. A longer Flow source cannot substitute for adequate spoken segment length. Simplify the B route to three beats: notice/open, cross, camera arrives. The actor starts next to the door, not across a room. No book, orb, telescope or random magical proof. The post-entry world is full-bleed and independent of the gateway.",
+    "episode_rules": "Use the independently selected mini-story without changing its premise. A establishes why THIS question arose, in one setting and at most three actions. B starts at an editorial cut in the same setting: one recognizable red host, both horns and feet readable, already within one step of the canonical almost-closed door. A click, a sliver of topic-world light/texture or the leaf beginning to move attracts his attention. He opens it or it opens itself, sees a concrete world clue, and intentionally crosses. Keep door size sufficient for the horns; no shrinking or teleporting the host.\n\nAllowed variants: wrong_wall and recessed_door use a real wall plane; existing_exit replaces a doorway; freestanding_door stands stably on a surface; floor_hatch uses the SAME door design rotated into the ground with visible steps for supported descent; unexpected_surface is permitted only with a clear supporting plane and passable route. Do not combine variants. No hanging ceiling leap or elaborate travel to find a door.\n\nAdd entry_camera to the EPISODE_PLAN JSON with surface (wall|floor|freestanding|other), transition (follow_through|threshold_dissolve|texture_takeover), attention_cue, opening_action, crossing_action, camera_path, world_reveal. Each description is concise and concrete, at most 400 characters. Show the chosen route in entry_bridge.b_start and use a consistent hinge side, screen direction and camera axis. For a floor hatch declare the steps, hinge clearance and a gentle downward camera tilt, not walking through a vertical plane.\n\nChoose ONE camera method: follow_through = restrained over-shoulder/lateral push, host crosses and moves out of the camera path before arrival; threshold_dissolve = visibly complete the crossing, approach the actual opening, then a short matched dissolve into its content; texture_takeover = crossing is visible first, then the world inside the aperture expands to fill the frame. Never hide the missing crossing with a premature fade, white flash or black screen. All essential motion finishes within measured B narration, not at the unused end of the source. End exactly on the supplied host-free world keyframe with no door, frame, host or circular mask. Use topic content and target medium inside the doorway, not a flat poster or generic void. Later host presence follows the existing body policy.",
+    "entry_frame_character_presence": "acting_host",
+    "entry_variants": [
+      "wrong_wall",
+      "floor_hatch",
+      "freestanding_door",
+      "existing_exit",
+      "unexpected_surface",
+      "recessed_door"
+    ],
+    "motion_contract": "door_crossing_v1",
+    "min_entry_seconds": 5.0,
+    "min_entry_words": 13
+  },
+  "writer_sha256": "006dc2738ab2942c9261ee8d54185ac1a3b4b0b6ebb036cd93d00a81775303ea",
+  "reviewer_sha256": "0154d9817bd6b4a62eeca433fbd3a282cccfa463444909210a348e9252ece081",
+  "language_policy_version": 1,
+  "input_fingerprint": "c928b9ed72eae8d65e4d3f9476ca974dee915894d511891b17353310516395fd",
+  "history": [
+    {
+      "video_id": "043",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing how flexible and rigid body structures respond to the same bending force.",
+      "opening_location": "A quiet engineering display room with simple material demonstration models.",
+      "situation_summary": "A metal frame holds weight well but cannot move like a living body.",
+      "hook_line": "If bones were metal, would your body become stronger?",
+      "entry_variant": "object_transformation",
+      "opening_signature": {
+        "action_family": "strength versus movement",
+        "tension_family": "hardness versus flexibility",
+        "prop_family": "bending frame models",
+        "reveal_family": "one advantage creates new limits"
+      }
+    },
+    {
+      "video_id": "043_what_if_human_bones_were_made_of_metal"
+    },
+    {
+      "video_id": "044",
+      "character_id": "newton_scholar",
+      "opening_activity": "Testing how scaling weight without widening bone thickness breaks upright support.",
+      "opening_location": "Outdoor comparative biomechanics pavilion beside life-size animal leg casts.",
+      "situation_summary": "Weight grows with volume, but bone strength only grows with cross-section area.",
+      "hook_line": "If you grew as big as an elephant, could your legs still hold your weight?",
+      "entry_variant": "discovered_book",
+      "opening_signature": {
+        "action_family": "vertical load failure test",
+        "tension_family": "proportional scaling versus actual mass",
+        "prop_family": "scaled leg bone model and weighted torso block",
+        "reveal_family": "bone area falls behind total volume growth"
+      }
+    },
+    {
+      "video_id": "045",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing warmth loss between scaled body shapes using matching body models and heat demonstrations.",
+      "opening_location": "A quiet science display hall with body models and simple heat comparison exhibits.",
+      "situation_summary": "Two body models lose warmth at different speeds.",
+      "hook_line": "If a human grew huge, would their body cool the same?",
+      "entry_variant": "discovered_book",
+      "opening_signature": {
+        "action_family": "heat comparison",
+        "tension_family": "size versus cooling",
+        "prop_family": "body models",
+        "reveal_family": "proportions change with growth"
+      }
+    },
+    {
+      "video_id": "045_what_if_a_human_grew_to_the_size_of_an_elephant"
+    },
+    {
+      "video_id": "046",
+      "character_id": "moss_cloaked_crone",
+      "opening_activity": "Showing that a sudden pressure loss can threaten breathing throughout the cabin rather than only beside the opening.",
+      "opening_location": "A simple aircraft safety training cabin.",
+      "situation_summary": "An oxygen mask hangs beside an empty seat far from the model window opening.",
+      "hook_line": "Why can breathing become dangerous far from a broken window?",
+      "entry_variant": "raven_leads",
+      "opening_signature": {
+        "action_family": "whole-cabin danger reveal",
+        "tension_family": "near-window danger versus cabin-wide breathing risk",
+        "prop_family": "aircraft training seat and oxygen mask",
+        "reveal_family": "distance from the opening does not stop the pressure drop"
+      }
+    },
+    {
+      "video_id": "047",
+      "character_id": "newton_scholar",
+      "opening_activity": "Comparing airflow close to and far from a sudden opening in a pressurized aircraft-cabin window rig.",
+      "opening_location": "A simple aircraft pressure-test room with a full-size cabin window rig.",
+      "situation_summary": "A ribbon beside the opening snaps toward it, while another farther away moves much less.",
+      "hook_line": "Why is the rush of air strongest near a broken airplane window?",
+      "entry_variant": "desk_reach",
+      "opening_signature": {
+        "action_family": "near-versus-far airflow comparison",
+        "tension_family": "equal pull versus local strong flow",
+        "prop_family": "pressurized window rig with ribbons",
+        "reveal_family": "pressure difference drives outward flow"
+      }
+    },
+    {
+      "video_id": "047_video"
+    }
+  ]
+}

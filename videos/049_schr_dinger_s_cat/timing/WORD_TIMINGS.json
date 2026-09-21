@@ -1,0 +1,562 @@
+{
+  "schema_version": 1,
+  "audio": "assets/audio/narration.mp3",
+  "audio_duration_seconds": 44.121,
+  "backend": "ajil",
+  "timestamp_source": "word",
+  "word_count": 92,
+  "words": [
+    {
+      "text": "How",
+      "token": "how",
+      "start": 0.64,
+      "end": 0.8
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 0.8,
+      "end": 1.1
+    },
+    {
+      "text": "one",
+      "token": "one",
+      "start": 1.1,
+      "end": 1.42
+    },
+    {
+      "text": "atom",
+      "token": "atom",
+      "start": 1.42,
+      "end": 1.78
+    },
+    {
+      "text": "decide",
+      "token": "decide",
+      "start": 1.78,
+      "end": 2.26
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 2.26,
+      "end": 2.56
+    },
+    {
+      "text": "whole",
+      "token": "whole",
+      "start": 2.56,
+      "end": 2.82
+    },
+    {
+      "text": "cat's",
+      "token": "cat's",
+      "start": 2.82,
+      "end": 3.44
+    },
+    {
+      "text": "fate?",
+      "token": "fate",
+      "start": 3.44,
+      "end": 3.8
+    },
+    {
+      "text": "Below",
+      "token": "below",
+      "start": 4.62,
+      "end": 4.88
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 4.88,
+      "end": 5.16
+    },
+    {
+      "text": "red",
+      "token": "red",
+      "start": 5.16,
+      "end": 5.38
+    },
+    {
+      "text": "hatch,",
+      "token": "hatch",
+      "start": 5.38,
+      "end": 6.02
+    },
+    {
+      "text": "decay",
+      "token": "decay",
+      "start": 6.02,
+      "end": 6.64
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 6.64,
+      "end": 7.06
+    },
+    {
+      "text": "trigger",
+      "token": "trigger",
+      "start": 7.06,
+      "end": 7.42
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 7.42,
+      "end": 7.62
+    },
+    {
+      "text": "detector",
+      "token": "detector",
+      "start": 7.62,
+      "end": 8.12
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 8.12,
+      "end": 8.82
+    },
+    {
+      "text": "start",
+      "token": "start",
+      "start": 8.82,
+      "end": 9.24
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 9.24,
+      "end": 9.52
+    },
+    {
+      "text": "larger",
+      "token": "larger",
+      "start": 9.52,
+      "end": 9.98
+    },
+    {
+      "text": "chain.",
+      "token": "chain",
+      "start": 9.98,
+      "end": 10.76
+    },
+    {
+      "text": "Schrodinger",
+      "token": "schrodinger",
+      "start": 11.5,
+      "end": 12.02
+    },
+    {
+      "text": "proposed",
+      "token": "proposed",
+      "start": 12.02,
+      "end": 12.44
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 12.44,
+      "end": 12.76
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 12.76,
+      "end": 12.92
+    },
+    {
+      "text": "1935.",
+      "token": "1935",
+      "start": 12.92,
+      "end": 13.94
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 14.98,
+      "end": 15.14
+    },
+    {
+      "text": "cat",
+      "token": "cat",
+      "start": 15.14,
+      "end": 15.44
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 15.44,
+      "end": 15.74
+    },
+    {
+      "text": "sealed",
+      "token": "sealed",
+      "start": 15.74,
+      "end": 16.12
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 16.12,
+      "end": 16.36
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 16.36,
+      "end": 16.46
+    },
+    {
+      "text": "box.",
+      "token": "box",
+      "start": 16.46,
+      "end": 16.86
+    },
+    {
+      "text": "One",
+      "token": "one",
+      "start": 17.48,
+      "end": 17.74
+    },
+    {
+      "text": "radioactive",
+      "token": "radioactive",
+      "start": 17.74,
+      "end": 18.26
+    },
+    {
+      "text": "atom",
+      "token": "atom",
+      "start": 18.26,
+      "end": 19.0
+    },
+    {
+      "text": "may",
+      "token": "may",
+      "start": 19.0,
+      "end": 19.28
+    },
+    {
+      "text": "decay.",
+      "token": "decay",
+      "start": 19.28,
+      "end": 19.6
+    },
+    {
+      "text": "A",
+      "token": "a",
+      "start": 20.32,
+      "end": 20.46
+    },
+    {
+      "text": "detector",
+      "token": "detector",
+      "start": 20.46,
+      "end": 20.98
+    },
+    {
+      "text": "watches",
+      "token": "watches",
+      "start": 20.98,
+      "end": 21.48
+    },
+    {
+      "text": "for",
+      "token": "for",
+      "start": 21.48,
+      "end": 21.82
+    },
+    {
+      "text": "decay.",
+      "token": "decay",
+      "start": 21.82,
+      "end": 22.12
+    },
+    {
+      "text": "Decay",
+      "token": "decay",
+      "start": 22.86,
+      "end": 23.36
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 23.36,
+      "end": 23.64
+    },
+    {
+      "text": "trigger",
+      "token": "trigger",
+      "start": 23.64,
+      "end": 24.04
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 24.04,
+      "end": 24.36
+    },
+    {
+      "text": "poison",
+      "token": "poison",
+      "start": 24.36,
+      "end": 24.84
+    },
+    {
+      "text": "mechanism.",
+      "token": "mechanism",
+      "start": 24.84,
+      "end": 25.46
+    },
+    {
+      "text": "Then",
+      "token": "then",
+      "start": 26.12,
+      "end": 26.32
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 26.32,
+      "end": 26.5
+    },
+    {
+      "text": "cat",
+      "token": "cat",
+      "start": 26.5,
+      "end": 26.7
+    },
+    {
+      "text": "dies.",
+      "token": "dies",
+      "start": 26.7,
+      "end": 27.52
+    },
+    {
+      "text": "No",
+      "token": "no",
+      "start": 26.84,
+      "end": 28.06
+    },
+    {
+      "text": "decay",
+      "token": "decay",
+      "start": 28.06,
+      "end": 28.48
+    },
+    {
+      "text": "leaves",
+      "token": "leaves",
+      "start": 28.48,
+      "end": 29.0
+    },
+    {
+      "text": "it",
+      "token": "it",
+      "start": 29.0,
+      "end": 29.18
+    },
+    {
+      "text": "alive.",
+      "token": "alive",
+      "start": 29.18,
+      "end": 29.56
+    },
+    {
+      "text": "Quantum",
+      "token": "quantum",
+      "start": 30.32,
+      "end": 30.62
+    },
+    {
+      "text": "theory",
+      "token": "theory",
+      "start": 30.62,
+      "end": 31.06
+    },
+    {
+      "text": "can",
+      "token": "can",
+      "start": 31.06,
+      "end": 31.34
+    },
+    {
+      "text": "describe",
+      "token": "describe",
+      "start": 31.34,
+      "end": 31.78
+    },
+    {
+      "text": "both",
+      "token": "both",
+      "start": 31.78,
+      "end": 32.18
+    },
+    {
+      "text": "possibilities",
+      "token": "possibilities",
+      "start": 32.18,
+      "end": 32.88
+    },
+    {
+      "text": "together.",
+      "token": "together",
+      "start": 32.88,
+      "end": 33.48
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 34.02,
+      "end": 34.22
+    },
+    {
+      "text": "state",
+      "token": "state",
+      "start": 34.22,
+      "end": 34.58
+    },
+    {
+      "text": "is",
+      "token": "is",
+      "start": 34.58,
+      "end": 34.82
+    },
+    {
+      "text": "called",
+      "token": "called",
+      "start": 34.82,
+      "end": 35.1
+    },
+    {
+      "text": "a",
+      "token": "a",
+      "start": 35.1,
+      "end": 35.34
+    },
+    {
+      "text": "superposition.",
+      "token": "superposition",
+      "start": 35.34,
+      "end": 35.92
+    },
+    {
+      "text": "That",
+      "token": "that",
+      "start": 36.64,
+      "end": 36.86
+    },
+    {
+      "text": "jump",
+      "token": "jump",
+      "start": 36.86,
+      "end": 37.2
+    },
+    {
+      "text": "from",
+      "token": "from",
+      "start": 37.2,
+      "end": 37.48
+    },
+    {
+      "text": "atom",
+      "token": "atom",
+      "start": 37.48,
+      "end": 37.88
+    },
+    {
+      "text": "to",
+      "token": "to",
+      "start": 37.88,
+      "end": 38.16
+    },
+    {
+      "text": "cat",
+      "token": "cat",
+      "start": 38.16,
+      "end": 38.48
+    },
+    {
+      "text": "was",
+      "token": "was",
+      "start": 38.48,
+      "end": 38.76
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 38.76,
+      "end": 38.94
+    },
+    {
+      "text": "point.",
+      "token": "point",
+      "start": 38.94,
+      "end": 39.3
+    },
+    {
+      "text": "Choose",
+      "token": "choose",
+      "start": 39.94,
+      "end": 40.16
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 40.16,
+      "end": 40.42
+    },
+    {
+      "text": "next",
+      "token": "next",
+      "start": 40.42,
+      "end": 40.6
+    },
+    {
+      "text": "video's",
+      "token": "video's",
+      "start": 40.6,
+      "end": 41.1
+    },
+    {
+      "text": "topic",
+      "token": "topic",
+      "start": 41.1,
+      "end": 41.42
+    },
+    {
+      "text": "and",
+      "token": "and",
+      "start": 41.42,
+      "end": 41.74
+    },
+    {
+      "text": "question",
+      "token": "question",
+      "start": 41.74,
+      "end": 42.16
+    },
+    {
+      "text": "in",
+      "token": "in",
+      "start": 42.16,
+      "end": 42.42
+    },
+    {
+      "text": "the",
+      "token": "the",
+      "start": 42.42,
+      "end": 42.54
+    },
+    {
+      "text": "comments.",
+      "token": "comments",
+      "start": 42.54,
+      "end": 42.88
+    }
+  ]
+}

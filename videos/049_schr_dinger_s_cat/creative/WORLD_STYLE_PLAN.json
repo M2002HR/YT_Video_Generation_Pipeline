@@ -1,0 +1,29 @@
+{
+  "style_id": "fractured_probability_screenprint_001",
+  "decision": "reuse",
+  "reuse_of": "fractured_probability_screenprint_001",
+  "medium": "screen print",
+  "secondary_treatment": null,
+  "texture_family": "dry matte screen-print ink with coarse archival print grain and slight registration wear",
+  "palette_summary": "bone white and pale stone grounds, dense soot black, muted storm blue-gray, restrained oxidized teal, with sparse vermilion accents reserved for decay events, trigger mechanisms, and the conceptual rupture between microscopic and macroscopic states",
+  "line_treatment": "bold simplified silhouettes, crisp diagrammatic contours, selective halftone fields, and slight misregistration used consistently to suggest overlapping quantum possibilities without changing medium",
+  "lighting": "graphic high-contrast illumination with broad flat light masses, deep printed shadows, and restrained directional highlights around the detector, atom, and box interior",
+  "frame_language": "Full-bleed subject-world composition, extending naturally to all four image edges; consistent medium, palette, lighting and spatial depth, with fresh composition per beat.",
+  "layout_policy": "full_bleed_topic_world_v2",
+  "subtitle_reserve": "no dedicated caption reserve; the scene and matching texture fill the complete illustration height",
+  "subject_constraints": "Use topic-specific imagery: sealed box interiors, cat, single radioactive atom, decay detector, mechanical trigger, poison apparatus, and visual overlap of alive/dead possibilities. Emphasize the scale jump from microscopic radioactive uncertainty to the macroscopic cat through composition and repeated state-overlap motifs. Keep apparatus physically legible rather than futuristic.",
+  "historical_accuracy_note": "Schrödinger introduced the cat thought experiment in 1935. When apparatus details are shown, keep them generic and period-plausible rather than depicting modern digital laboratory interfaces.",
+  "hero_rendering_in_world": "Only when a later shot requests the host, translate the supplied identity into this medium",
+  "negative_constraints": "No enclosing pages or entry-object masks; no embedded text or unsupported factual imagery",
+  "reason": "This existing style has unusually strong topic affinity: its fractured probability language, overlapping registration, archival scientific feel, and restrained anomaly accents naturally express superposition and the deliberate clash between microscopic quantum behavior and a macroscopic cat. It has low prior usage and is not among the most recent styles, so reuse preserves catalog diversity while avoiding the recently used technical gouache and crayon texture families.",
+  "subject_affinities": [
+    "quantum mechanics",
+    "probability and superposition",
+    "scientific thought experiments",
+    "microscopic-to-macroscopic scale transitions",
+    "measurement and detection systems",
+    "conceptual physics paradoxes"
+  ],
+  "style_subtitle_reserve": "Calm natural atmosphere only in the bottom 8-10%; no separate panel or printed text.",
+  "reserve_subtitle_space": false
+}

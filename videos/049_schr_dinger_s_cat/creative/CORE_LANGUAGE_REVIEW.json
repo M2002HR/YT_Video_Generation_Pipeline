@@ -1,0 +1,153 @@
+{
+  "checks": {
+    "everyday_words": true,
+    "clear_sentence_meaning": true,
+    "terms_explained": true,
+    "easy_to_follow_once": true,
+    "meaning_preserved": true
+  },
+  "issues": [],
+  "notes": [],
+  "passed": true,
+  "policy_version": 1,
+  "scope": "core",
+  "content_fingerprint": "4e44f98709bc57a950d0f19039671af511523838b230e28082de731ed59a67a7",
+  "reference_fingerprint": "d80bbdb9fbbd9230c866edb4ccb241b633bc9d5eb4339d2be3a971c49301acef",
+  "policy_sha256": "e03fac63323795ecfb57e09674fef1a2a91fdf570643b5e072110f2a0723e3ad",
+  "reviewer_prompt_sha256": "4e8a7b963b4f3e3f9336c81b87bc8a017ffe899babcd76ed5143f4b3521e2909",
+  "input_fingerprint": "ca07c98c385adc841a205156304d0a9eeb01bced25425b9cec8704d81807505f",
+  "attempts": [
+    {
+      "attempt": 1,
+      "segments": {
+        "opening_question_spark": "How can one tiny atomic event decide a cat's fate?",
+        "entry_transition": "Below the red hatch, one decay can trigger a detector, leading to a larger outcome.",
+        "body_01": "Schrödinger proposed the thought experiment in 1935.",
+        "body_02": "A cat is sealed inside a box.",
+        "body_03": "One radioactive atom may decay.",
+        "body_04": "A detector watches for that decay.",
+        "body_05": "Decay can trigger a poison mechanism.",
+        "body_06": "Then the cat dies.",
+        "body_07": "No decay leaves the cat alive.",
+        "body_08": "Quantum theory can hold both atomic possibilities together.",
+        "body_09": "That state is called a superposition.",
+        "optional_closing": "That jump from atom to cat was the point."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": false,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [
+        {
+          "check": "clear_sentence_meaning",
+          "segment": "body_08",
+          "quote": "Quantum theory can hold both atomic possibilities together.",
+          "problem": "“Hold both possibilities together” is not a clear everyday description of what the theory does and may be hard to understand on first listen.",
+          "suggestion": "Quantum theory can describe both atomic possibilities at the same time."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "segments": {
+        "opening_question_spark": "How can one tiny atomic event decide a cat's fate?",
+        "entry_transition": "Below the red hatch, one decay can trigger a detector, leading to a larger outcome.",
+        "body_01": "Schrödinger proposed the thought experiment in 1935.",
+        "body_02": "A cat is sealed inside a box.",
+        "body_03": "One radioactive atom may decay.",
+        "body_04": "A detector watches for that decay.",
+        "body_05": "Decay can trigger a poison mechanism.",
+        "body_06": "Then the cat dies.",
+        "body_07": "No decay leaves the cat alive.",
+        "body_08": "Quantum theory can describe both atomic possibilities at the same time.",
+        "body_09": "That state is called a superposition.",
+        "optional_closing": "That jump from atom to cat was the point."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": false
+      },
+      "issues": [
+        {
+          "check": "meaning_preserved",
+          "segment": "body_05",
+          "quote": "Decay can trigger a poison mechanism.",
+          "problem": "This skips the detector signal in the cause-and-effect chain. The reference says the detector's signal can trigger the poison mechanism.",
+          "suggestion": "The detector's signal can trigger a poison mechanism."
+        },
+        {
+          "check": "meaning_preserved",
+          "segment": "body_08",
+          "quote": "Quantum theory can describe both atomic possibilities at the same time.",
+          "problem": "\"At the same time\" can sound like both events definitely happen. The reference makes the narrower claim that quantum theory can describe the two possibilities together.",
+          "suggestion": "Quantum theory can describe both atomic possibilities together."
+        }
+      ],
+      "notes": [],
+      "passed": false
+    },
+    {
+      "attempt": 3,
+      "segments": {
+        "opening_question_spark": "How can one tiny atomic event decide a cat's fate?",
+        "entry_transition": "Below the red hatch, one decay can trigger a detector, leading to a larger outcome.",
+        "body_01": "Schrödinger proposed the thought experiment in 1935.",
+        "body_02": "A cat is sealed inside a box.",
+        "body_03": "One radioactive atom may decay.",
+        "body_04": "A detector watches for that decay.",
+        "body_05": "The detector's signal can trigger a poison mechanism.",
+        "body_06": "Then the cat dies.",
+        "body_07": "No decay leaves the cat alive.",
+        "body_08": "Quantum theory can describe both atomic possibilities together.",
+        "body_09": "That state is called a superposition.",
+        "optional_closing": "That jump from atom to cat was the point."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    },
+    {
+      "attempt": 4,
+      "segments": {
+        "opening_question_spark": "How can one atom decide a whole cat's fate?",
+        "entry_transition": "Below the red hatch, decay may trigger a detector and start a larger chain.",
+        "body_01": "Schrödinger proposed it in 1935.",
+        "body_02": "A cat is sealed in a box.",
+        "body_03": "One radioactive atom may decay.",
+        "body_04": "A detector watches for decay.",
+        "body_05": "Decay can trigger a poison mechanism.",
+        "body_06": "Then the cat dies.",
+        "body_07": "No decay leaves it alive.",
+        "body_08": "Quantum theory can describe both possibilities together.",
+        "body_09": "That state is called a superposition.",
+        "optional_closing": "That jump from atom to cat was the point."
+      },
+      "checks": {
+        "everyday_words": true,
+        "clear_sentence_meaning": true,
+        "terms_explained": true,
+        "easy_to_follow_once": true,
+        "meaning_preserved": true
+      },
+      "issues": [],
+      "notes": [],
+      "passed": true
+    }
+  ],
+  "created_at": "2026-09-21T10:58:13Z"
+}
