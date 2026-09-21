@@ -481,6 +481,27 @@ def graph_for(
     for item in final.get("events") or []:
         if item.get("stage"):
             stages[str(item["stage"])] = {**item, "status": item.get("status", "PENDING")}
+    # Motion Director checkpoints are updated inside its long-running child
+    # process, while FINALIZATION only changes at stage boundaries.  Overlay
+    # them so the graph has a real live counter (e.g. critic 9/15), not an
+    # apparently frozen generic RUNNING card.
+    motion_runtime = load(project / "pipeline/MOTION_DIRECTOR_RUNTIME_STATE.json")
+    motion_current = motion_runtime.get("current") if isinstance(motion_runtime.get("current"), dict) else {}
+    if str(motion_runtime.get("status") or "").upper() in {"RUNNING", "FAILED", "DONE"}:
+        detail = str(motion_current.get("detail") or "")
+        phase = str(motion_current.get("phase") or "")
+        current = motion_current.get("current")
+        total = motion_current.get("total")
+        progress_text = detail or phase
+        if phase and current is not None and total is not None:
+            progress_text = f"{phase} {current}/{total}" + (f" — {detail}" if detail else "")
+        stages["motion_director"] = {
+            "status": str(motion_runtime.get("status") or "RUNNING"),
+            "updated_at": motion_runtime.get("updated_at"),
+            "message": progress_text,
+            "progress": motion_current,
+            "resume_count": motion_runtime.get("resume_count", 0),
+        }
     count = _beat_count(project)
     specs = q_station_node_specs(project, settings)
     dependencies: dict[str, tuple[str, ...]] = {name: spec.dependencies for name, spec in specs.items()}

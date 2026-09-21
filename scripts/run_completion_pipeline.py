@@ -145,6 +145,22 @@ def execute(
         subprocess.run(command, cwd=ROOT, check=True)
     except subprocess.CalledProcessError as exc:
         elapsed = round(time.perf_counter() - started, 3)
+        if name == "motion_director" and video is not None:
+            # The child owns granular checkpoints.  If it exits unexpectedly,
+            # make that durable state terminal as well instead of leaving a
+            # misleading RUNNING card after the parent has recorded failure.
+            motion_state_path = video / "pipeline" / "MOTION_DIRECTOR_RUNTIME_STATE.json"
+            try:
+                motion_state = json.loads(motion_state_path.read_text(encoding="utf-8"))
+                motion_state.update({
+                    "status": "FAILED",
+                    "failed_at": now(),
+                    "error": f"motion_director exited with code {exc.returncode}",
+                    "updated_at": now(),
+                })
+                save(motion_state_path, motion_state)
+            except (OSError, ValueError, TypeError):
+                pass
         event.update({"status": "FAILED", "ended_at": now(), "elapsed_seconds": elapsed, "returncode": exc.returncode})
         state["status"] = "FAILED"
         save(path, state)

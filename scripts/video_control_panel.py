@@ -1326,6 +1326,28 @@ def activity_for(record: dict, project: Path) -> list[dict]:
         at = entry.get("ended_at") or entry.get("started_at")
         status = str(entry.get("status") or "RUNNING")
         events.append({"id": f"final:{index}:{entry['stage']}:{status}:{at}", "stage": entry["stage"], "status": status, "at": at, "message": entry.get("error") or (f"exit code {entry.get('returncode')}" if entry.get("returncode") is not None else None), "elapsed_seconds": entry.get("elapsed_seconds")})
+    # Motion Director writes granular checkpoints while its parent completion
+    # event remains RUNNING.  Surface that as a first-class Activity line so a
+    # browser sees progress on every observation/planning/critic batch.
+    try:
+        motion = json.loads((project / "pipeline/MOTION_DIRECTOR_RUNTIME_STATE.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        motion = {}
+    current = motion.get("current") if isinstance(motion.get("current"), dict) else {}
+    if motion and str(motion.get("status") or "").upper() in {"RUNNING", "FAILED", "DONE"}:
+        phase = str(current.get("phase") or "motion")
+        progress = ""
+        if current.get("current") is not None and current.get("total") is not None:
+            progress = f" {current['current']}/{current['total']}"
+        detail = str(current.get("detail") or "")
+        events.append({
+            "id": f"motion:{motion.get('status')}:{motion.get('updated_at')}",
+            "stage": "motion_director",
+            "status": str(motion.get("status") or "RUNNING"),
+            "at": motion.get("updated_at") or motion.get("started_at"),
+            "message": f"{phase}{progress}" + (f" — {detail}" if detail else ""),
+            "elapsed_seconds": None,
+        })
     revisions = project / "pipeline/revisions"
     for path in revisions.glob("*/REVISION.json") if revisions.is_dir() else []:
         try:
@@ -2615,6 +2637,7 @@ class Handler(BaseHTTPRequestHandler):
                 project / "visual_pipeline/RUNTIME_STATE.json",
                 project / "pipeline/FULL_PIPELINE_RUNTIME_STATE.json",
                 project / "pipeline/FINALIZATION_RUNTIME_STATE.json",
+                project / "pipeline/MOTION_DIRECTOR_RUNTIME_STATE.json",
                 project / "pipeline/WRAPPER_RUNTIME_STATE.json",
                 project / "publish/youtube_short/RELEASE_STATE.json",
                 self.jobs_dir / f"{job_id}.json",

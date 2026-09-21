@@ -18,7 +18,7 @@ from motion_prompts import PROMPT_VERSION, critic_prompt, direction_prompt, obse
 from motion_schema import MotionPlanError
 from motion_targets import face_detector_status
 from motion_v2_schema import semantic_qc, settings, validate_inventory, validate_plan
-from ordak_jobs import Generation, OrdakJobs, Reference
+from ordak_jobs import Generation, OrdakJobError, OrdakJobs, Reference
 from pipeline_notifier import PipelineNotifier
 
 
@@ -68,6 +68,10 @@ class MotionProgress:
             video_id=video_dir.name.split("_", 1)[0],
             topic=topic,
             state_path=video_dir / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+            # Each process resume gets its own visible Telegram entry.  Reusing
+            # the old generic "run" message made a fresh recovery look silent
+            # in the chat even though its checkpoints were being edited.
+            run_context=f"motion:{fingerprint[:12]}:resume-{self.state['resume_count']}",
         )
         self.message = self.notifier.stage_started("Motion Director", key="motion_director")
         self._save()
@@ -104,6 +108,18 @@ class MotionProgress:
         self.state["current"] = {"phase": "complete", "detail": detail, "status": "DONE"}
         self._save()
         self.notifier.stage_update(self.message, "Motion Director", ["✅ Motion plan complete", detail])
+
+    def fail(self, detail: str) -> None:
+        """Persist a truthful restart point and close the live progress entry."""
+        self.state["status"] = "FAILED"
+        self.state["failed_at"] = datetime.now(timezone.utc).isoformat()
+        self.state["error"] = str(detail)[:1000]
+        self._save()
+        self.notifier.stage_update(
+            self.message,
+            "Motion Director",
+            ["❌ Motion planning paused", str(detail)[:500], "↻ Resume continues from saved checkpoints."],
+        )
 
 
 def clean_json(value: str) -> dict[str, Any]:
@@ -191,10 +207,28 @@ def ask_validated_json(
     job_ids: list[str] = []
     current = prompt
     for correction in range(correction_attempts + 1):
-        result = jobs.run(
-            current, provider="chatgpt", mode="chat", generation=Generation(quality="best"),
-            references=references or [], attempts=2, chatgpt_chat=scope,
-        )
+        # A malformed gateway response before job creation is safe to retry
+        # once.  Never repeat an Ordak job that has an id: it may already have
+        # reached ChatGPT and duplicating an editorial turn would be unsafe.
+        result = None
+        for transport_attempt in range(2):
+            try:
+                result = jobs.run(
+                    current, provider="chatgpt", mode="chat", generation=Generation(quality="best"),
+                    references=references or [], attempts=2, chatgpt_chat=scope,
+                )
+                break
+            except OrdakJobError as exc:
+                retryable_gateway = (
+                    exc.job_id is None
+                    and transport_attempt == 0
+                    and ("HTTP 5" in str(exc) or "Internal Server Error" in str(exc))
+                )
+                if not retryable_gateway:
+                    raise
+                log(f"↻ {label} Ordak gateway retry 1/1")
+        if result is None:
+            raise AssertionError("Ordak retry loop returned no result")
         job_ids.append(result.job_id)
         answer = result.answer or ""
         try:
