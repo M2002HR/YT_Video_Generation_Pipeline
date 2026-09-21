@@ -469,10 +469,11 @@ def graph_for(
         isinstance(entry, dict) and str(entry.get("status") or "") == "RUNNING"
         for entry in qstation_stages.values()
     )
+    current_completion_active = str(final.get("status") or "") == "RUNNING"
     terminal_failed = any(
         str(payload.get("status") or "") in {"FAILED", "STOPPED", "INTERRUPTED"}
         for payload in (qstation, wrapper, final)
-    ) and not qstation_active
+    ) and not (qstation_active or current_completion_active)
     stages = dict(qstation.get("stages") or {})
     for item in wrapper.get("events") or []:
         if item.get("stage"):
