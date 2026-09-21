@@ -10,6 +10,12 @@ def _json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
 
 
+def _compact_text(value: Any, limit: int) -> str:
+    """Bound provider prompts while retaining the literal start of verified evidence."""
+    text = " ".join(str(value or "").split())
+    return text if len(text) <= limit else text[: max(1, limit - 1)].rstrip() + "…"
+
+
 def _editorial_settings(settings: dict[str, Any]) -> dict[str, Any]:
     keep = ("pace", "style", "intensity", "image_zoom_strength", "image_transition_style", "image_transition_seconds", "max_micro_shots_per_beat", "min_micro_shot_duration", "max_micro_shot_duration", "target_interval_min", "target_interval_max", "allow_hold", "allow_push", "allow_pull", "allow_pan", "allow_tilt", "allow_pan_push", "allow_pan_pull", "allow_drift", "allow_settle", "allow_reveal_move", "allow_punch_cuts", "allow_hard_reframes", "allow_match_position_cuts", "allow_decorative_transitions", "allow_directional_transitions", "allow_reveal_transitions", "transition_preference", "word_sync")
     return {key: settings.get(key) for key in keep}
@@ -42,8 +48,12 @@ CONTRACT:
 
 
 def direction_prompt(episode: dict[str, Any], beats: list[dict[str, Any]], inventory: dict[str, Any]) -> str:
-    compact_inv=[{"beat_id":b["beat_id"],"summary":b.get("composition_summary"),"direction":b.get("visual_direction"),"targets":[{"id":t["target_id"],"label":t["label"],"kind":t.get("kind"),"importance":t.get("importance"),"xy":[round(t["bbox"]["x"],3),round(t["bbox"]["y"],3)]} for t in b["targets"][:4]],"forbidden_types":[x.get("type") for x in b.get("forbidden_regions",[])]} for b in inventory["beats"]]
-    context={"duration":episode["duration"],"aspect_ratio":episode["aspect_ratio"],"subtitle_safe_region":episode["subtitle_safe_region"],"settings":_editorial_settings(episode["settings"]),"script":episode["script"],"beats":[{"beat_id":b["beat_id"],"media_type":b["media_type"],"start":b["start"],"end":b["end"],"spoken_text":b["spoken_text_in_slot"],"words":[[w["word_id"],w["text"],w["start"],w["end"]] for w in b["spoken_words"]]} for b in beats],"visual_inventory":compact_inv}
+    # Direction is an episode-level rhythm decision, not a shot planner. Dense episodes
+    # can contain 30+ images, so preserve identifiers, broad composition, and the two
+    # strongest verified targets while bounded descriptions keep the request below Ordak's
+    # safe prompt ceiling. Full inventory still reaches the later per-batch planner.
+    compact_inv=[{"beat_id":b["beat_id"],"summary":_compact_text(b.get("composition_summary"),90),"direction":b.get("visual_direction"),"primary_target":{"id":b["targets"][0]["target_id"],"label":_compact_text(b["targets"][0].get("label"),36),"kind":b["targets"][0].get("kind"),"xy":[round(b["targets"][0]["bbox"]["x"],3),round(b["targets"][0]["bbox"]["y"],3)]},"forbidden_types":[x.get("type") for x in b.get("forbidden_regions",[])[:2]]} for b in inventory["beats"]]
+    context={"duration":episode["duration"],"aspect_ratio":episode["aspect_ratio"],"subtitle_safe_region":episode["subtitle_safe_region"],"settings":_editorial_settings(episode["settings"]),"script":_compact_text(episode["script"],600),"beats":[{"beat_id":b["beat_id"],"media_type":b["media_type"],"start":b["start"],"end":b["end"],"spoken_text":_compact_text(b["spoken_text_in_slot"],120),"words":[[w["word_id"],_compact_text(w["text"],32),w["start"],w["end"]] for w in b["spoken_words"]]} for b in beats],"visual_inventory":compact_inv}
     contract={"schema_version":2,"pace":"calm|balanced|fast|very_fast","sections":[{"name":"hook|setup|body|climax|ending|cta","start":0,"end":1,"energy":"0..1","attention_velocity":"0..1"}],"emphasis_words":[{"word_id":"w_0001","reason":"name|number|reveal|contrast|emotion|object|location"}],"rhythm_notes":["..."],"transition_philosophy":["..."],"motion_contrast_plan":["..."],"ending_strategy":"...","prohibited_patterns":["..."]}
     return BASE+"\nTASK: Design the coherent editorial direction for the WHOLE episode after studying its verified visual inventory. Fast means attention shifts and timing contrast, not effect spam. The opening may be faster; emotional moments may breathe. Select emphasis word IDs only when present in the supplied beat word context. Use energy values from 0 to 1.\nCONTRACT:\n"+_json(contract)+"\nEPISODE CONTEXT:\n"+_json(context)
 
