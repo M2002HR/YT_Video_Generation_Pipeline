@@ -23,6 +23,14 @@ from typing import Any, Iterable, Sequence
 from urllib.parse import urlparse
 
 import httpx
+from dotenv import load_dotenv
+
+
+# Completion and motion subprocesses import this client directly.  Load the pipeline's
+# root configuration here as well, so their preflight sees the same recovery switch that
+# the long-running Ordak service receives through scripts/run_ordak.py.
+_ROOT = Path(__file__).resolve().parents[1]
+load_dotenv(_ROOT / os.getenv("YT_ENV_FILE", ".env"), override=False)
 
 #: Provider error codes that mean "a human must act", not "retry harder".
 PAUSE_ERROR_CODES = {
@@ -274,7 +282,18 @@ class OrdakJobs:
         for provider in providers:
             session = sessions.get(provider) or {}
             state = str(session.get("login_state") or "").lower()
-            if state in {"login_required", "manual_verification_required"}:
+            auto_login_configured = (
+                provider == "chatgpt"
+                and os.getenv("YT_ORDAK_CHATGPT_AUTO_LOGIN_ENABLED", "").strip().lower()
+                in {"1", "true", "yes", "on"}
+                and bool(os.getenv("YT_ORDAK_CHATGPT_LOGIN_EMAIL", "").strip())
+            )
+            if state == "login_required" and auto_login_configured:
+                # The provider worker owns the browser interaction and will perform the
+                # bounded safe recovery before it sends a prompt. Do not prevent that job
+                # from being created at this read-only preflight stage.
+                unverified.append(provider)
+            elif state in {"login_required", "manual_verification_required"}:
                 blocked.append(f"{provider}={state}")
             elif not session.get("logged_in"):
                 unverified.append(provider)
