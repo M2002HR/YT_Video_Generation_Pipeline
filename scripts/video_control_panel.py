@@ -2263,7 +2263,10 @@ def job_records(jobs_dir: Path, limit: int = 20) -> list[dict]:
         record["_resumable"] = (
             kind == "episode" and not live and bool(record.get("project"))
         )
-        record["_stoppable"] = live
+        # A runner observed after a terminal/recovery resume belongs to that
+        # invoker. Studio can monitor it but must not offer a misleading Stop
+        # control that could terminate work it did not launch.
+        record["_stoppable"] = live and not bool(record.get("_unmanaged_live"))
         record["_flow_pending"] = flow_pending_of(record) if kind == "episode" else {}
         records.append(record)
     records.extend(external_pipeline_records(jobs_dir, known_projects))
