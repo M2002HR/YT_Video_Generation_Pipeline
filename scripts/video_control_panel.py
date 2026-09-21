@@ -1623,7 +1623,16 @@ def active_job(jobs_dir: Path) -> dict | None:
             continue
         if job.get("kind") == "flow_watcher":
             continue
-        if job.get("status") == "RUNNING" and pid_is_live(job.get("pid")):
+        project = str(job.get("project") or "")
+        if project:
+            candidate = (ROOT / project).resolve()
+            try:
+                candidate.relative_to((ROOT / "videos").resolve())
+                if candidate.is_dir():
+                    job = hydrate_live_pipeline_record(job, candidate)
+            except ValueError:
+                pass
+        if job.get("status") == "RUNNING" and (bool(job.get("_live")) or pid_is_live(job.get("pid"))):
             return job
     return None
 
@@ -2127,6 +2136,28 @@ def external_pipeline_pid(project: Path) -> int | None:
     return None
 
 
+def hydrate_live_pipeline_record(record: dict, project: Path) -> dict:
+    """Overlay a live externally resumed runner on its durable Studio record.
+
+    A terminal/recovery resume may start after the original Studio PID exited.  The
+    persisted job then says FAILED while the same episode is actively producing
+    media.  This read-only overlay keeps the real run visible without taking
+    ownership of or signalling the externally started process.
+    """
+    observed = external_pipeline_pid(project)
+    if observed is None or pid_is_live(record.get("pid")):
+        return record
+    hydrated = dict(record)
+    hydrated.update({
+        "pid": observed,
+        "status": "RUNNING",
+        "_live": True,
+        "_unmanaged_live": True,
+        "_stored_status": record.get("status"),
+    })
+    return hydrated
+
+
 def external_pipeline_records(jobs_dir: Path, known_projects: set[str]) -> list[dict]:
     """Expose active pipelines started outside the panel as read-only live rows.
 
@@ -2215,7 +2246,15 @@ def job_records(jobs_dir: Path, limit: int = 20) -> list[dict]:
         project = str(record.get("project") or "")
         if project:
             known_projects.add(project)
-        live = pid_is_live(record.get("pid"))
+        if project:
+            project_path = (ROOT / project).resolve()
+            try:
+                project_path.relative_to((ROOT / "videos").resolve())
+                if project_path.is_dir():
+                    record = hydrate_live_pipeline_record(record, project_path)
+            except ValueError:
+                pass
+        live = bool(record.get("_live")) or pid_is_live(record.get("pid"))
         record["kind"] = kind
         record["_live"] = live
         record["_pipeline"] = pipeline_state_of(record) if kind == "episode" else {}
@@ -2667,7 +2706,7 @@ class Handler(BaseHTTPRequestHandler):
             project.relative_to(videos_root)
             if project == videos_root or not project.is_dir():
                 raise ValueError("Job project is not an episode directory.")
-            return record, project
+            return hydrate_live_pipeline_record(record, project), project
         except (OSError, ValueError, TypeError):
             pass
         # Read-only terminal/manual runs use a deterministic id and do not have a panel job
@@ -4393,7 +4432,7 @@ class Handler(BaseHTTPRequestHandler):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
             if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
             record, project = resolved
-            live = pid_is_live(record.get("pid"))
+            live = bool(record.get("_live")) or pid_is_live(record.get("pid"))
             read_only = bool(record.get("external"))
             try:
                 fallback_action = json.loads((project / "pipeline" / "FALLBACK_ACTION_REQUIRED.json").read_text(encoding="utf-8"))
@@ -4401,13 +4440,13 @@ class Handler(BaseHTTPRequestHandler):
                 fallback_action = None
             release_allowed, release_reason = release_eligibility(record, project)
             release = record.get("release") if isinstance(record.get("release"), dict) else {}
-            self.send_json(HTTPStatus.OK, {"job": {**{key: record.get(key) for key in ("job_id", "video_id", "topic", "status", "created_at", "completed_at", "resumed_at", "external")}, "live": live, "read_only": read_only, "resumable": not read_only and not live and record.get("status") not in {"DONE"}, "stoppable": not read_only and live, "release_available": release_allowed, "release_reason": release_reason, "release": release}, "graph": graph_for(project), "activity": activity_for(record, project), "fallback_action": fallback_action}); return
+            self.send_json(HTTPStatus.OK, {"job": {**{key: record.get(key) for key in ("job_id", "video_id", "topic", "status", "created_at", "completed_at", "resumed_at", "external")}, "live": live, "read_only": read_only, "resumable": not read_only and not live and record.get("status") not in {"DONE"}, "stoppable": not read_only and live and not bool(record.get("_unmanaged_live")), "release_available": release_allowed, "release_reason": release_reason, "release": release}, "graph": graph_for(project), "activity": activity_for(record, project), "fallback_action": fallback_action}); return
 
         if route.startswith("/api/run/") and route.endswith("/activity"):
             job_id = route.split("/")[3]; resolved = self.project_for_job(job_id)
             if not resolved: self.send_json(HTTPStatus.NOT_FOUND, {"error": "unknown run"}); return
             record, project = resolved
-            self.send_json(HTTPStatus.OK, {"events": activity_for(record, project), "status": record.get("status"), "live": pid_is_live(record.get("pid"))}); return
+            self.send_json(HTTPStatus.OK, {"events": activity_for(record, project), "status": record.get("status"), "live": bool(record.get("_live")) or pid_is_live(record.get("pid"))}); return
 
         if route.startswith("/api/run/") and route.endswith("/timeline"):
             # Parsed timeline for the subtitle beat browser (read-only).
