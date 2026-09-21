@@ -2129,7 +2129,12 @@ def external_pipeline_pid(project: Path) -> int | None:
         except OSError:
             continue
         if (
-            ("run_q_station_pipeline.py" in command or "run_full_video_pipeline_q_station_wrapper.py" in command or "run_full_video_pipeline.py" in command)
+            (
+                "run_q_station_pipeline.py" in command
+                or "run_full_video_pipeline_q_station_wrapper.py" in command
+                or "run_full_video_pipeline.py" in command
+                or "run_completion_pipeline.py" in command
+            )
             and needle in command
         ):
             return int(proc.name)
