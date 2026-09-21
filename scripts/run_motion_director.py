@@ -182,8 +182,52 @@ def normalize_safe_contradictions(payload: dict[str, Any], context: dict[str, An
     repairs merely choose the only safe representation of an already requested event.
     """
     words = {word["word_id"]: word for word in context["words"]}
+    source_beats = {str(beat["beat_id"]): beat for beat in context["beats"]}
     corrections: list[dict[str, Any]] = list(payload.get("normalization_corrections") or [])
     for beat in payload.get("beats") or []:
+        source = source_beats.get(str(beat.get("beat_id")))
+        shots = list(beat.get("micro_shots") or [])
+        if source is not None and shots:
+            start, end = float(source["start"]), float(source["end"])
+            beat_duration = end - start
+            minimum = float(cfg["min_micro_shot_duration"])
+            feasible_count = max(1, min(
+                int(cfg["max_micro_shots_per_beat"]),
+                int((beat_duration + .025) / minimum),
+            ))
+            shot_durations = [
+                float(shot.get("end", 0)) - float(shot.get("start", 0))
+                for shot in shots
+            ]
+            requires_retime = (
+                len(shots) > feasible_count
+                or any(duration < minimum - .025 for duration in shot_durations)
+                or any(duration > float(cfg["max_micro_shot_duration"]) + .025 for duration in shot_durations)
+                or abs(float(shots[0].get("start", start)) - start) > .025
+                or abs(float(shots[-1].get("end", end)) - end) > .025
+            )
+            if requires_retime:
+                # Physical body assets can legitimately be shorter than two editorial
+                # micro-shots. Keep the model's earliest feasible shot decisions and
+                # retime them evenly across the immutable beat window; this changes no
+                # target, camera, or motion choice and avoids another paid correction turn.
+                retained = shots[:feasible_count]
+                interval = beat_duration / len(retained)
+                for index, shot in enumerate(retained):
+                    shot["start"] = round(start + index * interval, 3)
+                    shot["end"] = round(end if index == len(retained) - 1 else start + (index + 1) * interval, 3)
+                beat["micro_shots"] = retained
+                if len(shots) > len(retained):
+                    final_camera = (retained[-1].get("camera") or {}).get("end") or {}
+                    ending = dict(beat.get("ending_state") or {})
+                    ending.update({key: final_camera.get(key) for key in ("target_id", "coverage", "anchor_x", "anchor_y")})
+                    beat["ending_state"] = ending
+                corrections.append({
+                    "beat_id": beat.get("beat_id"),
+                    "code": "micro_shots_retimed_to_physical_beat_window",
+                    "original_shot_count": len(shots),
+                    "retained_shot_count": len(retained),
+                })
         previous_end = None
         for shot in beat.get("micro_shots") or []:
             motion = shot.get("motion") or {}

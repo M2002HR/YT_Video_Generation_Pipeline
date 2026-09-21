@@ -18,7 +18,7 @@ from motion_context import build_motion_context
 from motion_schema import MotionPlanError
 from motion_targets import resolve_target
 from motion_v2_schema import MOTIONS, TRANSITIONS, settings, validate_inventory, validate_plan
-from run_motion_director import plan_fingerprint, receipt_value
+from run_motion_director import normalize_safe_contradictions, plan_fingerprint, receipt_value
 
 
 CFG = settings({"max_micro_shots_per_beat": 3, "min_micro_shot_duration": .5, "max_micro_shot_duration": 2.0, "supersample": 1})
@@ -152,6 +152,28 @@ def test_none_sync_drops_stale_word_metadata(tmp_path: Path) -> None:
     candidate["beats"][0]["micro_shots"][0]["sync"] = {"mode": "none", "word_id": "stale"}
     validated = validate_plan(candidate, context, inventory, CFG)
     assert validated["beats"][0]["micro_shots"][0]["sync"] == {"mode": "none"}
+
+
+def test_short_physical_beat_is_retimed_without_another_model_correction(tmp_path: Path) -> None:
+    _, context, inventory, _ = make_episode(tmp_path)
+    context = copy.deepcopy(context)
+    context["episode"]["duration"] = .75
+    context["beats"][0].update(start=0.0, end=.75, duration=.75)
+    candidate = copy.deepcopy(PLAN)
+    candidate["duration_seconds"] = .75
+    candidate["beats"][0].update(start=0.0, end=.75)
+    candidate["beats"][0]["micro_shots"] = candidate["beats"][0]["micro_shots"][:2]
+    for index, shot in enumerate(candidate["beats"][0]["micro_shots"]):
+        shot["start"] = index * .375
+        shot["end"] = (index + 1) * .375
+    # The second invalid micro-shot is discarded; ending state must follow the retained
+    # camera rather than the dropped editorial decision.
+    normalized = normalize_safe_contradictions(candidate, context, CFG)
+    validated = validate_plan(normalized, context, inventory, CFG)
+    shots = validated["beats"][0]["micro_shots"]
+    assert len(shots) == 1
+    assert shots[0]["start"] == 0.0 and shots[0]["end"] == .75
+    assert validated["beats"][0]["ending_state"]["target_id"] == "b01_red"
 
 
 @pytest.mark.parametrize(("motion_type", "switch"), [
