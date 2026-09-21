@@ -18,6 +18,7 @@ from motion_schema import MotionPlanError
 from motion_targets import face_detector_status
 from motion_v2_schema import semantic_qc, settings, validate_inventory, validate_plan
 from ordak_jobs import Generation, OrdakJobs, Reference
+from pipeline_notifier import PipelineNotifier
 
 
 def log(message: str) -> None:
@@ -30,6 +31,78 @@ def save_json(path: Path, value: dict[str, Any]) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temporary.replace(path)
+
+
+class MotionProgress:
+    """Durable batch checkpoints plus one editable Telegram progress message.
+
+    Receipts remain the authority for reuse; this companion state makes that reuse
+    visible and leaves an exact restart point even if the parent process is interrupted.
+    """
+
+    def __init__(self, video_dir: Path, fingerprint: str) -> None:
+        self.video_dir = video_dir
+        self.fingerprint = fingerprint
+        self.path = video_dir / "pipeline" / "MOTION_DIRECTOR_RUNTIME_STATE.json"
+        try:
+            previous = load_json(self.path, {})
+        except OSError:
+            previous = {}
+        same_run = previous.get("input_fingerprint") == fingerprint
+        self.state: dict[str, Any] = {
+            "schema_version": 1,
+            "video": video_dir.name,
+            "input_fingerprint": fingerprint,
+            "status": "RUNNING",
+            "started_at": previous.get("started_at") if same_run else datetime.now(timezone.utc).isoformat(),
+            "resume_count": int(previous.get("resume_count", 0)) + 1 if same_run else 0,
+            "checkpoints": dict(previous.get("checkpoints") or {}) if same_run else {},
+        }
+        topic = ""
+        try:
+            topic = str(load_json(video_dir / "launch" / "LAUNCH_REQUEST.json", {}).get("topic") or "")
+        except OSError:
+            pass
+        self.notifier = PipelineNotifier(
+            video_id=video_dir.name.split("_", 1)[0],
+            topic=topic,
+            state_path=video_dir / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json",
+        )
+        self.message = self.notifier.stage_started("Motion Director", key="motion_director")
+        self._save()
+
+    def _save(self) -> None:
+        self.state["updated_at"] = datetime.now(timezone.utc).isoformat()
+        save_json(self.path, self.state)
+
+    def checkpoint(self, phase: str, current: int, total: int, detail: str, status: str) -> None:
+        self.state["status"] = "RUNNING"
+        self.state["current"] = {
+            "phase": phase,
+            "current": current,
+            "total": total,
+            "detail": detail,
+            "status": status,
+        }
+        self.state["checkpoints"][f"{phase}:{current}"] = {
+            "status": status,
+            "detail": detail,
+            "at": datetime.now(timezone.utc).isoformat(),
+        }
+        self._save()
+        marker = "↻ Reused" if status == "REUSED" else ("✅ Complete" if status == "DONE" else "▶ Running")
+        self.notifier.stage_update(
+            self.message,
+            "Motion Director",
+            [f"{marker} · {phase} {current}/{total}", detail, f"📌 Checkpoint {current}/{total}"],
+        )
+
+    def complete(self, detail: str) -> None:
+        self.state["status"] = "DONE"
+        self.state["completed_at"] = datetime.now(timezone.utc).isoformat()
+        self.state["current"] = {"phase": "complete", "detail": detail, "status": "DONE"}
+        self._save()
+        self.notifier.stage_update(self.message, "Motion Director", ["✅ Motion plan complete", detail])
 
 
 def clean_json(value: str) -> dict[str, Any]:
@@ -353,6 +426,7 @@ def main() -> None:
     receipts = motion_dir / "receipts"
     plan_path = motion_dir / "MOTION_PLAN.json"
     compiled_path = motion_dir / "COMPILED_MOTION_PLAN.json"
+    progress = MotionProgress(video_dir, fingerprint)
     if not args.force and not args.recompile_existing and plan_path.is_file() and compiled_path.is_file():
         try:
             inventory = validate_inventory(load_json(motion_dir / "VISUAL_INVENTORY.json", {}), beats)
@@ -361,6 +435,7 @@ def main() -> None:
                 validate_plan(existing, context, inventory, cfg)
                 compiled = load_json(compiled_path, {})
                 if compiled.get("input_fingerprint") == fingerprint and compiled.get("compiled") is True:
+                    progress.complete("Reused the verified existing motion plan.")
                     print(f"Motion Director reused: {plan_path}")
                     return
         except (OSError, KeyError, TypeError, ValueError, MotionPlanError):
@@ -376,6 +451,7 @@ def main() -> None:
         prior_issues = prior_qc.get("critic_issues", [])
         critic = {"approved": prior_qc.get("critic_original_approved", prior_qc.get("critic_approved", True)), "issues": prior_issues, "replacement_beats": [{"beat_id": issue.get("beat_id")} for issue in prior_issues if issue.get("severity") == "error"]}
         finalize_plan(candidate=candidate, inventory=inventory, context=context, video_dir=video_dir, cfg=cfg, fingerprint=fingerprint, critic=critic)
+        progress.complete("Recompiled the existing verified motion plan.")
         return
 
     receipts.mkdir(parents=True, exist_ok=True)
@@ -398,6 +474,7 @@ def main() -> None:
                 try: response = validator(response)
                 except (KeyError, TypeError, ValueError, MotionPlanError): response = None
             if response is None:
+                progress.checkpoint("observation", batch_number, observation_total, label, "RUNNING")
                 log(f"▶ {label}")
                 response, job_ids = ask_validated_json(
                     jobs, observation_prompt(batch), validator,
@@ -406,8 +483,10 @@ def main() -> None:
                 )
                 save_json(receipt, {"schema_version": 2, "stage": "observation", "prompt_version": PROMPT_VERSION, "input_fingerprint": batch_fp, "job_ids": job_ids, "response": response})
                 log(f"✔ {label}")
+                progress.checkpoint("observation", batch_number, observation_total, label, "DONE")
             else:
                 log(f"↻ {label} reused")
+                progress.checkpoint("observation", batch_number, observation_total, label, "REUSED")
             inventory_parts.extend(response["beats"])
         inventory = validate_inventory({"schema_version": 2, "beats": inventory_parts}, beats)
         inventory.update({"input_fingerprint": fingerprint, "prompt_version": PROMPT_VERSION})
@@ -423,6 +502,7 @@ def main() -> None:
             except (KeyError, TypeError, ValueError, MotionPlanError): direction = None
         if direction is None:
             direction_label = "motion_direction 1/1"
+            progress.checkpoint("direction", 1, 1, direction_label, "RUNNING")
             log(f"▶ {direction_label}")
             direction, job_ids = ask_validated_json(
                 jobs, direction_text,
@@ -430,8 +510,10 @@ def main() -> None:
             )
             save_json(direction_receipt, {"schema_version": 2, "stage": "direction", "prompt_version": PROMPT_VERSION, "input_fingerprint": direction_fp, "job_ids": job_ids, "response": direction})
             log(f"✔ {direction_label}")
+            progress.checkpoint("direction", 1, 1, direction_label, "DONE")
         else:
             log("↻ motion_direction 1/1 reused")
+            progress.checkpoint("direction", 1, 1, "motion_direction 1/1", "REUSED")
         save_json(motion_dir / "MOTION_DIRECTION.json", {"schema_version": 2, "prompt_version": PROMPT_VERSION, "input_fingerprint": fingerprint, "direction": direction})
 
         # Pass 3: batch shot direction with actual images, exact word IDs, neighbor context
@@ -471,6 +553,7 @@ def main() -> None:
                 try: response = validator(response)
                 except (KeyError, TypeError, ValueError, MotionPlanError): response = None
             if response is None:
+                progress.checkpoint("planning", batch_number, planning_total, label, "RUNNING")
                 log(f"▶ {label}")
                 response, job_ids = ask_validated_json(
                     jobs, prompt, validator, references=target_refs(video_dir, batch, "motion_planning"),
@@ -478,8 +561,10 @@ def main() -> None:
                 )
                 save_json(receipt, {"schema_version": 2, "stage": "planning", "prompt_version": PROMPT_VERSION, "input_fingerprint": batch_fp, "job_ids": job_ids, "response": response})
                 log(f"✔ {label}")
+                progress.checkpoint("planning", batch_number, planning_total, label, "DONE")
             else:
                 log(f"↻ {label} reused")
+                progress.checkpoint("planning", batch_number, planning_total, label, "REUSED")
             planned.extend(response["beats"])
             previous_state = response["beats"][-1].get("ending_state") if response["beats"] else previous_state
 
@@ -512,14 +597,17 @@ def main() -> None:
                     try: part = validate_critic(cached)
                     except (KeyError, TypeError, ValueError, MotionPlanError): cached = None
                 if cached is None:
+                    progress.checkpoint("critic", batch_number, critic_total, label, "RUNNING")
                     log(f"▶ {label}")
                     part, job_ids = ask_validated_json(
                         jobs, prompt, validate_critic, correction_attempts=cfg["correction_attempts"], label=label,
                     )
                     save_json(critic_receipt, {"schema_version": 2, "stage": "critic", "prompt_version": PROMPT_VERSION, "input_fingerprint": critic_fp, "job_ids": job_ids, "response": part})
                     log(f"✔ {label}")
+                    progress.checkpoint("critic", batch_number, critic_total, label, "DONE")
                 else:
                     log(f"↻ {label} reused")
+                    progress.checkpoint("critic", batch_number, critic_total, label, "REUSED")
                 critic_parts.append(part)
             critic = {
                 "schema_version": 2,
@@ -539,6 +627,7 @@ def main() -> None:
         candidate = validate_plan(candidate, context, inventory, cfg)
 
     finalize_plan(candidate=candidate, inventory=inventory, context=context, video_dir=video_dir, cfg=cfg, fingerprint=fingerprint, critic=critic)
+    progress.complete("Validated, compiled, and quality-checked all motion batches.")
 
 
 if __name__ == "__main__":
