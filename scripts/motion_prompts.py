@@ -59,7 +59,9 @@ from verified_visual_inventory. Base every timing decision on exact spoken word 
 If an event emphasizes a word, select its word_id and align the event semantically: cut at
 word start, begin movement on word, place punch apex on word, or complete reveal on word.
 Do not merely write a trigger label. Cover every beat exactly with ordered non-overlapping
-micro-shots. Respect all allow/disable settings and duration limits. For edit_in=continue,
+micro-shots. Respect all allow/disable settings and duration limits: if a beat is shorter than
+twice min_micro_shot_duration, use exactly one micro-shot rather than inventing an invalid split.
+For edit_in=continue,
 the target_id, coverage, anchor_x and anchor_y of camera.start MUST exactly copy the previous
 shot camera.end; otherwise select a cut/reframe edit. A hold MUST use identical start/end
 camera states and MUST use sync.mode=none; a hold cannot claim a movement/impact/reveal event.
