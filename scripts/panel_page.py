@@ -138,7 +138,7 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12p
 
 
 SCRIPT = r"""
-var tailed = null, tailOffset = 0, follow = true;
+var tailed = null, tailOffset = 0, logSource = '', follow = true;
 
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -238,7 +238,7 @@ function del(jobId){
 }
 
 function tail(jobId){
-  tailed = jobId; tailOffset = 0; follow = true;
+  tailed = jobId; tailOffset = 0; logSource = ''; follow = true;
   document.getElementById('log').textContent = '';
   document.getElementById('logfor').textContent = jobId.slice(0, 8);
   pollLog();
@@ -265,6 +265,11 @@ function pollLog(){
   if (!tailed) return;
   fetch('/api/log/' + tailed + '?offset=' + tailOffset).then(function(r){ return r.json(); })
     .then(function(d){
+      if (d.reset) {
+        document.getElementById('log').textContent = '';
+        tailOffset = 0;
+      }
+      if (d.source) logSource = d.source;
       if (d.text) {
         var pre = document.getElementById('log');
         pre.innerHTML += colourise(d.text);

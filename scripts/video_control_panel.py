@@ -2163,6 +2163,22 @@ def external_pipeline_pid(project: Path) -> int | None:
     return None
 
 
+def external_pipeline_unit(pid: int) -> str | None:
+    """Return the transient systemd unit that owns a discovered runner PID.
+
+    Direct recovery runs are intentionally read-only to Studio, but their
+    stdout lives in journald instead of the historical panel ``.log`` file.
+    Resolving the unit from proc's cgroup lets the normal Log pane tail that
+    authoritative live output without giving the panel process control over it.
+    """
+    try:
+        cgroup = (Path("/proc") / str(pid) / "cgroup").read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    match = re.search(r"/(yt-video-[A-Za-z0-9_-]+\.service)(?:\n|$)", cgroup)
+    return match.group(1) if match else None
+
+
 def hydrate_live_pipeline_record(record: dict, project: Path) -> dict:
     """Overlay a live externally resumed runner on its durable Studio record.
 
@@ -3824,6 +3840,45 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_tail(self, job_id: str, offset: int) -> dict:
         """Incremental log bytes, so the page can tail without refetching megabytes."""
+        # A terminal/systemd recovery has no writable Studio log file.  While
+        # it is live, tail only this invocation's journal so the panel follows
+        # the same stdout the operator sees in the terminal.  The runner stays
+        # unmanaged: this is a read-only observation path.
+        resolved = self.project_for_job(job_id)
+        if resolved is not None:
+            _record, project = resolved
+            pid = external_pipeline_pid(project)
+            unit = external_pipeline_unit(pid) if pid is not None else None
+            if unit:
+                try:
+                    invocation = subprocess.run(
+                        ["systemctl", "show", "--property=InvocationID", "--value", unit],
+                        check=True, capture_output=True, text=True, timeout=3,
+                    ).stdout.strip()
+                    command = ["journalctl", "--no-pager", "-o", "cat", "-u", unit]
+                    if invocation:
+                        command.extend(["_SYSTEMD_INVOCATION_ID=" + invocation])
+                    raw = subprocess.run(
+                        command, check=True, capture_output=True, timeout=5,
+                    ).stdout
+                    size = len(raw)
+                    reset = offset > size
+                    start = 0 if reset else max(offset, 0)
+                    if size - start > 200_000:
+                        start = size - 200_000
+                        reset = True
+                    return {
+                        "offset": size,
+                        "text": raw[start:].decode("utf-8", errors="replace"),
+                        "waiting": False,
+                        "source": f"journal:{invocation or unit}",
+                        "reset": reset,
+                    }
+                except (OSError, subprocess.SubprocessError):
+                    # The unit can disappear between PID discovery and the
+                    # journal query. Fall through to the durable historical
+                    # log; a subsequent poll will discover a new runner.
+                    pass
         log = self.jobs_dir / f"{job_id}.log"
         if not log.exists():
             return {"offset": 0, "text": "", "waiting": True}
