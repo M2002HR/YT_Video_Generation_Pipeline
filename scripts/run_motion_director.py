@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -175,14 +176,24 @@ def ask_validated_json(
     label: str = "motion",
 ) -> tuple[dict[str, Any], list[str]]:
     """Call Ordak with bounded transport retries and bounded schema correction turns."""
-    if len(prompt) > 19_500:
-        raise MotionPlanError(f"Motion Director prompt exceeds safe Ordak limit: {len(prompt)} characters")
+    try:
+        prompt_limit = int(os.getenv("YT_MOTION_MAX_PROMPT_CHARS", "28000"))
+    except ValueError:
+        prompt_limit = 28_000
+    prompt_limit = min(60_000, max(12_000, prompt_limit))
+    scope = os.getenv("YT_MOTION_CHATGPT_SCOPE", "fresh").strip().lower() or "fresh"
+    if scope not in {"fresh", "temporary"}:
+        scope = "fresh"
+    if len(prompt) > prompt_limit:
+        raise MotionPlanError(
+            f"Motion Director prompt exceeds configured Ordak limit: {len(prompt)} > {prompt_limit} characters"
+        )
     job_ids: list[str] = []
     current = prompt
     for correction in range(correction_attempts + 1):
         result = jobs.run(
             current, provider="chatgpt", mode="chat", generation=Generation(quality="best"),
-            references=references or [], attempts=2, chatgpt_chat="temporary",
+            references=references or [], attempts=2, chatgpt_chat=scope,
         )
         job_ids.append(result.job_id)
         answer = result.answer or ""
@@ -196,7 +207,7 @@ def ask_validated_json(
                 f"— {exc}"
             )
             correction_header = "\n\nCORRECTION REQUIRED: The prior JSON failed validation with: " + str(exc) + "\nReturn a complete corrected raw JSON object only. PRIOR RESPONSE:\n"
-            available = max(0, 19_450 - len(prompt) - len(correction_header))
+            available = max(0, prompt_limit - 50 - len(prompt) - len(correction_header))
             current = prompt + correction_header + answer[:available]
     raise AssertionError("unreachable")
 
