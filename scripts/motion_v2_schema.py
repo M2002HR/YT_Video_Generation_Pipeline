@@ -144,7 +144,10 @@ def validate_inventory(payload: dict[str, Any], expected: list[dict[str, Any]]) 
 def validate_plan(payload: dict[str, Any], context: dict[str, Any], inventory: dict[str, Any], cfg: dict[str, Any], *, enforce_episode_qc: bool = True) -> dict[str, Any]:
     if int(payload.get("schema_version",0)) != 2: raise MotionPlanError("motion plan schema_version 2 required")
     expected={str(b["beat_id"]):b for b in context["beats"] if b["media_type"]=="image"}; inv={str(b["beat_id"]):b for b in inventory["beats"]}
-    final_image_id = next(reversed(expected), None)
+    declared_final = str(context.get("final_image_id") or "")
+    # Planning is intentionally batched.  The last image of a *batch* is not the
+    # final image of the episode, so never infer the episode ending from a subset.
+    final_image_id = declared_final or next(reversed(expected), None)
     word_map={w["word_id"]:w for w in context["words"]}; seen=set(); shots_seen=set(); output=[]
     allowed_motion=set(MOTIONS)
     allow_map={

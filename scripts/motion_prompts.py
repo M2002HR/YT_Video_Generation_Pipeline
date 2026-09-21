@@ -48,10 +48,10 @@ def direction_prompt(episode: dict[str, Any], beats: list[dict[str, Any]], inven
     return BASE+"\nTASK: Design the coherent editorial direction for the WHOLE episode after studying its verified visual inventory. Fast means attention shifts and timing contrast, not effect spam. The opening may be faster; emotional moments may breathe. Select emphasis word IDs only when present in the supplied beat word context. Use energy values from 0 to 1.\nCONTRACT:\n"+_json(contract)+"\nEPISODE CONTEXT:\n"+_json(context)
 
 
-def planning_prompt(*, episode: dict[str, Any], batch: list[dict[str, Any]], inventory: list[dict[str, Any]], direction: dict[str, Any], previous_state: dict[str, Any] | None, previous_neighbor: list[dict[str, Any]], next_neighbor: list[dict[str, Any]]) -> str:
+def planning_prompt(*, episode: dict[str, Any], batch: list[dict[str, Any]], inventory: list[dict[str, Any]], direction: dict[str, Any], previous_state: dict[str, Any] | None, previous_neighbor: list[dict[str, Any]], next_neighbor: list[dict[str, Any]], final_image_id: str | None = None) -> str:
     compact_beats=[{key:b.get(key) for key in ("beat_id","media_type","start","end","duration","narration","spoken_text_in_slot","spoken_words","visual_description","media_width","media_height")} for b in batch]
     compact_inventory=[{"beat_id":b["beat_id"],"artwork_region":b["artwork_region"],"composition_summary":b.get("composition_summary"),"visual_direction":b.get("visual_direction"),"targets":[{key:t.get(key) for key in ("target_id","label","kind","bbox","importance","confidence")} for t in b["targets"]],"faces":b.get("faces",[]),"hands_or_actions":b.get("hands_or_actions",[]),"forbidden_regions":b.get("forbidden_regions",[])} for b in inventory]
-    payload={"episode":{"duration":episode["duration"],"aspect_ratio":episode["aspect_ratio"],"width":episode["width"],"height":episode["height"],"subtitle_safe_region":episode["subtitle_safe_region"],"settings":_editorial_settings(episode["settings"])},"global_direction":direction,"previous_camera_state":previous_state,"previous_neighbors":previous_neighbor,"current_beats":compact_beats,"verified_visual_inventory":compact_inventory,"next_neighbors":next_neighbor}
+    payload={"episode":{"duration":episode["duration"],"aspect_ratio":episode["aspect_ratio"],"width":episode["width"],"height":episode["height"],"subtitle_safe_region":episode["subtitle_safe_region"],"settings":_editorial_settings(episode["settings"]),"final_image_id":final_image_id},"global_direction":direction,"previous_camera_state":previous_state,"previous_neighbors":previous_neighbor,"current_beats":compact_beats,"verified_visual_inventory":compact_inventory,"next_neighbors":next_neighbor}
     contract={"schema_version":2,"duration_seconds":episode["duration"],"beats":[{"beat_id":"exact input ID","start":"exact beat start","end":"exact beat end","attention_story":["ordered attention logic"],"micro_shots":[{"shot_id":"bNN_sNN","role":"establish|primary|detail|reaction|context|release|hold","start":"seconds","end":"seconds","edit_in":{"type":"continue|cut|reframe_cut|punch_cut_in|punch_cut_out|match_position_cut|detail_cut|establishing_cut"},"camera":{"start":{"target_id":"verified inventory ID","coverage":"0.08..0.95","anchor_x":"0..1","anchor_y":"0..1"},"end":{"target_id":"verified inventory ID","coverage":"0.08..0.95","anchor_x":"0..1","anchor_y":"0..1"}},"motion":{"type":"hold|push_in|pull_out|pan|tilt|pan_push|pan_pull|drift|settle|reveal_move","easing":"linear|ease_in|ease_out|ease_in_out|snappy|gentle|hold_then_move|impact_then_settle","start_delay":0,"end_hold":0,"reason":"specific editorial reason"},"sync":{"mode":"none|cut_on_word_start|movement_start_on_word|impact_apex_on_word|reveal_complete_on_word|settle_on_word_end","word_id":"required unless none"}}],"ending_state":{"target_id":"verified inventory ID","coverage":.5,"anchor_x":.5,"anchor_y":.45,"movement_direction":"left|right|up|down|in|out|none"},"transition_out":{"type":"cut|dissolve|fade|smoothleft|smoothright|smoothup|smoothdown|wipeleft|wiperight|wipeup|wipedown|slideleft|slideright|slideup|slidedown|revealleft|revealright|revealup|revealdown|zoomin","duration":0,"reason_code":"new_fact|contrast|time_shift|location_shift|memory|emotional_continuity|directional_match|reveal|ending|cta|continuity","reason":"specific reason"}}]}
     rules="""
 TASK: Direct each current image as one to several meaningful visual states. Use ONLY target IDs
@@ -71,11 +71,20 @@ and semantic justification. NON-NEGOTIABLE IMAGE TRANSITION POLICY: transition_o
 only the types selected by image_transition_style: cuts are duration 0; fade/dissolve use
 exactly image_transition_seconds. Do not use wipe, slide, cover, reveal, radial, zoom or any
 other display-style effect. There is no quota for semantically justified soft transitions.
-NON-NEGOTIABLE IMAGE ZOOM POLICY: every micro-shot in every body
-image except the episode's final image must be a continuous inward move (`push_in`, `pan_push`,
-or `reveal_move`) and the beat must end with `movement_direction: "in"`. The final image is the
-one release: every one of its micro-shots must be `pull_out` or `pan_pull`, ending with
-`movement_direction: "out"`. Use image_zoom_strength as the minimum perceptible zoom change.
+"""
+    if episode["settings"].get("enforce_image_zoom_policy", False):
+        rules += f"""
+FIXED IMAGE ZOOM POLICY: only episode image {final_image_id!r} is the final image. Every
+micro-shot in every other image must be an inward move (`push_in`, `pan_push`, or `reveal_move`)
+and end with movement_direction `in`; only that final image uses `pull_out` or `pan_pull` and
+ends `out`. This rule applies to the episode ID above, never to the last item in this batch.
+"""
+    else:
+        rules += """
+There is no fixed push-in/pull-out rule. Choose hold, push, pull, pan, or reframing only when
+the verified image and narration justify it; vary motion naturally across neighboring assets.
+"""
+    rules += """
 Return decisions for current_beats only.
 """
     return BASE+rules+"\nCONTRACT:\n"+_json(contract)+"\nCONTEXT:\n"+_json(payload)

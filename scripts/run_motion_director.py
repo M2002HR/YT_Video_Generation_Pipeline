@@ -415,6 +415,7 @@ def main() -> None:
             prompt = planning_prompt(
                 episode=context["episode"], batch=batch, inventory=batch_inventory, direction=direction,
                 previous_state=previous_state, previous_neighbor=previous_neighbor, next_neighbor=next_neighbor,
+                final_image_id=context.get("final_image_id"),
             )
             batch_fp = digest({"stage": "planning", "prompt": PROMPT_VERSION, "batch": batch, "inventory": batch_inventory, "direction": direction, "previous_state": previous_state, "neighbors": [previous_neighbor, next_neighbor]})
             receipt = receipts / f"planning_{batch_number:03d}.json"

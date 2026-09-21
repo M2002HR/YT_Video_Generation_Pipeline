@@ -554,9 +554,9 @@ def config_roots(record: dict, previous: dict, voice_before: dict, values: dict)
     }
     brief["_motion"] = {
         **dict(previous.get("_motion") or {}), **motion,
-        # The user-visible image policy is a stronger invariant than optional semantic
-        # camera variety. Existing untouched projects retain their historical plans.
-        "enforce_image_zoom_policy": True,
+        # Image movement is editorial, not a global zoom template.  This also prevents
+        # batched Motion Director planning from mistaking a batch boundary for an ending.
+        "enforce_image_zoom_policy": False,
     }
     changed_motion = {key for key in merged if key.startswith("motion_") and before.get(key) != merged.get(key)}
     # These controls own render/timeline policy rather than paid source media. A transition
@@ -5017,7 +5017,7 @@ class Handler(BaseHTTPRequestHandler):
                 "transition_default_type": motion_transition_default_type,
                 "transition_seconds": motion_transition_seconds,
                 "transition_ai_enabled": motion_transition_ai_enabled,
-                "enforce_image_zoom_policy": True,
+                "enforce_image_zoom_policy": False,
                 "max_micro_shots_per_beat": motion_max_shots,
                 "min_micro_shot_duration": motion_min_shot, "max_micro_shot_duration": motion_max_shot,
                 "target_interval_min": motion_interval_min, "target_interval_max": motion_interval_max,

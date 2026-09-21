@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 
 from subtitle_font_runtime import css_equivalent_ass_geometry
+from body_asset_schedule import assets_for as scheduled_body_assets
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -138,6 +139,55 @@ def compute_display_boundaries(
 
     boundaries.append(round(audio_duration, 3))
     return boundaries, adjustments
+
+
+def expand_body_assets(
+    video_dir: Path,
+    semantic_beats: list[dict[str, Any]],
+    boundaries: list[float],
+) -> list[dict[str, Any]]:
+    """Split each measured spoken slot among its independent source images.
+
+    Speech timing remains authoritative at the semantic-unit layer.  The physical
+    schedule only divides that already measured display window, so increasing image
+    density cannot shift narration or opening-video synchronization.
+    """
+    plan_path = video_dir / "creative" / "VISUAL_PLAN.json"
+    if plan_path.is_file():
+        visual_plan = load_json(plan_path)
+    else:
+        # Generic/legacy builders do not have a Q Station semantic plan. Preserve their
+        # historical one-image timing rather than making the new schedule mandatory.
+        visual_plan = {"beats": []}
+    grouped: dict[int, list[dict[str, Any]]] = {}
+    for asset in scheduled_body_assets(video_dir, visual_plan):
+        semantic_id = int(asset.get("semantic_beat_id") or asset.get("beat_id"))
+        grouped.setdefault(semantic_id, []).append(asset)
+    output: list[dict[str, Any]] = []
+    for index, semantic in enumerate(semantic_beats):
+        semantic_id = int(semantic["beat_id"])
+        assets = grouped.get(semantic_id) or [dict(semantic)]
+        start, end = float(boundaries[index]), float(boundaries[index + 1])
+        if end <= start:
+            continue
+        duration = (end - start) / len(assets)
+        speech_start, speech_end = float(semantic["speech_start"]), float(semantic["speech_end"])
+        speech_duration = max(0.0, speech_end - speech_start)
+        for asset_index, asset in enumerate(assets):
+            asset_start = start + duration * asset_index
+            asset_end = end if asset_index == len(assets) - 1 else start + duration * (asset_index + 1)
+            fraction_start, fraction_end = asset_index / len(assets), (asset_index + 1) / len(assets)
+            output.append({
+                "beat_id": int(asset["beat_id"]),
+                "semantic_beat_id": semantic_id,
+                "asset_id": str(asset.get("asset_id") or f"body_asset_{int(asset['beat_id']):03d}"),
+                "start": round(asset_start, 3), "end": round(asset_end, 3),
+                "speech_start": round(speech_start + speech_duration * fraction_start, 3),
+                "speech_end": round(speech_start + speech_duration * fraction_end, 3),
+                "match_confidence": float(semantic.get("match_confidence", 0.0)),
+                "narration": str(semantic.get("narration") or asset.get("narration_slice") or ""),
+            })
+    return output
 
 
 def split_caption_chunks(
@@ -914,6 +964,7 @@ def main() -> None:
 
     body_start = float(opening_timing.get("transition_end") or 0.0) if is_mixed else 0.0
     boundaries, adjustments = compute_display_boundaries(beats, audio_duration, start_at=body_start)
+    physical_beats = expand_body_assets(video_dir, beats, boundaries)
 
     transition_settings = image_transition_settings(profile)
 
@@ -934,15 +985,15 @@ def main() -> None:
                 f"{OPENING_ALIGNMENT_TOLERANCE}s). Re-run trim_opening_clips.py: rendering this "
                 "would push every body image off its own sentence."
             )
-        for index, beat in enumerate(beats):
+        for index, beat in enumerate(physical_beats):
             beat_id = int(beat["beat_id"])
             image_path = find_beat_image(
                 video_dir,
                 beat_id,
                 allow_missing=args.skip_asset_validation,
             )
-            start = max(float(boundaries[index]), video_total)
-            end = min(float(boundaries[index + 1]), audio_duration)
+            start = max(float(beat["start"]), video_total)
+            end = min(float(beat["end"]), audio_duration)
             if end <= start:
                 continue
             timeline_beats.append(
@@ -957,16 +1008,16 @@ def main() -> None:
                     "speech_start": round(float(beat["speech_start"]), 3),
                     "speech_end": round(float(beat["speech_end"]), 3),
                     "match_confidence": float(beat.get("match_confidence", 0.0)),
-                    # Every body image steadily pushes in. The final image is the single
-                    # intentional release and therefore pulls out for its full duration.
-                    "motion": "zoom_out" if index == len(beats) - 1 else "zoom_in",
+                    "motion": "zoom_out" if index == len(physical_beats) - 1 else "zoom_in",
                     "narration": str(beat["narration"]),
+                    "semantic_beat_id": int(beat["semantic_beat_id"]),
+                    "asset_id": str(beat["asset_id"]),
                 }
             )
         # Prepend video entries (they already have start/end)
         timeline_beats = video_entries + timeline_beats
     else:
-        for index, beat in enumerate(beats):
+        for index, beat in enumerate(physical_beats):
             beat_id = int(beat["beat_id"])
             image_path = find_beat_image(
                 video_dir,
@@ -974,8 +1025,8 @@ def main() -> None:
                 allow_missing=args.skip_asset_validation,
             )
 
-            start = float(boundaries[index])
-            end = float(boundaries[index + 1])
+            start = float(beat["start"])
+            end = float(beat["end"])
             if end <= start:
                 raise ValueError(f"Non-positive timeline duration for Beat {beat_id}")
 
@@ -991,13 +1042,14 @@ def main() -> None:
                     "speech_start": round(float(beat["speech_start"]), 3),
                     "speech_end": round(float(beat["speech_end"]), 3),
                     "match_confidence": float(beat.get("match_confidence", 0.0)),
-                    "motion": "zoom_out" if index == len(beats) - 1 else "zoom_in",
+                    "motion": "zoom_out" if index == len(physical_beats) - 1 else "zoom_in",
                     "narration": str(beat["narration"]),
+                    "semantic_beat_id": int(beat["semantic_beat_id"]),
+                    "asset_id": str(beat["asset_id"]),
                 }
             )
 
-    # Each body sentence owns one image. Never split a long slot into repeated reframings of
-    # the same source: that looks slow and violates the sentence-to-picture contract.
+    # Every scheduled source is independent; transitions describe real asset boundaries.
     add_transitions(timeline_beats, load_visual_transition_hints(video_dir), transition_settings)
 
     subtitle_cfg = (

@@ -40,7 +40,7 @@ NODE_SPECS: dict[str, NodeSpec] = {
     "world_style_director": NodeSpec("World style", "data", ("retention_edit",), ("creative/WORLD_STYLE_PLAN.json",), phase="creative"),
     "world_style_anchor": NodeSpec("Style anchor", "image", ("world_style_director",), ("references/world_style_anchor.png",), ("pipeline/provider_receipts/gemini_world_style_anchor.json",), phase="visual"),
     "episode_history": NodeSpec("Episode history", "data", ("episode_director", "world_style_director"), description="Records anti-repetition traits for future episodes.", phase="creative", regeneratable=False),
-    "visual_plan": NodeSpec("Visual plan", "data", ("retention_edit", "episode_director", "world_style_director", "character_resolution"), ("creative/VISUAL_PLAN.json", "VISUAL_BEATS.md"), phase="creative"),
+    "visual_plan": NodeSpec("Visual plan", "data", ("retention_edit", "episode_director", "world_style_director", "character_resolution"), ("creative/VISUAL_PLAN.json", "creative/BODY_ASSET_SCHEDULE.json", "VISUAL_BEATS.md"), phase="creative"),
     "world_keyframe_prompt": NodeSpec("Keyframe prompt", "text", ("retention_edit", "world_style_director"), ("references/world_keyframe_prompt.txt",), phase="visual"),
     "world_keyframe": NodeSpec("World keyframe", "image", ("world_keyframe_prompt", "world_style_anchor"), ("references/world_keyframe.png",), ("pipeline/provider_receipts/gemini_world_keyframe.json",), phase="visual"),
     "book_design_sheet": NodeSpec("Canonical book design", "image", description="Shared project-level book identity; inspected here but not owned by this episode.", phase="visual", regeneratable=False),
@@ -280,6 +280,11 @@ def q_station_node_specs(project: Path, settings: dict[str, Any] | None = None) 
 
 
 def _beat_count(project: Path) -> int:
+    scheduled = load(project / "creative/BODY_ASSET_SCHEDULE.json").get("assets") or []
+    if isinstance(scheduled, list) and scheduled:
+        ids = [item.get("beat_id") for item in scheduled if isinstance(item, dict)]
+        if ids == list(range(1, len(scheduled) + 1)):
+            return len(scheduled)
     script = load(project / "creative/SCRIPT_PLAN.json")
     body = script.get("body")
     expected = len(body) if isinstance(body, list) else 0
@@ -298,7 +303,7 @@ def _beat_count(project: Path) -> int:
 
 
 def visual_plan_contract_matches(project: Path) -> bool:
-    """Every body/closing unit before CTA must own exactly one ordered visual beat."""
+    """Semantic spoken units remain ordered; physical assets are checked separately."""
     script = load(project / "creative/SCRIPT_PLAN.json")
     body = script.get("body")
     if not isinstance(body, list) or not body:

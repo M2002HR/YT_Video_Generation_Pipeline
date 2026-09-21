@@ -134,6 +134,18 @@ def test_enforced_image_zoom_policy_rejects_a_non_directional_legacy_plan(tmp_pa
         )
 
 
+def test_batched_plan_does_not_treat_last_item_in_subset_as_episode_final(tmp_path: Path) -> None:
+    _, context, inventory, _ = make_episode(tmp_path)
+    # This models planning image 1 while image 2 exists later in the episode.  The
+    # validator must require the ordinary inward rule, not the final-image pull-out.
+    context["final_image_id"] = "2"
+    with pytest.raises(MotionPlanError, match="push in"):
+        validate_plan(
+            copy.deepcopy(PLAN), context, inventory,
+            settings({**CFG, "enforce_image_zoom_policy": True}),
+        )
+
+
 def test_none_sync_drops_stale_word_metadata(tmp_path: Path) -> None:
     _, context, inventory, _ = make_episode(tmp_path)
     candidate = copy.deepcopy(PLAN)

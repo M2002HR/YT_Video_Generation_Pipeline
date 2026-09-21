@@ -78,6 +78,8 @@ import gateway_contracts as visuals
 import gateway_resume
 import opening_runtime as openings
 import narration_language as language
+from body_asset_schedule import assets_for as scheduled_body_assets
+from body_asset_schedule import build_schedule, valid_schedule
 
 # Initialized from the resolved project in main. Kept as module globals for compatibility
 # with existing helpers/tests that monkeypatch catalog roots.
@@ -3039,6 +3041,7 @@ def stage_visual_plan(
         existing_slices = [str(item.get("narration_slice") or "").strip() for item in existing_beats if isinstance(item, dict)]
         if (len(existing_beats) == len(visual_units) and existing_slices == visual_units
                 and existing.get("layout_policy") == visuals.WORLD_LAYOUT):
+            materialize_body_asset_schedule(project, existing, body_seconds)
             runner.stage_reused(stage, target.name)
             return existing
         print("↻ visual_plan is stale: it does not include one image for every pre-CTA unit", flush=True)
@@ -3109,8 +3112,27 @@ def stage_visual_plan(
     beats = data["beats"]
     data["layout_policy"] = visuals.WORLD_LAYOUT
     save_json(target, data)
+    materialize_body_asset_schedule(project, data, body_seconds)
     runner.stage_done(stage, started, f"{len(beats)} beats", beats=len(beats))
     return data
+
+
+def materialize_body_asset_schedule(project: Path, visual_plan: dict[str, Any], body_seconds: float) -> dict[str, Any]:
+    """Persist the many-image manifest without changing narration-alignment beats."""
+    target = project / "creative" / "BODY_ASSET_SCHEDULE.json"
+    brief = load_json(project / "launch" / "CREATIVE_BRIEF.json")
+    qstation = brief.get("_q_station") if isinstance(brief.get("_q_station"), dict) else {}
+    desired = build_schedule(visual_plan, body_seconds, qstation.get("body_image_target"))
+    existing = load_json(target) if target.is_file() else {}
+    if valid_schedule(existing, visual_plan) and existing.get("target_image_count") == desired["target_image_count"]:
+        return existing
+    save_json(target, desired)
+    print(
+        f"✔ body_asset_schedule — {desired['target_image_count']} independent images "
+        f"across {desired['semantic_beat_count']} spoken units",
+        flush=True,
+    )
+    return desired
 
 
 def stage_world_keyframe_prompt(
@@ -4209,9 +4231,9 @@ def stage_body_images(
     chatgpt_revision_requests: dict[int, dict[str, Any]] | None = None,
     preserve_downstream_beats: bool = False,
 ) -> list[Path]:
-    """One ChatGPT image per body beat, sequential because each uses the previous for continuity."""
+    """Generate the independent physical image schedule for the semantic body plan."""
     character = _coerce_character_context(character or content_project)
-    beats = list(visual_plan.get("beats") or [])
+    beats = scheduled_body_assets(project, visual_plan)
     requested_regenerations = regenerate_beats or set()
     revision_feedback = revision_feedback or {}
     chatgpt_revision_requests = chatgpt_revision_requests or {}
@@ -4230,6 +4252,7 @@ def stage_body_images(
     batch_started = runner.stage_start("body_images")
     produced: list[Path] = []
     previous: Path | None = None
+    previous_semantic_id: int | None = None
     try:
         for beat in beats:
             beat_id = int(beat["beat_id"])
@@ -4237,8 +4260,12 @@ def stage_body_images(
             target = output_dir / f"beat_{beat_id:03d}.png"
 
             beat_character = character if beat.get("hero_present", False) else None
+            semantic_id = int(beat.get("semantic_beat_id") or beat_id)
+            # Continuity is intentionally short-range. The canonical anchors carry the
+            # world; a whole episode must not become a single chained copy operation.
+            continuity_reference = previous if previous_semantic_id == semantic_id else None
             references = _beat_reference_stack(
-                beat_character, beat, world_style_anchor, world_keyframe, previous,
+                beat_character, beat, world_style_anchor, world_keyframe, continuity_reference,
                 operator_style_reference(project),
             )
             prompt = stage_beat_prompt(
@@ -4265,12 +4292,14 @@ def stage_body_images(
                 runner.state.mark(stage, STATE_REUSED, artifact=target.name, isolated_revision=True)
                 produced.append(target)
                 previous = target
+                previous_semantic_id = semantic_id
                 continue
             if beat_id not in requested_regenerations and reusable_image(runner, project, stage, target, receipt, prompt, model, references):
                 runner.state.mark(stage, STATE_REUSED, artifact=target.name)
                 print(f"↻ {stage} reused — {target.name}", flush=True)
                 produced.append(target)
                 previous = target
+                previous_semantic_id = semantic_id
                 continue
 
             started = time.perf_counter()
@@ -4310,6 +4339,7 @@ def stage_body_images(
             print(f"✔ {stage} ({elapsed:.1f}s) — {target.name}", flush=True)
             produced.append(target)
             previous = target
+            previous_semantic_id = semantic_id
             runner.stage_progress("body_images", ["🖼️ Image batch in progress", f"📍 Progress: {len(produced)}/{len(beats)} images", f"⏱ Latest image: {format_duration(elapsed)}"])
     except StageFailure as exc:
         raise StageFailure("body_images", exc.state, f"Body image batch stopped: {exc.message}", error_code=exc.error_code) from exc
@@ -4377,7 +4407,7 @@ def stage_transition_direction(
     """
     stage = "transition_direction"
     target = project / "creative" / "TRANSITION_PLAN.json"
-    beats = list(visual_plan.get("beats") or [])
+    beats = scheduled_body_assets(project, visual_plan)
     if len(beats) != len(images):
         raise StageFailure(stage, "FAILED_VALIDATION", "Transition editor needs one accepted image for every visual beat.")
     if not force and runner.state.done(stage) and target.is_file():

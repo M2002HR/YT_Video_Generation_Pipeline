@@ -74,6 +74,11 @@ def build_motion_context(video_dir: Path, timeline: dict[str, Any], settings: di
         beat_words = [word for word in words if start - .025 <= (word["start"] + word["end"]) / 2 < end + .025]
         media_value = source.get("image") or source.get("source")
         media_path = video_dir / str(media_value) if media_value else None
+        semantic_beat_id = source.get("semantic_beat_id") or source.get("beat_id")
+        visual_description = dict(visual.get(str(semantic_beat_id), {}))
+        if source.get("asset_id"):
+            visual_description["asset_id"] = source.get("asset_id")
+            visual_description["asset_role"] = source.get("asset_role")
         entry = {
             "index": index,
             "beat_id": source.get("beat_id"),
@@ -86,7 +91,7 @@ def build_motion_context(video_dir: Path, timeline: dict[str, Any], settings: di
             "spoken_text_in_slot": " ".join(word["text"] for word in beat_words),
             "speech_start": source.get("speech_start"),
             "speech_end": source.get("speech_end"),
-            "visual_description": visual.get(str(source.get("beat_id")), {}),
+            "visual_description": visual_description,
             "media": str(media_value or ""),
         }
         if media_path and media_path.is_file():
@@ -100,6 +105,7 @@ def build_motion_context(video_dir: Path, timeline: dict[str, Any], settings: di
         beats.append(entry)
     script = (video_dir / "SCRIPT_FINAL.md").read_text(encoding="utf-8") if (video_dir / "SCRIPT_FINAL.md").is_file() else ""
     visual_md = (video_dir / "VISUAL_BEATS.md").read_text(encoding="utf-8") if (video_dir / "VISUAL_BEATS.md").is_file() else ""
+    image_ids = [str(item["beat_id"]) for item in beats if item["media_type"] == "image"]
     return {
         "schema_version": 2,
         "episode": {
@@ -116,6 +122,7 @@ def build_motion_context(video_dir: Path, timeline: dict[str, Any], settings: di
         },
         "words": words,
         "beats": beats,
+        "final_image_id": image_ids[-1] if image_ids else None,
     }
 
 

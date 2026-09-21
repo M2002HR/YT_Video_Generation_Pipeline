@@ -1,7 +1,7 @@
 # Prompt 05 — Visual Beat Planner (Q Station)
 
 ## Purpose
-Plan every pre-CTA still-image beat. The opening-question and entry narration segments are Flow video (planning targets only; measured word timestamps determine their lengths) and are NOT counted as still-image beats. The script has already split BODY into short spoken visual units. If `optional_closing` is non-empty, it is one additional final visual unit. Produce exactly one unique still-image beat for every BODY unit plus that optional closing; CTA never creates an extra beat.
+Plan every pre-CTA *semantic* visual unit. The opening-question and entry narration segments are Flow video (planning targets only; measured word timestamps determine their lengths) and are NOT counted here. The script has already split BODY into short spoken visual units. If `optional_closing` is non-empty, it is one additional final unit. Produce exactly one semantic beat for every BODY unit plus that optional closing; a separate asset schedule deliberately expands each semantic beat into many independent images. CTA never creates an extra beat.
 
 ## Inputs
 - FINAL SCRIPT (segmented): {{FINAL_SCRIPT}}
@@ -36,7 +36,7 @@ Return RAW JSON:
 ## Rules
 - Return exactly `len(body) + (1 if optional_closing is non-empty else 0)` beats, in spoken order. Each narration_slice must exactly equal its corresponding BODY entry or optional_closing. Never combine units or split one unit across beats. Do not create a beat for CTA.
 - Every beat needs a freshly generated, unique standalone image. `world_keyframe_is_first` is always false: the world keyframe is an anchor, never a substitute body image.
-- One standalone image per beat, 9:16 vertical, simple composition. Make the visual idea distinct from its neighbours even when the setting remains continuous.
+- This semantic plan is later expanded into many standalone 9:16 images. Make its visual idea concrete and distinct from its neighbours even when the setting remains continuous, so the independent asset variants have useful editorial material.
 - Each `visual_fingerprint` must be unique across the plan. Change at least two of subject/action,
   shot scale, camera angle, setting zone, time/lighting, symbolic object, or composition from
   each neighboring image. Do not solve continuity by reusing or lightly reframing the prior shot.
@@ -49,7 +49,7 @@ Narration slices must concatenate to exactly the body narration (no missing or o
 
 Return ONLY JSON.
 
-The episode direction carries a selected opening promise. Ensure its factual answer is visually paid off at the corresponding spoken unit. Do not add words, reuse the world keyframe as a body beat or change the one-image-per-unit contract.
+The episode direction carries a selected opening promise. Ensure its factual answer is visually paid off at the corresponding spoken unit. Do not add words or reuse the world keyframe as a body beat. Do not create the physical asset schedule in this response.
 
 
 ## Binding layout isolation
