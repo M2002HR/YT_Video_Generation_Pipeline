@@ -84,15 +84,34 @@ def mark_finalization_done(state_path: Path) -> dict[str, Any]:
 
 
 def timeline_matches_current_timing(video: Path) -> bool:
-    """Refuse a plausible-looking timeline built from an older visual-beat contract."""
+    """Refuse a timeline built before the current semantic or physical asset contract."""
     try:
         timeline = json.loads((video / "timeline/TIMELINE.json").read_text(encoding="utf-8"))
         timing = json.loads((video / "timing/BEAT_TIMINGS.json").read_text(encoding="utf-8"))
         timeline_beats = [item for item in timeline.get("beats") or [] if isinstance(item, dict) and item.get("media_type") == "image"]
         timing_beats = [item for item in timing.get("beats") or [] if isinstance(item, dict)]
+        schedule_path = video / "creative/BODY_ASSET_SCHEDULE.json"
+        if schedule_path.is_file():
+            schedule = json.loads(schedule_path.read_text(encoding="utf-8"))
+            assets = schedule.get("assets") if isinstance(schedule, dict) else None
+            if isinstance(assets, list) and assets:
+                expected = [
+                    (int(asset["beat_id"]), int(asset["semantic_beat_id"]))
+                    for asset in assets if isinstance(asset, dict)
+                ]
+                actual = [
+                    (int(item["beat_id"]), int(item.get("semantic_beat_id") or 0))
+                    for item in timeline_beats
+                ]
+                if actual != expected:
+                    return False
         left = [(item.get("beat_id"), " ".join(str(item.get("narration") or "").split())) for item in timeline_beats]
         right = [(item.get("beat_id"), " ".join(str(item.get("narration") or "").split())) for item in timing_beats]
-        return left == right and abs(float(timeline.get("duration")) - float(timing.get("audio_duration_seconds"))) <= .01
+        # Dense asset schedules deliberately have many physical images per spoken
+        # timing row.  Once their exact physical contract matches, the semantic
+        # narration check is represented by ``semantic_beat_id`` above.
+        semantic_match = bool(schedule_path.is_file() and len(timeline_beats) != len(timing_beats)) or left == right
+        return semantic_match and abs(float(timeline.get("duration")) - float(timing.get("audio_duration_seconds"))) <= .01
     except (OSError, ValueError, TypeError):
         return False
 

@@ -154,6 +154,21 @@ def test_stage_message_id_survives_process_restart(tmp_path: Path) -> None:
     assert resumed.edited[-1][0] == message.message_id
 
 
+def test_noop_telegram_edit_is_a_successful_stable_stage_log(monkeypatch) -> None:
+    class MessageNotModifiedError(Exception):
+        pass
+
+    notifier = PipelineNotifier(
+        video_id="007", topic="test",
+        settings=NotifierSettings(True, "me", 1, "hash", "session", None),
+    )
+    monkeypatch.setattr(
+        notifier, "_run_telegram",
+        lambda operation: (_ for _ in ()).throw(MessageNotModifiedError("unchanged")),
+    )
+    assert notifier.edit(EditableMessage(1), "same body") is True
+
+
 def test_parallel_stages_have_independent_message_ownership(tmp_path: Path) -> None:
     notifier = PersistentRecordingNotifier(tmp_path / "pipeline" / "TELEGRAM_NOTIFICATION_STATE.json")
     image = notifier.stage_started("Images", key="body_images")

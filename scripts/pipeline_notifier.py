@@ -265,6 +265,11 @@ class PipelineNotifier:
         try:
             self._run_telegram(lambda: self._edit_async(message.message_id, self._bounded(body)))
         except Exception as exc:
+            # Telegram rejects a no-op edit.  It still proves the durable message
+            # exists and already carries the requested stage log, so retrying by
+            # sending a replacement only creates noise and hides later updates.
+            if type(exc).__name__ == "MessageNotModifiedError":
+                return True
             print(f"NOTIFICATION WARNING: {type(exc).__name__}: {exc}", flush=True)
             self._record_error(exc)
             return False

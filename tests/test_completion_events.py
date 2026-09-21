@@ -87,6 +87,30 @@ def test_timeline_reuse_rejects_an_old_missing_closing_beat(tmp_path: Path) -> N
     assert completion.timeline_matches_current_timing(tmp_path) is False
 
 
+def test_timeline_reuse_rejects_a_legacy_seven_image_timeline_after_density_upgrade(tmp_path: Path) -> None:
+    (tmp_path / "timeline").mkdir()
+    (tmp_path / "timing").mkdir()
+    (tmp_path / "creative").mkdir()
+    (tmp_path / "timeline/TIMELINE.json").write_text(json.dumps({
+        "duration": 20, "beats": [
+            {"beat_id": 1, "media_type": "image", "narration": "Body sentence."},
+        ],
+    }), encoding="utf-8")
+    (tmp_path / "timing/BEAT_TIMINGS.json").write_text(json.dumps({
+        "audio_duration_seconds": 20, "beats": [
+            {"beat_id": 1, "narration": "Body sentence."},
+        ],
+    }), encoding="utf-8")
+    (tmp_path / "creative/BODY_ASSET_SCHEDULE.json").write_text(json.dumps({
+        "schema_version": 1,
+        "assets": [
+            {"beat_id": 1, "semantic_beat_id": 1},
+            {"beat_id": 2, "semantic_beat_id": 1},
+        ],
+    }), encoding="utf-8")
+    assert completion.timeline_matches_current_timing(tmp_path) is False
+
+
 def test_final_step_leaves_top_status_running_until_finalized(tmp_path: Path, monkeypatch) -> None:
     """Every per-stage step (including the last git_commit_push) leaves RUNNING."""
     state_path = tmp_path / "state.json"
