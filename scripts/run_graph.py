@@ -461,10 +461,18 @@ def graph_for(
     qstation = load(project / "pipeline/Q_STATION_RUNTIME_STATE.json")
     wrapper = load(project / "pipeline/WRAPPER_RUNTIME_STATE.json")
     final = load(project / "pipeline/FINALIZATION_RUNTIME_STATE.json")
+    # A resumed runner can retain a historical completion failure while it is
+    # actively producing a later upstream stage.  A live durable stage is newer
+    # evidence than that terminal snapshot and must remain visible to Studio.
+    qstation_stages = qstation.get("stages") if isinstance(qstation.get("stages"), dict) else {}
+    qstation_active = any(
+        isinstance(entry, dict) and str(entry.get("status") or "") == "RUNNING"
+        for entry in qstation_stages.values()
+    )
     terminal_failed = any(
         str(payload.get("status") or "") in {"FAILED", "STOPPED", "INTERRUPTED"}
         for payload in (qstation, wrapper, final)
-    )
+    ) and not qstation_active
     stages = dict(qstation.get("stages") or {})
     for item in wrapper.get("events") or []:
         if item.get("stage"):
@@ -523,7 +531,10 @@ def graph_for(
         beat_states = [node_map[f"beat_image_{number:03d}"]["status"] for number in range(1, count + 1)]
         body = node_map.get("body_images")
         if body is not None:
-            if any(value in {"FAILED", "MISSING", "STALE", "INVALID"} for value in beat_states):
+            parent_running = str((body.get("meta") or {}).get("status") or "") == "RUNNING"
+            if parent_running and not any(value in {"FAILED", "MISSING", "STALE", "INVALID"} for value in beat_states):
+                body["status"] = "RUNNING"
+            elif any(value in {"FAILED", "MISSING", "STALE", "INVALID"} for value in beat_states):
                 body["status"] = "FAILED"
             elif any(value == "RUNNING" for value in beat_states):
                 body["status"] = "RUNNING"
